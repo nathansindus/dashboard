@@ -1,0 +1,2204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel PES 2.0</title>
+<meta name="description" content="Painel do Programa Educacional Sindusfarma: cursos, divulgações e comparação entre períodos.">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens da marca (Manual de Marca Sindusfarma, abr/2023) ===== */
+:root {
+  --azul1: #002D78; --azul2: #00B9F2; --azul3: #0072BC; --azul4: #000F32;
+  --verde1: #00F0B4; --verde2: #00554B; --roxo1: #AD96DC; --roxo2: #440099;
+  --amarelo: #FFC56E; --laranja: #FF8F1C;
+  --f-display: "Cabin", "Trebuchet MS", system-ui, sans-serif;
+  --f-text: "Work Sans", Arial, system-ui, sans-serif;
+  --r-sm: 6px; --r-md: 10px;
+  --gap: 14px;
+  color-scheme: light;
+  --bg: #EEF3FA;
+  --bg-glow-a: rgba(0, 185, 242, .20);
+  --bg-glow-b: rgba(0, 240, 180, .14);
+  --arc: rgba(0, 114, 188, .16);
+  --panel: rgba(255, 255, 255, .86);
+  --panel-solid: #FFFFFF;
+  --panel-sub: #F3F7FC;
+  --line: rgba(0, 45, 120, .11);
+  --line-strong: rgba(0, 45, 120, .22);
+  --edge-a: rgba(0, 185, 242, .55);
+  --edge-b: rgba(0, 240, 180, .40);
+  --fg: #000F32;
+  --fg-2: #23396A;
+  --muted: #586C90;
+  --accent: #0072BC;
+  --accent-soft: rgba(0, 114, 188, .10);
+  --data: #0072BC;
+  --data-2: #00B9F2;
+  --up: #00805F;
+  --up-bg: rgba(0, 240, 180, .22);
+  --down: #A84F00;
+  --down-bg: rgba(255, 143, 28, .20);
+  --organico: #8EA2C2;
+  --shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 8px 24px -16px rgba(0, 45, 120, .35);
+  --menu-shadow: 0 18px 40px -16px rgba(0, 45, 120, .45);
+  --logo-a: #00C99A; --logo-b: #00554B;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #000F32; --bg-glow-a: rgba(0, 114, 188, .38); --bg-glow-b: rgba(0, 240, 180, .10); --arc: rgba(0, 185, 242, .13);
+  --panel: rgba(0, 45, 120, .30); --panel-solid: #031A4D; --panel-sub: rgba(0, 114, 188, .12);
+  --line: rgba(0, 185, 242, .14); --line-strong: rgba(0, 185, 242, .30); --edge-a: rgba(0, 185, 242, .55); --edge-b: rgba(0, 240, 180, .35);
+  --fg: #EAF4FF; --fg-2: #BFD4F2; --muted: #8199C2; --accent: #00B9F2; --accent-soft: rgba(0, 185, 242, .14);
+  --data: #00B9F2; --data-2: #0072BC; --up: #00F0B4; --up-bg: rgba(0, 240, 180, .14); --down: #FF8F1C; --down-bg: rgba(255, 143, 28, .16);
+  --organico: #4F6A99; --shadow: 0 1px 0 rgba(0,185,242,.10) inset, 0 18px 40px -28px rgba(0, 0, 0, .9);
+  --menu-shadow: 0 22px 48px -18px rgba(0, 0, 0, .95);
+  --logo-a: #FFFFFF; --logo-b: #FFFFFF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #000F32; --bg-glow-a: rgba(0, 114, 188, .38); --bg-glow-b: rgba(0, 240, 180, .10); --arc: rgba(0, 185, 242, .13);
+    --panel: rgba(0, 45, 120, .30); --panel-solid: #031A4D; --panel-sub: rgba(0, 114, 188, .12);
+    --line: rgba(0, 185, 242, .14); --line-strong: rgba(0, 185, 242, .30); --edge-a: rgba(0, 185, 242, .55); --edge-b: rgba(0, 240, 180, .35);
+    --fg: #EAF4FF; --fg-2: #BFD4F2; --muted: #8199C2; --accent: #00B9F2; --accent-soft: rgba(0, 185, 242, .14);
+    --data: #00B9F2; --data-2: #0072BC; --up: #00F0B4; --up-bg: rgba(0, 240, 180, .14); --down: #FF8F1C; --down-bg: rgba(255, 143, 28, .16);
+    --organico: #4F6A99; --shadow: 0 1px 0 rgba(0,185,242,.10) inset, 0 18px 40px -28px rgba(0, 0, 0, .9);
+    --menu-shadow: 0 22px 48px -18px rgba(0, 0, 0, .95);
+    --logo-a: #FFFFFF; --logo-b: #FFFFFF;
+  }
+}
+
+/* ===== Base ===== */
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+body.pes { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 400 13.5px/1.45 var(--f-text);
+  -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; overflow: hidden; }
+.pes button, .pes select, .pes input { font: inherit; color: inherit; }
+.pes :focus-visible { outline: 2px solid var(--azul2); outline-offset: 2px; border-radius: 4px; }
+.pes [hidden] { display: none !important; }
+.nota { color: var(--muted); font-size: 12px; }
+
+.backdrop { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(60vw 60vw at 100% -10%, var(--bg-glow-a), transparent 60%), radial-gradient(40vw 40vw at -5% 110%, var(--bg-glow-b), transparent 60%); }
+.backdrop svg { position: absolute; width: 70vmax; height: 70vmax; right: -18vmax; bottom: -30vmax; }
+.backdrop path { fill: none; stroke: var(--arc); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+
+/* ===== Estrutura ===== */
+.app { position: relative; z-index: 1; display: grid; grid-template-columns: 104px minmax(0, 1fr); height: 100%; }
+.rail { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 8px; border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--panel), transparent); }
+.rail .simbolo { width: 40px; height: 43px; margin-bottom: 18px; -webkit-mask: var(--sym) center / contain no-repeat; mask: var(--sym) center / contain no-repeat;
+  background: linear-gradient(120deg, var(--azul2), var(--verde1)); }
+.navbtn { position: relative; width: 88px; padding: 10px 2px 9px; border: 0; border-radius: var(--r-md); background: transparent;
+  display: grid; justify-items: center; gap: 5px; cursor: pointer; color: var(--muted); font-size: 12px; font-weight: 500; line-height: 1.2; white-space: nowrap; }
+.navbtn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+.navbtn:hover, .navbtn[aria-current="page"] { color: var(--fg); background: var(--accent-soft); }
+.navbtn[aria-current="page"]::before { content: ""; position: absolute; left: -8px; top: 12px; bottom: 12px; width: 3px; border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, var(--azul2), var(--verde1)); }
+.rail .fim { margin-top: auto; }
+.tema { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-strong); background: transparent; cursor: pointer; display: grid; place-items: center; color: var(--muted); }
+.tema:hover { color: var(--fg); }
+.tema svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+main.palco { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 12px; min-width: 0; min-height: 0; padding: 16px 22px 18px 20px; }
+.topo { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; align-items: center; gap: 18px; }
+.topo .logo { width: 150px; height: 34px; -webkit-mask: var(--logo) left center / contain no-repeat; mask: var(--logo) left center / contain no-repeat;
+  background: linear-gradient(120deg, var(--logo-a), var(--logo-b)); }
+.topo .divisor { width: 1px; height: 30px; background: var(--line-strong); }
+.topo .titulos { min-width: 0; }
+.topo h1 { margin: 0; font: 600 22px/1.15 var(--f-display); letter-spacing: -.01em; }
+.topo .sub { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.status-dados { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
+.atualizado { text-align: right; line-height: 1.25; white-space: nowrap; }
+.atualizado b { display: block; font: 600 13px var(--f-display); }
+.atualizado span { font-size: 11.5px; color: var(--muted); }
+.fontes { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--fg-2); padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); cursor: default; }
+.fontes .pts { display: inline-flex; gap: 4px; }
+.fontes i { width: 7px; height: 7px; border-radius: 50%; background: var(--verde1); box-shadow: 0 0 6px var(--verde1); }
+.fontes i[data-st="erro"] { background: var(--laranja); box-shadow: 0 0 6px var(--laranja); }
+.fontes i[data-st="off"], .fontes i[data-st="demo"] { background: var(--organico); box-shadow: none; }
+.selo-demo { font-size: 11.5px; font-weight: 600; padding: 5px 10px; border-radius: 999px; color: var(--azul4); background: var(--amarelo); white-space: nowrap; }
+
+/* ===== Páginas ===== */
+.pagina { display: grid; grid-template-rows: auto auto minmax(0, 1fr); gap: var(--gap); min-height: 0; min-width: 0; animation: entra .28s ease both; }
+@keyframes entra { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.area { display: grid; grid-template-columns: minmax(0, 1fr) auto; min-height: 0; min-width: 0; }
+
+.painel { position: relative; min-width: 0; min-height: 0; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--r-md); box-shadow: var(--shadow); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); padding: 14px 16px; }
+.painel > header { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; margin-bottom: 10px; min-height: 26px; }
+.painel h2 { margin: 0; font: 600 15px/1.2 var(--f-display); }
+.painel > header .dir { margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.corpo { flex: 1; min-height: 0; position: relative; }
+.rolagem { overflow: auto; scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+
+/* ===== Filtros (dropdowns) ===== */
+.filtros { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; min-height: 36px; }
+.filtros .direita { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.dd { position: relative; }
+.dd-btn { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px 0 14px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--panel); cursor: pointer; white-space: nowrap; font-size: 13px; }
+.dd-btn:hover { border-color: var(--line-strong); }
+.dd-btn .rot { color: var(--muted); }
+.dd-btn .val { font-weight: 500; color: var(--fg); }
+.dd-btn .pts { display: inline-flex; gap: 3px; }
+.dd-btn .pts i { width: 7px; height: 7px; border-radius: 50%; }
+.dd-btn svg { width: 10px; height: 6px; stroke: var(--accent); fill: none; stroke-width: 1.6; transition: transform .15s; }
+.dd-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.dd.ativo .dd-btn { border-color: var(--accent); background: var(--accent-soft); }
+.dd-menu { position: absolute; z-index: 40; top: calc(100% + 6px); left: 0; width: max-content; min-width: max(100%, 200px); max-width: min(480px, 90vw); max-height: 340px; overflow: auto;
+  padding: 6px; border-radius: var(--r-md); background: var(--panel-solid); border: 1px solid var(--line-strong); box-shadow: var(--menu-shadow); }
+.dd-menu.dir { left: auto; right: 0; }
+.dd-busca { width: 100%; margin: 0 0 6px; padding: 7px 10px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--panel-sub); font-size: 13px; }
+.dd-op { display: flex; align-items: center; gap: 9px; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--r-sm); background: transparent; text-align: left;
+  cursor: pointer; font-size: 13px; color: var(--fg-2); line-height: 1.3; }
+.dd-op:hover, .dd-op:focus-visible { background: var(--accent-soft); color: var(--fg); outline: none; }
+.dd-op[aria-selected="true"] { color: var(--fg); font-weight: 500; }
+.dd-op .marca { width: 16px; height: 16px; flex: none; border-radius: 50%; border: 1.5px solid var(--line-strong); display: grid; place-items: center; }
+.dd-op[aria-selected="true"] .marca { border-color: var(--accent); background: radial-gradient(circle, var(--accent) 0 4px, transparent 5px); }
+.dd-menu.multi .dd-op .marca { border-radius: 4px; }
+.dd-menu.multi .dd-op[aria-selected="true"] .marca { background: var(--accent); }
+.dd-menu.multi .dd-op[aria-selected="true"] .marca::after { content: ""; width: 8px; height: 4px; border-left: 2px solid var(--panel-solid); border-bottom: 2px solid var(--panel-solid); transform: rotate(-45deg) translate(1px, -1px); }
+.dd-op .cor { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.dd-op small { color: var(--muted); margin-left: auto; padding-left: 12px; white-space: nowrap; }
+.dd-sep { height: 1px; background: var(--line); margin: 4px 6px; }
+.limpar { border: 0; background: transparent; color: var(--accent); cursor: pointer; font-size: 12.5px; padding: 4px 6px; text-decoration: underline; text-underline-offset: 3px; }
+
+.switch { display: inline-flex; align-items: center; gap: 9px; height: 36px; padding: 0 14px 0 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.switch .trilho { width: 34px; height: 20px; border-radius: 999px; background: var(--line-strong); position: relative; transition: background .2s; flex: none; }
+.switch .trilho::after { content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--panel-solid); box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: transform .2s; }
+.switch[aria-checked="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.switch[aria-checked="true"] .trilho { background: linear-gradient(120deg, var(--azul2), var(--verde1)); }
+.switch[aria-checked="true"] .trilho::after { transform: translateX(14px); }
+.btn-leitura { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px 0 12px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--panel); cursor: pointer; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.btn-leitura svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.6; }
+.btn-leitura .cont { min-width: 22px; height: 20px; padding: 0 6px; border-radius: 999px; display: inline-grid; place-items: center; font-size: 11.5px; font-weight: 600; background: var(--accent-soft); color: var(--fg); }
+.btn-leitura .cont.alerta { background: var(--down-bg); color: var(--down); }
+.btn-leitura[aria-expanded="true"] { border-color: var(--accent); background: var(--accent-soft); }
+
+/* ===== Indicadores ===== */
+.cluster { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); padding: 0; overflow: hidden; }
+.cluster::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(120deg, var(--edge-a), transparent 35%, transparent 70%, var(--edge-b));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.kpi { position: relative; padding: 14px 18px 14px; min-width: 0; display: grid; grid-template-rows: auto auto 1fr; gap: 4px; }
+.kpi + .kpi { border-left: 1px solid var(--line); }
+.kpi .rot { font-size: 12.5px; color: var(--fg-2); display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; min-height: 22px; }
+.kpi .rot > span { padding-top: 2px; }
+.kpi .valor { font: 600 34px/1.1 var(--f-display); letter-spacing: -.02em; display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+.kpi .valor small { font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.kpi .ctx { font-size: 12px; color: var(--muted); align-self: end; display: flex; gap: 6px 8px; align-items: center; flex-wrap: wrap; }
+.kpi .ctx:empty { display: none; }
+.kpi .anel { width: 42px; height: 42px; flex: none; }
+.npsbar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; width: 100%; background: var(--line); }
+.npsbar i:nth-child(1) { background: var(--laranja); }
+.npsbar i:nth-child(2) { background: var(--organico); opacity: .7; }
+.npsbar i:nth-child(3) { background: var(--verde1); }
+
+.delta { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font: 600 12px/1.5 var(--f-text); white-space: nowrap; flex: none; }
+.delta::before { content: ""; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; }
+.delta.up { color: var(--up); background: var(--up-bg); }
+.delta.up::before { border-bottom: 6px solid currentColor; }
+.delta.down { color: var(--down); background: var(--down-bg); }
+.delta.down::before { border-top: 6px solid currentColor; }
+.delta.zero { color: var(--muted); background: var(--accent-soft); }
+.delta.zero::before { display: none; }
+.evo-off .kpi .delta, .evo-off .so-evo { display: none !important; }
+
+.resumo-evo { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 12.5px; color: var(--fg-2); }
+.resumo-evo b { font-family: var(--f-display); font-size: 14px; color: var(--fg); }
+.barra-origem { display: inline-flex; width: 110px; height: 6px; border-radius: 3px; overflow: hidden; background: var(--line); }
+.barra-origem i:first-child { background: var(--data); }
+.barra-origem i:last-child { background: var(--organico); }
+
+/* ===== Tabelas ===== */
+.tabela { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+.tabela th { position: sticky; top: 0; z-index: 1; background: var(--panel-solid); text-align: left; font-weight: 500; color: var(--muted); font-size: 12px;
+  padding: 8px 10px; border-bottom: 1px solid var(--line-strong); line-height: 1.25; vertical-align: bottom; }
+.tabela th.n { text-align: right; }
+.tabela th button { max-width: 96px; }
+.tabela th button { all: unset; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; }
+.tabela th button:focus-visible { outline: 2px solid var(--azul2); border-radius: 3px; }
+.tabela th[aria-sort="ascending"] button::after { content: "▲"; font-size: 8px; color: var(--accent); }
+.tabela th[aria-sort="descending"] button::after { content: "▼"; font-size: 8px; color: var(--accent); }
+.tabela td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; white-space: nowrap; }
+.tabela tbody tr:hover > td { background: var(--accent-soft); }
+.tabela tr.flash > td { animation: flash 1.6s ease; }
+@keyframes flash { 0%, 40% { background: rgba(0, 185, 242, .28); } 100% { background: transparent; } }
+.tabela .n { text-align: right; }
+.tabela .titulo { white-space: normal; min-width: 210px; max-width: 440px; }
+.tabela .titulo b { font-weight: 500; display: block; line-height: 1.3; }
+.tabela .titulo span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+.tabela .data2 b { display: block; font-weight: 400; }
+.tabela .data2 span { display: block; font-size: 12px; }
+.st-ab { color: var(--up); }
+.st-enc { color: var(--muted); }
+.ocup { display: inline-grid; grid-template-columns: 52px auto; gap: 8px; align-items: center; }
+.ocup .t { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.ocup .t i { display: block; height: 100%; background: var(--data); }
+.ocup .t i.cheio { background: var(--verde1); }
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line-strong); color: var(--fg-2); white-space: nowrap; }
+.badge i { width: 7px; height: 7px; border-radius: 50%; }
+.nps-cel { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; }
+.nps-cel i { width: 7px; height: 7px; border-radius: 50%; }
+.z-excelencia { background: var(--verde1); } .z-qualidade { background: var(--azul2); } .z-aperfeicoamento { background: var(--amarelo); } .z-critica { background: var(--laranja); }
+.origem { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; }
+.pontos { display: inline-flex; gap: 3px; }
+.pontos i { width: 8px; height: 8px; border-radius: 50%; }
+.origem.org { color: var(--muted); }
+.ganho { font-family: var(--f-display); font-weight: 600; }
+.ganho.pos { color: var(--up); }
+.ritmo { font-variant-numeric: tabular-nums; }
+.ritmo .seta { color: var(--muted); margin: 0 4px; }
+
+/* página 2: atividade com divulgações abertas */
+.tabela tr.grupo { cursor: pointer; }
+.tabela tr.grupo td:first-child { padding-left: 4px; }
+.exp { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; display: inline-grid; place-items: center; color: var(--accent); }
+.exp svg { width: 10px; height: 6px; stroke: currentColor; fill: none; stroke-width: 1.6; transition: transform .15s; }
+tr.grupo[aria-expanded="true"] .exp svg { transform: rotate(180deg); }
+.tabela tr.det > td { padding: 0; background: var(--panel-sub); white-space: normal; }
+.tabela tr.det:hover > td { background: var(--panel-sub); }
+.acoes { display: grid; padding: 4px 14px 8px 36px; }
+.acao { display: grid; grid-template-columns: 128px minmax(230px, 1.3fr) minmax(220px, 1.2fr) minmax(190px, 230px); gap: 4px 18px;
+  padding: 12px 0; border-bottom: 1px dashed var(--line); font-size: 12.5px; align-items: start; }
+.acao:last-child { border-bottom: 0; }
+.acao .q { display: grid; gap: 5px; align-content: start; }
+.acao .t { font-weight: 500; color: var(--fg); line-height: 1.35; }
+.acao .k { color: var(--muted); }
+.acao .v { color: var(--fg-2); }
+.acao .lin { line-height: 1.4; }
+.acao .lin .k { margin-right: 4px; }
+.acao .num { display: grid; grid-template-columns: auto auto; gap: 3px 10px; justify-content: start; }
+.acao .num .k { white-space: nowrap; }
+.acao .num .v { text-align: right; font-weight: 500; white-space: nowrap; }
+
+/* ===== Leitura (painel retrátil) ===== */
+.gaveta { width: 0; margin-left: 0; opacity: 0; visibility: hidden; overflow: hidden; min-height: 0; display: flex;
+  transition: width .25s ease, margin .25s ease, opacity .18s ease, visibility 0s linear .25s; }
+.gaveta.aberta { width: 380px; margin-left: var(--gap); opacity: 1; visibility: visible; transition: width .25s ease, margin .25s ease, opacity .2s ease .05s, visibility 0s; }
+.gaveta > .painel { width: 380px; flex: none; }
+.fechar { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); display: grid; place-items: center; }
+.fechar:hover { color: var(--fg); border-color: var(--line-strong); }
+.fechar svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 1.8; }
+.insights { display: grid; align-content: start; }
+.insight { position: relative; padding: 12px 4px 12px 20px; border-bottom: 1px solid var(--line); }
+.insight:last-of-type { border-bottom: 0; }
+.insight::before { content: ""; position: absolute; left: 3px; top: 17px; width: 8px; height: 8px; border-radius: 50%; background: var(--azul2); }
+.insight[data-tipo="alerta"]::before, .insight[data-tipo="queda"]::before { background: var(--laranja); }
+.insight[data-tipo="oportunidade"]::before { background: var(--amarelo); }
+.insight[data-tipo="destaque"]::before, .insight[data-tipo="alta"]::before { background: var(--verde1); }
+.insight[data-tipo="neutro"]::before { background: var(--roxo1); }
+.insight h3 { margin: 0 0 3px; font: 600 13.5px/1.3 var(--f-display); display: flex; gap: 8px; align-items: baseline; }
+.insight p { margin: 0; font-size: 12.5px; color: var(--fg-2); line-height: 1.5; }
+.insight .orig { margin-left: auto; font: 500 10.5px var(--f-text); color: var(--muted); white-space: nowrap; }
+.insight .orig.ia { color: var(--azul4); background: linear-gradient(120deg, var(--azul2), var(--verde1)); padding: 1px 7px; border-radius: 999px; }
+.insight[role="button"] { cursor: pointer; border-radius: var(--r-sm); }
+.insight[role="button"]:hover { background: var(--accent-soft); }
+.aviso-ia { font-size: 12px; color: var(--muted); padding: 10px 4px 2px; margin: 0; }
+
+/* ===== Comparação ===== */
+.periodos { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; font-size: 12.5px; }
+.periodo { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); white-space: nowrap; }
+.periodo i { width: 10px; height: 10px; border-radius: 3px; }
+.periodo.a i { background: var(--data); }
+.periodo.b i { background: transparent; border: 1.5px dashed var(--muted); }
+.datas { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 12px; color: var(--muted); }
+.datas input { border: 1px solid var(--line); background: var(--panel); border-radius: var(--r-sm); padding: 5px 6px; font-size: 12.5px; }
+.cards-comp { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); padding: 0; overflow: hidden; }
+.comp { padding: 13px 16px; min-width: 0; display: grid; gap: 4px; }
+.comp + .comp { border-left: 1px solid var(--line); }
+.comp .rot { font-size: 12.5px; color: var(--fg-2); display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.comp .rot > span { padding-top: 2px; }
+.comp .linha { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
+.comp .va { font: 600 28px/1.1 var(--f-display); letter-spacing: -.02em; white-space: nowrap; }
+.comp .vb { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.comp .duo { display: grid; gap: 3px; margin-top: 4px; }
+.comp .duo i { display: block; height: 4px; border-radius: 2px; }
+.comp .duo i:first-child { background: var(--data); }
+.comp .duo i:last-child { background: var(--organico); opacity: .7; }
+.area-comp { display: grid; grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); gap: var(--gap); min-height: 0; }
+.coluna { display: grid; grid-template-rows: minmax(0, 1.7fr) minmax(0, 1fr); gap: var(--gap); min-height: 0; }
+.grafico { position: absolute; inset: 0; }
+.grafico svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.eixo text { fill: var(--muted); font: 400 11px var(--f-text); }
+.eixo line, .grade line { stroke: var(--line); }
+.legenda { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--fg-2); }
+.legenda span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.legenda i { width: 16px; height: 0; border-top: 2.5px solid var(--data); display: inline-block; }
+.legenda i.tracejada { border-top: 2px dashed var(--muted); }
+.vazio { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 13px; padding: 20px; }
+.meses { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0; margin-top: 10px; border-top: 1px solid var(--line); padding-top: 10px; }
+.mes { display: grid; justify-items: center; gap: 2px; padding: 2px 2px; min-width: 0; text-align: center; }
+.mes + .mes { border-left: 1px solid var(--line); }
+.mes .m { font-size: 11.5px; color: var(--muted); }
+.mes .q { font: 600 15px/1.2 var(--f-display); }
+.mes .p { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.mes .delta { font-size: 11px; padding: 1px 6px; }
+.mes.futuro .q { color: var(--muted); font-weight: 500; }
+.hbars { display: grid; gap: 12px; }
+.hbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; font-size: 12.5px; align-items: center; }
+.hbar .nome { color: var(--fg-2); }
+.hbar .num { font-weight: 600; font-family: var(--f-display); display: inline-flex; gap: 8px; align-items: center; white-space: nowrap; }
+.hbar .trilha { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.hbar .trilha i { display: block; height: 100%; border-radius: 3px; }
+.hbar .det { grid-column: 1 / -1; font-size: 11.5px; color: var(--muted); }
+
+/* ===== Tooltip ===== */
+.tip { position: fixed; z-index: 60; pointer-events: none; max-width: 320px; padding: 9px 11px; border-radius: var(--r-sm); background: var(--panel-solid);
+  border: 1px solid var(--line-strong); box-shadow: var(--menu-shadow); font-size: 12px; color: var(--fg-2); opacity: 0; transition: opacity .12s; }
+.tip.on { opacity: 1; }
+.tip b { color: var(--fg); font-weight: 600; }
+.tip .l { display: flex; justify-content: space-between; gap: 14px; }
+.tip .t { font: 600 13px var(--f-display); color: var(--fg); margin-bottom: 4px; display: block; }
+
+/* ===== Até 1700px: a leitura desliza por cima da tabela, que mantém a largura inteira ===== */
+@media (max-width: 1699px) {
+  .area { position: relative; }
+  .gaveta { position: absolute; top: 0; right: 0; bottom: 0; z-index: 15; margin-left: 0 !important; }
+  .gaveta.aberta { width: min(400px, 92%); }
+  .gaveta > .painel { width: 100%; background: var(--panel-solid); box-shadow: var(--menu-shadow); border-color: var(--line-strong); }
+}
+
+/* ===== Telas menores: a página vira coluna com rolagem ===== */
+@media (max-width: 1180px) {
+  body.pes { overflow: auto; height: auto; }
+  .app { height: auto; min-height: 100%; }
+  .pagina { grid-template-rows: none; }
+  .area { grid-template-columns: minmax(0, 1fr); }
+  .gaveta, .gaveta.aberta { position: static; width: auto; margin: var(--gap) 0 0 !important; }
+  .gaveta > .painel { width: 100%; }
+  .gaveta:not(.aberta) { display: none; }
+  .painel.tabela-p { max-height: 640px; }
+  .cluster { grid-auto-flow: row; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .kpi + .kpi { border-left: 0; }
+  .kpi { border-top: 1px solid var(--line); }
+  .cards-comp { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .comp { border-top: 1px solid var(--line); }
+  .area-comp { grid-template-columns: minmax(0, 1fr); }
+  .painel.grande { min-height: 520px; }
+  .coluna { grid-template-rows: auto auto; }
+  .coluna .painel { min-height: 300px; }
+  .acao { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .app { grid-template-columns: minmax(0, 1fr); padding-bottom: 76px; }
+  .rail { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; flex-direction: row; justify-content: center; padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+    border-right: 0; border-top: 1px solid var(--line); background: var(--panel-solid); }
+  .rail .simbolo { display: none; }
+  .rail .fim { margin: 0 0 0 8px; }
+  .navbtn[aria-current="page"]::before { left: 12px; right: 12px; top: -6px; bottom: auto; width: auto; height: 3px; border-radius: 0 0 3px 3px; }
+  main.palco { padding: 12px; }
+  .topo { grid-template-columns: 1fr; gap: 10px; }
+  .topo .divisor { display: none; }
+  .status-dados { justify-content: flex-start; flex-wrap: wrap; }
+  .atualizado { text-align: left; }
+  .filtros .direita { margin-left: 0; }
+  .cards-comp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .meses { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: 10px; }
+  .mes:nth-child(7) { border-left: 0; }
+  .acao { grid-template-columns: 1fr; padding-left: 0; }
+  .acoes { padding-left: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pes *, .pes *::before, .pes *::after { animation: none !important; transition: none !important; }
+}
+.pes .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.rolagem.tem-mais { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 34px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 34px), transparent); }
+.parcial-dias { display: block; font-size: 11px; }
+.mes .m small { font-size: 10.5px; }
+.mes.parcial { background: var(--accent-soft); border-radius: var(--r-sm); }
+#nota-anual { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; color: var(--fg-2); font-size: 12.5px; }
+#nota-anual b { font-family: var(--f-display); font-size: 14px; }
+
+.rot-bloco { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: .01em; }
+.sep-bloco { display: block; height: 1px; background: var(--line); margin: 4px 0 2px; }
+.alerta-txt { color: var(--down); }
+.acao a { color: inherit; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--line-strong); }
+.aviso-cruz { display: inline-grid; place-items: center; width: 16px; height: 16px; margin-left: 6px; border-radius: 50%; background: var(--down-bg); color: var(--down); font: 700 11px var(--f-text); }
+.kpi .valor small { white-space: nowrap; }
+
+</style>
+</head>
+<body class="pes">
+<div class="backdrop" aria-hidden="true">
+  <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+    <path d="M58 392 A176 176 0 1 1 352 118"/>
+    <path d="M44 398 A190 190 0 1 1 364 108"/>
+    <path d="M140 400 C150 300 186 214 262 210 C300 208 330 232 352 262"/>
+    <path d="M206 400 C216 326 238 276 282 268 C310 263 334 276 352 296"/>
+  </svg>
+</div>
+
+<div class="app">
+  <nav class="rail" aria-label="Páginas do painel">
+    <div class="simbolo" aria-hidden="true"></div>
+    <button class="navbtn" data-pg="atividades" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5 12 3l9 3.5-9 3.5z"/><path d="M6.5 8.3v5.2c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3V8.3"/><path d="M21 6.5v6"/></svg>
+      Atividades
+    </button>
+    <button class="navbtn" data-pg="divulgacoes" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+      Divulgações
+    </button>
+    <button class="navbtn" data-pg="comparacao" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10"/><path d="M10 20V4"/><path d="M15 20v-7"/><path d="M20 20V8"/><path d="M3 20h18"/></svg>
+      Comparação
+    </button>
+    <div class="fim">
+      <button class="tema" id="btn-tema" type="button" aria-label="Alternar tema">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main class="palco">
+    <header class="topo">
+      <div class="logo" role="img" aria-label="PES — Programa Educacional Sindusfarma"></div>
+      <div class="divisor" aria-hidden="true"></div>
+      <div class="titulos">
+        <h1 id="titulo-pg">Acompanhamento das atividades</h1>
+        <div class="sub" id="sub-pg"></div>
+      </div>
+      <div class="status-dados">
+        <span class="selo-demo" id="selo-demo" hidden>Dados de demonstração</span>
+        <span class="fontes" id="fontes" tabindex="0"></span>
+        <div class="atualizado"><b id="atualizado">—</b><span id="atualizado-ref">—</span></div>
+      </div>
+    </header>
+
+    <!-- ===================== Página 1 · Atividades ===================== -->
+    <section class="pagina evo-off" id="pg-atividades" data-pg="atividades" aria-labelledby="titulo-pg">
+      <div class="filtros">
+        <div class="dd" id="dd-status"></div>
+        <div class="dd" id="dd-modelo"></div>
+        <div class="dd" id="dd-formato"></div>
+        <div class="dd" id="dd-ano"></div>
+        <button class="switch" type="button" role="switch" aria-checked="false" id="sw-evo"><span class="trilho" aria-hidden="true"></span>Evolução</button>
+        <div class="dd so-evo" id="dd-ref"></div>
+        <button class="limpar" type="button" id="limpar-atv" hidden>Limpar filtros</button>
+        <div class="direita">
+          <button class="btn-leitura" type="button" aria-expanded="false" aria-controls="gav-atv" data-gaveta="gav-atv">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Leitura do período<span class="cont" id="cont-atv">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="painel cluster" id="kpis-atv" aria-live="polite"></div>
+
+      <div class="area">
+        <div class="painel tabela-p">
+          <header>
+            <h2>Atividades</h2><span class="nota" id="n-atv"></span>
+            <div class="dir so-evo" id="resumo-evo"></div>
+          </header>
+          <div class="corpo rolagem"><table class="tabela" id="t-atv"></table></div>
+        </div>
+        <aside class="gaveta" id="gav-atv" aria-label="Leitura do período">
+          <div class="painel">
+            <header><h2>Leitura do período</h2><span class="nota">muda com os filtros</span>
+              <button class="fechar" type="button" data-fecha="gav-atv" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
+            <div class="corpo rolagem"><div class="insights" id="ins-atv"></div></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== Página 2 · Divulgações ===================== -->
+    <section class="pagina" id="pg-divulgacoes" data-pg="divulgacoes" aria-labelledby="titulo-pg" hidden>
+      <div class="filtros">
+        <div class="dd" id="dd-per"></div>
+        <div class="dd" id="dd-tipos"></div>
+        <div class="dd" id="dd-curso"></div>
+        <button class="limpar" type="button" id="limpar-div" hidden>Limpar filtros</button>
+        <div class="direita">
+          <button class="btn-leitura" type="button" aria-expanded="false" aria-controls="gav-div" data-gaveta="gav-div">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Leitura das divulgações<span class="cont" id="cont-div">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="painel cluster" id="kpis-div" aria-live="polite"></div>
+
+      <div class="area">
+        <div class="painel tabela-p">
+          <header>
+            <h2>Atividades divulgadas</h2><span class="nota" id="n-div"></span>
+            <div class="dir"><button class="limpar" type="button" id="abrir-todas">Abrir todas</button></div>
+          </header>
+          <div class="corpo rolagem"><table class="tabela" id="t-div"></table></div>
+        </div>
+        <aside class="gaveta" id="gav-div" aria-label="Leitura das divulgações">
+          <div class="painel">
+            <header><h2>Leitura das divulgações</h2>
+              <button class="fechar" type="button" data-fecha="gav-div" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
+            <div class="corpo rolagem"><div class="insights" id="ins-div"></div></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== Página 3 · Comparação ===================== -->
+    <section class="pagina" id="pg-comparacao" data-pg="comparacao" aria-labelledby="titulo-pg" hidden>
+      <div class="filtros">
+        <div class="dd" id="dd-preset"></div>
+        <div class="periodos" id="periodos"></div>
+        <div class="datas" id="datas-custom" hidden>
+          <span>Atual</span><input type="date" id="a-ini" aria-label="Início do período atual"><input type="date" id="a-fim" aria-label="Fim do período atual">
+          <span>Anterior</span><input type="date" id="b-ini" aria-label="Início do período anterior"><input type="date" id="b-fim" aria-label="Fim do período anterior">
+        </div>
+      </div>
+
+      <div class="painel cards-comp" id="cards-comp" aria-live="polite"></div>
+
+      <div class="area-comp">
+        <div class="painel grande">
+          <header>
+            <h2 id="tit-anual">Inscrições acumuladas no ano</h2>
+            <div class="legenda" id="leg-anual"></div>
+            <div class="dir"><span class="nota" id="nota-anual"></span></div>
+          </header>
+          <div class="corpo"><div class="grafico" id="g-anual"></div></div>
+          <div class="meses" id="meses"></div>
+        </div>
+        <div class="coluna">
+          <div class="painel">
+            <header><h2>Por que mudou</h2><span class="nota">do maior para o menor impacto</span></header>
+            <div class="corpo rolagem"><div class="insights" id="ins-comp"></div></div>
+          </div>
+          <div class="painel">
+            <header><h2>Composição das inscrições</h2><div class="dir"><div class="dd" id="dd-grupo"></div></div></header>
+            <div class="corpo rolagem"><div class="hbars" id="g-comp"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+var LOGO_PES = "data:image/png;base64,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";
+var SIMBOLO_PES = "data:image/png;base64,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";
+</script>
+<script>
+/* =====================================================================
+   Painel PES 2.0 · núcleo de métricas
+   Mesmo código roda no navegador (index.html) e no n8n (Code node),
+   para que a IA receba exatamente os números que a tela mostra.
+   ===================================================================== */
+var PESCore = (function () {
+  'use strict';
+
+  var TIPOS = {
+    email_marketing: { nome: 'E-mail marketing', curto: 'E-mail', cor: '#00B9F2' },
+    carrossel:       { nome: 'Carrossel',        curto: 'Carrossel', cor: '#AD96DC' },
+    lamina_unica:    { nome: 'Lâmina única',     curto: 'Lâmina', cor: '#FFC56E' },
+    mala_direta:     { nome: 'Mala direta',      curto: 'Mala direta', cor: '#FF8F1C' },
+    whatsapp:        { nome: 'WhatsApp ativo',   curto: 'WhatsApp', cor: '#00F0B4' },
+    outro:           { nome: 'Outra ação',       curto: 'Outra', cor: '#8EA2C2' }
+  };
+  var FORMATOS = { online: 'Online', presencial: 'Presencial', hibrido: 'Híbrido' };
+  var MODELOS = { pago: 'Pago', gratuito: 'Gratuito' };
+  var MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+
+  var CFG = {
+    janelaAtribuicao: 3,      // dias corridos após a divulgação, contando o próprio dia (72h)
+    minRespostasNps: 10,      // respostas mínimas para citar um curso/palestrante pelo NPS
+    npsAlerta: 50,            // abaixo disso o curso entra como ponto de atenção
+    participacaoAlerta: 0.6,  // participação abaixo de 60% vira alerta
+    ocupacaoAlerta: 0.35,     // inscrições abertas com menos de 35% das vagas…
+    diasAlertaOcupacao: 14,   // …faltando até 14 dias para começar
+    ocupacaoLotando: 0.9      // 90% das vagas = sinal de turma extra
+  };
+
+  /* ---------- datas (sempre datas civis locais, AAAA-MM-DD) ---------- */
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function parse(s) { var p = String(s).slice(0, 10).split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function addDias(s, n) { var d = parse(s); d.setDate(d.getDate() + n); return iso(d); }
+  function difDias(a, b) { return Math.round((parse(b) - parse(a)) / 86400000); }
+  function hojeDe(meta) { if (meta && meta.hoje) return meta.hoje; return iso(meta && meta.gerado_em ? new Date(meta.gerado_em) : new Date()); }
+  function dataCurta(s) { var d = parse(s); return pad(d.getDate()) + '/' + pad(d.getMonth() + 1); }
+  function dataLonga(s) { var d = parse(s); return pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear(); }
+  function mesAno(s) { var d = parse(s); return MESES[d.getMonth()] + '/' + d.getFullYear(); }
+
+  /* ---------- números ---------- */
+  function fmtInt(n) { return n == null || isNaN(n) ? '—' : Math.round(n).toLocaleString('pt-BR'); }
+  function fmtDec(n, c) { return n == null || isNaN(n) ? '—' : n.toLocaleString('pt-BR', { minimumFractionDigits: c, maximumFractionDigits: c }); }
+  function fmtPct(r, c) { return r == null || isNaN(r) ? '—' : fmtDec(r * 100, c == null ? 1 : c) + '%'; }
+  function sinal(n, txt) { return (n > 0 ? '+' : n < 0 ? '−' : '±') + (txt != null ? txt : fmtInt(Math.abs(n))); }
+  function variacao(a, b) { return b ? (a - b) / b : null; }
+
+  /* ---------- NPS (sempre a partir das contagens, nunca média de NPS) ---------- */
+  function npsVazio() { return { promotores: 0, neutros: 0, detratores: 0 }; }
+  function somaNps(acc, c) {
+    if (c) { acc.promotores += c.promotores || 0; acc.neutros += c.neutros || 0; acc.detratores += c.detratores || 0; }
+    return acc;
+  }
+  function respostas(c) { return c ? (c.promotores || 0) + (c.neutros || 0) + (c.detratores || 0) : 0; }
+  function nps(c) { var t = respostas(c); return t ? ((c.promotores || 0) - (c.detratores || 0)) * 100 / t : null; }
+  function zonaNps(v) {
+    if (v == null) return null;
+    return v >= 75 ? 'excelencia' : v >= 50 ? 'qualidade' : v >= 0 ? 'aperfeicoamento' : 'critica';
+  }
+
+  /* ---------- índice ---------- */
+  function indexar(data) {
+    var cursos = (data.cursos || []).filter(function (c) { return c && c.id != null; });
+    var porId = new Map();
+    cursos.forEach(function (c) { porId.set(c.id, c); });
+
+    var diaria = new Map();   // curso -> Map(data -> qtd)
+    var registros = [];
+    (data.inscricoes_diarias || []).forEach(function (r) {
+      var c = r[0], d = r[1], q = +r[2];
+      if (!porId.has(c) || !q) return;
+      registros.push({ c: c, d: d, q: q });
+      if (!diaria.has(c)) diaria.set(c, new Map());
+      var m = diaria.get(c); m.set(d, (m.get(d) || 0) + q);
+    });
+
+    var divs = (data.divulgacoes || []).filter(function (d) { return d && d.data && TIPOS[d.tipo]; }).map(function (d) {
+      var o = Object.assign({}, d);
+      o.curso_ids = (d.curso_ids || []).filter(function (id) { return porId.has(id); });
+      return o;
+    }).sort(function (a, b) { return a.data < b.data ? -1 : a.data > b.data ? 1 : 0; });
+
+    var divPorCurso = new Map();
+    divs.forEach(function (d) {
+      d.curso_ids.forEach(function (id) {
+        if (!divPorCurso.has(id)) divPorCurso.set(id, []);
+        divPorCurso.get(id).push(d);
+      });
+    });
+
+    return { meta: data.meta || {}, cursos: cursos, porId: porId, registros: registros, diaria: diaria,
+             divs: divs, divPorCurso: divPorCurso, hoje: hojeDe(data.meta) };
+  }
+
+  /* ---------- atribuição: inscrição do dia D de um curso conta como "após divulgação"
+     se houve divulgação daquele curso em D, D-1 ou D-2. Se mais de uma divulgação cobre
+     o mesmo dia, o crédito é dividido igualmente entre elas. ---------- */
+  function atribuir(idx, divs, janela) {
+    janela = janela || CFG.janelaAtribuicao;
+    var porCurso = new Map();
+    divs.forEach(function (d) {
+      d.curso_ids.forEach(function (id) {
+        if (!porCurso.has(id)) porCurso.set(id, []);
+        porCurso.get(id).push(d);
+      });
+    });
+    var porDiv = new Map();
+    divs.forEach(function (d) { porDiv.set(d.id, 0); });
+    var regs = idx.registros.map(function (r) {
+      var lista = porCurso.get(r.c), cobre = [];
+      if (lista) for (var i = 0; i < lista.length; i++) {
+        var k = difDias(lista[i].data, r.d);
+        if (k >= 0 && k < janela) cobre.push(lista[i]);
+      }
+      for (var j = 0; j < cobre.length; j++) porDiv.set(cobre[j].id, porDiv.get(cobre[j].id) + r.q / cobre.length);
+      return { c: r.c, d: r.d, q: r.q, a: cobre.length > 0 };
+    });
+    return { registros: regs, porDiv: porDiv };
+  }
+
+  /* média diária de inscrições dos cursos da divulgação: 7 dias antes × 3 dias a partir dela */
+  function lift(idx, d) {
+    var antes = 0, depois = 0;
+    d.curso_ids.forEach(function (id) {
+      var m = idx.diaria.get(id); if (!m) return;
+      for (var k = -7; k <= 2; k++) {
+        var q = m.get(addDias(d.data, k)) || 0;
+        if (k < 0) antes += q; else depois += q;
+      }
+    });
+    var mA = antes / 7, mD = depois / 3;
+    return { antes: mA, depois: mD, fator: mA > 0 ? mD / mA : null };
+  }
+
+  /* ritmo de uma atividade em torno de uma data: média diária 7 dias antes × até 3 dias a partir dela.
+     Só entram dias que já têm dados (até ontem); janela com menos de 3 dias = parcial. */
+  function ritmoCurso(idx, id, data) {
+    var m = idx.diaria.get(id), limite = addDias(idx.hoje, -1), antes = 0, depois = 0, dias = 0;
+    for (var k = -7; k <= 2; k++) {
+      var dia = addDias(data, k), q = m ? m.get(dia) || 0 : 0;
+      if (k < 0) antes += q; else if (dia <= limite) { depois += q; dias++; }
+    }
+    return { antes: antes / 7, depois: dias ? depois / dias : null, emJanela: depois, diasDepois: dias, parcial: dias < 3 };
+  }
+
+  /* efeito das divulgações atividade por atividade */
+  function efeitoCursos(idx, divs) {
+    var mapa = new Map();
+    divs.forEach(function (d) {
+      d.curso_ids.forEach(function (id) {
+        var c = idx.porId.get(id); if (!c) return;
+        var e = mapa.get(id);
+        if (!e) { e = { id: id, c: c, divs: [], dias: new Set() }; mapa.set(id, e); }
+        var r = ritmoCurso(idx, id, d.data);
+        e.divs.push({ d: d, antes: r.antes, depois: r.depois, emJanela: r.emJanela, diasDepois: r.diasDepois, parcial: r.parcial });
+        for (var k = 0; k < 3; k++) e.dias.add(addDias(d.data, k));
+      });
+    });
+    mapa.forEach(function (e) {
+      var m = idx.diaria.get(e.id), t = 0;
+      if (m) e.dias.forEach(function (dia) { t += m.get(dia) || 0; });
+      e.em72h = t;
+      var completos = e.divs.filter(function (x) { return x.diasDepois === 3; });
+      var base = completos.length ? completos : e.divs.filter(function (x) { return x.diasDepois > 0; });
+      var media = function (k) { return base.reduce(function (s, x) { return s + x[k]; }, 0) / base.length; };
+      e.antes = base.length ? media('antes') : e.divs.reduce(function (s, x) { return s + x.antes; }, 0) / e.divs.length;
+      e.depois = base.length ? media('depois') : null;
+      e.parcial = !completos.length && base.length > 0;
+      e.variacao = !e.parcial && e.depois != null && e.antes > 0 ? e.depois / e.antes - 1 : null;
+      e.ganho = completos.reduce(function (s, x) { return s + (x.depois - x.antes) * 3; }, 0);
+      e.ultima = e.divs.reduce(function (u, x) { return !u || x.d.data > u ? x.d.data : u; }, null);
+      e.divs.sort(function (a, b) { return a.d.data < b.d.data ? 1 : -1; });
+    });
+    return mapa;
+  }
+
+  /* ---------- períodos ---------- */
+  function presets(hoje) {
+    var h = parse(hoje), y = h.getFullYear(), m = h.getMonth(), ontem = addDias(hoje, -1);
+    var q = Math.floor(m / 3);
+    function trimestre(i) {
+      var ano = y + Math.floor(i / 4), qq = ((i % 4) + 4) % 4;
+      return [iso(new Date(ano, qq * 3, 1)), iso(new Date(ano, qq * 3 + 3, 0))];
+    }
+    var qa = trimestre(q - 1), qb = trimestre(q - 2);
+    var ma = [iso(new Date(y, m - 1, 1)), iso(new Date(y, m, 0))];
+    var mb = [iso(new Date(y, m - 2, 1)), iso(new Date(y, m - 1, 0))];
+    var fimAnoB = new Date(y - 1, m, h.getDate() - 1);
+    return {
+      d30: { rotulo: 'Últimos 30 dias', a: [addDias(hoje, -30), ontem], b: [addDias(hoje, -60), addDias(hoje, -31)] },
+      mes: { rotulo: 'Mês fechado', a: ma, b: mb },
+      trimestre: { rotulo: 'Trimestre fechado', a: qa, b: qb },
+      ano: { rotulo: 'Ano até ontem', a: [iso(new Date(y, 0, 1)), ontem], b: [iso(new Date(y - 1, 0, 1)), iso(fimAnoB)] }
+    };
+  }
+  function rotuloPeriodo(p) {
+    var a = parse(p[0]), b = parse(p[1]);
+    var mesInteiro = a.getDate() === 1 && iso(new Date(b.getFullYear(), b.getMonth() + 1, 0)) === p[1];
+    if (mesInteiro && a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()) return mesAno(p[0]);
+    if (mesInteiro && a.getFullYear() === b.getFullYear() && b.getMonth() - a.getMonth() === 2 && a.getMonth() % 3 === 0)
+      return (a.getMonth() / 3 + 1) + 'º tri/' + a.getFullYear();
+    return dataLonga(p[0]) + ' a ' + dataLonga(p[1]);
+  }
+
+  function metricasPeriodo(idx, atrib, ini, fim) {
+    var real = idx.cursos.filter(function (c) { return c.inicio >= ini && c.inicio <= fim; });
+    var insc = 0, atr = 0, porCurso = new Map();
+    atrib.registros.forEach(function (r) {
+      if (r.d < ini || r.d > fim) return;
+      insc += r.q; if (r.a) atr += r.q;
+      porCurso.set(r.c, (porCurso.get(r.c) || 0) + r.q);
+    });
+    var inscReal = 0, partBase = 0, part = 0, nc = npsVazio(), np = npsVazio();
+    real.forEach(function (c) {
+      inscReal += c.inscricoes || 0;
+      if (c.participantes != null) { part += c.participantes; partBase += c.inscricoes || 0; }
+      somaNps(nc, c.nps_curso); somaNps(np, c.nps_palestrantes);
+    });
+    var divs = idx.divs.filter(function (d) { return d.data >= ini && d.data <= fim; });
+    function grupo(campo) {
+      var g = {};
+      porCurso.forEach(function (q, id) {
+        var k = idx.porId.get(id)[campo] || 'sem';
+        g[k] = g[k] || { insc: 0, ativ: 0 }; g[k].insc += q;
+      });
+      real.forEach(function (c) { var k = c[campo] || 'sem'; g[k] = g[k] || { insc: 0, ativ: 0 }; g[k].ativ += 1; });
+      return g;
+    }
+    return {
+      ini: ini, fim: fim, atividades: real.length, inscricoes: insc, atribuidas: atr,
+      pctAtribuidas: insc ? atr / insc : null,
+      mediaInscritos: real.length ? inscReal / real.length : null,
+      participacao: partBase ? part / partBase : null,
+      nps_curso: nps(nc), resp_curso: respostas(nc),
+      nps_palestrantes: nps(np), resp_palestrantes: respostas(np),
+      divulgacoes: divs.length, divs: divs, real: real, porCurso: porCurso,
+      porFormato: grupo('formato'), porModelo: grupo('modelo'), porArea: grupo('area')
+    };
+  }
+
+  /* ---------- explicação automática da comparação ---------- */
+  function explicarComparacao(idx, A, B) {
+    var itens = [];
+    var plural = { online: 'online', presencial: 'presenciais', hibrido: 'híbridos' };
+    var nomeF = function (k) { return plural[k] || String(k).toLowerCase(); };
+
+    // 1. inscrições e onde estão as maiores variações
+    if (A.inscricoes || B.inscricoes) {
+      var dI = A.inscricoes - B.inscricoes, pI = variacao(A.inscricoes, B.inscricoes);
+      var chaves = Object.keys(Object.assign({}, A.porFormato, B.porFormato)).filter(function (k) { return k !== 'sem'; });
+      var difs = chaves.map(function (k) {
+        return { k: k, d: ((A.porFormato[k] || {}).insc || 0) - ((B.porFormato[k] || {}).insc || 0) };
+      }).sort(function (a, b) { return Math.abs(b.d) - Math.abs(a.d); });
+      var txt = 'As inscrições ' + (dI >= 0 ? 'subiram ' : 'caíram ') + (pI == null ? '' : fmtPct(Math.abs(pI), 0) + ' ') +
+        '(' + sinal(dI) + ').';
+      if (difs.length && difs[0].d) {
+        txt += ' A maior variação veio dos cursos ' + nomeF(difs[0].k) + ' (' + sinal(difs[0].d) + ')';
+        var oposto = difs.filter(function (x) { return x.d && Math.sign(x.d) !== Math.sign(difs[0].d); })[0];
+        txt += oposto ? ', enquanto os ' + nomeF(oposto.k) + ' ' + (oposto.d > 0 ? 'cresceram' : 'recuaram') + ' (' + sinal(oposto.d) + ').' : '.';
+      }
+      itens.push({ tipo: dI >= 0 ? 'alta' : 'queda', titulo: 'Volume de inscrições', texto: txt, peso: Math.abs(pI || 0) + 0.5 });
+    }
+
+    // 2. quantidade de atividades × demanda por atividade
+    if (A.atividades && B.atividades && A.mediaInscritos != null && B.mediaInscritos != null) {
+      var pAt = variacao(A.atividades, B.atividades), pMed = variacao(A.mediaInscritos, B.mediaInscritos);
+      var puxou = Math.abs(pAt) >= Math.abs(pMed) ? 'pela quantidade de atividades' : 'pela demanda por atividade';
+      itens.push({
+        tipo: (pAt + pMed) >= 0 ? 'alta' : 'queda', titulo: 'Oferta × demanda',
+        texto: A.atividades + ' atividades realizadas contra ' + B.atividades + ' (' + sinal(pAt * 100, fmtDec(Math.abs(pAt * 100), 0) + '%') +
+          '); média de ' + fmtDec(A.mediaInscritos, 0) + ' inscritos por atividade contra ' + fmtDec(B.mediaInscritos, 0) +
+          '. O resultado foi puxado mais ' + puxou + '.',
+        peso: Math.max(Math.abs(pAt), Math.abs(pMed))
+      });
+    }
+
+    // 3. divulgação
+    if (A.divulgacoes || B.divulgacoes) {
+      var dd = A.divulgacoes - B.divulgacoes;
+      var t3 = A.divulgacoes + ' divulgações no período contra ' + B.divulgacoes + '.';
+      if (A.pctAtribuidas != null && B.pctAtribuidas != null) {
+        t3 += ' Inscrições feitas em até 72h após uma divulgação foram ' + fmtPct(A.pctAtribuidas, 0) + ' do total, contra ' + fmtPct(B.pctAtribuidas, 0) + '.';
+        var dpp = (A.pctAtribuidas - B.pctAtribuidas) * 100;
+        if (dd > 0 && dpp > 3) t3 += ' A divulgação ajuda a explicar a alta.';
+        else if (dd < 0 && dpp < -3) t3 += ' Menos divulgação coincide com menos inscrições impulsionadas.';
+        else if (Math.abs(dpp) <= 3) t3 += ' O peso da divulgação ficou estável: a variação veio de outros fatores.';
+      }
+      itens.push({ tipo: dd >= 0 ? 'alta' : 'queda', titulo: 'Divulgação', texto: t3, peso: Math.abs(variacao(A.divulgacoes, B.divulgacoes) || 0) * 0.8 + 0.2 });
+    }
+
+    // 4. mix pago × gratuito
+    function shareGratuito(P) {
+      var g = (P.porModelo.gratuito || {}).insc || 0, t = P.inscricoes;
+      return t ? g / t : null;
+    }
+    var gA = shareGratuito(A), gB = shareGratuito(B);
+    if (gA != null && gB != null && Math.abs(gA - gB) >= 0.08) {
+      itens.push({
+        tipo: 'neutro', titulo: 'Mix pago × gratuito',
+        texto: 'Cursos gratuitos responderam por ' + fmtPct(gA, 0) + ' das inscrições, contra ' + fmtPct(gB, 0) +
+          '. Mudanças no mix costumam mexer no volume sem refletir a demanda pelos cursos pagos.',
+        peso: Math.abs(gA - gB) * 2
+      });
+    }
+
+    // 5. participação
+    if (A.participacao != null && B.participacao != null) {
+      var dp = (A.participacao - B.participacao) * 100;
+      var pior = A.real.filter(function (c) { return c.participantes != null && (c.inscricoes || 0) >= 15; })
+        .sort(function (a, b) { return a.participantes / a.inscricoes - b.participantes / b.inscricoes; })[0];
+      var t5 = 'Taxa de participação de ' + fmtPct(A.participacao, 0) + ' contra ' + fmtPct(B.participacao, 0) +
+        ' (' + sinal(dp, fmtDec(Math.abs(dp), 1)) + ' p.p.).';
+      if (pior && pior.participantes / pior.inscricoes < CFG.participacaoAlerta)
+        t5 += ' Menor presença: “' + pior.titulo + '” (' + fmtPct(pior.participantes / pior.inscricoes, 0) + ').';
+      itens.push({ tipo: dp >= 0 ? 'alta' : 'queda', titulo: 'Participação', texto: t5, peso: Math.abs(dp) / 25 });
+    }
+
+    // 6. NPS
+    if (A.nps_curso != null && B.nps_curso != null) {
+      var dn = A.nps_curso - B.nps_curso;
+      var cands = A.real.filter(function (c) { return respostas(c.nps_curso) >= CFG.minRespostasNps; })
+        .sort(function (a, b) { return nps(a.nps_curso) - nps(b.nps_curso); });
+      var t6 = 'NPS dos cursos em ' + fmtDec(A.nps_curso, 0) + ' contra ' + fmtDec(B.nps_curso, 0) + ' (' + sinal(dn, fmtDec(Math.abs(dn), 0)) + ' pts).';
+      if (dn < 0 && cands.length) t6 += ' O que mais pesou para baixo: “' + cands[0].titulo + '” (NPS ' + fmtDec(nps(cands[0].nps_curso), 0) + ').';
+      if (dn >= 0 && cands.length) { var m = cands[cands.length - 1]; t6 += ' Destaque: “' + m.titulo + '” (NPS ' + fmtDec(nps(m.nps_curso), 0) + ').'; }
+      itens.push({ tipo: dn >= 0 ? 'alta' : 'queda', titulo: 'Satisfação', texto: t6, peso: Math.abs(dn) / 20 });
+    }
+
+    // 7. curso com maior volume
+    var top = null;
+    A.porCurso.forEach(function (q, id) { if (!top || q > top.q) top = { id: id, q: q }; });
+    if (top && A.inscricoes) {
+      var c = idx.porId.get(top.id);
+      itens.push({
+        tipo: 'neutro', titulo: 'Maior volume', curso_id: top.id,
+        texto: '“' + c.titulo + '” concentrou ' + fmtInt(top.q) + ' inscrições, ' + fmtPct(top.q / A.inscricoes, 0) + ' do período.',
+        peso: top.q / A.inscricoes
+      });
+    }
+    return itens.sort(function (a, b) { return b.peso - a.peso; });
+  }
+
+  /* ---------- destaques da página de cursos ---------- */
+  function destaquesCursos(idx, cursos, ref, refData) {
+    var itens = [], hoje = idx.hoje;
+    // ganho no período de evolução (se houver referência)
+    if (refData) {
+      var refDia = iso(new Date(refData));
+      var ganhos = cursos.map(function (c) {
+        var r = c.ref && c.ref[ref];
+        var divs = (idx.divPorCurso.get(c.id) || []).filter(function (d) { return d.data >= refDia && d.data <= hoje; });
+        return { c: c, d: (c.inscricoes || 0) - (r ? r.inscricoes || 0 : 0), divs: divs };
+      }).filter(function (g) { return g.d > 0; }).sort(function (a, b) { return b.d - a.d; });
+      var org = ganhos.filter(function (g) { return !g.divs.length; })[0];
+      if (ganhos[0]) {
+        var g = ganhos[0];
+        itens.push({ tipo: 'destaque', titulo: 'Quem mais cresceu', curso_id: g.c.id,
+          texto: '“' + g.c.titulo + '” ganhou ' + fmtInt(g.d) + ' inscrições desde ' + dataCurta(refDia) +
+            (g.divs.length ? ', com ' + g.divs.map(function (d) { return TIPOS[d.tipo].curto; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).join(' e ') + ' no período.' : ', sem nenhuma divulgação no período.'),
+          peso: 3 });
+      }
+      if (org && org !== ganhos[0] && org.d >= 5) {
+        itens.push({ tipo: 'oportunidade', titulo: 'Demanda orgânica', curso_id: org.c.id,
+          texto: '“' + org.c.titulo + '” somou ' + fmtInt(org.d) + ' inscrições sem divulgação. Bom candidato a reforço de campanha ou nova turma.',
+          peso: 2.6 });
+      }
+    }
+    // abertas com baixa ocupação perto da data
+    cursos.filter(function (c) {
+      return c.status === 'abertas' && c.limite && c.inicio >= hoje && difDias(hoje, c.inicio) <= CFG.diasAlertaOcupacao &&
+        (c.inscricoes || 0) / c.limite < CFG.ocupacaoAlerta;
+    }).sort(function (a, b) { return a.inicio < b.inicio ? -1 : 1; }).slice(0, 2).forEach(function (c) {
+      var ult = (idx.divPorCurso.get(c.id) || []).slice(-1)[0];
+      itens.push({ tipo: 'alerta', titulo: 'Ocupação baixa', curso_id: c.id,
+        texto: '“' + c.titulo + '” começa em ' + difDias(hoje, c.inicio) + ' dias com ' + fmtPct((c.inscricoes || 0) / c.limite, 0) +
+          ' das vagas preenchidas. ' + (ult ? 'Última divulgação em ' + dataCurta(ult.data) + '.' : 'Ainda não teve divulgação registrada.'),
+        peso: 2.8 });
+    });
+    // lotando
+    cursos.filter(function (c) { return c.status === 'abertas' && c.limite && (c.inscricoes || 0) / c.limite >= CFG.ocupacaoLotando; })
+      .slice(0, 1).forEach(function (c) {
+        itens.push({ tipo: 'oportunidade', titulo: 'Perto de lotar', curso_id: c.id,
+          texto: '“' + c.titulo + '” já está com ' + fmtPct((c.inscricoes || 0) / c.limite, 0) + ' das vagas. Vale avaliar turma extra.', peso: 2.4 });
+      });
+    // NPS baixo
+    cursos.filter(function (c) { return respostas(c.nps_curso) >= CFG.minRespostasNps && nps(c.nps_curso) < CFG.npsAlerta; })
+      .sort(function (a, b) { return nps(a.nps_curso) - nps(b.nps_curso); }).slice(0, 1).forEach(function (c) {
+        itens.push({ tipo: 'alerta', titulo: 'Satisfação abaixo do esperado', curso_id: c.id,
+          texto: '“' + c.titulo + '” fechou com NPS ' + fmtDec(nps(c.nps_curso), 0) + ' (' + respostas(c.nps_curso) + ' respostas). Vale ler os comentários da pesquisa de qualidade.',
+          peso: 2.2 });
+      });
+    // palestrante destaque
+    var pal = new Map();
+    cursos.forEach(function (c) {
+      (c.palestrantes || []).forEach(function (p) {
+        if (!p || !p.nome || !p.nps) return;
+        var acc = pal.get(p.nome) || { nome: p.nome, n: npsVazio(), cursos: 0 };
+        somaNps(acc.n, p.nps); acc.cursos++; pal.set(p.nome, acc);
+      });
+    });
+    var pals = Array.from(pal.values()).filter(function (p) { return respostas(p.n) >= CFG.minRespostasNps * 2; })
+      .sort(function (a, b) { return nps(b.n) - nps(a.n); });
+    if (pals[0]) itens.push({ tipo: 'destaque', titulo: 'Palestrante em destaque',
+      texto: pals[0].nome + ' tem NPS ' + fmtDec(nps(pals[0].n), 0) + ' em ' + pals[0].cursos + (pals[0].cursos > 1 ? ' cursos' : ' curso') + ' (' + respostas(pals[0].n) + ' respostas).', peso: 1.8 });
+    // participação baixa
+    var realizados = cursos.filter(function (c) { return c.participantes != null && (c.inscricoes || 0) >= 15; });
+    var baixa = realizados.filter(function (c) { return c.participantes / c.inscricoes < CFG.participacaoAlerta; });
+    if (baixa.length) {
+      var porModelo = {};
+      baixa.forEach(function (c) { porModelo[c.modelo] = (porModelo[c.modelo] || 0) + 1; });
+      var dom = Object.keys(porModelo).sort(function (a, b) { return porModelo[b] - porModelo[a]; })[0];
+      itens.push({ tipo: 'alerta', titulo: 'Presença abaixo de 60%',
+        texto: baixa.length + ' de ' + realizados.length + ' atividades realizadas tiveram menos de 60% de presença' +
+          (dom ? (porModelo[dom] === baixa.length ? '; todas são de cursos ' : '; ' + porModelo[dom] + ' delas são de cursos ') + (MODELOS[dom] || dom).toLowerCase() + 's.' : '.'),
+        peso: 1.6 + baixa.length / Math.max(realizados.length, 1) });
+    }
+    return itens.sort(function (a, b) { return b.peso - a.peso; });
+  }
+
+  /* ---------- destaques da página de divulgações (atividade a atividade) ---------- */
+  function destaquesDivulgacoes(idx, divs, porDiv) {
+    var itens = [], hoje = idx.hoje;
+    var efeito = efeitoCursos(idx, divs);
+    // maior salto de ritmo após uma divulgação
+    var melhor = null;
+    efeito.forEach(function (e) {
+      e.divs.forEach(function (x) {
+        if (x.diasDepois === 3 && x.depois >= 1 && (!melhor || x.depois - x.antes > melhor.x.depois - melhor.x.antes)) melhor = { e: e, x: x };
+      });
+    });
+    if (melhor) itens.push({ tipo: 'destaque', titulo: 'Maior salto após divulgação', curso_id: melhor.e.id,
+      texto: '“' + melhor.e.c.titulo + '” passou de ' + fmtDec(melhor.x.antes, 1) + ' para ' + fmtDec(melhor.x.depois, 1) +
+        ' inscrições por dia após ' + (TIPOS[melhor.x.d.tipo].nome.toLowerCase()) + ' de ' + dataCurta(melhor.x.d.data) + '.', peso: 3 });
+    // atividade divulgada que não reagiu
+    var parados = [];
+    efeito.forEach(function (e) { if (e.em72h === 0 && e.ultima <= addDias(hoje, -3)) parados.push(e); });
+    if (parados.length) {
+      parados.sort(function (a, b) { return a.ultima < b.ultima ? 1 : -1; });
+      itens.push({ tipo: 'alerta', titulo: 'Divulgação sem resposta', curso_id: parados[0].id,
+        texto: parados.length > 1
+          ? parados.length + ' atividades divulgadas não tiveram nenhuma inscrição em até 72h, como “' + parados[0].c.titulo + '” (' + parados[0].divs.length + (parados[0].divs.length > 1 ? ' ações).' : ' ação).')
+          : '“' + parados[0].c.titulo + '” não teve nenhuma inscrição em até 72h após ' + (parados[0].divs.length > 1 ? 'as ' + parados[0].divs.length + ' divulgações.' : 'a divulgação de ' + dataCurta(parados[0].ultima) + '.'),
+        peso: 2.6 });
+    }
+    // abertas, perto da data e sem divulgação recente
+    var esquecidos = idx.cursos.filter(function (c) {
+      if (c.status !== 'abertas' || c.inicio < hoje || difDias(hoje, c.inicio) > 30) return false;
+      var ult = (idx.divPorCurso.get(c.id) || []).filter(function (d) { return d.data <= hoje; }).slice(-1)[0];
+      return !ult || difDias(ult.data, hoje) > 14;
+    });
+    if (esquecidos.length) itens.push({ tipo: 'oportunidade', titulo: 'Sem divulgação recente', curso_id: esquecidos[0].id,
+      texto: esquecidos.length > 1
+        ? esquecidos.length + ' atividades com inscrições abertas e início em até 30 dias estão há mais de 14 dias sem divulgação, como “' + esquecidos[0].titulo + '”.'
+        : '“' + esquecidos[0].titulo + '” começa em ' + difDias(hoje, esquecidos[0].inicio) + ' dias e está há mais de 14 dias sem divulgação.', peso: 2.5 });
+    // cruzamento Trello × sistema de e-mails
+    var perdidos = divs.filter(function (d) { return d.email_nao_encontrado; });
+    if (perdidos.length) {
+      var ult = perdidos[perdidos.length - 1], cu = idx.porId.get(ult.curso_ids[0]);
+      itens.push({ tipo: 'alerta', titulo: 'E-mail do Trello não achado no sistema', curso_id: ult.curso_ids[0],
+        texto: perdidos.length + (perdidos.length > 1 ? ' e-mails marcados como feitos no Trello não têm' : ' e-mail marcado como feito no Trello não tem') +
+          ' comunicação correspondente no sistema. O mais recente: ' + dataCurta(ult.data) + ', “' + (cu ? cu.titulo : '') + '”.', peso: 2.7 });
+    }
+    var soSistema = divs.filter(function (d) { return d.origem === 'sistema' && d.curso_ids.length; });
+    if (soSistema.length) itens.push({ tipo: 'neutro', titulo: 'E-mails sem registro no Trello', curso_id: soSistema[soSistema.length - 1].curso_ids[0],
+      texto: soSistema.length + (soSistema.length > 1 ? ' e-mails do sistema sobre atividades do PES não aparecem' : ' e-mail do sistema sobre atividade do PES não aparece') +
+        ' no cronograma do Trello. O mais recente: “' + soSistema[soSistema.length - 1].titulo + '”.', peso: 1.9 });
+    var semAtiv = divs.filter(function (d) { return d.sem_atividade; });
+    if (semAtiv.length) itens.push({ tipo: 'neutro', titulo: 'E-mails do PES sem atividade',
+      texto: semAtiv.length + (semAtiv.length > 1 ? ' e-mails do PES no período não citam' : ' e-mail do PES no período não cita') +
+        ' nenhuma atividade da pasta 124, como “' + semAtiv[semAtiv.length - 1].titulo + '”. Eles entram nos totais de entregues e abertura.', peso: 1.4 });
+    // e-mail com maior abertura
+    var emails = divs.filter(function (d) { return d.email && d.email.entregues >= 200; });
+    if (emails.length) {
+      var best = emails.slice().sort(function (a, b) { return b.email.aberturas_unicas / b.email.entregues - a.email.aberturas_unicas / a.email.entregues; })[0];
+      itens.push({ tipo: 'destaque', titulo: 'Maior abertura', div_id: best.id, curso_id: best.curso_ids[0],
+        texto: '“' + best.titulo + '” teve ' + fmtPct(best.email.aberturas_unicas / best.email.entregues, 0) + ' de abertura (' +
+          fmtInt(best.email.aberturas_unicas) + ' de ' + fmtInt(best.email.entregues) + ' entregues).', peso: 2 });
+    }
+    // tipo que mais converte
+    var porTipo = {};
+    divs.forEach(function (d) { var t = porTipo[d.tipo] = porTipo[d.tipo] || { n: 0, insc: 0 }; t.n++; t.insc += porDiv.get(d.id) || 0; });
+    var tipos = Object.keys(porTipo).filter(function (k) { return porTipo[k].n >= 2; })
+      .sort(function (a, b) { return porTipo[b].insc / porTipo[b].n - porTipo[a].insc / porTipo[a].n; });
+    if (tipos.length >= 2) {
+      var m = tipos[0], p = tipos[tipos.length - 1];
+      itens.push({ tipo: 'neutro', titulo: 'Tipo que mais converte',
+        texto: TIPOS[m].nome + ' rendeu em média ' + fmtDec(porTipo[m].insc / porTipo[m].n, 1) + ' inscrições por ação em até 72h, contra ' +
+          fmtDec(porTipo[p].insc / porTipo[p].n, 1) + ' de ' + TIPOS[p].nome.toLowerCase() + '.', peso: 1.6 });
+    }
+    return itens.sort(function (a, b) { return b.peso - a.peso; });
+  }
+
+  return {
+    TIPOS: TIPOS, FORMATOS: FORMATOS, MODELOS: MODELOS, MESES: MESES, CFG: CFG,
+    iso: iso, parse: parse, addDias: addDias, difDias: difDias, hojeDe: hojeDe,
+    dataCurta: dataCurta, dataLonga: dataLonga, mesAno: mesAno,
+    fmtInt: fmtInt, fmtDec: fmtDec, fmtPct: fmtPct, sinal: sinal, variacao: variacao,
+    npsVazio: npsVazio, somaNps: somaNps, respostas: respostas, nps: nps, zonaNps: zonaNps,
+    indexar: indexar, atribuir: atribuir, lift: lift, ritmoCurso: ritmoCurso, efeitoCursos: efeitoCursos, presets: presets, rotuloPeriodo: rotuloPeriodo,
+    metricasPeriodo: metricasPeriodo, explicarComparacao: explicarComparacao,
+    destaquesCursos: destaquesCursos, destaquesDivulgacoes: destaquesDivulgacoes
+  };
+})();
+if (typeof module !== 'undefined') module.exports = PESCore;
+
+</script>
+<script>
+/* =====================================================================
+   Dados de demonstração — só entram quando window.PES_DATA não existe.
+   Mesmo formato que o n8n publica em data_dash.js.
+   ===================================================================== */
+function gerarDadosDemo() {
+  'use strict';
+  var C = PESCore;
+  var seed = 20261104;
+  function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
+  function pick(a) { return a[Math.floor(rnd() * a.length)]; }
+  function peso(obj) { var r = rnd(), s = 0; for (var k in obj) { s += obj[k]; if (r <= s) return k; } return Object.keys(obj)[0]; }
+  function poisson(l) {
+    if (l <= 0) return 0;
+    if (l > 30) return Math.max(0, Math.round(l + Math.sqrt(l) * (rnd() + rnd() + rnd() - 1.5) * 2));
+    var L = Math.exp(-l), k = 0, p = 1; do { k++; p *= rnd(); } while (p > L); return k - 1;
+  }
+  function diaUtil(s) { var d = C.parse(s), w = d.getDay(); return w === 0 ? C.addDias(s, 1) : w === 6 ? C.addDias(s, 2) : s; }
+
+  var agora = new Date(); agora.setHours(7, 0, 0, 0);
+  var hoje = C.iso(agora), ontem = C.addDias(hoje, -1);
+  var anoAtual = agora.getFullYear();
+
+  var catalogo = [
+    ['Boas Práticas de Fabricação na rotina da produção', 'Qualidade'],
+    ['Integridade de dados em laboratórios de controle', 'Qualidade'],
+    ['Validação de limpeza: do protocolo ao relatório', 'Qualidade'],
+    ['Gestão de riscos da qualidade com ICH Q9(R1)', 'Qualidade'],
+    ['Auditorias internas e de fornecedores', 'Qualidade'],
+    ['Estudos de estabilidade de medicamentos', 'Qualidade'],
+    ['Farmacovigilância para novos profissionais', 'Regulatório'],
+    ['Registro e pós-registro de medicamentos', 'Regulatório'],
+    ['Atualizações regulatórias da Anvisa no semestre', 'Regulatório'],
+    ['Rotulagem e bulas: requisitos atuais', 'Regulatório'],
+    ['Precificação de medicamentos e regras da CMED', 'Mercado'],
+    ['Inteligência de mercado farmacêutico', 'Mercado'],
+    ['Cadeia fria e logística farmacêutica', 'Supply chain'],
+    ['Planejamento de demanda e S&OP', 'Supply chain'],
+    ['Tributação no setor farmacêutico', 'Jurídico e tributário'],
+    ['Compliance e LGPD na indústria farmacêutica', 'Jurídico e tributário'],
+    ['Liderança para supervisores de produção', 'Gestão de pessoas'],
+    ['Comunicação assertiva para líderes técnicos', 'Gestão de pessoas'],
+    ['Saúde e segurança do trabalho na indústria', 'Gestão de pessoas'],
+    ['Inteligência artificial aplicada à qualidade', 'Inovação'],
+    ['ESG e sustentabilidade na indústria farmacêutica', 'Inovação'],
+    ['Excel para análise de dados da produção', 'Inovação']
+  ];
+  var nomes = ['Ana Ribeiro', 'Carlos Menezes', 'Fernanda Lopes', 'Gustavo Prado', 'Helena Duarte', 'Igor Tavares',
+    'Juliana Castro', 'Marcelo Antunes', 'Patrícia Nogueira', 'Renata Moura', 'Ricardo Fonseca', 'Sílvia Barros',
+    'Tiago Monteiro', 'Vanessa Rocha'];
+  var palestranteDe = {};
+  catalogo.forEach(function (c, i) { palestranteDe[c[0]] = [nomes[i % nomes.length], nomes[(i * 5 + 3) % nomes.length]]; });
+  var qualidadePal = {}; nomes.forEach(function (n) { qualidadePal[n] = 0.55 + rnd() * 0.4; });
+
+  var departamentos = { 'Qualidade': ['Garantia da Qualidade', 'Controle de Qualidade', 'Produção'],
+    'Regulatório': ['Assuntos Regulatórios', 'Farmacovigilância', 'Médico'], 'Mercado': ['Comercial', 'Marketing', 'Acesso ao mercado'],
+    'Supply chain': ['Logística', 'Suprimentos', 'Planejamento'], 'Jurídico e tributário': ['Jurídico', 'Fiscal', 'Compliance'],
+    'Gestão de pessoas': ['Recursos Humanos', 'Treinamento e Desenvolvimento', 'Produção'], 'Inovação': ['P&D', 'Tecnologia', 'Garantia da Qualidade'] };
+  var cargos = ['Analista', 'Especialista', 'Coordenador(a)', 'Supervisor(a)', 'Gerente', 'Diretor(a)'];
+
+  /* 1. agenda de cursos */
+  var cursos = [], id = 4100, ultimoUso = {};
+  var t = C.iso(new Date(anoAtual - 1, 0, 12)), limiteFuturo = C.addDias(hoje, 70);
+  while (t <= limiteFuturo) {
+    var d = C.parse(t);
+    var feriasFim = (d.getMonth() === 11 && d.getDate() > 15) || (d.getMonth() === 0 && d.getDate() < 12);
+    if (!feriasFim) {
+      var tpl = pick(catalogo), tent = 0;
+      while (ultimoUso[tpl[0]] && C.difDias(ultimoUso[tpl[0]], t) < 75 && tent++ < 60) tpl = pick(catalogo);
+      ultimoUso[tpl[0]] = t;
+      var formato = peso({ online: 0.5, presencial: 0.3, hibrido: 0.2 });
+      var modelo = peso({ pago: 0.66, gratuito: 0.34 });
+      var limite = formato === 'presencial' ? 30 + Math.floor(rnd() * 6) * 10 : formato === 'hibrido' ? 60 + Math.floor(rnd() * 5) * 10 : (rnd() < 0.5 ? null : 150 + Math.floor(rnd() * 4) * 50);
+      var dur = rnd() < 0.6 ? 0 : 1;
+      cursos.push({
+        id: id++, titulo: tpl[0], area: tpl[1], formato: formato, modelo: modelo,
+        status: t >= hoje ? 'abertas' : 'encerradas',
+        inicio: t, fim: C.addDias(t, dur), limite: limite,
+        _pop: 0.45 + rnd() * 1.3, _q: 0.45 + rnd() * 0.5, _pal: palestranteDe[tpl[0]].slice(0, rnd() < 0.55 ? 1 : 2)
+      });
+    }
+    t = diaUtil(C.addDias(t, 2 + Math.floor(rnd() * 3)));
+  }
+
+  /* 2. divulgações (Trello + Comunicações) */
+  var divulgacoes = [], did = 1;
+  function metricasEmail(area, grande) {
+    var dest = grande ? 9000 + Math.floor(rnd() * 5000) : 1600 + Math.floor(rnd() * 6200);
+    var entregues = Math.round(dest * (0.955 + rnd() * 0.035));
+    var abertas = Math.round(entregues * (0.15 + rnd() * 0.21));
+    var cliques = Math.round(abertas * (0.07 + rnd() * 0.17));
+    var porDep = {}, porCargo = {}, eventos = Math.round(abertas * (1.25 + rnd() * 0.4));
+    var deps = (departamentos[area] || departamentos['Qualidade']).concat(['Recursos Humanos', 'Diretoria', 'Comercial']);
+    var restante = eventos;
+    deps.forEach(function (dp, i) {
+      var parte = i === deps.length - 1 ? Math.round(restante * 0.5) : Math.round(restante * (i < 3 ? 0.32 + rnd() * 0.12 : 0.15 + rnd() * 0.1));
+      porDep[dp] = (porDep[dp] || 0) + parte; restante -= parte;
+    });
+    var r2 = Math.round(eventos * 0.9);
+    cargos.forEach(function (cg, i) { var p = Math.round(r2 * [0.34, 0.2, 0.17, 0.12, 0.11, 0.06][i] * (0.8 + rnd() * 0.4)); porCargo[cg] = p; });
+    // público selecionado pela comunicação (pessoas por departamento e cargo do cadastro)
+    var selDep = {}, selCargo = {}, resto = dest;
+    var depsSel = (departamentos[area] || departamentos['Qualidade']).concat(['Recursos Humanos', 'Diretoria']);
+    depsSel.forEach(function (dp, i) { var q = Math.round(dest * [0.27, 0.19, 0.14, 0.11, 0.08][i] * (0.85 + rnd() * 0.3)); selDep[dp] = (selDep[dp] || 0) + q; resto -= q; });
+    selDep['Não informado'] = Math.max(0, resto);
+    var r3 = dest;
+    cargos.forEach(function (cg, i) { var q = i === cargos.length - 1 ? Math.max(0, r3) : Math.round(dest * [0.31, 0.18, 0.17, 0.13, 0.12][i] * (0.85 + rnd() * 0.3)); selCargo[cg] = q; r3 -= q; });
+    return { comunicacao_id: 70000 + did, destinatarios: dest, entregues: entregues, aberturas_unicas: abertas,
+      cliques_unicos: cliques, bounces: Math.max(0, dest - entregues + Math.floor(rnd() * 12)),
+      publico_selecionado: { total: dest, empresas: Math.round(dest / (11 + rnd() * 8)), por_departamento: selDep, por_cargo: selCargo } };
+  }
+  var mailings = { 'Qualidade': 'Profissionais de Qualidade', 'Regulatório': 'Assuntos Regulatórios e Farmacovigilância', 'Mercado': 'Comercial e Marketing',
+    'Supply chain': 'Logística e Suprimentos', 'Jurídico e tributário': 'Jurídico, Fiscal e Compliance', 'Gestão de pessoas': 'RH e T&D', 'Inovação': 'P&D e Inovação' };
+  cursos.forEach(function (c) {
+    var abre = C.addDias(c.inicio, -42);
+    var n = +peso({ 0: 0.14, 1: 0.28, 2: 0.3, 3: 0.18, 4: 0.1 });
+    for (var i = 0; i < n; i++) {
+      var dt = diaUtil(C.addDias(abre, 3 + Math.floor(rnd() * 36)));
+      if (dt >= c.inicio || dt > ontem) continue;
+      var tipo = peso({ email_marketing: 0.38, carrossel: 0.2, lamina_unica: 0.14, mala_direta: 0.12, whatsapp: 0.16 });
+      var comEmail = tipo === 'email_marketing' || tipo === 'mala_direta';
+      var achado = comEmail && rnd() < 0.88;
+      var dv = {
+        id: 'demo-' + did, curso_ids: [c.id], tipo: tipo, data: dt, cartao: c.titulo,
+        titulo: { email_marketing: 'E-mail marketing', mala_direta: 'Mala direta ' + (mailings[c.area] || ''), carrossel: 'Carrossel Instagram e LinkedIn', lamina_unica: 'Lâmina única', whatsapp: 'Mensagem ativa WhatsApp' }[tipo],
+        origem: 'trello', link: null, email: null
+      };
+      if (achado) {
+        dv.email = metricasEmail(c.area, false);
+        dv.email.assunto = (tipo === 'mala_direta' ? 'Para ' + (mailings[c.area] || 'você') + ': ' : 'Inscrições abertas: ') + c.titulo;
+        dv.email.remetente = 'Programa Educacional Sindusfarma';
+        dv.email.vinculo = peso({ midia: 0.42, assunto: 0.3, conteudo: 0.18, link: 0.1 });
+      } else if (comEmail) {
+        dv.email_nao_encontrado = { de: C.addDias(dt, -3), ate: C.addDias(dt, 3) };
+      }
+      divulgacoes.push(dv);
+      did++;
+    }
+  });
+  // agenda mensal: um e-mail cobrindo vários cursos
+  for (var m = 0; m < 24; m++) {
+    var dm = diaUtil(C.iso(new Date(anoAtual - 1, m, 2)));
+    if (dm > ontem) break;
+    var alvo = cursos.filter(function (c) { return c.inicio > dm && C.difDias(dm, c.inicio) <= 40; }).slice(0, 6).map(function (c) { return c.id; });
+    if (!alvo.length) continue;
+    var ag = metricasEmail('Qualidade', true);
+    ag.assunto = 'Agenda PES de ' + C.MESES[C.parse(dm).getMonth()] + '/' + C.parse(dm).getFullYear(); ag.remetente = 'Programa Educacional Sindusfarma'; ag.vinculo = 'conteudo';
+    divulgacoes.push({ id: 'demo-' + did, curso_ids: alvo, tipo: 'email_marketing', data: dm, titulo: ag.assunto, origem: 'sistema', link: null, email: ag });
+    did++;
+  }
+  for (var mn = 0; mn < 24; mn++) {
+    var dn = diaUtil(C.iso(new Date(anoAtual - 1, mn, 20)));
+    if (dn > ontem) break;
+    var nl = metricasEmail('Gestão de pessoas', true);
+    nl.assunto = 'Newsletter do PES: ' + C.MESES[C.parse(dn).getMonth()] + '/' + C.parse(dn).getFullYear(); nl.remetente = 'Programa Educacional Sindusfarma'; nl.vinculo = null;
+    divulgacoes.push({ id: 'demo-nl' + mn, curso_ids: [], tipo: 'email_marketing', data: dn, titulo: nl.assunto, origem: 'sistema', sem_atividade: true, link: null, email: nl });
+  }
+  var efeito = { email_marketing: 1, carrossel: 0.55, lamina_unica: 0.45, mala_direta: 1.25, whatsapp: 0.9 };
+  var divPorCurso = {};
+  divulgacoes.forEach(function (dv) { dv.curso_ids.forEach(function (cid) { (divPorCurso[cid] = divPorCurso[cid] || []).push(dv); }); });
+
+  /* 3. inscrições diárias */
+  var diarias = [];
+  cursos.forEach(function (c) {
+    var abre = C.addDias(c.inicio, -42), total = 0;
+    var fator = (c.modelo === 'gratuito' ? 1.75 : 1) * (c.formato === 'online' ? 1.25 : c.formato === 'hibrido' ? 1.05 : 0.8);
+    for (var k = 0; k < 42; k++) {
+      var dia = C.addDias(abre, k);
+      if (dia >= c.inicio || dia > ontem) break;
+      var prog = k / 42, w = C.parse(dia).getDay();
+      var boost = 0;
+      (divPorCurso[c.id] || []).forEach(function (dv) {
+        var x = C.difDias(dv.data, dia);
+        if (x >= 0 && x <= 2) boost += [2.3, 1.2, 0.55][x] * efeito[dv.tipo] * (dv.curso_ids.length > 1 ? 0.6 : 1);
+      });
+      var lam = c._pop * (0.35 + 2.1 * prog * prog) * (1 + boost) * fator * (w === 0 || w === 6 ? 0.3 : 1);
+      var q = poisson(lam);
+      if (c.limite) q = Math.min(q, c.limite - total);
+      if (q > 0) { diarias.push([c.id, dia, q]); total += q; }
+    }
+    c.inscricoes = total;
+  });
+
+  /* 4. participação e NPS (cursos já realizados) */
+  function contagem(resp, q) {
+    var P = Math.round(resp * (0.25 + q * 0.62)), D = Math.round(resp * Math.max(0.02, (1 - q) * 0.42));
+    if (P + D > resp) D = Math.max(0, resp - P);
+    return { promotores: P, neutros: resp - P - D, detratores: D };
+  }
+  cursos.forEach(function (c) {
+    var realizado = c.fim < hoje;
+    c.participantes = realizado ? Math.round(c.inscricoes * (c.modelo === 'gratuito' ? 0.45 + rnd() * 0.3 : 0.66 + rnd() * 0.26)) : null;
+    var resp = realizado ? Math.round(c.participantes * (0.3 + rnd() * 0.3)) : 0;
+    c.nps_curso = realizado && resp ? contagem(resp, c._q) : null;
+    c.palestrantes = c._pal.map(function (n) { return { nome: n, nps: realizado && resp ? contagem(resp, Math.min(0.98, qualidadePal[n] * 0.7 + c._q * 0.3)) : null }; });
+    c.nps_palestrantes = c.palestrantes.reduce(function (acc, p) { return p.nps ? C.somaNps(acc || C.npsVazio(), p.nps) : acc; }, null);
+  });
+
+  /* 5. fotografias anteriores (o n8n guarda isso no histórico) */
+  var refUltima = C.addDias(hoje, -3), refSemana = C.addDias(hoje, -7);
+  function foto(c, ref) {
+    if (C.addDias(c.inicio, -42) >= ref) return null;
+    var insc = 0;
+    diarias.forEach(function (r) { if (r[0] === c.id && r[1] < ref) insc += r[2]; });
+    var pesquisaPronta = c.fim < C.addDias(ref, -4);
+    return { inscricoes: insc, participantes: pesquisaPronta ? c.participantes : null,
+      nps_curso: pesquisaPronta ? c.nps_curso : null, nps_palestrantes: pesquisaPronta ? c.nps_palestrantes : null };
+  }
+  cursos.forEach(function (c) {
+    c.status = c.inicio < hoje ? 'encerradas' : C.difDias(hoje, c.inicio) > 42 ? 'programadas' : 'abertas';
+    if (c.status === 'programadas') c.modelo = null;
+    c.ref = { ultima: foto(c, refUltima), semana: foto(c, refSemana) };
+    delete c._pop; delete c._q; delete c._pal;
+  });
+
+  function instante(dia) { var x = C.parse(dia); x.setHours(7, 0, 0, 0); return x.toISOString(); }
+  return {
+    meta: { versao: '2.0', demo: true, gerado_em: agora.toISOString(), ref_ultima: instante(refUltima), ref_semana: instante(refSemana),
+      fontes: { sistema: 'demo', trello: 'demo', pesquisas: 'demo', ia: 'off' } },
+    cursos: cursos, inscricoes_diarias: diarias, divulgacoes: divulgacoes, insights: null
+  };
+}
+
+</script>
+<script>
+window.iniciarPainel = function () {
+  'use strict';
+  var C = PESCore;
+  var DATA = window.PES_DATA || gerarDadosDemo();
+  var DEMO = !window.PES_DATA || !!(DATA.meta && DATA.meta.demo);
+  var META = DATA.meta || {};
+  var IDX = C.indexar(DATA);
+  var ATRIB = C.atribuir(IDX, IDX.divs);
+  var INS = DATA.insights || {};
+  var HOJE = IDX.hoje, ONTEM = C.addDias(HOJE, -1);
+  var ANO_ATUAL = HOJE.slice(0, 4);
+  var SERIE = META.serie_inscricoes_desde || null;
+  var STATUS_TXT = { abertas: 'inscrições abertas', programadas: 'programada', encerradas: 'encerrada' };
+  var SEM_NPS = (META.fontes && META.fontes.pesquisas === 'erro') ? 'Planilha de NPS não conectada' : 'Sem respostas ainda';
+
+  /* ---------------- utilidades ---------------- */
+  function $(s, el) { return (el || document).querySelector(s); }
+  function $$(s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
+  function semAcento(s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+  function diaLocal(isoStr) { return isoStr ? C.iso(new Date(isoStr)) : null; }
+  function hora(isoStr) { var d = new Date(isoStr); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+  function dataCurtaAno(s) { return C.dataCurta(s) + '/' + s.slice(2, 4); }
+  function uniq(a) { return a.filter(function (v, i) { return a.indexOf(v) === i; }); }
+  function ticks(max, n) {
+    if (!(max > 0)) return [0, 1];
+    var raw = max / n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    var step = [1, 2, 2.5, 5, 10].map(function (s) { return s * mag; }).filter(function (s) { return s >= raw; })[0];
+    var t = []; for (var v = 0; v < max + step * 0.999; v += step) t.push(+v.toFixed(6));
+    if (t[t.length - 1] < max) t.push(t[t.length - 1] + step);
+    return t;
+  }
+  function tamanho(el) { var r = el.getBoundingClientRect(); return { w: Math.max(260, Math.floor(r.width)), h: Math.max(180, Math.floor(r.height)) }; }
+  var REDUZ = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function guarda(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* armazenamento indisponível */ } }
+  function le(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function avisoSerie(ini) {
+    if (!SERIE || ini >= SERIE) return [];
+    return [{ tipo: 'alerta', titulo: 'Série de inscrições incompleta',
+      texto: 'A contagem diária de inscrições começa em ' + C.dataLonga(SERIE) + '. Antes disso, inscrições por data aparecem zeradas e as variações deste período ficam distorcidas. Os totais por atividade estão corretos.' }];
+  }
+
+  /* ---------------- estado ---------------- */
+  var estado = {
+    pg: 'atividades',
+    f: { status: 'todos', modelo: 'todos', formato: 'todos', ano: ANO_ATUAL },
+    evo: false, ref: 'ultima',
+    sortA: { col: 'agenda', dir: 1 },
+    d: { per: '90', tipos: new Set(Object.keys(C.TIPOS)), curso: 'todos' },
+    sortD: { col: 'ultima', dir: -1 },
+    abertos: new Set(),
+    c: { preset: 'mes', grupo: 'formato', a: null, b: null }
+  };
+  var primeiraVez = true;
+
+  /* ---------------- tooltip ---------------- */
+  var tip = $('#tip');
+  function mostraTip(html, x, y) {
+    tip.innerHTML = html; tip.classList.add('on');
+    var r = tip.getBoundingClientRect(), vw = window.innerWidth, vh = window.innerHeight;
+    var left = x + 14, top = y + 14;
+    if (left + r.width > vw - 8) left = x - r.width - 14;
+    if (top + r.height > vh - 8) top = y - r.height - 14;
+    tip.style.left = Math.max(8, left) + 'px'; tip.style.top = Math.max(8, top) + 'px';
+  }
+  function escondeTip() { tip.classList.remove('on'); }
+  function ligaTips(container, fn) {
+    container.onmousemove = function (e) {
+      var alvo = e.target.closest('[data-tip]');
+      if (!alvo || !container.contains(alvo)) return escondeTip();
+      mostraTip(fn(alvo.getAttribute('data-tip'), alvo), e.clientX, e.clientY);
+    };
+    container.onmouseleave = escondeTip;
+  }
+
+  /* ---------------- dropdown ---------------- */
+  var ddAberto = null;
+  var SETA = '<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>';
+  function Dropdown(el, cfg) {
+    var self = this;
+    this.el = el; this.cfg = cfg; this.valor = cfg.valor;
+    el.innerHTML = '<button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false"></button>' +
+      '<div class="dd-menu' + (cfg.multi ? ' multi' : '') + '" role="listbox"' + (cfg.multi ? ' aria-multiselectable="true"' : '') + ' hidden>' +
+      (cfg.busca ? '<input class="dd-busca" type="search" placeholder="' + esc(cfg.busca) + '" aria-label="' + esc(cfg.busca) + '">' : '') +
+      '<div class="dd-lista"></div></div>';
+    this.btn = $('.dd-btn', el); this.menu = $('.dd-menu', el); this.lista = $('.dd-lista', el); this.input = $('.dd-busca', el);
+    this.btn.addEventListener('click', function () { if (self.menu.hidden) self.abrir(); else self.fechar(); });
+    this.btn.addEventListener('keydown', function (e) { if (e.key === 'ArrowDown') { e.preventDefault(); self.abrir(); } });
+    this.lista.addEventListener('click', function (e) { var op = e.target.closest('.dd-op'); if (op) self.escolher(op.getAttribute('data-v')); });
+    this.menu.addEventListener('keydown', function (e) {
+      var ops = $$('.dd-op', self.lista), i = ops.indexOf(document.activeElement);
+      if (e.key === 'Escape') { e.preventDefault(); self.fechar(); self.btn.focus(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); (ops[i + 1] || ops[0]).focus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); if (i <= 0 && self.input) self.input.focus(); else (ops[i - 1] || ops[ops.length - 1]).focus(); }
+      else if (e.key === 'Tab') self.fechar();
+    });
+    if (this.input) this.input.addEventListener('input', function () { self.renderLista(); });
+    this.render();
+  }
+  Dropdown.prototype.padrao = function () {
+    var c = this.cfg; return c.multi ? this.valor.size === c.opcoes.length : (c.padrao == null || this.valor === c.padrao);
+  };
+  Dropdown.prototype.texto = function () {
+    var c = this.cfg, self = this;
+    if (c.multi) {
+      if (this.valor.size === c.opcoes.length) return c.todos;
+      if (this.valor.size === 1) { var v = Array.from(this.valor)[0]; return c.opcoes.filter(function (o) { return o.v === v; })[0].t; }
+      return this.valor.size + ' tipos';
+    }
+    var o = c.opcoes.filter(function (o) { return o.v === self.valor; })[0];
+    return o ? (o.curto || o.t) : '';
+  };
+  Dropdown.prototype.render = function () {
+    var c = this.cfg, self = this;
+    var pts = c.multi && !this.padrao() ? '<span class="pts">' + c.opcoes.filter(function (o) { return self.valor.has(o.v) && o.cor; })
+      .map(function (o) { return '<i style="background:' + o.cor + '"></i>'; }).join('') + '</span>' : '';
+    this.btn.innerHTML = (c.rotulo ? '<span class="rot">' + esc(c.rotulo) + '</span>' : '') + pts + '<span class="val">' + esc(this.texto()) + '</span>' + SETA;
+    this.el.classList.toggle('ativo', !this.padrao() && !c.semDestaque);
+    if (!this.menu.hidden) this.renderLista();
+  };
+  Dropdown.prototype.renderLista = function () {
+    var c = this.cfg, self = this, f = this.input ? semAcento(this.input.value.trim()) : '';
+    var ops = c.opcoes.filter(function (o) { return !f || semAcento(o.t + ' ' + (o.sub || '')).indexOf(f) >= 0; });
+    var sel = function (o) { return c.multi ? self.valor.has(o.v) : o.v === self.valor; };
+    var h = c.multi ? '<button type="button" class="dd-op" role="option" data-v="__todos" aria-selected="' + this.padrao() + '"><span class="marca"></span>' + esc(c.todos) + '</button><div class="dd-sep"></div>' : '';
+    h += ops.map(function (o) {
+      return '<button type="button" class="dd-op" role="option" data-v="' + esc(o.v) + '" aria-selected="' + sel(o) + '"><span class="marca"></span>' +
+        (o.cor ? '<span class="cor" style="background:' + o.cor + '"></span>' : '') + '<span>' + esc(o.t) + '</span>' + (o.sub ? '<small>' + esc(o.sub) + '</small>' : '') + '</button>';
+    }).join('');
+    if (!ops.length) h += '<p class="aviso-ia">Nada encontrado com esse termo.</p>';
+    this.lista.innerHTML = h;
+  };
+  Dropdown.prototype.abrir = function () {
+    if (ddAberto && ddAberto !== this) ddAberto.fechar();
+    ddAberto = this;
+    if (this.input) this.input.value = '';
+    this.renderLista();
+    this.menu.hidden = false; this.menu.classList.remove('dir');
+    this.btn.setAttribute('aria-expanded', 'true');
+    var r = this.menu.getBoundingClientRect();
+    if (r.right > window.innerWidth - 8) this.menu.classList.add('dir');
+    var alvo = this.input || $('.dd-op[aria-selected="true"]', this.lista) || $('.dd-op', this.lista);
+    if (alvo) alvo.focus();
+  };
+  Dropdown.prototype.fechar = function () {
+    this.menu.hidden = true; this.btn.setAttribute('aria-expanded', 'false');
+    if (ddAberto === this) ddAberto = null;
+  };
+  Dropdown.prototype.escolher = function (v) {
+    var c = this.cfg;
+    if (c.multi) {
+      if (v === '__todos') { var self = this; c.opcoes.forEach(function (o) { self.valor.add(o.v); }); }
+      else if (this.padrao()) { this.valor.clear(); this.valor.add(v); }
+      else if (this.valor.has(v)) { this.valor.delete(v); if (!this.valor.size) { var s2 = this; c.opcoes.forEach(function (o) { s2.valor.add(o.v); }); } }
+      else this.valor.add(v);
+      this.render(); c.onChange(this.valor);
+      var foco = $('.dd-op[data-v="' + v + '"]', this.lista); if (foco) foco.focus();
+    } else {
+      this.valor = v; this.render(); this.fechar(); this.btn.focus(); c.onChange(v);
+    }
+  };
+  Dropdown.prototype.definir = function (v) { this.valor = v; this.render(); };
+  document.addEventListener('mousedown', function (e) { if (ddAberto && !ddAberto.el.contains(e.target)) ddAberto.fechar(); });
+
+  /* ---------------- painel retrátil ---------------- */
+  function gaveta(id, abrir) {
+    var g = $('#' + id), btn = $('[data-gaveta="' + id + '"]');
+    var aberta = abrir == null ? !g.classList.contains('aberta') : abrir;
+    g.classList.toggle('aberta', aberta);
+    setTimeout(marcaRolagem, 280);
+    g.setAttribute('aria-hidden', String(!aberta));
+    if ('inert' in g) g.inert = !aberta;
+    btn.setAttribute('aria-expanded', String(aberta));
+    guarda('pes-' + id, aberta ? '1' : '0');
+  }
+  function contador(id, itens) {
+    var el = $('#' + id);
+    el.textContent = itens.length;
+    el.classList.toggle('alerta', itens.some(function (i) { return i.tipo === 'alerta' || i.tipo === 'queda'; }));
+  }
+
+  /* ---------------- componentes ---------------- */
+  function chip(v, modo, casas) {
+    if (v == null || isNaN(v)) return '';
+    var cs = casas == null ? (modo === 'pct' || modo === 'pp' ? 1 : 0) : casas;
+    var base = modo === 'pct' ? Math.abs(v) * 100 : Math.abs(v);
+    var arred = Math.round(base * Math.pow(10, cs)) / Math.pow(10, cs);
+    var cls = arred === 0 ? 'zero' : v > 0 ? 'up' : 'down';
+    var txt = modo === 'pct' ? C.fmtDec(arred, cs) + '%' : modo === 'pp' ? C.fmtDec(arred, cs) + ' p.p.' : modo === 'pts' ? C.fmtDec(arred, cs) + ' pts' : C.fmtInt(arred);
+    return '<span class="delta ' + cls + '">' + (cls === 'zero' ? '±' : v > 0 ? '+' : '−') + txt + '</span>';
+  }
+  function anel(r) {
+    var R = 17, L = 2 * Math.PI * R, v = r == null ? 0 : Math.max(0, Math.min(1, r));
+    return '<svg class="anel" viewBox="0 0 42 42" aria-hidden="true"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0" stop-color="#00B9F2"/><stop offset="1" stop-color="#00F0B4"/></linearGradient></defs>' +
+      '<circle cx="21" cy="21" r="' + R + '" fill="none" stroke="var(--line-strong)" stroke-width="4"/>' +
+      '<circle cx="21" cy="21" r="' + R + '" fill="none" stroke="url(#ga)" stroke-width="4" stroke-linecap="round" stroke-dasharray="' + (L * v).toFixed(1) + ' ' + L.toFixed(1) + '" transform="rotate(-90 21 21)"/></svg>';
+  }
+  function npsBarra(c) {
+    var t = C.respostas(c); if (!t) return '';
+    return '<span class="npsbar" title="Detratores, neutros e promotores"><i style="width:' + (c.detratores * 100 / t) + '%"></i><i style="width:' + (c.neutros * 100 / t) + '%"></i><i style="width:' + (c.promotores * 100 / t) + '%"></i></span>';
+  }
+  function npsCel(c) {
+    var v = C.nps(c); if (v == null) return '<span class="nota">—</span>';
+    return '<span class="nps-cel" title="' + C.respostas(c) + ' respostas"><i class="z-' + C.zonaNps(v) + '"></i>' + C.fmtDec(v, 0) + '</span>';
+  }
+  function kpi(rot, valorHtml, ctx, delta, dataCount) {
+    return '<div class="kpi"><div class="rot"><span>' + rot + '</span>' + (delta || '') + '</div><div class="valor"' + (dataCount != null ? ' data-count="' + dataCount + '"' : '') + '>' +
+      valorHtml + '</div><div class="ctx">' + (ctx || '') + '</div></div>';
+  }
+  function insightsHtml(ia, regras, aviso) {
+    function item(i, origem) {
+      var alvo = i.curso_id != null ? ' data-curso="' + esc(i.curso_id) + '" role="button" tabindex="0"' : '';
+      return '<article class="insight" data-tipo="' + esc(i.tipo || 'neutro') + '"' + alvo + '><h3>' + esc(i.titulo) +
+        '<span class="orig' + (origem === 'IA' ? ' ia' : '') + '">' + (origem === 'IA' ? 'IA' : 'Automático') + '</span></h3><p>' + esc(i.texto) + '</p></article>';
+    }
+    var h = (ia || []).map(function (i) { return item(i, 'IA'); }).join('') + (regras || []).map(function (i) { return item(i, 'regra'); }).join('');
+    if (!h) h = '<p class="aviso-ia">Sem destaques para esta seleção.</p>';
+    if (aviso) h += '<p class="aviso-ia">' + esc(aviso) + '</p>';
+    return h;
+  }
+  function marcaRolagem() {
+    $$('.pagina:not([hidden]) .rolagem, .gaveta.aberta .rolagem').forEach(function (el) {
+      var f = function () { el.classList.toggle('tem-mais', el.scrollHeight - el.scrollTop - el.clientHeight > 4); };
+      if (!el._marcado) { el.addEventListener('scroll', f, { passive: true }); el._marcado = true; }
+      f();
+    });
+  }
+  function contar() {
+    if (!primeiraVez || REDUZ) return;
+    $$('[data-count]').forEach(function (el) {
+      var alvo = parseFloat(el.getAttribute('data-count')); if (!(alvo > 0)) return;
+      var txt = el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild : null; if (!txt) return;
+      var final = txt.nodeValue, t0 = performance.now();
+      (function passo(t) {
+        var p = Math.min(1, (t - t0) / 700), e = 1 - Math.pow(1 - p, 3);
+        txt.nodeValue = p < 1 ? C.fmtInt(alvo * e) : final;
+        if (p < 1) requestAnimationFrame(passo);
+      })(t0);
+    });
+  }
+  function cabecalhoTabela(cols, s) {
+    return '<thead><tr>' + cols.map(function (c) {
+      if (!c.t) return '<th scope="col"><span class="sr">' + (c.sr || '') + '</span></th>';
+      return '<th scope="col"' + (c.n ? ' class="n"' : '') + (s.col === c.k ? ' aria-sort="' + (s.dir > 0 ? 'ascending' : 'descending') + '"' : '') +
+        '><button type="button" data-sort="' + c.k + '">' + c.t + '</button></th>';
+    }).join('') + '</tr></thead>';
+  }
+
+  /* =================================================================
+     Cabeçalho
+     ================================================================= */
+  var PAGINAS = {
+    atividades: ['Acompanhamento das atividades', 'Inscrições, participação e satisfação por atividade'],
+    divulgacoes: ['Divulgações', 'Ações do Trello e e-mails do sistema, atividade por atividade'],
+    comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê']
+  };
+  function cabecalho() {
+    $('#selo-demo').hidden = !DEMO;
+    var g = META.gerado_em ? new Date(META.gerado_em) : new Date();
+    $('#atualizado').textContent = 'Atualizado em ' + C.dataLonga(C.iso(g)) + ', ' + hora(g.toISOString());
+    $('#atualizado-ref').textContent = META.ref_ultima ? 'Atualização anterior: ' + C.dataCurta(diaLocal(META.ref_ultima)) + ', ' + hora(META.ref_ultima) : 'Primeira atualização';
+    var nomes = { sistema: 'Sistema', trello: 'Trello', pesquisas: 'Pesquisas', ia: 'IA' }, f = META.fontes || {};
+    var desc = { ok: 'conectada', erro: 'falhou na última atualização', demo: 'em demonstração', off: 'desligada' };
+    var el = $('#fontes');
+    el.innerHTML = 'Fontes<span class="pts">' + Object.keys(nomes).map(function (k) { return '<i data-st="' + esc(f[k] || 'off') + '"></i>'; }).join('') + '</span>';
+    var html = Object.keys(nomes).map(function (k) { return '<div class="l"><span>' + nomes[k] + '</span><b>' + (desc[f[k] || 'off'] || f[k]) + '</b></div>'; }).join('');
+    el.setAttribute('aria-label', 'Fontes: ' + Object.keys(nomes).map(function (k) { return nomes[k] + ' ' + (desc[f[k] || 'off'] || f[k]); }).join(', '));
+    el.onmouseenter = function (e) { mostraTip(html, e.clientX, e.clientY); };
+    el.onfocus = function () { var r = el.getBoundingClientRect(); mostraTip(html, r.left, r.bottom); };
+    el.onmouseleave = el.onblur = escondeTip;
+  }
+
+  /* =================================================================
+     Página 1 · Atividades
+     ================================================================= */
+  function atividadesFiltradas() {
+    var f = estado.f;
+    return IDX.cursos.filter(function (c) {
+      return (f.ano === 'todos' || String(c.inicio).slice(0, 4) === f.ano) && (f.status === 'todos' || c.status === f.status) &&
+        (f.modelo === 'todos' || c.modelo === f.modelo) && (f.formato === 'todos' || c.formato === f.formato);
+    });
+  }
+  function refInfo() {
+    var iso = META['ref_' + estado.ref];
+    return { iso: iso, dia: diaLocal(iso), rot: estado.ref === 'semana' ? 'nos últimos 7 dias' : 'desde ' + (iso ? C.dataCurta(diaLocal(iso)) : 'a última atualização') };
+  }
+  function renderAtividades() {
+    $('#pg-atividades').classList.toggle('evo-off', !estado.evo);
+    var f = estado.f;
+    $('#limpar-atv').hidden = f.status === 'todos' && f.modelo === 'todos' && f.formato === 'todos' && f.ano === ANO_ATUAL;
+    var lista = atividadesFiltradas(), ref = refInfo(), rk = estado.ref;
+
+    var a = { insc: 0, part: 0, partB: 0, nc: C.npsVazio(), np: C.npsVazio() };
+    var r = { insc: 0, part: 0, partB: 0, nc: C.npsVazio(), np: C.npsVazio(), novos: 0 };
+    lista.forEach(function (c) {
+      a.insc += c.inscricoes || 0;
+      if (c.participantes != null) { a.part += c.participantes; a.partB += c.inscricoes || 0; }
+      C.somaNps(a.nc, c.nps_curso); C.somaNps(a.np, c.nps_palestrantes);
+      var fo = c.ref && c.ref[rk];
+      if (!fo) { r.novos++; return; }
+      r.insc += fo.inscricoes || 0;
+      if (fo.participantes != null) { r.part += fo.participantes; r.partB += fo.inscricoes || 0; }
+      C.somaNps(r.nc, fo.nps_curso); C.somaNps(r.np, fo.nps_palestrantes);
+    });
+    var taxa = a.partB ? a.part / a.partB : null, taxaR = r.partB ? r.part / r.partB : null;
+    var npsC = C.nps(a.nc), npsP = C.nps(a.np), npsCR = C.nps(r.nc), npsPR = C.nps(r.np), dI = a.insc - r.insc;
+    $('#kpis-atv').innerHTML =
+      kpi('Atividades', C.fmtInt(lista.length), '', r.novos ? '<span class="delta up" title="Atividades que entraram ' + ref.rot + '">+' + r.novos + (r.novos > 1 ? ' novas' : ' nova') + '</span>' : chip(0), lista.length) +
+      kpi('Inscrições', C.fmtInt(a.insc), '', dI ? '<span class="delta ' + (dI > 0 ? 'up' : 'down') + '" title="' + ref.rot + '">' + C.sinal(dI) + (r.insc ? ' (' + C.fmtDec(Math.abs(dI) * 100 / r.insc, 1) + '%)' : '') + '</span>' : chip(0), a.insc) +
+      kpi('Taxa de participação', anel(taxa) + '<span>' + C.fmtPct(taxa, 0) + '</span>',
+        taxa == null ? (lista.some(function (c) { return c.fim < HOJE; }) ? 'Sem dados de presença conectados' : 'Disponível após a realização') : C.fmtInt(a.part) + ' participantes de ' + C.fmtInt(a.partB) + ' inscritos', taxa != null && taxaR != null ? chip((taxa - taxaR) * 100, 'pp') : '') +
+      kpi('NPS das atividades', npsC == null ? '—' : C.fmtDec(npsC, 0) + '<small>de 100</small>', npsC == null ? SEM_NPS : npsBarra(a.nc) + C.fmtInt(C.respostas(a.nc)) + ' respostas',
+        npsC != null && npsCR != null ? chip(npsC - npsCR, 'pts') : '') +
+      kpi('NPS dos palestrantes', npsP == null ? '—' : C.fmtDec(npsP, 0) + '<small>de 100</small>', npsP == null ? SEM_NPS : npsBarra(a.np) + C.fmtInt(C.respostas(a.np)) + ' avaliações',
+        npsP != null && npsPR != null ? chip(npsP - npsPR, 'pts') : '');
+
+    var ganhoDiv = 0, ganhoOrg = 0, porCurso = new Map();
+    lista.forEach(function (c) {
+      var fo = c.ref && c.ref[rk], g = (c.inscricoes || 0) - (fo ? fo.inscricoes || 0 : 0);
+      var dv = ref.dia ? (IDX.divPorCurso.get(c.id) || []).filter(function (d) { return d.data >= ref.dia && d.data <= HOJE; }) : [];
+      porCurso.set(c.id, { ganho: g, divs: dv });
+      if (g > 0) { if (dv.length) ganhoDiv += g; else ganhoOrg += g; }
+    });
+    var tot = ganhoDiv + ganhoOrg;
+    $('#resumo-evo').innerHTML = '<span class="resumo-evo"><b>' + C.sinal(tot) + '</b> inscrições ' + esc(ref.rot) +
+      (tot ? '<span class="barra-origem" title="Atividades com divulgação no período × orgânicas"><i style="width:' + (ganhoDiv * 100 / tot) + '%"></i><i style="width:' + (ganhoOrg * 100 / tot) + '%"></i></span>' +
+        C.fmtPct(ganhoDiv / tot, 0) + ' em atividades divulgadas, ' + C.fmtPct(ganhoOrg / tot, 0) + ' orgânicas' : '') + '</span>';
+
+    tabelaAtividades(lista, porCurso, ref);
+
+    var semFiltro = $('#limpar-atv').hidden;
+    var ia = INS.cursos || [], aviso = '';
+    if (ia.length && !semFiltro) { aviso = 'Os destaques da IA consideram todas as atividades do ano. Limpe os filtros para vê-los.'; ia = []; }
+    else if (!ia.length && DEMO) aviso = 'Na versão conectada, a IA acrescenta aqui a leitura em texto do período.';
+    var regras = C.destaquesCursos(IDX, lista, rk, ref.iso).slice(0, 6);
+    $('#ins-atv').innerHTML = insightsHtml(ia, regras, aviso);
+    contador('cont-atv', ia.concat(regras));
+    contar(); requestAnimationFrame(marcaRolagem);
+  }
+
+  var COLS_A = [
+    { k: 'titulo', t: 'Atividade' }, { k: 'inicio', t: 'Início' }, { k: 'formato', t: 'Formato e modelo' },
+    { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'ganho', t: 'Evolução', n: 1, evo: 1 }, { k: 'origem', t: 'Origem', evo: 1 },
+    { k: 'participacao', t: 'Participação', n: 1 }, { k: 'nps_c', t: 'NPS atividade', n: 1 }, { k: 'nps_p', t: 'NPS palestrantes', n: 1 }
+  ];
+  function tabelaAtividades(lista, porCurso, ref) {
+    var cols = COLS_A.filter(function (c) { return !c.evo || estado.evo; });
+    if (!estado.evo && (estado.sortA.col === 'ganho' || estado.sortA.col === 'origem')) estado.sortA = { col: 'agenda', dir: 1 };
+    var linhas = lista.map(function (c) {
+      var pc = porCurso.get(c.id) || { ganho: 0, divs: [] };
+      return { c: c, titulo: c.titulo, inicio: c.inicio, formato: c.formato, modelo: c.modelo, status: c.status, inscricoes: c.inscricoes || 0,
+        ganho: pc.ganho, origem: pc.divs.length, divs: pc.divs,
+        participacao: c.participantes != null && c.inscricoes ? c.participantes / c.inscricoes : -1,
+        nps_c: C.nps(c.nps_curso), nps_p: C.nps(c.nps_palestrantes) };
+    });
+    var s = estado.sortA;
+    linhas.sort(function (x, y) {
+      if (s.col === 'agenda') {
+        var ordem = { abertas: 0, programadas: 1, encerradas: 2 };
+        if (x.status !== y.status) return (ordem[x.status] || 0) - (ordem[y.status] || 0);
+        return x.status === 'encerradas' ? (x.inicio < y.inicio ? 1 : -1) : (x.inicio < y.inicio ? -1 : 1);
+      }
+      var a = x[s.col], b = y[s.col]; if (a == null) a = -1e9; if (b == null) b = -1e9;
+      return (a < b ? -1 : a > b ? 1 : 0) * s.dir || (x.inicio < y.inicio ? 1 : -1);
+    });
+    $('#n-atv').textContent = lista.length + (lista.length === 1 ? ' atividade' : ' atividades');
+    var tb = '<tbody>' + linhas.map(function (l) {
+      var c = l.c, ocup = c.limite ? Math.min(1, l.inscricoes / c.limite) : null;
+      var pal = (c.palestrantes || []).map(function (p) { return p.nome; }).filter(Boolean);
+      var cel = {
+        titulo: '<td class="titulo"><b>' + esc(c.titulo) + '</b><span>' + esc([c.area].concat(pal.length ? ['com ' + pal.join(' e ')] : []).filter(Boolean).join(', ')) + '</span></td>',
+        inicio: '<td class="data2"><b>' + dataCurtaAno(c.inicio) + '</b><span class="' + (c.status === 'abertas' ? 'st-ab' : 'st-enc') + '">' + STATUS_TXT[c.status] + '</span></td>',
+        formato: '<td class="data2"><b>' + esc(C.FORMATOS[c.formato] || '—') + '</b><span class="st-enc">' + esc(C.MODELOS[c.modelo] || 'sem preço definido') + '</span></td>',
+        inscricoes: '<td class="n">' + (ocup != null ? '<span class="ocup" title="' + C.fmtInt(l.inscricoes) + ' de ' + C.fmtInt(c.limite) + ' vagas"><span class="t"><i class="' + (ocup >= 0.9 ? 'cheio' : '') + '" style="width:' + (ocup * 100) + '%"></i></span><span>' + C.fmtInt(l.inscricoes) + '</span></span>' : C.fmtInt(l.inscricoes)) + '</td>',
+        ganho: '<td class="n"><span class="ganho' + (l.ganho > 0 ? ' pos' : '') + '">' + (l.ganho ? C.sinal(l.ganho) : '—') + '</span></td>',
+        origem: '<td>' + (l.divs.length ? '<span class="origem" data-tip="' + c.id + '"><span class="pontos">' + uniq(l.divs.map(function (d) { return d.tipo; })).map(function (t) { return '<i style="background:' + C.TIPOS[t].cor + '"></i>'; }).join('') + '</span>Divulgada</span>'
+          : (l.ganho > 0 ? '<span class="origem org">Orgânica</span>' : '<span class="nota">—</span>')) + '</td>',
+        participacao: '<td class="n">' + (l.participacao >= 0 ? C.fmtPct(l.participacao, 0) : '<span class="nota">' + (c.inicio >= HOJE ? 'a realizar' : '—') + '</span>') + '</td>',
+        nps_c: '<td class="n">' + npsCel(c.nps_curso) + '</td>', nps_p: '<td class="n">' + npsCel(c.nps_palestrantes) + '</td>'
+      };
+      return '<tr data-id="' + c.id + '">' + cols.map(function (k) { return cel[k.k]; }).join('') + '</tr>';
+    }).join('') + '</tbody>';
+    var t = $('#t-atv');
+    t.innerHTML = linhas.length ? cabecalhoTabela(cols, s) + tb : '<tbody><tr><td class="nota" style="padding:24px 10px;white-space:normal">Nenhuma atividade com esses filtros. Ajuste status, modelo, formato ou ano.</td></tr></tbody>';
+    ligaTips(t, function (id) {
+      var l = linhas.filter(function (x) { return String(x.c.id) === id; })[0]; if (!l) return '';
+      return '<span class="t">Divulgações ' + esc(ref.rot) + '</span>' + l.divs.map(function (d) { return '<div class="l"><span>' + C.dataCurta(d.data) + '</span><b>' + esc(C.TIPOS[d.tipo].nome) + '</b></div>'; }).join('');
+    });
+  }
+
+  /* =================================================================
+     Página 2 · Divulgações
+     ================================================================= */
+  function janelaDiv() {
+    var fim = ONTEM, ini = estado.d.per === 'ano' ? ANO_ATUAL + '-01-01' : C.addDias(HOJE, -(+estado.d.per));
+    var dias = C.difDias(ini, fim) + 1;
+    return { ini: ini, fim: fim, iniAnt: C.addDias(ini, -dias), fimAnt: C.addDias(ini, -1) };
+  }
+  function renderDivulgacoes() {
+    var J = janelaDiv(), cursoSel = estado.d.curso === 'todos' ? null : +estado.d.curso;
+    var semFiltro = estado.d.per === '90' && estado.d.tipos.size === Object.keys(C.TIPOS).length && !cursoSel;
+    $('#limpar-div').hidden = semFiltro;
+    var sel = IDX.divs.filter(function (d) { return estado.d.tipos.has(d.tipo) && (!cursoSel || d.curso_ids.indexOf(cursoSel) >= 0); });
+    var at = C.atribuir(IDX, sel);
+    function resumo(ini, fim) {
+      var ds = sel.filter(function (d) { return d.data >= ini && d.data <= fim; });
+      var o = { n: ds.length, dest: 0, ent: 0, ab: 0, cl: 0, cursos: new Set(), ds: ds, trelloEmails: 0, achados: 0, perdidos: 0, soSistema: 0, aguardando: 0, semAtiv: 0 };
+      ds.forEach(function (d) {
+        if (d.sem_atividade) o.semAtiv++;
+        else if (d.origem === 'sistema') o.soSistema++;
+        else if ((d.tipo === 'email_marketing' || d.tipo === 'mala_direta') && d.email_aguardando_carga) o.aguardando++;
+        else if (d.tipo === 'email_marketing' || d.tipo === 'mala_direta') { o.trelloEmails++; if (d.email) o.achados++; else if (d.email_nao_encontrado) o.perdidos++; }
+        d.curso_ids.forEach(function (id) { if (!cursoSel || id === cursoSel) o.cursos.add(id); });
+        if (d.email) { o.dest += d.email.destinatarios || 0; o.ent += d.email.entregues || 0; o.ab += d.email.aberturas_unicas || 0; o.cl += d.email.cliques_unicos || 0; }
+      });
+      return o;
+    }
+    var A = resumo(J.ini, J.fim), B = resumo(J.iniAnt, J.fimAnt);
+    var tAb = A.ent ? A.ab / A.ent : null, tAbB = B.ent ? B.ab / B.ent : null, tCl = A.ent ? A.cl / A.ent : null, tClB = B.ent ? B.cl / B.ent : null;
+    var titAnt = 'Comparado a ' + C.dataCurta(J.iniAnt) + ' a ' + C.dataCurta(J.fimAnt);
+    function ch(v, modo) { var h = chip(v, modo); return h ? h.replace('<span class="delta', '<span title="' + titAnt + '" class="delta') : ''; }
+    var porTipoN = {};
+    A.ds.forEach(function (d) { porTipoN[d.tipo] = (porTipoN[d.tipo] || 0) + 1; });
+    $('#kpis-div').innerHTML =
+      kpi('Divulgações', C.fmtInt(A.n), Object.keys(C.TIPOS).filter(function (k) { return porTipoN[k]; }).map(function (k) {
+        return '<span title="' + C.TIPOS[k].nome + '" style="display:inline-flex;gap:4px;align-items:center"><i style="width:7px;height:7px;border-radius:50%;background:' + C.TIPOS[k].cor + '"></i>' + porTipoN[k] + '</span>';
+      }).join(''), ch(B.n ? (A.n - B.n) / B.n : null, 'pct'), A.n) +
+      kpi('Atividades divulgadas', C.fmtInt(A.cursos.size), '', ch(B.cursos.size ? (A.cursos.size - B.cursos.size) / B.cursos.size : null, 'pct'), A.cursos.size) +
+      kpi('E-mails cruzados', (A.trelloEmails ? C.fmtInt(A.achados) + '<small>de ' + C.fmtInt(A.trelloEmails) + '</small>' : '—'),
+        (A.trelloEmails ? (A.perdidos ? '<span class="alerta-txt">' + A.perdidos + ' do Trello sem e-mail no sistema</span>' : 'todos os e-mails do Trello achados no sistema') : 'Sem e-mails no Trello no período') +
+        (A.soSistema ? '<span>' + A.soSistema + ' do sistema sem item no Trello</span>' : '') +
+        (A.aguardando ? '<span>' + A.aguardando + ' aguardando a carga do histórico</span>' : '') +
+        (A.semAtiv ? '<span>' + A.semAtiv + ' do PES sem atividade identificada</span>' : ''), '') +
+      kpi('E-mails entregues', C.fmtInt(A.ent), A.dest ? 'de ' + C.fmtInt(A.dest) + ' destinatários' : 'Sem envios por e-mail no período', ch(B.ent ? (A.ent - B.ent) / B.ent : null, 'pct'), A.ent) +
+      kpi('Taxa de abertura', C.fmtPct(tAb, 1), 'aberturas únicas ÷ entregues', ch(tAb != null && tAbB != null ? (tAb - tAbB) * 100 : null, 'pp')) +
+      kpi('Taxa de clique', C.fmtPct(tCl, 1), 'cliques únicos ÷ entregues', ch(tCl != null && tClB != null ? (tCl - tClB) * 100 : null, 'pp'));
+
+    var efeito = C.efeitoCursos(IDX, A.ds);
+    if (cursoSel) efeito.forEach(function (v, k) { if (k !== cursoSel) efeito.delete(k); });
+    tabelaDivulgacoes(efeito, at.porDiv, A.ds.filter(function (d) { return d.sem_atividade; }));
+
+    var ia = INS.divulgacoes || [], aviso = '';
+    if (ia.length && !semFiltro) { aviso = 'A leitura da IA considera os últimos 90 dias, todos os tipos e atividades. Limpe os filtros para vê-la.'; ia = []; }
+    else if (!ia.length && DEMO) aviso = 'Na versão conectada, a IA acrescenta aqui a leitura em texto das campanhas.';
+    var regras = avisoSerie(J.ini).concat(C.destaquesDivulgacoes(IDX, A.ds, at.porDiv).slice(0, 6));
+    $('#ins-div').innerHTML = insightsHtml(ia, regras, aviso);
+    contador('cont-div', ia.concat(regras));
+    contar(); requestAnimationFrame(marcaRolagem);
+  }
+
+  var COLS_D = [
+    { k: 'exp', sr: 'Abrir' }, { k: 'titulo', t: 'Atividade' }, { k: 'acoes', t: 'Ações', n: 1 }, { k: 'ultima', t: 'Última ação' },
+    { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'em72h', t: 'Em até 72h', n: 1 }, { k: 'antes', t: 'Ritmo antes e depois', n: 1 }, { k: 'variacao', t: 'Variação', n: 1 }
+  ];
+  function ritmoTxt(antes, depois, dias) {
+    if (depois == null) return '<span class="nota">aguardando dados</span>';
+    return '<span class="ritmo">' + C.fmtDec(antes, 1) + '<span class="seta">→</span><b>' + C.fmtDec(depois, 1) + '</b> /dia</span>' +
+      (dias != null && dias < 3 ? '<span class="nota parcial-dias">' + dias + ' de 3 dias</span>' : '');
+  }
+  function variacaoChip(antes, depois, parcial) {
+    if (depois == null || parcial) return '<span class="nota" title="A janela de 72h ainda não terminou">em andamento</span>';
+    if (antes > 0) return chip(depois / antes - 1, 'pct', 0);
+    if (depois > 0) return '<span class="delta up" title="Sem inscrições na semana anterior">+' + C.fmtDec(depois, 1) + '/dia</span>';
+    return '<span class="nota">—</span>';
+  }
+  function topMapa(m, total) {
+    if (!m) return null;
+    var ks = Object.keys(m).filter(function (k) { return k && k !== 'Não informado' && m[k] > 0; }).sort(function (a, b) { return m[b] - m[a]; });
+    if (!ks.length) return null;
+    var tot = total || Object.keys(m).reduce(function (s, k) { return s + m[k]; }, 0);
+    var mostra = ks.slice(0, 3).map(function (k) { return esc(k) + ' ' + C.fmtPct(m[k] / tot, 0); });
+    var semInfo = m['Não informado'] ? m['Não informado'] / tot : 0;
+    return mostra.join(', ') + (ks.length > 3 ? ' e mais ' + (ks.length - 3) : '') + (semInfo >= 0.01 ? '; sem informação no cadastro: ' + C.fmtPct(semInfo, 0) : '');
+  }
+  var VINCULO = { midia: 'mídia vinculada no sistema', link: 'link do curso no e-mail', assunto: 'nome do curso no assunto', conteudo: 'nome do curso no texto do e-mail' };
+  function lin(k, v) { return '<span class="lin"><span class="k">' + k + '</span> <span class="v">' + v + '</span></span>'; }
+  function acaoHtml(x) {
+    var d = x.d, e = d.email, ps = e && e.publico_selecionado, ehEmail = d.tipo === 'email_marketing' || d.tipo === 'mala_direta';
+    var nd = '<span class="nota">—</span>';
+    var trello = d.origem === 'trello'
+      ? '<span class="rot-bloco">No Trello</span><span class="t">' + esc(d.titulo) + '</span>' +
+        (d.cartao ? lin('Cartão:', d.link ? '<a href="' + esc(d.link) + '" target="_blank" rel="noopener">' + esc(d.cartao) + '</a>' : esc(d.cartao)) : '')
+      : '<span class="rot-bloco">No Trello</span>' + (d.sem_atividade ? '<span class="nota">E-mail do PES fora do cronograma de atividades</span>' : '<span class="alerta-txt">Sem item no cronograma</span>');
+    var sistema = '<span class="rot-bloco">No sistema de e-mails</span>';
+    if (e) sistema += '<span class="t">' + esc(e.assunto || 'Comunicação ' + e.comunicacao_id) + '</span>' +
+      (e.remetente ? lin('Remetente:', esc(e.remetente)) : '') + (e.vinculo ? lin('Ligado pelo', esc(VINCULO[e.vinculo] || e.vinculo)) : '') +
+      (d.curso_ids.length > 1 ? lin('Cita também:', (d.curso_ids.length - 1) + (d.curso_ids.length > 2 ? ' outras atividades' : ' outra atividade')) : '');
+    else if (d.email_nao_encontrado) sistema += '<span class="alerta-txt">Nenhuma comunicação desta atividade enviada entre ' + C.dataCurta(d.email_nao_encontrado.de) + ' e ' + C.dataCurta(d.email_nao_encontrado.ate) + '</span>';
+    else if (d.email_aguardando_carga) sistema += '<span class="nota">Os e-mails do sistema anteriores a ' + C.dataLonga(d.email_aguardando_carga) + ' ainda estão sendo carregados (um mês por dia).</span>';
+    else sistema += '<span class="nota">Canal sem e-mail no sistema</span>';
+    var dest = '<span class="rot-bloco">Destinatários</span>';
+    if (ps) {
+      var dep = topMapa(ps.por_departamento, ps.total), car = topMapa(ps.por_cargo, ps.total);
+      dest += '<span class="t">' + C.fmtInt(ps.total) + ' pessoas selecionadas' + (ps.empresas != null ? ' de ' + C.fmtInt(ps.empresas) + ' empresas' : '') + '</span>' +
+        lin('Departamentos:', dep || 'sem classificação') + lin('Cargos:', car || 'sem classificação');
+    } else if (e) dest += '<span class="v">' + (e.destinatarios != null ? C.fmtInt(e.destinatarios) + ' destinatários. ' : '') + 'Departamentos e cargos entram na próxima atualização.</span>';
+    else dest += '<span class="nota">' + (ehEmail ? '—' : 'Canal sem lista de envio') + '</span>';
+    if (x.semAtividade) return acaoSemAtividade(d, trello, sistema, dest, e);
+    return '<div class="acao">' +
+      '<div class="q"><b>' + C.dataLonga(d.data) + '</b><span><span class="badge"><i style="background:' + C.TIPOS[d.tipo].cor + '"></i>' + C.TIPOS[d.tipo].nome + '</span></span></div>' +
+      '<div class="q">' + trello + (ehEmail || e ? '<span class="sep-bloco"></span>' + sistema : '') + '</div>' +
+      '<div class="q">' + dest + '</div>' +
+      '<div class="q"><span class="num">' +
+        '<span class="k">Entregues</span><span class="v">' + (e && e.entregues != null ? C.fmtInt(e.entregues) : '—') + '</span>' +
+        '<span class="k">Abertura</span><span class="v">' + (e && e.entregues ? C.fmtPct(e.aberturas_unicas / e.entregues, 1) : '—') + '</span>' +
+        '<span class="k">Clique</span><span class="v">' + (e && e.entregues ? C.fmtPct(e.cliques_unicos / e.entregues, 1) : '—') + '</span>' +
+        '<span class="k">Em até 72h</span><span class="v">' + C.fmtInt(x.emJanela) + '</span>' +
+        '<span class="k">Ritmo</span><span class="v">' + ritmoTxt(x.antes, x.depois, x.diasDepois) + '</span>' +
+        '<span class="k">Variação</span><span class="v">' + variacaoChip(x.antes, x.depois, x.parcial) + '</span></span></div>' +
+      '</div>';
+  }
+  function acaoSemAtividade(d, trello, sistema, dest, e) {
+    return '<div class="acao">' +
+      '<div class="q"><b>' + C.dataLonga(d.data) + '</b><span><span class="badge"><i style="background:' + C.TIPOS[d.tipo].cor + '"></i>' + C.TIPOS[d.tipo].nome + '</span></span></div>' +
+      '<div class="q">' + trello + '<span class="sep-bloco"></span>' + sistema + '</div>' +
+      '<div class="q">' + dest + '</div>' +
+      '<div class="q"><span class="num">' +
+        '<span class="k">Entregues</span><span class="v">' + (e && e.entregues != null ? C.fmtInt(e.entregues) : '—') + '</span>' +
+        '<span class="k">Abertura</span><span class="v">' + (e && e.entregues ? C.fmtPct(e.aberturas_unicas / e.entregues, 1) : '—') + '</span>' +
+        '<span class="k">Clique</span><span class="v">' + (e && e.entregues ? C.fmtPct(e.cliques_unicos / e.entregues, 1) : '—') + '</span></span></div>' +
+      '</div>';
+  }
+  function tabelaDivulgacoes(efeito, porDiv, semAtiv) {
+    var s = estado.sortD;
+    var linhas = Array.from(efeito.values()).map(function (e) {
+      return { e: e, titulo: e.c.titulo, acoes: e.divs.length, ultima: e.ultima, inscricoes: e.c.inscricoes || 0, em72h: e.em72h,
+        antes: e.depois == null ? -1e6 : e.depois - e.antes,
+        variacao: e.parcial || e.depois == null ? -1e7 : e.variacao == null ? (e.depois > 0 ? 1e6 + e.depois : -1e6) : e.variacao };
+    });
+    linhas.sort(function (x, y) { var a = x[s.col], b = y[s.col]; return (a < b ? -1 : a > b ? 1 : 0) * s.dir || (x.ultima < y.ultima ? 1 : -1); });
+    $('#n-div').textContent = linhas.length + (linhas.length === 1 ? ' atividade' : ' atividades') + (semAtiv && semAtiv.length ? ', mais ' + semAtiv.length + (semAtiv.length > 1 ? ' e-mails sem atividade' : ' e-mail sem atividade') : '');
+    var todasAbertas = linhas.length && linhas.every(function (l) { return estado.abertos.has(l.e.id); });
+    $('#abrir-todas').textContent = todasAbertas ? 'Fechar todas' : 'Abrir todas';
+    $('#abrir-todas').hidden = !linhas.length && !(semAtiv && semAtiv.length);
+    var tb = '<tbody>' + linhas.map(function (l) {
+      var e = l.e, c = e.c, aberto = estado.abertos.has(e.id), ocup = c.limite ? Math.min(1, (c.inscricoes || 0) / c.limite) : null;
+      var grupo = '<tr class="grupo" data-id="' + c.id + '" aria-expanded="' + aberto + '">' +
+        '<td><button type="button" class="exp" aria-label="' + (aberto ? 'Fechar' : 'Abrir') + ' ações de ' + esc(c.titulo) + '">' + SETA + '</button></td>' +
+        '<td class="titulo"><b>' + esc(c.titulo) + '</b><span>Início ' + dataCurtaAno(c.inicio) + ', ' + STATUS_TXT[c.status] + '</span></td>' +
+        '<td class="n"><span class="origem"><span class="pontos">' + uniq(e.divs.map(function (x) { return x.d.tipo; })).map(function (t) { return '<i title="' + C.TIPOS[t].nome + '" style="background:' + C.TIPOS[t].cor + '"></i>'; }).join('') + '</span>' + e.divs.length +
+          (function () { var n = e.divs.filter(function (x) { return x.d.email_nao_encontrado; }).length; return n ? '<span class="aviso-cruz" title="' + n + (n > 1 ? ' e-mails do Trello não achados' : ' e-mail do Trello não achado') + ' no sistema">!</span>' : ''; })() + '</span></td>' +
+        '<td>' + C.dataLonga(e.ultima) + '</td>' +
+        '<td class="n">' + (ocup != null ? '<span class="ocup" title="' + C.fmtInt(c.inscricoes) + ' de ' + C.fmtInt(c.limite) + ' vagas"><span class="t"><i class="' + (ocup >= 0.9 ? 'cheio' : '') + '" style="width:' + (ocup * 100) + '%"></i></span><span>' + C.fmtInt(c.inscricoes) + '</span></span>' : C.fmtInt(c.inscricoes)) + '</td>' +
+        '<td class="n"><b>' + C.fmtInt(e.em72h) + '</b></td>' +
+        '<td class="n">' + ritmoTxt(e.antes, e.depois, e.parcial ? 0 : null).replace('<span class="nota parcial-dias">0 de 3 dias</span>', '<span class="nota parcial-dias">janela incompleta</span>') + '</td>' +
+        '<td class="n">' + variacaoChip(e.antes, e.depois, e.parcial) + '</td></tr>';
+      var det = aberto ? '<tr class="det" data-de="' + c.id + '"><td colspan="' + COLS_D.length + '"><div class="acoes">' + e.divs.map(function (x) { return acaoHtml(x); }).join('') + '</div></td></tr>' : '';
+      return grupo + det;
+    }).join('') + (function () {
+      if (!semAtiv || !semAtiv.length) return '';
+      var lista = semAtiv.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; }), aberto = estado.abertos.has('sem');
+      return '<tr class="grupo" data-id="sem" aria-expanded="' + aberto + '">' +
+        '<td><button type="button" class="exp" aria-label="' + (aberto ? 'Fechar' : 'Abrir') + ' e-mails do PES sem atividade identificada">' + SETA + '</button></td>' +
+        '<td class="titulo"><b>E-mails do PES sem atividade identificada</b><span>Não citam nenhuma atividade da pasta 124</span></td>' +
+        '<td class="n"><span class="origem"><span class="pontos"><i style="background:' + C.TIPOS.email_marketing.cor + '"></i></span>' + lista.length + '</span></td>' +
+        '<td>' + C.dataLonga(lista[0].data) + '</td><td class="n"><span class="nota">—</span></td><td class="n"><span class="nota">—</span></td>' +
+        '<td class="n"><span class="nota">—</span></td><td class="n"><span class="nota">—</span></td></tr>' +
+        (aberto ? '<tr class="det" data-de="sem"><td colspan="' + COLS_D.length + '"><div class="acoes">' + lista.map(function (d) { return acaoHtml({ d: d, semAtividade: true }); }).join('') + '</div></td></tr>' : '');
+    })() + '</tbody>';
+    var temLinhas = linhas.length || (semAtiv && semAtiv.length);
+    $('#t-div').innerHTML = temLinhas ? cabecalhoTabela(COLS_D, s) + tb :
+      '<tbody><tr><td class="nota" style="padding:24px 10px;white-space:normal">Nenhuma divulgação registrada para essa combinação de período, tipo e atividade.</td></tr></tbody>';
+  }
+
+  /* =================================================================
+     Página 3 · Comparação
+     ================================================================= */
+  var PRESETS = C.presets(HOJE);
+  function periodos() {
+    if (estado.c.preset !== 'custom') return PRESETS[estado.c.preset];
+    return { rotulo: 'Personalizado', a: estado.c.a, b: estado.c.b };
+  }
+  function renderComparacao() {
+    var P = periodos();
+    var A = C.metricasPeriodo(IDX, ATRIB, P.a[0], P.a[1]), B = C.metricasPeriodo(IDX, ATRIB, P.b[0], P.b[1]);
+    $('#periodos').innerHTML = '<span class="periodo a"><i></i>' + esc(C.rotuloPeriodo(P.a)) + '</span><span class="nota">comparado a</span><span class="periodo b"><i></i>' + esc(C.rotuloPeriodo(P.b)) + '</span>';
+    $('#datas-custom').hidden = estado.c.preset !== 'custom';
+    if (estado.c.preset !== 'custom') { $('#a-ini').value = P.a[0]; $('#a-fim').value = P.a[1]; $('#b-ini').value = P.b[0]; $('#b-fim').value = P.b[1]; }
+
+    function card(rot, va, vb, fmt, modo, escala) {
+      var d = null;
+      if (va != null && vb != null) d = modo === 'pct' ? (vb ? (va - vb) / vb : null) : modo === 'pp' ? (va - vb) * 100 : va - vb;
+      var na = escala ? escala(va) : va, nb = escala ? escala(vb) : vb, mx = Math.max(na || 0, nb || 0) || 1;
+      return '<div class="comp"><div class="rot"><span>' + rot + '</span></div>' +
+        '<div class="linha"><span class="va">' + fmt(va) + '</span>' + chip(d, modo, modo === 'pts' ? 0 : 1) + '</div><span class="vb">antes: ' + fmt(vb) + '</span>' +
+        '<div class="duo" aria-hidden="true"><i style="width:' + ((na || 0) * 100 / mx) + '%"></i><i style="width:' + ((nb || 0) * 100 / mx) + '%"></i></div></div>';
+    }
+    var fI = function (v) { return C.fmtInt(v); }, fP = function (v) { return C.fmtPct(v, 0); }, fN = function (v) { return v == null ? '—' : C.fmtDec(v, 0); };
+    var npsEsc = function (v) { return v == null ? 0 : (v + 100) / 200; };
+    $('#cards-comp').innerHTML =
+      card('Atividades realizadas', A.atividades, B.atividades, fI, 'pct') +
+      card('Inscrições recebidas', A.inscricoes, B.inscricoes, fI, 'pct') +
+      card('Taxa de participação', A.participacao, B.participacao, fP, 'pp') +
+      card('NPS das atividades', A.nps_curso, B.nps_curso, fN, 'pts', npsEsc) +
+      card('NPS dos palestrantes', A.nps_palestrantes, B.nps_palestrantes, fN, 'pts', npsEsc) +
+      card('Divulgações', A.divulgacoes, B.divulgacoes, fI, 'pct');
+
+    graficoAnual(P);
+    composicao(A, B);
+    var ia = estado.c.preset !== 'custom' && INS.comparacao ? INS.comparacao[estado.c.preset] || [] : [];
+    var aviso = !ia.length && DEMO ? 'Na versão conectada, a IA escreve aqui a justificativa de cada movimento.' :
+      (!ia.length && estado.c.preset === 'custom' && INS.comparacao ? 'Períodos personalizados mostram só a explicação automática.' : '');
+    $('#ins-comp').innerHTML = insightsHtml(ia, avisoSerie(P.b[0]).concat(C.explicarComparacao(IDX, A, B)), aviso);
+    contar(); requestAnimationFrame(marcaRolagem);
+  }
+
+  /* inscrições acumuladas: ano do período atual × ano anterior, mês a mês */
+  function somaPeriodo(ini, fim) { var t = 0; ATRIB.registros.forEach(function (r) { if (r.d >= ini && r.d <= fim) t += r.q; }); return t; }
+  function acumulado(ini, fim) {
+    var n = C.difDias(ini, fim) + 1, arr = new Array(Math.max(0, n)).fill(0);
+    ATRIB.registros.forEach(function (r) { if (r.d >= ini && r.d <= fim) arr[C.difDias(ini, r.d)] += r.q; });
+    for (var i = 1; i < arr.length; i++) arr[i] += arr[i - 1];
+    return arr;
+  }
+  function graficoAnual(P) {
+    var Y = +P.a[1].slice(0, 4), Yb = Y - 1;
+    var ini = Y + '-01-01', fimAno = Y + '-12-31', fimA = fimAno < ONTEM ? fimAno : ONTEM;
+    var iniB = Yb + '-01-01', fimB = Yb + '-12-31';
+    var cur = fimA >= ini ? acumulado(ini, fimA) : [], prev = acumulado(iniB, fimB);
+    var nDias = Math.max(C.difDias(ini, fimAno), C.difDias(iniB, fimB)) + 1;
+    $('#tit-anual').textContent = 'Inscrições acumuladas: ' + Y + ' × ' + Yb;
+    $('#leg-anual').innerHTML = '<span><i></i>' + Y + '</span><span><i class="tracejada"></i>' + Yb + '</span>';
+    var notaSerie = SERIE && SERIE > iniB ? 'Série diária desde ' + C.dataLonga(SERIE) + '. ' : '';
+    var el = $('#g-anual');
+    var ultimoA = cur.length ? cur[cur.length - 1] : 0, totalB = prev.length ? prev[prev.length - 1] : 0;
+    if (!ultimoA && !totalB) { el.innerHTML = '<div class="vazio">Sem inscrições registradas em ' + Yb + ' e ' + Y + '.</div>'; meses(Y); return; }
+    var T = tamanho(el), w = T.w, h = T.h, m = { l: 48, r: 92, t: 14, b: 26 };
+    var iw = w - m.l - m.r, ih = h - m.t - m.b;
+    var tk = ticks(Math.max(ultimoA, totalB, 1), 5), top = tk[tk.length - 1];
+    var x = function (i) { return m.l + i / (nDias - 1) * iw; }, y = function (v) { return m.t + ih - v / top * ih; };
+    function caminho(s) { return s.map(function (v, i) { return (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1); }).join(''); }
+    var out = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Inscrições acumuladas de ' + Y + ' comparadas a ' + Yb + '">';
+    out += '<defs><linearGradient id="gan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--data)" stop-opacity=".34"/><stop offset="1" stop-color="var(--data)" stop-opacity="0"/></linearGradient></defs>';
+    out += '<g class="grade eixo">' + tk.map(function (v) { return '<line x1="' + m.l + '" x2="' + (m.l + iw) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text x="' + (m.l - 10) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + C.fmtInt(v) + '</text>'; }).join('') + '</g>';
+    // faixa do período atual selecionado
+    if (P.a[1] >= ini && P.a[0] <= fimAno) {
+      var i0 = C.difDias(ini, P.a[0] < ini ? ini : P.a[0]), i1 = C.difDias(ini, P.a[1] > fimAno ? fimAno : P.a[1]);
+      out += '<rect x="' + x(i0) + '" y="' + m.t + '" width="' + Math.max(2, x(i1) - x(i0)) + '" height="' + ih + '" fill="var(--accent-soft)"/>';
+    }
+    // grade de meses
+    var lab = '';
+    for (var mm = 0; mm < 12; mm++) {
+      var i = C.difDias(ini, C.iso(new Date(Y, mm, 1))), iN = C.difDias(ini, C.iso(new Date(Y, mm + 1, 1)));
+      if (mm) out += '<line x1="' + x(i) + '" x2="' + x(i) + '" y1="' + m.t + '" y2="' + (m.t + ih) + '" stroke="var(--line)"/>';
+      lab += '<text x="' + ((x(i) + x(Math.min(iN, nDias - 1))) / 2) + '" y="' + (h - 7) + '" text-anchor="middle">' + C.MESES[mm] + '</text>';
+    }
+    out += '<g class="eixo">' + lab + '</g>';
+    if (prev.length) out += '<path d="' + caminho(prev) + '" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="6 5"/>';
+    if (cur.length) {
+      out += '<path d="' + caminho(cur) + 'L' + x(cur.length - 1) + ' ' + y(0) + 'L' + x(0) + ' ' + y(0) + 'Z" fill="url(#gan)"/>';
+      out += '<path d="' + caminho(cur) + '" fill="none" stroke="var(--data)" stroke-width="2.6" stroke-linejoin="round"/>';
+    }
+    // rótulos: valor atual, valor do ano anterior na mesma data e total do ano anterior
+    var iH = cur.length - 1, vbHoje = iH >= 0 ? prev[Math.min(iH, prev.length - 1)] || 0 : null;
+    if (cur.length) {
+      out += '<circle cx="' + x(iH) + '" cy="' + y(ultimoA) + '" r="4.5" fill="var(--data)" stroke="var(--panel-solid)" stroke-width="1.5"/>';
+      if (vbHoje != null) out += '<circle cx="' + x(iH) + '" cy="' + y(vbHoje) + '" r="4" fill="var(--muted)" stroke="var(--panel-solid)" stroke-width="1.5"/>';
+    }
+    var ateQuando = cur.length ? C.addDias(ini, iH) : null;
+    $('#nota-anual').innerHTML = esc(notaSerie) + (ateQuando ? 'Até ' + C.dataCurta(ateQuando) + ': <b style="color:var(--data)">' + C.fmtInt(ultimoA) + '</b> em ' + Y + ', <b>' + C.fmtInt(vbHoje) + '</b> em ' + Yb +
+      (vbHoje ? ' ' + chip((ultimoA - vbHoje) / vbHoje, 'pct', 1) : '') : '');
+    if (prev.length) out += '<text x="' + (m.l + iw + 8) + '" y="' + (y(totalB) + 4) + '" style="fill:var(--muted);font:500 12px var(--f-text)">' + C.fmtInt(totalB) + '</text>' +
+      '<text x="' + (m.l + iw + 8) + '" y="' + (y(totalB) + 19) + '" style="fill:var(--muted);font:400 11px var(--f-text)">total ' + Yb + '</text>';
+    out += '<line id="cur-an" x1="0" x2="0" y1="' + m.t + '" y2="' + (m.t + ih) + '" stroke="var(--line-strong)" visibility="hidden"/>';
+    out += '<rect x="' + m.l + '" y="' + m.t + '" width="' + iw + '" height="' + ih + '" fill="transparent" id="hit-an"/></svg>';
+    el.innerHTML = out;
+    var hit = $('#hit-an', el), cl = $('#cur-an', el);
+    hit.onmousemove = function (e) {
+      var r = el.getBoundingClientRect(), px = (e.clientX - r.left) * (w / r.width);
+      var i = Math.max(0, Math.min(nDias - 1, Math.round((px - m.l) / iw * (nDias - 1))));
+      cl.setAttribute('x1', x(i)); cl.setAttribute('x2', x(i)); cl.setAttribute('visibility', 'visible');
+      var va = i < cur.length ? cur[i] : null, vb = i < prev.length ? prev[i] : null;
+      mostraTip('<span class="t">' + C.dataCurta(C.addDias(ini, i)) + '</span>' +
+        '<div class="l"><span>' + Y + '</span><b>' + (va == null ? '—' : C.fmtInt(va)) + '</b></div>' +
+        '<div class="l"><span>' + Yb + '</span><b>' + (vb == null ? '—' : C.fmtInt(vb)) + '</b></div>' +
+        (va != null && vb ? '<div class="l"><span>Diferença</span><b>' + C.sinal(va - vb) + ' (' + (va >= vb ? '+' : '−') + C.fmtDec(Math.abs(va - vb) * 100 / vb, 1) + '%)</b></div>' : ''), e.clientX, e.clientY);
+    };
+    hit.onmouseleave = function () { cl.setAttribute('visibility', 'hidden'); escondeTip(); };
+    meses(Y);
+  }
+  function meses(Y) {
+    var h = '';
+    for (var mm = 0; mm < 12; mm++) {
+      var ini = C.iso(new Date(Y, mm, 1)), fim = C.iso(new Date(Y, mm + 1, 0));
+      var iniB = C.iso(new Date(Y - 1, mm, 1)), fimBm = C.iso(new Date(Y - 1, mm + 1, 0));
+      if (ini > ONTEM) {
+        h += '<div class="mes futuro"><span class="m">' + C.MESES[mm] + '</span><span class="q">—</span><span class="p">' + (Y - 1) + ': ' + C.fmtInt(somaPeriodo(iniB, fimBm)) + '</span></div>';
+        continue;
+      }
+      var parcial = fim > ONTEM, fimA = parcial ? ONTEM : fim;
+      var fimB = parcial ? C.iso(new Date(Y - 1, mm, C.parse(ONTEM).getDate())) : fimBm;
+      if (fimB > fimBm) fimB = fimBm;
+      var va = somaPeriodo(ini, fimA), vb = somaPeriodo(iniB, fimB);
+      h += '<div class="mes' + (parcial ? ' parcial' : '') + '"' + (parcial ? ' title="Mês em andamento: compara os dias 1 a ' + C.parse(ONTEM).getDate() + ' com o mesmo intervalo de ' + (Y - 1) + '"' : '') + '><span class="m">' + C.MESES[mm] + (parcial ? ' <small>até ' + C.parse(ONTEM).getDate() + '</small>' : '') + '</span>' +
+        '<span class="q">' + C.fmtInt(va) + '</span>' + (vb ? chip((va - vb) / vb, 'pct', 0) : '<span class="p">sem base</span>') +
+        '<span class="p">' + (Y - 1) + ': ' + C.fmtInt(vb) + '</span></div>';
+    }
+    $('#meses').innerHTML = h;
+  }
+  function composicao(A, B) {
+    var g = estado.c.grupo, campo = g === 'formato' ? 'porFormato' : g === 'modelo' ? 'porModelo' : 'porArea';
+    var nomes = g === 'formato' ? C.FORMATOS : g === 'modelo' ? C.MODELOS : {};
+    var ks = Object.keys(Object.assign({}, A[campo], B[campo])).filter(function (k) { return k !== 'sem'; })
+      .sort(function (a, b) { return ((A[campo][b] || {}).insc || 0) - ((A[campo][a] || {}).insc || 0); });
+    var max = Math.max.apply(null, ks.map(function (k) { return Math.max((A[campo][k] || {}).insc || 0, (B[campo][k] || {}).insc || 0); }).concat([1]));
+    $('#g-comp').innerHTML = ks.map(function (k) {
+      var a = (A[campo][k] || {}).insc || 0, b = (B[campo][k] || {}).insc || 0;
+      return '<div class="hbar"><span class="nome">' + esc(nomes[k] || k) + '</span><span class="num">' + C.fmtInt(a) + ' ' + chip(b ? (a - b) / b : null, 'pct', 0) + '</span>' +
+        '<span class="trilha"><i style="width:' + (a * 100 / max) + '%;background:var(--data)"></i></span>' +
+        '<span class="trilha" style="height:4px;margin-top:-1px"><i style="width:' + (b * 100 / max) + '%;background:var(--organico)"></i></span>' +
+        '<span class="det">antes: ' + C.fmtInt(b) + ' inscrições</span></div>';
+    }).join('') || '<p class="aviso-ia">Sem inscrições nos períodos.</p>';
+  }
+
+  /* =================================================================
+     Navegação, filtros e eventos
+     ================================================================= */
+  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, comparacao: renderComparacao };
+  function irPara(pg, semHash) {
+    if (pg === 'cursos') pg = 'atividades';
+    if (!renders[pg]) pg = 'atividades';
+    estado.pg = pg;
+    if (ddAberto) ddAberto.fechar();
+    $$('.pagina').forEach(function (s) { s.hidden = s.getAttribute('data-pg') !== pg; });
+    $$('.navbtn').forEach(function (b) { if (b.getAttribute('data-pg') === pg) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+    $('#titulo-pg').textContent = PAGINAS[pg][0]; $('#sub-pg').textContent = PAGINAS[pg][1];
+    document.title = PAGINAS[pg][0] + ' | PES 2.0';
+    if (!semHash && location.hash.slice(1) !== pg) history.replaceState(null, '', '#' + pg);
+    escondeTip();
+    renders[pg]();
+    requestAnimationFrame(marcaRolagem);
+    primeiraVez = false;
+  }
+
+  function iniciar() {
+    document.documentElement.style.setProperty('--logo', 'url("' + LOGO_PES + '")');
+    document.documentElement.style.setProperty('--sym', 'url("' + SIMBOLO_PES + '")');
+    cabecalho();
+
+    // ---- página 1
+    var anos = uniq(IDX.cursos.map(function (c) { return String(c.inicio).slice(0, 4); })).sort().reverse();
+    if (anos.indexOf(ANO_ATUAL) < 0) estado.f.ano = anos[0] || 'todos';
+    var dd = {};
+    dd.status = new Dropdown($('#dd-status'), { rotulo: 'Status', valor: 'todos', padrao: 'todos', opcoes: [{ v: 'todos', t: 'Todos' }, { v: 'abertas', t: 'Inscrições abertas' }, { v: 'programadas', t: 'Programadas (sem inscrição aberta)', curto: 'Programadas' }, { v: 'encerradas', t: 'Encerradas' }],
+      onChange: function (v) { estado.f.status = v; renderAtividades(); } });
+    dd.modelo = new Dropdown($('#dd-modelo'), { rotulo: 'Modelo', valor: 'todos', padrao: 'todos', opcoes: [{ v: 'todos', t: 'Todos' }, { v: 'pago', t: 'Pago' }, { v: 'gratuito', t: 'Gratuito' }],
+      onChange: function (v) { estado.f.modelo = v; renderAtividades(); } });
+    dd.formato = new Dropdown($('#dd-formato'), { rotulo: 'Formato', valor: 'todos', padrao: 'todos', opcoes: [{ v: 'todos', t: 'Todos' }, { v: 'online', t: 'Online' }, { v: 'presencial', t: 'Presencial' }, { v: 'hibrido', t: 'Híbrido' }],
+      onChange: function (v) { estado.f.formato = v; renderAtividades(); } });
+    dd.ano = new Dropdown($('#dd-ano'), { rotulo: 'Ano', valor: estado.f.ano, padrao: ANO_ATUAL, opcoes: anos.map(function (a) { return { v: a, t: a }; }).concat([{ v: 'todos', t: 'Todos os anos', curto: 'Todos' }]),
+      onChange: function (v) { estado.f.ano = v; renderAtividades(); } });
+    var rotUltima = META.ref_ultima ? 'Desde ' + C.dataCurta(diaLocal(META.ref_ultima)) + ', ' + hora(META.ref_ultima) : 'Desde a última atualização';
+    dd.ref = new Dropdown($('#dd-ref'), { rotulo: 'Comparar com', valor: 'ultima', semDestaque: true,
+      opcoes: [{ v: 'ultima', t: 'A última atualização', curto: rotUltima, sub: META.ref_ultima ? C.dataCurta(diaLocal(META.ref_ultima)) + ', ' + hora(META.ref_ultima) : '' }, { v: 'semana', t: 'Os últimos 7 dias', curto: 'Últimos 7 dias' }],
+      onChange: function (v) { estado.ref = v; renderAtividades(); } });
+    $('#sw-evo').onclick = function () {
+      estado.evo = !estado.evo;
+      this.setAttribute('aria-checked', String(estado.evo));
+      estado.sortA = estado.evo ? { col: 'ganho', dir: -1 } : { col: 'agenda', dir: 1 };
+      renderAtividades();
+    };
+    $('#limpar-atv').onclick = function () {
+      estado.f = { status: 'todos', modelo: 'todos', formato: 'todos', ano: anos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (anos[0] || 'todos') };
+      dd.status.definir('todos'); dd.modelo.definir('todos'); dd.formato.definir('todos'); dd.ano.definir(estado.f.ano);
+      renderAtividades();
+    };
+
+    // ---- página 2
+    dd.per = new Dropdown($('#dd-per'), { rotulo: 'Período', valor: '90', padrao: '90',
+      opcoes: [{ v: '30', t: 'Últimos 30 dias' }, { v: '90', t: 'Últimos 90 dias' }, { v: '365', t: 'Últimos 12 meses' }, { v: 'ano', t: 'Ano atual (' + ANO_ATUAL + ')', curto: 'Ano atual' }],
+      onChange: function (v) { estado.d.per = v; renderDivulgacoes(); } });
+    dd.tipos = new Dropdown($('#dd-tipos'), { rotulo: 'Tipo', multi: true, todos: 'Todos os tipos', valor: estado.d.tipos,
+      opcoes: Object.keys(C.TIPOS).map(function (k) { return { v: k, t: C.TIPOS[k].nome, cor: C.TIPOS[k].cor }; }),
+      onChange: function () { renderDivulgacoes(); } });
+    var comDiv = IDX.cursos.filter(function (c) { return IDX.divPorCurso.has(c.id); }).sort(function (a, b) { return a.inicio < b.inicio ? 1 : -1; });
+    dd.curso = new Dropdown($('#dd-curso'), { rotulo: 'Atividade', valor: 'todos', padrao: 'todos', busca: 'Buscar atividade',
+      opcoes: [{ v: 'todos', t: 'Todas as atividades', curto: 'Todas' }].concat(comDiv.map(function (c) { return { v: String(c.id), t: c.titulo, sub: dataCurtaAno(c.inicio) }; })),
+      onChange: function (v) { estado.d.curso = v; renderDivulgacoes(); } });
+    $('#limpar-div').onclick = function () {
+      estado.d.per = '90'; estado.d.curso = 'todos'; Object.keys(C.TIPOS).forEach(function (k) { estado.d.tipos.add(k); });
+      dd.per.definir('90'); dd.curso.definir('todos'); dd.tipos.render(); renderDivulgacoes();
+    };
+    $('#t-div').addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      var b = e.target.closest('button[data-sort]');
+      if (b) { var k = b.getAttribute('data-sort'), s = estado.sortD; estado.sortD = { col: k, dir: s.col === k ? -s.dir : (k === 'titulo' ? 1 : -1) }; return renderDivulgacoes(); }
+      var tr = e.target.closest('tr.grupo'); if (!tr) return;
+      var id = tr.getAttribute('data-id'); id = id === 'sem' ? 'sem' : +id;
+      if (estado.abertos.has(id)) estado.abertos.delete(id); else estado.abertos.add(id);
+      renderDivulgacoes();
+      var foco = $('#t-div tr.grupo[data-id="' + id + '"] .exp'); if (foco) foco.focus();
+    });
+    $('#abrir-todas').onclick = function () {
+      var ids = $$('#t-div tr.grupo').map(function (tr) { var v = tr.getAttribute('data-id'); return v === 'sem' ? 'sem' : +v; });
+      var todas = ids.every(function (id) { return estado.abertos.has(id); });
+      ids.forEach(function (id) { if (todas) estado.abertos.delete(id); else estado.abertos.add(id); });
+      renderDivulgacoes();
+    };
+
+    // ---- página 3
+    dd.preset = new Dropdown($('#dd-preset'), { rotulo: 'Comparar', valor: 'mes', semDestaque: true,
+      opcoes: [{ v: 'd30', t: 'Últimos 30 dias × 30 anteriores', curto: 'Últimos 30 dias' }, { v: 'mes', t: 'Mês fechado × mês anterior', curto: 'Mês fechado' },
+        { v: 'trimestre', t: 'Trimestre fechado × trimestre anterior', curto: 'Trimestre fechado' }, { v: 'ano', t: 'Ano até ontem × mesmo período do ano anterior', curto: 'Ano até ontem' },
+        { v: 'custom', t: 'Personalizado', curto: 'Personalizado' }],
+      onChange: function (v) {
+        if (v === 'custom' && !estado.c.a) { var p = PRESETS[estado.c.preset]; estado.c.a = p.a.slice(); estado.c.b = p.b.slice(); }
+        estado.c.preset = v; renderComparacao();
+      } });
+    dd.grupo = new Dropdown($('#dd-grupo'), { rotulo: 'Por', valor: 'formato', semDestaque: true,
+      opcoes: [{ v: 'formato', t: 'Formato' }, { v: 'modelo', t: 'Modelo' }, { v: 'area', t: 'Área' }],
+      onChange: function (v) { estado.c.grupo = v; renderComparacao(); } });
+    ['a-ini', 'a-fim', 'b-ini', 'b-fim'].forEach(function (id) {
+      $('#' + id).onchange = function () {
+        var a = [$('#a-ini').value, $('#a-fim').value], b = [$('#b-ini').value, $('#b-fim').value];
+        if (a[0] && a[1] && b[0] && b[1] && a[0] <= a[1] && b[0] <= b[1]) { estado.c.a = a; estado.c.b = b; renderComparacao(); }
+      };
+    });
+
+    // ---- tabelas, leitura e navegação
+    $('#t-atv').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-sort]'); if (!b) return;
+      var k = b.getAttribute('data-sort'), s = estado.sortA;
+      estado.sortA = { col: k, dir: s.col === k ? -s.dir : (k === 'titulo' ? 1 : -1) }; renderAtividades();
+    });
+    $$('[data-gaveta]').forEach(function (b) { var id = b.getAttribute('data-gaveta'); b.onclick = function () { gaveta(id); }; gaveta(id, le('pes-' + id) === '1'); });
+    $$('[data-fecha]').forEach(function (b) { b.onclick = function () { var id = b.getAttribute('data-fecha'); gaveta(id, false); $('[data-gaveta="' + id + '"]').focus(); }; });
+    function destaca(e) {
+      if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+      var it = e.target.closest('.insight[role="button"]'); if (!it) return;
+      e.preventDefault();
+      var id = it.getAttribute('data-curso');
+      if (estado.pg === 'divulgacoes') { estado.abertos.add(+id); renderDivulgacoes(); }
+      else if (estado.pg === 'comparacao') irPara('atividades');
+      var tabela = estado.pg === 'divulgacoes' ? '#t-div' : '#t-atv';
+      var tr = $(tabela + ' tr[data-id="' + CSS.escape(id) + '"]');
+      if (!tr) return;
+      tr.scrollIntoView({ block: 'center', behavior: REDUZ ? 'auto' : 'smooth' });
+      tr.classList.remove('flash'); void tr.offsetWidth; tr.classList.add('flash');
+    }
+    ['click', 'keydown'].forEach(function (ev) { document.addEventListener(ev, function (e) { if (e.target.closest && e.target.closest('.insights')) destaca(e); }); });
+    $$('.navbtn').forEach(function (b) { b.onclick = function () { irPara(b.getAttribute('data-pg')); }; });
+    window.addEventListener('hashchange', function () { irPara(location.hash.slice(1), true); });
+
+    var temas = ['auto', 'dark', 'light'], nomesTema = { auto: 'automático', dark: 'escuro', light: 'claro' };
+    function aplicaTema(t) {
+      if (t === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
+      $('#btn-tema').title = 'Tema: ' + nomesTema[t];
+      guarda('pes-tema', t);
+      if (!primeiraVez) renders[estado.pg]();
+    }
+    var temaAtual = le('pes-tema') || 'auto';
+    aplicaTema(temaAtual);
+    $('#btn-tema').onclick = function () { temaAtual = temas[(temas.indexOf(temaAtual) + 1) % 3]; aplicaTema(temaAtual); };
+
+    var tm;
+    window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(function () { if (estado.pg === 'comparacao') renderComparacao(); }, 160); });
+    irPara(location.hash.slice(1) || 'atividades', true);
+  }
+  iniciar();
+};
+
+</script>
+<script>
+/* Carrega data_dash.js (publicado pelo n8n) sem cache. Sem o arquivo, o painel abre com dados de demonstração. */
+(function () {
+  var feito = false;
+  function seguir() {
+    if (feito) return; feito = true;
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.iniciarPainel);
+    else window.iniciarPainel();
+  }
+  var s = document.createElement('script');
+  s.src = 'data_dash.js?v=' + Date.now();
+  s.onload = seguir; s.onerror = seguir;
+  document.head.appendChild(s);
+  setTimeout(seguir, 5000);
+})();
+</script>
+</body>
+</html>
