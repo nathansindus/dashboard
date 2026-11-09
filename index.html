@@ -425,6 +425,155 @@ tr.grupo[aria-expanded="true"] .exp svg { transform: rotate(180deg); }
 .aviso-cruz { display: inline-grid; place-items: center; width: 16px; height: 16px; margin-left: 6px; border-radius: 50%; background: var(--down-bg); color: var(--down); font: 700 11px var(--f-text); }
 .kpi .valor small { white-space: nowrap; }
 
+/* =====================================================================
+   Tema azul Sindusfarma (padrão) · fluidez no estilo Apple
+   ===================================================================== */
+.pes { --ease: cubic-bezier(.22, 1, .36, 1); --r-lg: 22px; }
+:root { --bar-soft: rgba(0, 45, 120, .10); --th-bg: #FFFFFF; --bg-grad: var(--bg); }
+:root[data-theme="dark"] {
+  --bg: #002D78; --bg-grad: linear-gradient(165deg, #0A40A0 0%, #002D78 42%, #00215C 100%);
+  --bg-glow-a: rgba(0, 185, 242, .30); --bg-glow-b: rgba(0, 240, 180, .16); --arc: rgba(255, 255, 255, .07);
+  --panel: rgba(255, 255, 255, .065); --panel-solid: #0C3C8E; --panel-sub: rgba(255, 255, 255, .05); --th-bg: #0D3B8B;
+  --line: rgba(255, 255, 255, .10); --line-strong: rgba(255, 255, 255, .20); --edge-a: rgba(0, 240, 180, .55); --edge-b: rgba(0, 185, 242, .45);
+  --fg: #F5F9FF; --fg-2: #D5E3FF; --muted: #A6BDE8; --accent: #00F0B4; --accent-soft: rgba(0, 240, 180, .14);
+  --data: #00F0B4; --data-2: #00B9F2; --bar-soft: rgba(255, 255, 255, .13);
+  --up: #00F0B4; --up-bg: rgba(0, 240, 180, .16); --down: #FFB15C; --down-bg: rgba(255, 143, 28, .18); --organico: #7193CF;
+  --shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 26px 60px -38px rgba(0, 8, 40, .95);
+  --menu-shadow: 0 30px 70px -24px rgba(0, 8, 40, .9);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #002D78; --bg-grad: linear-gradient(165deg, #0A40A0 0%, #002D78 42%, #00215C 100%);
+    --bg-glow-a: rgba(0, 185, 242, .30); --bg-glow-b: rgba(0, 240, 180, .16); --arc: rgba(255, 255, 255, .07);
+    --panel: rgba(255, 255, 255, .065); --panel-solid: #0C3C8E; --panel-sub: rgba(255, 255, 255, .05); --th-bg: #0D3B8B;
+    --line: rgba(255, 255, 255, .10); --line-strong: rgba(255, 255, 255, .20); --edge-a: rgba(0, 240, 180, .55); --edge-b: rgba(0, 185, 242, .45);
+    --fg: #F5F9FF; --fg-2: #D5E3FF; --muted: #A6BDE8; --accent: #00F0B4; --accent-soft: rgba(0, 240, 180, .14);
+    --data: #00F0B4; --data-2: #00B9F2; --bar-soft: rgba(255, 255, 255, .13);
+    --up: #00F0B4; --up-bg: rgba(0, 240, 180, .16); --down: #FFB15C; --down-bg: rgba(255, 143, 28, .18); --organico: #7193CF;
+    --shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 26px 60px -38px rgba(0, 8, 40, .95);
+    --menu-shadow: 0 30px 70px -24px rgba(0, 8, 40, .9);
+  }
+}
+body.pes { background: var(--bg-grad); background-attachment: fixed; }
+.rail { background: rgba(255, 255, 255, .04); -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%); }
+.navbtn { border-radius: 16px; transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease); }
+.navbtn:hover { transform: translateY(-1px); }
+.navbtn[aria-current="page"] { background: linear-gradient(140deg, rgba(0, 240, 180, .22), rgba(0, 185, 242, .12)); box-shadow: inset 0 0 0 1px rgba(0, 240, 180, .35); }
+.navbtn[aria-current="page"]::before { background: var(--accent); }
+.painel { border-radius: var(--r-lg); -webkit-backdrop-filter: blur(28px) saturate(160%); backdrop-filter: blur(28px) saturate(160%);
+  transition: background .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease); }
+.cluster::before { background: linear-gradient(120deg, var(--edge-a), transparent 30%, transparent 70%, var(--edge-b)); }
+.pagina { animation: entra .55s var(--ease) both; }
+@keyframes entra { from { opacity: 0; transform: translateY(10px) scale(.996); } to { opacity: 1; transform: none; } }
+.dd-btn, .switch, .btn-leitura, .busca { height: 38px; transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease); }
+.dd-btn:hover, .switch:hover, .btn-leitura:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+.dd.ativo .dd-btn, .switch[aria-checked="true"], .btn-leitura[aria-expanded="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.dd-btn svg { stroke: var(--accent); }
+.dd-menu { border-radius: 16px; animation: abre .24s var(--ease); transform-origin: top left; -webkit-backdrop-filter: blur(30px) saturate(170%); backdrop-filter: blur(30px) saturate(170%); }
+:root[data-theme="dark"] .dd-menu { background: rgba(12, 60, 142, .94); }
+@keyframes abre { from { opacity: 0; transform: translateY(-4px) scale(.98); } to { opacity: 1; transform: none; } }
+.dd-op { border-radius: 10px; transition: background .2s var(--ease); }
+.gaveta > .painel { border-radius: var(--r-lg); }
+.fechar, .exp { transition: transform .25s var(--ease), border-color .25s var(--ease); }
+.fechar:hover, .exp:hover { transform: scale(1.06); border-color: var(--accent); }
+
+/* indicadores mais compactos: sobra mais altura para as tabelas */
+#kpis-atv .kpi, #kpis-div .kpi { padding: 12px 18px 12px; gap: 2px; }
+#kpis-atv .kpi .valor, #kpis-div .kpi .valor { font-size: 30px; }
+.kpi .valor { letter-spacing: -.025em; }
+.mini { display: inline-flex; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; background: var(--accent-soft); color: var(--fg-2); white-space: nowrap; }
+.mini.down { background: var(--down-bg); color: var(--down); }
+.mini.up { background: var(--up-bg); color: var(--up); }
+
+/* tabelas maiores e mais legíveis */
+.tabela { font-size: 14px; }
+.tabela th { background: var(--th-bg); font-size: 12.5px; padding: 10px 12px; }
+.tabela td { padding: 13px 12px; }
+.tabela tbody tr > td { transition: background .25s var(--ease); }
+.tabela .titulo { min-width: 260px; max-width: 520px; }
+.tabela .titulo b { font-size: 14.5px; font-weight: 600; line-height: 1.32; }
+.tabela tr.aberta > td { background: rgba(0, 240, 180, .045); }
+.tabela tr.aberta > td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.tabela .titulo .linha-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 6px; }
+.tabela .titulo .linha-sub > span { display: inline-flex; margin: 0; }
+.linha-sub .pal { font-size: 12px; color: var(--muted); }
+.chip-area { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 500; line-height: 1.6;
+  color: var(--fg); background: color-mix(in srgb, var(--c) 16%, transparent); border: 1px solid color-mix(in srgb, var(--c) 42%, transparent); white-space: nowrap; }
+.tabela .titulo .chip-area { display: inline-flex; margin: 6px 0 0; }
+.tabela .titulo .linha-sub .chip-area { margin: 0; }
+.chip-area::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+.prox { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.prox > span:last-child { display: grid; line-height: 1.25; }
+.prox small { font-size: 11px; color: var(--muted); }
+.mais { margin-left: 6px; color: var(--muted); font-size: 11.5px; }
+.proximas { display: grid; gap: 10px; padding: 14px 14px 6px 36px; }
+.prox-item { display: flex; align-items: center; gap: 16px; font-size: 13px; }
+.prox-t a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 2px; }
+
+/* página de qualidade */
+.q-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr); grid-template-rows: minmax(230px, 1fr) minmax(0, 1.15fr); gap: var(--gap); min-height: 0; min-width: 0; }
+.q-tab { grid-column: 1 / -1; }
+.cont { min-width: 24px; height: 22px; padding: 0 8px; border-radius: 999px; display: inline-grid; place-items: center; font-size: 12px; font-weight: 600; background: var(--accent-soft); color: var(--fg); }
+.cont.alerta { background: var(--down-bg); color: var(--down); }
+.legenda i.barra { width: 10px; height: 10px; border: 0; border-radius: 3px; background: var(--bar-soft); }
+.legenda i.meta { border-top: 2px dashed var(--amarelo); }
+.legenda i { border-top-color: var(--accent); }
+.rotulo-mes { fill: var(--muted); font: 400 11px var(--f-text); }
+.atencao { padding: 12px 14px; border-radius: 14px; background: var(--panel-sub); border: 1px solid var(--line); margin-bottom: 8px; cursor: pointer;
+  transition: transform .3s var(--ease), border-color .3s var(--ease); }
+.atencao:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+.atencao h3 { margin: 0 0 6px; font: 600 13.5px/1.3 var(--f-display); }
+.atencao p { margin: 6px 0 0; font-size: 12.5px; color: var(--fg-2); }
+.tag { display: inline-flex; padding: 1px 8px; border-radius: 999px; font-size: 11px; border: 1px solid var(--line-strong); color: var(--fg-2); margin: 0 6px 4px 0; }
+.tag.down { color: var(--down); border-color: transparent; background: var(--down-bg); }
+.zona { font-weight: 600; }
+.z-txt-excelencia { color: var(--up); } .z-txt-qualidade { color: var(--data-2); } .z-txt-aperfeicoamento { color: var(--amarelo); } .z-txt-critica { color: var(--down); }
+.sub-n { display: block; font-size: 11px; color: var(--muted); }
+.btn-coment { border: 1px solid var(--line-strong); background: transparent; border-radius: 999px; padding: 2px 12px; cursor: pointer; color: var(--fg); font: inherit; transition: border-color .25s var(--ease); }
+.btn-coment:hover { border-color: var(--accent); }
+#t-q tbody tr { cursor: pointer; }
+.coment { margin: 0 0 10px; padding: 12px 14px; border-radius: 14px; background: var(--panel-sub); border: 1px solid var(--line); font-size: 13px; line-height: 1.55; color: var(--fg-2); }
+#gav-q .painel > header > div { min-width: 0; }
+.busca { display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); min-width: 240px; }
+.busca svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.8; flex: none; }
+.busca input { border: 0; background: transparent; outline: none; width: 100%; font-size: 13px; color: var(--fg); }
+
+/* inteligência */
+.pg-chat { grid-template-rows: minmax(0, 1fr); }
+.chat-wrap { display: grid; grid-template-rows: minmax(0, 1fr) auto auto; gap: 14px; padding: 20px; width: 100%; max-width: 1040px; justify-self: center; }
+.chat { display: flex; flex-direction: column; gap: 14px; padding: 4px; }
+.msg { display: flex; }
+.msg.user { justify-content: flex-end; }
+.bolha { max-width: 78%; padding: 12px 16px; border-radius: 20px; font-size: 14px; line-height: 1.6; background: var(--panel-sub); border: 1px solid var(--line); animation: entra .4s var(--ease) both; }
+.msg.user .bolha { background: linear-gradient(135deg, #00F0B4, #00B9F2); color: #002D78; border: 0; border-bottom-right-radius: 6px; font-weight: 500; }
+.msg.assistant .bolha { border-bottom-left-radius: 6px; }
+.digitando i { display: inline-block; width: 7px; height: 7px; margin: 0 2px; border-radius: 50%; background: var(--accent); animation: pula 1s infinite ease-in-out; }
+.digitando i:nth-child(2) { animation-delay: .15s; } .digitando i:nth-child(3) { animation-delay: .3s; }
+@keyframes pula { 0%, 80%, 100% { transform: translateY(0); opacity: .4; } 40% { transform: translateY(-5px); opacity: 1; } }
+.chat-vazio { margin: auto; text-align: center; max-width: 540px; color: var(--fg-2); }
+.chat-vazio h2 { font: 600 28px/1.2 var(--f-display); margin: 22px 0 8px; color: var(--fg); letter-spacing: -.01em; }
+.chat-vazio p { margin: 0; line-height: 1.55; }
+.orb { width: 88px; height: 88px; margin: 0 auto; border-radius: 50%; background: radial-gradient(circle at 32% 30%, #CFFFF0, #00F0B4 34%, #00B9F2 68%, #0A40A0);
+  box-shadow: 0 0 70px rgba(0, 240, 180, .45); animation: respira 4.5s ease-in-out infinite; }
+@keyframes respira { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+.sugestoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.sugestao { border: 1px solid var(--line-strong); background: var(--panel-sub); color: var(--fg-2); border-radius: 999px; padding: 8px 14px; font-size: 12.5px; cursor: pointer;
+  transition: border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease); }
+.sugestao:hover { border-color: var(--accent); color: var(--fg); transform: translateY(-1px); }
+.chat-form { display: flex; gap: 10px; align-items: flex-end; padding: 8px; border-radius: 24px; background: var(--panel-sub); border: 1px solid var(--line-strong); }
+.chat-form:focus-within { border-color: var(--accent); }
+.chat-form textarea { flex: 1; resize: none; border: 0; background: transparent; outline: none; color: var(--fg); font: 400 14px/1.5 var(--f-text); padding: 9px 12px; max-height: 140px; }
+.chat-form button { height: 40px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--accent); color: #002D78; font-weight: 600; cursor: pointer; transition: transform .25s var(--ease), opacity .25s; }
+.chat-form button:hover { transform: scale(1.03); }
+.chat-form button:disabled { opacity: .5; transform: none; }
+@media (max-width: 1180px) {
+  .q-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+  .q-grid > .painel { min-height: 300px; }
+  .q-tab { max-height: 640px; }
+  .pg-chat .chat-wrap { min-height: 70vh; }
+}
+@media (prefers-reduced-motion: reduce) { .orb, .digitando i { animation: none !important; } }
+
 </style>
 </head>
 <body class="pes">
@@ -447,6 +596,14 @@ tr.grupo[aria-expanded="true"] .exp svg { transform: rotate(180deg); }
     <button class="navbtn" data-pg="divulgacoes" type="button">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
       Divulgações
+    </button>
+    <button class="navbtn" data-pg="qualidade" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+      Qualidade
+    </button>
+    <button class="navbtn" data-pg="inteligencia" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 8.5c.8 2 1.5 2.7 3.5 3.5-2 .8-2.7 1.5-3.5 3.5-.8-2-1.5-2.7-3.5-3.5 2-.8 2.7-1.5 3.5-3.5z"/></svg>
+      Inteligência
     </button>
     <button class="navbtn" data-pg="comparacao" type="button">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10"/><path d="M10 20V4"/><path d="M15 20v-7"/><path d="M20 20V8"/><path d="M3 20h18"/></svg>
@@ -480,6 +637,7 @@ tr.grupo[aria-expanded="true"] .exp svg { transform: rotate(180deg); }
         <div class="dd" id="dd-status"></div>
         <div class="dd" id="dd-modelo"></div>
         <div class="dd" id="dd-formato"></div>
+        <div class="dd" id="dd-area"></div>
         <div class="dd" id="dd-ano"></div>
         <button class="switch" type="button" role="switch" aria-checked="false" id="sw-evo"><span class="trilho" aria-hidden="true"></span>Evolução</button>
         <div class="dd so-evo" id="dd-ref"></div>
@@ -542,6 +700,55 @@ tr.grupo[aria-expanded="true"] .exp svg { transform: rotate(180deg); }
             <div class="corpo rolagem"><div class="insights" id="ins-div"></div></div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <!-- ===================== Página · Qualidade ===================== -->
+    <section class="pagina" id="pg-qualidade" data-pg="qualidade" aria-labelledby="titulo-pg" hidden>
+      <div class="filtros">
+        <div class="dd" id="dd-q-area"></div>
+        <div class="dd" id="dd-q-mod"></div>
+        <div class="dd" id="dd-q-ano"></div>
+        <div class="dd" id="dd-q-mes"></div>
+        <label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="q-busca" type="search" placeholder="Buscar evento" aria-label="Buscar evento"></label>
+        <button class="limpar" type="button" id="limpar-q" hidden>Limpar filtros</button>
+      </div>
+      <div class="painel cluster" id="kpis-q" aria-live="polite"></div>
+      <div class="area">
+        <div class="q-grid">
+          <div class="painel">
+            <header><h2>Tendência mensal</h2>
+              <div class="dir legenda"><span><i></i>NPS ponderado</span><span><i class="barra"></i>Avaliações</span><span><i class="meta"></i>Meta 75</span></div></header>
+            <div class="corpo"><div class="grafico" id="g-tendencia"></div></div>
+          </div>
+          <div class="painel">
+            <header><h2>Requer atenção</h2><span class="cont alerta" id="n-atencao">0</span></header>
+            <div class="corpo rolagem"><div id="lista-atencao"></div></div>
+          </div>
+          <div class="painel tabela-p q-tab">
+            <header><h2>Acervo de avaliações</h2><span class="nota" id="n-q"></span><div class="dir"><div class="dd" id="dd-q-ver"></div></div></header>
+            <div class="corpo rolagem"><table class="tabela" id="t-q"></table></div>
+          </div>
+        </div>
+        <aside class="gaveta" id="gav-q" aria-label="Comentários do evento">
+          <div class="painel">
+            <header><div><h2 id="tit-coment">Comentários</h2><span class="nota" id="sub-coment"></span></div>
+              <button class="fechar" type="button" data-fecha="gav-q" aria-label="Fechar comentários"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
+            <div class="corpo rolagem"><div id="lista-coment"></div></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== Página · Inteligência ===================== -->
+    <section class="pagina pg-chat" id="pg-inteligencia" data-pg="inteligencia" aria-labelledby="titulo-pg" hidden>
+      <div class="painel chat-wrap">
+        <div class="chat rolagem" id="chat" aria-live="polite"></div>
+        <div class="sugestoes" id="sugestoes"></div>
+        <form class="chat-form" id="chat-form">
+          <textarea id="chat-input" rows="1" placeholder="Pergunte sobre cursos, divulgações ou pesquisas" aria-label="Sua pergunta"></textarea>
+          <button id="btn-enviar" type="submit">Enviar</button>
+        </form>
       </div>
     </section>
 
@@ -638,13 +845,30 @@ var PESCore = (function () {
   function variacao(a, b) { return b ? (a - b) / b : null; }
 
   /* ---------- NPS (sempre a partir das contagens, nunca média de NPS) ---------- */
-  function npsVazio() { return { promotores: 0, neutros: 0, detratores: 0 }; }
+  /* aceita contagens {promotores, neutros, detratores} ou o formato das pesquisas {valor, respostas};
+     a soma é sempre ponderada pelo número de respostas, o que dá o NPS combinado exato */
+  function npsVazio() { return { promotores: 0, neutros: 0, detratores: 0, _pn: 0, _n: 0, _soValor: false }; }
   function somaNps(acc, c) {
-    if (c) { acc.promotores += c.promotores || 0; acc.neutros += c.neutros || 0; acc.detratores += c.detratores || 0; }
+    if (!c) return acc;
+    if (c.valor != null) { var r = c.respostas || 0; acc._pn += c.valor / 100 * r; acc._n += r; acc._soValor = true; }
+    else if (c._n != null) { acc._pn += c._pn; acc._n += c._n; acc.promotores += c.promotores; acc.neutros += c.neutros; acc.detratores += c.detratores; acc._soValor = acc._soValor || c._soValor; }
+    else { var P = c.promotores || 0, N = c.neutros || 0, D = c.detratores || 0; acc.promotores += P; acc.neutros += N; acc.detratores += D; acc._pn += P - D; acc._n += P + N + D; }
     return acc;
   }
-  function respostas(c) { return c ? (c.promotores || 0) + (c.neutros || 0) + (c.detratores || 0) : 0; }
-  function nps(c) { var t = respostas(c); return t ? ((c.promotores || 0) - (c.detratores || 0)) * 100 / t : null; }
+  function respostas(c) {
+    if (!c) return 0;
+    if (c._n != null) return c._n;
+    if (c.valor != null) return c.respostas || 0;
+    return (c.promotores || 0) + (c.neutros || 0) + (c.detratores || 0);
+  }
+  function nps(c) {
+    var t = respostas(c); if (!t) return null;
+    if (c._n != null) return c._pn * 100 / c._n;
+    if (c.valor != null) return c.valor;
+    return ((c.promotores || 0) - (c.detratores || 0)) * 100 / t;
+  }
+  // base da taxa de participação: inscritos da pesquisa de qualidade, quando houver; senão, os do sistema
+  function basePart(c) { return c.inscritos_base != null ? c.inscritos_base : (c.inscricoes || 0); }
   function zonaNps(v) {
     if (v == null) return null;
     return v >= 75 ? 'excelencia' : v >= 50 ? 'qualidade' : v >= 0 ? 'aperfeicoamento' : 'critica';
@@ -805,7 +1029,7 @@ var PESCore = (function () {
     var inscReal = 0, partBase = 0, part = 0, nc = npsVazio(), np = npsVazio();
     real.forEach(function (c) {
       inscReal += c.inscricoes || 0;
-      if (c.participantes != null) { part += c.participantes; partBase += c.inscricoes || 0; }
+      if (c.participantes != null) { part += c.participantes; partBase += basePart(c); }
       somaNps(nc, c.nps_curso); somaNps(np, c.nps_palestrantes);
     });
     var divs = idx.divs.filter(function (d) { return d.data >= ini && d.data <= fim; });
@@ -898,12 +1122,12 @@ var PESCore = (function () {
     // 5. participação
     if (A.participacao != null && B.participacao != null) {
       var dp = (A.participacao - B.participacao) * 100;
-      var pior = A.real.filter(function (c) { return c.participantes != null && (c.inscricoes || 0) >= 15; })
-        .sort(function (a, b) { return a.participantes / a.inscricoes - b.participantes / b.inscricoes; })[0];
+      var pior = A.real.filter(function (c) { return c.participantes != null && basePart(c) >= 15; })
+        .sort(function (a, b) { return a.participantes / basePart(a) - b.participantes / basePart(b); })[0];
       var t5 = 'Taxa de participação de ' + fmtPct(A.participacao, 0) + ' contra ' + fmtPct(B.participacao, 0) +
         ' (' + sinal(dp, fmtDec(Math.abs(dp), 1)) + ' p.p.).';
-      if (pior && pior.participantes / pior.inscricoes < CFG.participacaoAlerta)
-        t5 += ' Menor presença: “' + pior.titulo + '” (' + fmtPct(pior.participantes / pior.inscricoes, 0) + ').';
+      if (pior && pior.participantes / basePart(pior) < CFG.participacaoAlerta)
+        t5 += ' Menor presença: “' + pior.titulo + '” (' + fmtPct(pior.participantes / basePart(pior), 0) + ').';
       itens.push({ tipo: dp >= 0 ? 'alta' : 'queda', titulo: 'Participação', texto: t5, peso: Math.abs(dp) / 25 });
     }
 
@@ -995,8 +1219,8 @@ var PESCore = (function () {
     if (pals[0]) itens.push({ tipo: 'destaque', titulo: 'Palestrante em destaque',
       texto: pals[0].nome + ' tem NPS ' + fmtDec(nps(pals[0].n), 0) + ' em ' + pals[0].cursos + (pals[0].cursos > 1 ? ' cursos' : ' curso') + ' (' + respostas(pals[0].n) + ' respostas).', peso: 1.8 });
     // participação baixa
-    var realizados = cursos.filter(function (c) { return c.participantes != null && (c.inscricoes || 0) >= 15; });
-    var baixa = realizados.filter(function (c) { return c.participantes / c.inscricoes < CFG.participacaoAlerta; });
+    var realizados = cursos.filter(function (c) { return c.participantes != null && basePart(c) >= 15; });
+    var baixa = realizados.filter(function (c) { return c.participantes / basePart(c) < CFG.participacaoAlerta; });
     if (baixa.length) {
       var porModelo = {};
       baixa.forEach(function (c) { porModelo[c.modelo] = (porModelo[c.modelo] || 0) + 1; });
@@ -1011,13 +1235,14 @@ var PESCore = (function () {
 
   /* ---------- destaques da página de divulgações (atividade a atividade) ---------- */
   function destaquesDivulgacoes(idx, divs, porDiv) {
-    var itens = [], hoje = idx.hoje;
+    var itens = [], hoje = idx.hoje, serie = idx.meta && idx.meta.serie_inscricoes_desde;
+    var comSerie = function (d) { return !serie || addDias(d, -7) >= serie; };
     var efeito = efeitoCursos(idx, divs);
     // maior salto de ritmo após uma divulgação
     var melhor = null;
     efeito.forEach(function (e) {
       e.divs.forEach(function (x) {
-        if (x.diasDepois === 3 && x.depois >= 1 && (!melhor || x.depois - x.antes > melhor.x.depois - melhor.x.antes)) melhor = { e: e, x: x };
+        if (comSerie(x.d.data) && x.diasDepois === 3 && x.depois >= 1 && (!melhor || x.depois - x.antes > melhor.x.depois - melhor.x.antes)) melhor = { e: e, x: x };
       });
     });
     if (melhor) itens.push({ tipo: 'destaque', titulo: 'Maior salto após divulgação', curso_id: melhor.e.id,
@@ -1025,7 +1250,7 @@ var PESCore = (function () {
         ' inscrições por dia após ' + (TIPOS[melhor.x.d.tipo].nome.toLowerCase()) + ' de ' + dataCurta(melhor.x.d.data) + '.', peso: 3 });
     // atividade divulgada que não reagiu
     var parados = [];
-    efeito.forEach(function (e) { if (e.em72h === 0 && e.ultima <= addDias(hoje, -3)) parados.push(e); });
+    efeito.forEach(function (e) { if (e.em72h === 0 && e.ultima <= addDias(hoje, -3) && (!serie || e.ultima >= serie)) parados.push(e); });
     if (parados.length) {
       parados.sort(function (a, b) { return a.ultima < b.ultima ? 1 : -1; });
       itens.push({ tipo: 'alerta', titulo: 'Divulgação sem resposta', curso_id: parados[0].id,
@@ -1087,7 +1312,7 @@ var PESCore = (function () {
     iso: iso, parse: parse, addDias: addDias, difDias: difDias, hojeDe: hojeDe,
     dataCurta: dataCurta, dataLonga: dataLonga, mesAno: mesAno,
     fmtInt: fmtInt, fmtDec: fmtDec, fmtPct: fmtPct, sinal: sinal, variacao: variacao,
-    npsVazio: npsVazio, somaNps: somaNps, respostas: respostas, nps: nps, zonaNps: zonaNps,
+    npsVazio: npsVazio, somaNps: somaNps, respostas: respostas, nps: nps, zonaNps: zonaNps, basePart: basePart,
     indexar: indexar, atribuir: atribuir, lift: lift, ritmoCurso: ritmoCurso, efeitoCursos: efeitoCursos, presets: presets, rotuloPeriodo: rotuloPeriodo,
     metricasPeriodo: metricasPeriodo, explicarComparacao: explicarComparacao,
     destaquesCursos: destaquesCursos, destaquesDivulgacoes: destaquesDivulgacoes
@@ -1311,12 +1536,50 @@ function gerarDadosDemo() {
     delete c._pop; delete c._q; delete c._pal;
   });
 
+  /* próximas ações planejadas no Trello para as atividades com inscrições abertas */
+  var proximas = [], pid = 1;
+  cursos.forEach(function (c) {
+    if (c.status === 'encerradas') return;
+    var n = +peso({ 0: 0.18, 1: 0.32, 2: 0.32, 3: 0.18 });
+    for (var i = 0; i < n; i++) {
+      var dp = diaUtil(C.addDias(hoje, 1 + Math.floor(rnd() * Math.max(2, C.difDias(hoje, c.inicio) - 2))));
+      if (dp >= c.inicio) continue;
+      var tp = peso({ email_marketing: 0.45, carrossel: 0.2, lamina_unica: 0.1, mala_direta: 0.1, whatsapp: 0.15 });
+      proximas.push({ id: 'demo-p' + (pid++), curso_id: c.id, data: dp, tipo: tp, link: null, feito: false,
+        titulo: { email_marketing: '✉️Email ' + (i + 2) + ' — Últimas vagas: ' + c.titulo, carrossel: 'Carrossel com os palestrantes', lamina_unica: 'Lâmina única para LinkedIn', mala_direta: 'Mala direta para ' + (mailings[c.area] || 'a base'), whatsapp: 'Mensagem ativa para interessados' }[tp] });
+    }
+  });
+  proximas.sort(function (a, b) { return a.data < b.data ? -1 : 1; });
+
   function instante(dia) { var x = C.parse(dia); x.setHours(7, 0, 0, 0); return x.toISOString(); }
   return {
     meta: { versao: '2.0', demo: true, gerado_em: agora.toISOString(), ref_ultima: instante(refUltima), ref_semana: instante(refSemana),
       fontes: { sistema: 'demo', trello: 'demo', pesquisas: 'demo', ia: 'off' } },
-    cursos: cursos, inscricoes_diarias: diarias, divulgacoes: divulgacoes, insights: null
+    cursos: cursos, inscricoes_diarias: diarias, divulgacoes: divulgacoes, proximas: proximas, insights: null
   };
+}
+
+/* pesquisas de qualidade de demonstração, no formato do data_dash.js do acervo de pesquisas */
+function gerarQualidadeDemo(P) {
+  var C = PESCore, seed = 777;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var serial = function (iso) { var p = iso.split('-'); return Math.round((Date.UTC(+p[0], +p[1] - 1, +p[2]) - Date.UTC(1899, 11, 30)) / 864e5); };
+  var frases = ['Excelente conteúdo, muito aplicável ao dia a dia.', 'Palestrantes muito preparados.', 'Poderia ter mais tempo para perguntas.',
+    'Material de apoio muito bom.', 'Gostaria de receber os slides.', 'Ótima organização, parabéns à equipe do PES.', 'Tema muito atual e relevante.',
+    'O áudio falhou em alguns momentos.', 'Recomendo para toda a equipe.', 'Faltaram exemplos práticos.'];
+  var Q = { eventos: [], palestrantes: [], comentarios: {} };
+  P.cursos.forEach(function (c) {
+    if (c.participantes == null || !c.nps_curso || c.inicio.slice(0, 4) !== String(new Date().getFullYear())) return;
+    var aval = C.respostas(c.nps_curso), nv = Math.round(C.nps(c.nps_curso));
+    Q.eventos.push({ id: c.id, data: serial(c.inicio), curso: c.titulo, area: c.area, mod: C.FORMATOS[c.formato] || 'Online',
+      inscritos: c.inscricoes, confirmados: c.participantes, aval: aval, taxa: c.participantes ? aval / c.participantes : 0,
+      nota: Math.min(10, 7.4 + nv / 45 + rnd() * 0.3), nps: nv });
+    (c.palestrantes || []).forEach(function (p) { if (p.nps) Q.palestrantes.push({ id_evento: c.id, nome: p.nome, aval: C.respostas(p.nps), nps: Math.round(C.nps(p.nps)) }); });
+    var k = 2 + Math.floor(rnd() * 5), lista = [];
+    for (var i = 0; i < k; i++) lista.push(frases[Math.floor(rnd() * frases.length)]);
+    Q.comentarios[c.id] = lista;
+  });
+  return Q;
 }
 
 </script>
@@ -1327,7 +1590,28 @@ window.iniciarPainel = function () {
   var DATA = window.PES_DATA || gerarDadosDemo();
   var DEMO = !window.PES_DATA || !!(DATA.meta && DATA.meta.demo);
   var META = DATA.meta || {};
+  var QDATA = window.__DASH__ && Array.isArray(window.__DASH__.eventos) && window.__DASH__.eventos.length ? window.__DASH__ : (DEMO ? gerarQualidadeDemo(DATA) : null);
+  var QJ = juntarQualidade(DATA, QDATA);
+  if (META.fontes) META.fontes.pesquisas = QDATA ? (DEMO ? 'demo' : 'ok') : 'erro';
   var IDX = C.indexar(DATA);
+  var TEM_PROXIMAS = Array.isArray(DATA.proximas);
+  // eventos avaliados: os mesmos números das atividades (JSON do sistema via n8n); sem eles, a base de pesquisas
+  var QEV = [], QPAL = [];
+  (function () {
+    var proprios = IDX.cursos.filter(function (c) { return c.pesquisa && c.pesquisa.aval; });
+    if (proprios.length) {
+      proprios.forEach(function (c) {
+        var n = C.nps(c.nps_curso);
+        QEV.push({ id: c.id, _dia: c.inicio, curso: c.titulo, area: c.area, mod: C.FORMATOS[c.formato] || '—', inscritos: C.basePart(c), confirmados: c.participantes,
+          aval: c.pesquisa.aval, taxa: c.pesquisa.taxa, nota: c.pesquisa.nota, nps: n == null ? null : Math.round(n) });
+        (c.palestrantes || []).forEach(function (p) { var r = C.respostas(p.nps); if (p.nome && r) QPAL.push({ id_evento: c.id, nome: p.nome, aval: r, nps: Math.round(C.nps(p.nps)) }); });
+      });
+    } else if (QDATA) {
+      QEV = QDATA.eventos.map(function (e) { e._dia = serialParaIso(e.data); return e; }); QPAL = QDATA.palestrantes || [];
+    }
+  })();
+  var COMENTARIOS = (QDATA && QDATA.comentarios) || {};
+  var PROXIMAS = (DATA.proximas || []).filter(function (p) { return IDX.porId.has(p.curso_id) && p.data >= IDX.hoje; });
   var ATRIB = C.atribuir(IDX, IDX.divs);
   var INS = DATA.insights || {};
   var HOJE = IDX.hoje, ONTEM = C.addDias(HOJE, -1);
@@ -1353,7 +1637,7 @@ window.iniciarPainel = function () {
     if (t[t.length - 1] < max) t.push(t[t.length - 1] + step);
     return t;
   }
-  function tamanho(el) { var r = el.getBoundingClientRect(); return { w: Math.max(260, Math.floor(r.width)), h: Math.max(180, Math.floor(r.height)) }; }
+  function tamanho(el, minH) { var r = el.getBoundingClientRect(); return { w: Math.max(260, Math.floor(r.width)), h: Math.max(minH || 180, Math.floor(r.height)) }; }
   var REDUZ = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function guarda(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* armazenamento indisponível */ } }
   function le(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -1366,13 +1650,15 @@ window.iniciarPainel = function () {
   /* ---------------- estado ---------------- */
   var estado = {
     pg: 'atividades',
-    f: { status: 'todos', modelo: 'todos', formato: 'todos', ano: ANO_ATUAL },
+    f: { status: 'todos', modelo: 'todos', formato: 'todos', area: 'todos', ano: ANO_ATUAL },
     evo: false, ref: 'ultima',
     sortA: { col: 'agenda', dir: 1 },
     d: { per: '90', tipos: new Set(Object.keys(C.TIPOS)), curso: 'todos' },
-    sortD: { col: 'ultima', dir: -1 },
+    sortD: { col: 'proxima', dir: 1 },
     abertos: new Set(),
-    c: { preset: 'mes', grupo: 'formato', a: null, b: null }
+    c: { preset: 'mes', grupo: 'formato', a: null, b: null },
+    q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos' },
+    chat: [], chatBusy: false
   };
   var primeiraVez = true;
 
@@ -1493,8 +1779,7 @@ window.iniciarPainel = function () {
     setTimeout(marcaRolagem, 280);
     g.setAttribute('aria-hidden', String(!aberta));
     if ('inert' in g) g.inert = !aberta;
-    btn.setAttribute('aria-expanded', String(aberta));
-    guarda('pes-' + id, aberta ? '1' : '0');
+    if (btn) { btn.setAttribute('aria-expanded', String(aberta)); guarda('pes-' + id, aberta ? '1' : '0'); }
   }
   function contador(id, itens) {
     var el = $('#' + id);
@@ -1519,7 +1804,11 @@ window.iniciarPainel = function () {
       '<circle cx="21" cy="21" r="' + R + '" fill="none" stroke="var(--line-strong)" stroke-width="4"/>' +
       '<circle cx="21" cy="21" r="' + R + '" fill="none" stroke="url(#ga)" stroke-width="4" stroke-linecap="round" stroke-dasharray="' + (L * v).toFixed(1) + ' ' + L.toFixed(1) + '" transform="rotate(-90 21 21)"/></svg>';
   }
+  var CORES_AREA = ['#00F0B4', '#00B9F2', '#AD96DC', '#FFC56E', '#FF8F1C', '#7FD8FF', '#9BF5D6', '#C9B8F0'];
+  function corArea(a) { var h = 0; String(a || '').split('').forEach(function (ch) { h = (h * 31 + ch.charCodeAt(0)) >>> 0; }); return CORES_AREA[h % CORES_AREA.length]; }
+  function chipArea(a) { return a ? '<span class="chip-area" style="--c:' + corArea(a) + '">' + esc(a) + '</span>' : ''; }
   function npsBarra(c) {
+    if (c && (c._soValor || c.valor != null)) return '';
     var t = C.respostas(c); if (!t) return '';
     return '<span class="npsbar" title="Detratores, neutros e promotores"><i style="width:' + (c.detratores * 100 / t) + '%"></i><i style="width:' + (c.neutros * 100 / t) + '%"></i><i style="width:' + (c.promotores * 100 / t) + '%"></i></span>';
   }
@@ -1576,7 +1865,9 @@ window.iniciarPainel = function () {
   var PAGINAS = {
     atividades: ['Acompanhamento das atividades', 'Inscrições, participação e satisfação por atividade'],
     divulgacoes: ['Divulgações', 'Ações do Trello e e-mails do sistema, atividade por atividade'],
-    comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê']
+    comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê'],
+    qualidade: ['Pesquisas de qualidade', 'Satisfação dos eventos, palestrantes e comentários dos participantes'],
+    inteligencia: ['Inteligência', 'Pergunte ao agente do PES sobre atividades, divulgações e pesquisas']
   };
   function cabecalho() {
     $('#selo-demo').hidden = !DEMO;
@@ -1601,7 +1892,8 @@ window.iniciarPainel = function () {
     var f = estado.f;
     return IDX.cursos.filter(function (c) {
       return (f.ano === 'todos' || String(c.inicio).slice(0, 4) === f.ano) && (f.status === 'todos' || c.status === f.status) &&
-        (f.modelo === 'todos' || c.modelo === f.modelo) && (f.formato === 'todos' || c.formato === f.formato);
+        (f.modelo === 'todos' || c.modelo === f.modelo) && (f.formato === 'todos' || c.formato === f.formato) &&
+        (f.area === 'todos' || c.area === f.area);
     });
   }
   function refInfo() {
@@ -1611,14 +1903,14 @@ window.iniciarPainel = function () {
   function renderAtividades() {
     $('#pg-atividades').classList.toggle('evo-off', !estado.evo);
     var f = estado.f;
-    $('#limpar-atv').hidden = f.status === 'todos' && f.modelo === 'todos' && f.formato === 'todos' && f.ano === ANO_ATUAL;
+    $('#limpar-atv').hidden = f.status === 'todos' && f.modelo === 'todos' && f.formato === 'todos' && f.area === 'todos' && f.ano === ANO_ATUAL;
     var lista = atividadesFiltradas(), ref = refInfo(), rk = estado.ref;
 
     var a = { insc: 0, part: 0, partB: 0, nc: C.npsVazio(), np: C.npsVazio() };
     var r = { insc: 0, part: 0, partB: 0, nc: C.npsVazio(), np: C.npsVazio(), novos: 0 };
     lista.forEach(function (c) {
       a.insc += c.inscricoes || 0;
-      if (c.participantes != null) { a.part += c.participantes; a.partB += c.inscricoes || 0; }
+      if (c.participantes != null) { a.part += c.participantes; a.partB += C.basePart(c); }
       C.somaNps(a.nc, c.nps_curso); C.somaNps(a.np, c.nps_palestrantes);
       var fo = c.ref && c.ref[rk];
       if (!fo) { r.novos++; return; }
@@ -1674,7 +1966,7 @@ window.iniciarPainel = function () {
       var pc = porCurso.get(c.id) || { ganho: 0, divs: [] };
       return { c: c, titulo: c.titulo, inicio: c.inicio, formato: c.formato, modelo: c.modelo, status: c.status, inscricoes: c.inscricoes || 0,
         ganho: pc.ganho, origem: pc.divs.length, divs: pc.divs,
-        participacao: c.participantes != null && c.inscricoes ? c.participantes / c.inscricoes : -1,
+        participacao: c.participantes != null && C.basePart(c) ? c.participantes / C.basePart(c) : -1,
         nps_c: C.nps(c.nps_curso), nps_p: C.nps(c.nps_palestrantes) };
     });
     var s = estado.sortA;
@@ -1692,7 +1984,7 @@ window.iniciarPainel = function () {
       var c = l.c, ocup = c.limite ? Math.min(1, l.inscricoes / c.limite) : null;
       var pal = (c.palestrantes || []).map(function (p) { return p.nome; }).filter(Boolean);
       var cel = {
-        titulo: '<td class="titulo"><b>' + esc(c.titulo) + '</b><span>' + esc([c.area].concat(pal.length ? ['com ' + pal.join(' e ')] : []).filter(Boolean).join(', ')) + '</span></td>',
+        titulo: '<td class="titulo"><b>' + esc(c.titulo) + '</b><span class="linha-sub">' + chipArea(c.area) + (pal.length ? '<span class="pal">com ' + esc(pal.join(' e ')) + '</span>' : '') + '</span></td>',
         inicio: '<td class="data2"><b>' + dataCurtaAno(c.inicio) + '</b><span class="' + (c.status === 'abertas' ? 'st-ab' : 'st-enc') + '">' + STATUS_TXT[c.status] + '</span></td>',
         formato: '<td class="data2"><b>' + esc(C.FORMATOS[c.formato] || '—') + '</b><span class="st-enc">' + esc(C.MODELOS[c.modelo] || 'sem preço definido') + '</span></td>',
         inscricoes: '<td class="n">' + (ocup != null ? '<span class="ocup" title="' + C.fmtInt(l.inscricoes) + ' de ' + C.fmtInt(c.limite) + ' vagas"><span class="t"><i class="' + (ocup >= 0.9 ? 'cheio' : '') + '" style="width:' + (ocup * 100) + '%"></i></span><span>' + C.fmtInt(l.inscricoes) + '</span></span>' : C.fmtInt(l.inscricoes)) + '</td>',
@@ -1702,7 +1994,7 @@ window.iniciarPainel = function () {
         participacao: '<td class="n">' + (l.participacao >= 0 ? C.fmtPct(l.participacao, 0) : '<span class="nota">' + (c.inicio >= HOJE ? 'a realizar' : '—') + '</span>') + '</td>',
         nps_c: '<td class="n">' + npsCel(c.nps_curso) + '</td>', nps_p: '<td class="n">' + npsCel(c.nps_palestrantes) + '</td>'
       };
-      return '<tr data-id="' + c.id + '">' + cols.map(function (k) { return cel[k.k]; }).join('') + '</tr>';
+      return '<tr data-id="' + c.id + '"' + (c.status === 'abertas' ? ' class="aberta"' : '') + '>' + cols.map(function (k) { return cel[k.k]; }).join('') + '</tr>';
     }).join('') + '</tbody>';
     var t = $('#t-atv');
     t.innerHTML = linhas.length ? cabecalhoTabela(cols, s) + tb : '<tbody><tr><td class="nota" style="padding:24px 10px;white-space:normal">Nenhuma atividade com esses filtros. Ajuste status, modelo, formato ou ano.</td></tr></tbody>';
@@ -1751,17 +2043,23 @@ window.iniciarPainel = function () {
       }).join(''), ch(B.n ? (A.n - B.n) / B.n : null, 'pct'), A.n) +
       kpi('Atividades divulgadas', C.fmtInt(A.cursos.size), '', ch(B.cursos.size ? (A.cursos.size - B.cursos.size) / B.cursos.size : null, 'pct'), A.cursos.size) +
       kpi('E-mails cruzados', (A.trelloEmails ? C.fmtInt(A.achados) + '<small>de ' + C.fmtInt(A.trelloEmails) + '</small>' : '—'),
-        (A.trelloEmails ? (A.perdidos ? '<span class="alerta-txt">' + A.perdidos + ' do Trello sem e-mail no sistema</span>' : 'todos os e-mails do Trello achados no sistema') : 'Sem e-mails no Trello no período') +
-        (A.soSistema ? '<span>' + A.soSistema + ' do sistema sem item no Trello</span>' : '') +
-        (A.aguardando ? '<span>' + A.aguardando + ' aguardando a carga do histórico</span>' : '') +
-        (A.semAtiv ? '<span>' + A.semAtiv + ' do PES sem atividade identificada</span>' : ''), '') +
+        (A.trelloEmails ? (A.perdidos ? '<span class="mini down" title="E-mails marcados no Trello sem comunicação no sistema">' + A.perdidos + ' sem e-mail</span>' : '<span class="mini up">todos achados</span>') : '') +
+        (function () {
+          var det = [A.soSistema ? A.soSistema + ' do sistema sem item no Trello' : '', A.semAtiv ? A.semAtiv + ' do PES sem atividade identificada' : '', A.aguardando ? A.aguardando + ' aguardando a carga do histórico' : ''].filter(Boolean);
+          return det.length ? '<span class="mini" title="' + det.join('; ') + '">+' + (A.soSistema + A.semAtiv + A.aguardando) + ' outros</span>' : '';
+        })(), '') +
       kpi('E-mails entregues', C.fmtInt(A.ent), A.dest ? 'de ' + C.fmtInt(A.dest) + ' destinatários' : 'Sem envios por e-mail no período', ch(B.ent ? (A.ent - B.ent) / B.ent : null, 'pct'), A.ent) +
       kpi('Taxa de abertura', C.fmtPct(tAb, 1), 'aberturas únicas ÷ entregues', ch(tAb != null && tAbB != null ? (tAb - tAbB) * 100 : null, 'pp')) +
       kpi('Taxa de clique', C.fmtPct(tCl, 1), 'cliques únicos ÷ entregues', ch(tCl != null && tClB != null ? (tCl - tClB) * 100 : null, 'pp'));
 
     var efeito = C.efeitoCursos(IDX, A.ds);
     if (cursoSel) efeito.forEach(function (v, k) { if (k !== cursoSel) efeito.delete(k); });
-    tabelaDivulgacoes(efeito, at.porDiv, A.ds.filter(function (d) { return d.sem_atividade; }));
+    var prox = new Map();
+    PROXIMAS.forEach(function (p) {
+      if (!estado.d.tipos.has(p.tipo) || (cursoSel && p.curso_id !== cursoSel)) return;
+      if (!prox.has(p.curso_id)) prox.set(p.curso_id, []); prox.get(p.curso_id).push(p);
+    });
+    tabelaDivulgacoes(efeito, at.porDiv, A.ds.filter(function (d) { return d.sem_atividade; }), prox, cursoSel);
 
     var ia = INS.divulgacoes || [], aviso = '';
     if (ia.length && !semFiltro) { aviso = 'A leitura da IA considera os últimos 90 dias, todos os tipos e atividades. Limpe os filtros para vê-la.'; ia = []; }
@@ -1773,7 +2071,7 @@ window.iniciarPainel = function () {
   }
 
   var COLS_D = [
-    { k: 'exp', sr: 'Abrir' }, { k: 'titulo', t: 'Atividade' }, { k: 'acoes', t: 'Ações', n: 1 }, { k: 'ultima', t: 'Última ação' },
+    { k: 'exp', sr: 'Abrir' }, { k: 'titulo', t: 'Atividade' }, { k: 'acoes', t: 'Ações', n: 1 }, { k: 'ultima', t: 'Última ação' }, { k: 'proxima', t: 'Próxima ação' },
     { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'em72h', t: 'Em até 72h', n: 1 }, { k: 'antes', t: 'Ritmo antes e depois', n: 1 }, { k: 'variacao', t: 'Variação', n: 1 }
   ];
   function ritmoTxt(antes, depois, dias) {
@@ -1828,9 +2126,9 @@ window.iniciarPainel = function () {
         '<span class="k">Entregues</span><span class="v">' + (e && e.entregues != null ? C.fmtInt(e.entregues) : '—') + '</span>' +
         '<span class="k">Abertura</span><span class="v">' + (e && e.entregues ? C.fmtPct(e.aberturas_unicas / e.entregues, 1) : '—') + '</span>' +
         '<span class="k">Clique</span><span class="v">' + (e && e.entregues ? C.fmtPct(e.cliques_unicos / e.entregues, 1) : '—') + '</span>' +
-        '<span class="k">Em até 72h</span><span class="v">' + C.fmtInt(x.emJanela) + '</span>' +
-        '<span class="k">Ritmo</span><span class="v">' + ritmoTxt(x.antes, x.depois, x.diasDepois) + '</span>' +
-        '<span class="k">Variação</span><span class="v">' + variacaoChip(x.antes, x.depois, x.parcial) + '</span></span></div>' +
+        '<span class="k">Em até 72h</span><span class="v">' + (SERIE && d.data < SERIE ? '—' : C.fmtInt(x.emJanela)) + '</span>' +
+        '<span class="k">Ritmo</span><span class="v">' + (semSerie(d.data) ? '<span class="nota" title="' + TIT_SERIE + '">antes da série</span>' : ritmoTxt(x.antes, x.depois, x.diasDepois)) + '</span>' +
+        '<span class="k">Variação</span><span class="v">' + (semSerie(d.data) ? '—' : variacaoChip(x.antes, x.depois, x.parcial)) + '</span></span></div>' +
       '</div>';
   }
   function acaoSemAtividade(d, trello, sistema, dest, e) {
@@ -1844,41 +2142,67 @@ window.iniciarPainel = function () {
         '<span class="k">Clique</span><span class="v">' + (e && e.entregues ? C.fmtPct(e.cliques_unicos / e.entregues, 1) : '—') + '</span></span></div>' +
       '</div>';
   }
-  function tabelaDivulgacoes(efeito, porDiv, semAtiv) {
+  // a série diária precisa de 7 dias antes da ação; antes disso não há ritmo a calcular
+  function semSerie(data) { return SERIE && data && C.addDias(data, -7) < SERIE; }
+  var TIT_SERIE = SERIE ? 'A contagem diária de inscrições começa em ' + C.dataLonga(SERIE) : '';
+  function proximaHtml(p) {
+    var dias = C.difDias(HOJE, p.data);
+    return '<span class="prox"><span class="badge"><i style="background:' + C.TIPOS[p.tipo].cor + '"></i>' + C.TIPOS[p.tipo].curto + '</span>' +
+      '<span>' + C.dataCurta(p.data) + '<small>' + (dias === 0 ? 'hoje' : dias === 1 ? 'amanhã' : 'em ' + dias + ' dias') + '</small></span></span>';
+  }
+  function tabelaDivulgacoes(efeito, porDiv, semAtiv, prox, cursoSel) {
     var s = estado.sortD;
-    var linhas = Array.from(efeito.values()).map(function (e) {
-      return { e: e, titulo: e.c.titulo, acoes: e.divs.length, ultima: e.ultima, inscricoes: e.c.inscricoes || 0, em72h: e.em72h,
-        antes: e.depois == null ? -1e6 : e.depois - e.antes,
-        variacao: e.parcial || e.depois == null ? -1e7 : e.variacao == null ? (e.depois > 0 ? 1e6 + e.depois : -1e6) : e.variacao };
+    // atividades divulgadas no período + atividades com inscrições abertas (com ou sem ação planejada)
+    var mapa = new Map(efeito);
+    IDX.cursos.forEach(function (c) {
+      if (mapa.has(c.id) || (cursoSel && c.id !== cursoSel)) return;
+      if (c.status === 'abertas' || prox.has(c.id)) mapa.set(c.id, { id: c.id, c: c, divs: [], em72h: null, antes: null, depois: null, parcial: false, variacao: null, ultima: null, semAcao: true });
     });
-    linhas.sort(function (x, y) { var a = x[s.col], b = y[s.col]; return (a < b ? -1 : a > b ? 1 : 0) * s.dir || (x.ultima < y.ultima ? 1 : -1); });
-    $('#n-div').textContent = linhas.length + (linhas.length === 1 ? ' atividade' : ' atividades') + (semAtiv && semAtiv.length ? ', mais ' + semAtiv.length + (semAtiv.length > 1 ? ' e-mails sem atividade' : ' e-mail sem atividade') : '');
+    var linhas = Array.from(mapa.values()).map(function (e) {
+      var px = prox.get(e.id) || [];
+      return { e: e, px: px, titulo: e.c.titulo, acoes: e.divs.length, ultima: e.ultima || '', proxima: px.length ? px[0].data : (e.c.status === 'abertas' ? '9998' : '9999'),
+        inscricoes: e.c.inscricoes || 0, em72h: e.em72h == null ? -1 : e.em72h, antes: e.depois == null ? -1e6 : e.depois - e.antes,
+        variacao: e.semAcao ? -1e8 : e.parcial || e.depois == null ? -1e7 : e.variacao == null ? (e.depois > 0 ? 1e6 + e.depois : -1e6) : e.variacao };
+    });
+    linhas.sort(function (x, y) { var a = x[s.col], b = y[s.col]; return (a < b ? -1 : a > b ? 1 : 0) * s.dir || (x.e.c.inicio < y.e.c.inicio ? -1 : 1); });
+    var nAb = linhas.filter(function (l) { return l.e.c.status === 'abertas'; }).length;
+    $('#n-div').textContent = linhas.length + (linhas.length === 1 ? ' atividade' : ' atividades') + ', ' + nAb + ' com inscrições abertas' +
+      (semAtiv && semAtiv.length ? ', mais ' + semAtiv.length + (semAtiv.length > 1 ? ' e-mails sem atividade' : ' e-mail sem atividade') : '');
     var todasAbertas = linhas.length && linhas.every(function (l) { return estado.abertos.has(l.e.id); });
     $('#abrir-todas').textContent = todasAbertas ? 'Fechar todas' : 'Abrir todas';
     $('#abrir-todas').hidden = !linhas.length && !(semAtiv && semAtiv.length);
+    var nd = '<span class="nota">—</span>';
     var tb = '<tbody>' + linhas.map(function (l) {
       var e = l.e, c = e.c, aberto = estado.abertos.has(e.id), ocup = c.limite ? Math.min(1, (c.inscricoes || 0) / c.limite) : null;
-      var grupo = '<tr class="grupo" data-id="' + c.id + '" aria-expanded="' + aberto + '">' +
+      var nPerd = e.divs.filter(function (x) { return x.d.email_nao_encontrado; }).length;
+      var grupo = '<tr class="grupo' + (c.status === 'abertas' ? ' aberta' : '') + '" data-id="' + c.id + '" aria-expanded="' + aberto + '">' +
         '<td><button type="button" class="exp" aria-label="' + (aberto ? 'Fechar' : 'Abrir') + ' ações de ' + esc(c.titulo) + '">' + SETA + '</button></td>' +
-        '<td class="titulo"><b>' + esc(c.titulo) + '</b><span>Início ' + dataCurtaAno(c.inicio) + ', ' + STATUS_TXT[c.status] + '</span></td>' +
-        '<td class="n"><span class="origem"><span class="pontos">' + uniq(e.divs.map(function (x) { return x.d.tipo; })).map(function (t) { return '<i title="' + C.TIPOS[t].nome + '" style="background:' + C.TIPOS[t].cor + '"></i>'; }).join('') + '</span>' + e.divs.length +
-          (function () { var n = e.divs.filter(function (x) { return x.d.email_nao_encontrado; }).length; return n ? '<span class="aviso-cruz" title="' + n + (n > 1 ? ' e-mails do Trello não achados' : ' e-mail do Trello não achado') + ' no sistema">!</span>' : ''; })() + '</span></td>' +
-        '<td>' + C.dataLonga(e.ultima) + '</td>' +
+        '<td class="titulo"><b>' + esc(c.titulo) + '</b><span class="linha-sub">' + chipArea(c.area) + '<span class="pal">Início ' + dataCurtaAno(c.inicio) + ', ' + STATUS_TXT[c.status] + '</span></span></td>' +
+        '<td class="n">' + (e.divs.length ? '<span class="origem"><span class="pontos">' + uniq(e.divs.map(function (x) { return x.d.tipo; })).map(function (t) { return '<i title="' + C.TIPOS[t].nome + '" style="background:' + C.TIPOS[t].cor + '"></i>'; }).join('') + '</span>' + e.divs.length +
+          (nPerd ? '<span class="aviso-cruz" title="' + nPerd + (nPerd > 1 ? ' e-mails do Trello não achados' : ' e-mail do Trello não achado') + ' no sistema">!</span>' : '') + '</span>' : nd) + '</td>' +
+        '<td>' + (e.ultima ? C.dataLonga(e.ultima) : nd) + '</td>' +
+        '<td>' + (l.px.length ? proximaHtml(l.px[0]) + (l.px.length > 1 ? '<small class="mais">+' + (l.px.length - 1) + '</small>' : '') : c.status === 'abertas' && TEM_PROXIMAS ? '<span class="alerta-txt">Nenhuma planejada</span>' : '<span class="nota"' + (TEM_PROXIMAS ? '' : ' title="Atualize o workflow do n8n para trazer as próximas ações do Trello"') + '>—</span>') + '</td>' +
         '<td class="n">' + (ocup != null ? '<span class="ocup" title="' + C.fmtInt(c.inscricoes) + ' de ' + C.fmtInt(c.limite) + ' vagas"><span class="t"><i class="' + (ocup >= 0.9 ? 'cheio' : '') + '" style="width:' + (ocup * 100) + '%"></i></span><span>' + C.fmtInt(c.inscricoes) + '</span></span>' : C.fmtInt(c.inscricoes)) + '</td>' +
-        '<td class="n"><b>' + C.fmtInt(e.em72h) + '</b></td>' +
-        '<td class="n">' + ritmoTxt(e.antes, e.depois, e.parcial ? 0 : null).replace('<span class="nota parcial-dias">0 de 3 dias</span>', '<span class="nota parcial-dias">janela incompleta</span>') + '</td>' +
-        '<td class="n">' + variacaoChip(e.antes, e.depois, e.parcial) + '</td></tr>';
-      var det = aberto ? '<tr class="det" data-de="' + c.id + '"><td colspan="' + COLS_D.length + '"><div class="acoes">' + e.divs.map(function (x) { return acaoHtml(x); }).join('') + '</div></td></tr>' : '';
+        '<td class="n">' + (e.em72h == null || (SERIE && e.ultima < SERIE) ? '<span class="nota" title="' + TIT_SERIE + '">—</span>' : '<b>' + C.fmtInt(e.em72h) + '</b>') + '</td>' +
+        '<td class="n">' + (e.semAcao ? nd : semSerie(e.ultima) ? '<span class="nota" title="' + TIT_SERIE + '">antes da série</span>' : ritmoTxt(e.antes, e.depois, e.parcial ? 0 : null).replace('<span class="nota parcial-dias">0 de 3 dias</span>', '<span class="nota parcial-dias">janela incompleta</span>')) + '</td>' +
+        '<td class="n">' + (e.semAcao || semSerie(e.ultima) ? nd : variacaoChip(e.antes, e.depois, e.parcial)) + '</td></tr>';
+      var det = '';
+      if (aberto) {
+        det = '<tr class="det" data-de="' + c.id + '"><td colspan="' + COLS_D.length + '">' +
+          (l.px.length ? '<div class="proximas"><span class="rot-bloco">Próximas ações no Trello</span>' + l.px.map(function (p) {
+            return '<div class="prox-item">' + proximaHtml(p) + '<span class="prox-t">' + (p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.titulo || C.TIPOS[p.tipo].nome) + '</a>' : esc(p.titulo || C.TIPOS[p.tipo].nome)) + '</span></div>';
+          }).join('') + '</div>' : (c.status === 'abertas' && TEM_PROXIMAS ? '<div class="proximas"><span class="rot-bloco">Próximas ações no Trello</span><span class="alerta-txt">Nenhuma divulgação planejada para esta atividade.</span></div>' : '')) +
+          (e.divs.length ? '<div class="acoes">' + e.divs.map(function (x) { return acaoHtml(x); }).join('') + '</div>' : '') + '</td></tr>';
+      }
       return grupo + det;
     }).join('') + (function () {
       if (!semAtiv || !semAtiv.length) return '';
       var lista = semAtiv.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; }), aberto = estado.abertos.has('sem');
       return '<tr class="grupo" data-id="sem" aria-expanded="' + aberto + '">' +
         '<td><button type="button" class="exp" aria-label="' + (aberto ? 'Fechar' : 'Abrir') + ' e-mails do PES sem atividade identificada">' + SETA + '</button></td>' +
-        '<td class="titulo"><b>E-mails do PES sem atividade identificada</b><span>Não citam nenhuma atividade da pasta 124</span></td>' +
+        '<td class="titulo"><b>E-mails do PES sem atividade identificada</b><span class="linha-sub"><span class="pal">Não citam nenhuma atividade da pasta 124</span></span></td>' +
         '<td class="n"><span class="origem"><span class="pontos"><i style="background:' + C.TIPOS.email_marketing.cor + '"></i></span>' + lista.length + '</span></td>' +
-        '<td>' + C.dataLonga(lista[0].data) + '</td><td class="n"><span class="nota">—</span></td><td class="n"><span class="nota">—</span></td>' +
-        '<td class="n"><span class="nota">—</span></td><td class="n"><span class="nota">—</span></td></tr>' +
+        '<td>' + C.dataLonga(lista[0].data) + '</td><td>' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td></tr>' +
         (aberto ? '<tr class="det" data-de="sem"><td colspan="' + COLS_D.length + '"><div class="acoes">' + lista.map(function (d) { return acaoHtml({ d: d, semAtividade: true }); }).join('') + '</div></td></tr>' : '');
     })() + '</tbody>';
     var temLinhas = linhas.length || (semAtiv && semAtiv.length);
@@ -2037,9 +2361,205 @@ window.iniciarPainel = function () {
   }
 
   /* =================================================================
+     Pesquisas de qualidade (acervo_pesquisas_qualidade) dentro do painel
+     ================================================================= */
+  var META_NPS = 75, AMOSTRA_MIN = 20;
+  var WEBHOOK_IA = 'https://gibs-sindusfarma.app.n8n.cloud/webhook/pes-ai-chat';
+  function serialParaIso(n) { return typeof n === 'number' ? new Date(Date.UTC(1899, 11, 30) + n * 864e5).toISOString().slice(0, 10) : String(n || '').slice(0, 10); }
+
+  // junta presença e NPS das pesquisas às atividades, pelo ID da mídia
+  function juntarQualidade(D, Q) {
+    var r = { eventos: 0, ligados: 0 };
+    if (!Q || !Array.isArray(Q.eventos)) return r;
+    r.eventos = Q.eventos.length;
+    var porId = new Map(); Q.eventos.forEach(function (e) { porId.set(+e.id, e); });
+    var pal = new Map();
+    (Q.palestrantes || []).forEach(function (p) { var k = +p.id_evento; if (!pal.has(k)) pal.set(k, []); pal.get(k).push(p); });
+    (D.cursos || []).forEach(function (c) {
+      var e = porId.get(+c.id); if (!e || c.pesquisa || c.participantes != null || c.nps_curso) return;
+      r.ligados++;
+      c.participantes = e.confirmados; c.inscritos_base = e.inscritos;
+      if (e.aval) c.nps_curso = { valor: e.nps, respostas: e.aval };
+      c.pesquisa = { aval: e.aval, taxa: e.taxa, nota: e.nota, fonte: 'pesquisas' };
+      var ps = pal.get(+c.id) || [];
+      if (ps.length) {
+        var acc = C.npsVazio(); ps.forEach(function (p) { C.somaNps(acc, { valor: p.nps, respostas: p.aval }); });
+        c.nps_palestrantes = acc;
+        c.palestrantes = ps.map(function (p) { return { nome: p.nome, nps: { valor: p.nps, respostas: p.aval } }; });
+      }
+    });
+    return r;
+  }
+
+  function eventosQ() {
+    var f = estado.q, busca = semAcento(f.busca.trim());
+    return QEV.filter(function (e) {
+      return (f.area === 'todos' || e.area === f.area) && (f.mod === 'todos' || e.mod === f.mod) && (f.ano === 'todos' || e._dia.slice(0, 4) === f.ano) &&
+        (f.mes === 'todos' || e._dia.slice(0, 7) === f.mes) && (!busca || semAcento(e.curso).indexOf(busca) >= 0);
+    });
+  }
+  function npsPond(evs) { var a = C.npsVazio(); evs.forEach(function (e) { if (e.aval) C.somaNps(a, { valor: e.nps, respostas: e.aval }); }); return C.nps(a); }
+  var ZONA_TXT = { excelencia: 'Excelente', qualidade: 'Muito bom', aperfeicoamento: 'Razoável', critica: 'Crítico' };
+
+  function renderQualidade() {
+    var el = $('#pg-qualidade');
+    if (!QEV.length) { $('#kpis-q').innerHTML = '<div class="kpi"><div class="rot"><span>Pesquisas de qualidade</span></div><div class="valor">—</div><div class="ctx">Não foi possível carregar o arquivo de pesquisas.</div></div>'; return; }
+    var evs = eventosQ(), f = estado.q;
+    $('#limpar-q').hidden = f.area === 'todos' && f.mod === 'todos' && f.ano === ANO_ATUAL && f.mes === 'todos' && !f.busca;
+    var insc = 0, conf = 0, inscComPresenca = 0, aval = 0, notaS = 0;
+    evs.forEach(function (e) {
+      insc += e.inscritos || 0; aval += e.aval || 0; notaS += (e.nota || 0) * (e.aval || 0);
+      if (e.confirmados != null) { conf += e.confirmados; inscComPresenca += e.inscritos || 0; }   // mesma base da página Atividades
+    });
+    var npsW = npsPond(evs), taxa = evs.length ? evs.reduce(function (s, e) { return s + (e.taxa || 0); }, 0) / evs.length : null;
+    var z = C.zonaNps(npsW);
+    $('#kpis-q').innerHTML =
+      kpi('Eventos avaliados', C.fmtInt(evs.length), '', '', evs.length) +
+      kpi('Inscritos', C.fmtInt(insc), '', '', insc) +
+      kpi('Confirmados', C.fmtInt(conf), inscComPresenca ? C.fmtPct(conf / inscComPresenca, 0) + ' dos inscritos com presença registrada' : '', '', conf) +
+      kpi('Avaliações', C.fmtInt(aval), taxa != null ? C.fmtPct(taxa, 0) + ' de taxa de resposta' : '', '', aval) +
+      kpi('NPS ponderado', npsW == null ? '—' : C.fmtDec(npsW, 0) + '<small>de 100</small>', z ? '<span class="zona z-txt-' + z + '">' + ZONA_TXT[z] + '</span>' : '', '') +
+      kpi('Nota média', aval ? C.fmtDec(notaS / aval, 1) + '<small>de 10</small>' : '—', '', '');
+    graficoTendencia(evs);
+    atencao(evs);
+    tabelaQualidade(evs);
+    contar(); requestAnimationFrame(marcaRolagem);
+  }
+
+  function graficoTendencia(evs) {
+    var el = $('#g-tendencia'), meses = {};
+    evs.forEach(function (e) { var k = e._dia.slice(0, 7); (meses[k] = meses[k] || []).push(e); });
+    var ks = Object.keys(meses).sort();
+    if (!ks.length) { el.innerHTML = '<div class="vazio">Sem eventos avaliados nesta seleção.</div>'; return; }
+    var pts = ks.map(function (k) { return { k: k, nps: npsPond(meses[k]), aval: meses[k].reduce(function (s, e) { return s + (e.aval || 0); }, 0), n: meses[k].length }; });
+    var T = tamanho(el, 110), w = T.w, h = T.h, m = { l: 40, r: 16, t: 22, b: 24 }, iw = w - m.l - m.r, ih = h - m.t - m.b;
+    var maxA = Math.max.apply(null, pts.map(function (p) { return p.aval; }).concat([1]));
+    var minN = Math.min(0, Math.min.apply(null, pts.map(function (p) { return p.nps == null ? 100 : p.nps; })));
+    var yN = function (v) { return m.t + ih - (v - minN) / (100 - minN) * ih; };
+    var bw = iw / pts.length, x = function (i) { return m.l + i * bw + bw / 2; };
+    var out = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="NPS ponderado e avaliações por mês">';
+    out += '<defs><linearGradient id="gq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".28"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>';
+    [minN, 50, 75, 100].filter(function (v, i, a) { return a.indexOf(v) === i && v >= minN; }).forEach(function (v) {
+      out += '<g class="grade eixo"><line x1="' + m.l + '" x2="' + (w - m.r) + '" y1="' + yN(v) + '" y2="' + yN(v) + '"/><text x="' + (m.l - 8) + '" y="' + (yN(v) + 4) + '" text-anchor="end">' + v + '</text></g>';
+    });
+    pts.forEach(function (p, i) { var hb = p.aval / maxA * ih * 0.55; out += '<rect x="' + (x(i) - bw * 0.28) + '" y="' + (m.t + ih - hb) + '" width="' + (bw * 0.56) + '" height="' + hb + '" rx="6" fill="var(--bar-soft)"/>'; });
+    out += '<line x1="' + m.l + '" x2="' + (w - m.r) + '" y1="' + yN(META_NPS) + '" y2="' + yN(META_NPS) + '" stroke="var(--amarelo)" stroke-dasharray="5 5" opacity=".8"/>';
+    var lin = pts.map(function (p, i) { return p.nps == null ? null : [x(i), yN(p.nps)]; }).filter(Boolean);
+    if (lin.length > 1) {
+      var d = lin.map(function (q, i) { return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join('');
+      out += '<path d="' + d + 'L' + lin[lin.length - 1][0] + ' ' + (m.t + ih) + 'L' + lin[0][0] + ' ' + (m.t + ih) + 'Z" fill="url(#gq)"/>';
+      out += '<path d="' + d + '" fill="none" stroke="var(--accent)" stroke-width="2.6" stroke-linejoin="round"/>';
+    }
+    pts.forEach(function (p, i) {
+      if (p.nps == null) return;
+      out += '<g data-tip="' + i + '" class="marca-hover"><rect x="' + (x(i) - bw / 2) + '" y="' + m.t + '" width="' + bw + '" height="' + ih + '" fill="transparent"/>' +
+        '<circle cx="' + x(i) + '" cy="' + yN(p.nps) + '" r="4.5" fill="var(--panel-solid)" stroke="var(--accent)" stroke-width="2.4"/>' +
+        '<text x="' + x(i) + '" y="' + (yN(p.nps) - 11) + '" text-anchor="middle" style="fill:var(--fg);font:600 12px var(--f-display)">' + Math.round(p.nps) + '</text>' +
+        '<text x="' + x(i) + '" y="' + (h - 7) + '" text-anchor="middle" class="rotulo-mes">' + C.MESES[+p.k.slice(5, 7) - 1] + '</text></g>';
+    });
+    out += '</svg>';
+    el.innerHTML = out;
+    ligaTips(el, function (k) {
+      var p = pts[+k];
+      return '<span class="t">' + C.MESES[+p.k.slice(5, 7) - 1] + '/' + p.k.slice(0, 4) + '</span><div class="l"><span>NPS ponderado</span><b>' + C.fmtDec(p.nps, 0) + '</b></div>' +
+        '<div class="l"><span>Avaliações</span><b>' + C.fmtInt(p.aval) + '</b></div><div class="l"><span>Eventos</span><b>' + p.n + '</b></div>';
+    });
+  }
+
+  function atencao(evs) {
+    var lista = evs.filter(function (e) { return (e.aval && e.nps < META_NPS) || (e.taxa != null && e.taxa < 0.25); })
+      .sort(function (a, b) { return a.nps - b.nps; });
+    $('#n-atencao').textContent = lista.length;
+    $('#lista-atencao').innerHTML = lista.length ? lista.map(function (e) {
+      var tags = [];
+      if (e.nps < META_NPS) tags.push('<span class="tag down">NPS abaixo de ' + META_NPS + '</span>');
+      if ((e.aval || 0) < AMOSTRA_MIN) tags.push('<span class="tag">Amostra pequena</span>');
+      if (e.taxa != null && e.taxa < 0.25) tags.push('<span class="tag">Resposta baixa</span>');
+      return '<article class="atencao" data-ev="' + e.id + '" role="button" tabindex="0"><h3>' + esc(e.curso) + '</h3><div class="tags">' + tags.join('') + '</div>' +
+        '<p>NPS <b class="z-txt-' + C.zonaNps(e.nps) + '">' + e.nps + '</b>, ' + (e.aval || 0) + ' avaliações, ' + C.fmtPct(e.taxa, 0) + ' de resposta</p></article>';
+    }).join('') : '<p class="aviso-ia">Nenhum evento pedindo atenção nesta seleção.</p>';
+  }
+
+  function tabelaQualidade(evs) {
+    var t = $('#t-q');
+    if (estado.q.ver === 'palestrantes') {
+      var ids = new Set(evs.map(function (e) { return +e.id; })), por = {};
+      QPAL.forEach(function (p) {
+        if (!ids.has(+p.id_evento) || !p.aval) return;
+        var x = por[p.nome] = por[p.nome] || { nome: p.nome, n: C.npsVazio(), ev: 0 };
+        C.somaNps(x.n, { valor: p.nps, respostas: p.aval }); x.ev++;
+      });
+      var ps = Object.keys(por).map(function (k) { return por[k]; }).sort(function (a, b) { return C.nps(b.n) - C.nps(a.n) || C.respostas(b.n) - C.respostas(a.n); });
+      $('#n-q').textContent = ps.length + ' palestrantes';
+      t.innerHTML = '<thead><tr><th>Palestrante</th><th class="n">Eventos</th><th class="n">Avaliações</th><th class="n">NPS</th></tr></thead><tbody>' + ps.map(function (p) {
+        return '<tr><td class="titulo"><b>' + esc(p.nome) + '</b></td><td class="n">' + p.ev + '</td><td class="n">' + C.fmtInt(C.respostas(p.n)) + '</td><td class="n">' + npsCel(p.n) + '</td></tr>';
+      }).join('') + '</tbody>';
+      return;
+    }
+    var lista = evs.slice().sort(function (a, b) { return a._dia < b._dia ? 1 : -1; });
+    $('#n-q').textContent = lista.length + (lista.length === 1 ? ' evento' : ' eventos');
+    t.innerHTML = '<thead><tr><th>Evento</th><th>Data</th><th>Modalidade</th><th class="n">Inscritos</th><th class="n">Confirmados</th><th class="n">Avaliações</th><th class="n">Nota</th><th class="n">NPS</th><th class="n">Comentários</th></tr></thead><tbody>' +
+      lista.map(function (e) {
+        var nc = (COMENTARIOS[String(e.id)] || []).length;
+        return '<tr data-ev="' + e.id + '"><td class="titulo"><b>' + esc(e.curso) + '</b>' + chipArea(e.area) + '</td><td>' + dataCurtaAno(e._dia) + '</td><td>' + esc(e.mod) + '</td>' +
+          '<td class="n">' + C.fmtInt(e.inscritos) + '</td><td class="n">' + C.fmtInt(e.confirmados) + '<span class="sub-n">' + (e.inscritos ? C.fmtPct(e.confirmados / e.inscritos, 0) : '') + '</span></td>' +
+          '<td class="n">' + C.fmtInt(e.aval) + '<span class="sub-n">' + C.fmtPct(e.taxa, 0) + '</span></td><td class="n">' + C.fmtDec(e.nota, 1) + '</td>' +
+          '<td class="n">' + npsCel({ valor: e.nps, respostas: e.aval }) + '</td>' +
+          '<td class="n">' + (nc ? '<button type="button" class="btn-coment" data-ev="' + e.id + '">' + nc + '</button>' : '<span class="nota">—</span>') + '</td></tr>';
+      }).join('') + '</tbody>';
+  }
+
+  function abrirComentarios(id) {
+    var e = QEV.filter(function (x) { return String(x.id) === String(id); })[0]; if (!e) return;
+    var cs = (COMENTARIOS[String(id)] || []).filter(function (c) { return c && !/^sem coment/i.test(String(c).trim()); });
+    $('#tit-coment').textContent = e.curso;
+    $('#sub-coment').textContent = (cs.length ? cs.length + (cs.length > 1 ? ' comentários' : ' comentário') : 'Sem comentários') + ', NPS ' + e.nps + ', ' + (e.aval || 0) + ' avaliações';
+    $('#lista-coment').innerHTML = cs.length ? cs.map(function (c) { return '<blockquote class="coment">' + esc(c) + '</blockquote>'; }).join('') : '<p class="aviso-ia">Nenhum comentário escrito neste evento.</p>';
+    gaveta('gav-q', true);
+  }
+
+  /* ---------------- Inteligência (agente do n8n) ---------------- */
+  var SUGESTOES = ['Quais cursos com inscrições abertas precisam de reforço de divulgação?', 'Quais palestrantes têm o melhor NPS este ano?',
+    'Compare o NPS e a taxa de resposta por área.', 'Quais e-mails tiveram a melhor abertura nos últimos 90 dias?', 'O que explica a variação das inscrições no último mês?'];
+  function contextoIA() {
+    var evs = QEV.map(function (e) { return { curso: e.curso, data: e._dia, area: e.area, modalidade: e.mod, inscritos: e.inscritos, confirmados: e.confirmados, avaliacoes: e.aval, taxa_resposta: e.taxa, nota: e.nota, nps: e.nps }; });
+    var abertas = IDX.cursos.filter(function (c) { return c.status === 'abertas'; }).map(function (c) {
+      var prox = PROXIMAS.filter(function (p) { return p.curso_id === c.id; })[0];
+      return { atividade: c.titulo, inicio: c.inicio, area: c.area, inscricoes: c.inscricoes, limite: c.limite, proxima_divulgacao: prox ? prox.data + ' ' + C.TIPOS[prox.tipo].nome : null };
+    });
+    var ini = C.addDias(HOJE, -90);
+    var emails = IDX.divs.filter(function (d) { return d.email && d.data >= ini && d.email.entregues; }).map(function (d) {
+      return { data: d.data, assunto: d.email.assunto || d.titulo, entregues: d.email.entregues, abertura: +(d.email.aberturas_unicas / d.email.entregues).toFixed(3) };
+    });
+    return { hoje: HOJE, pesquisas_de_qualidade: evs, atividades_com_inscricoes_abertas: abertas, emails_ultimos_90_dias: emails };
+  }
+  function renderInteligencia() {
+    $('#sugestoes').innerHTML = SUGESTOES.map(function (s) { return '<button type="button" class="sugestao">' + esc(s) + '</button>'; }).join('');
+    var h = estado.chat.map(function (m) { return '<div class="msg ' + m.role + '"><div class="bolha">' + esc(m.text).replace(/\n/g, '<br>') + '</div></div>'; }).join('');
+    if (estado.chatBusy) h += '<div class="msg assistant"><div class="bolha digitando"><i></i><i></i><i></i></div></div>';
+    if (!estado.chat.length && !estado.chatBusy) h = '<div class="chat-vazio"><div class="orb" aria-hidden="true"></div><h2>Pergunte sobre o PES</h2><p>O agente conhece as pesquisas de qualidade, as atividades com inscrições abertas e os e-mails dos últimos 90 dias.</p></div>';
+    var el = $('#chat'); el.innerHTML = h; el.scrollTop = el.scrollHeight;
+    $('#btn-enviar').disabled = estado.chatBusy;
+  }
+  function perguntar(q) {
+    q = (q || '').trim(); if (!q || estado.chatBusy) return;
+    estado.chat.push({ role: 'user', text: q }); estado.chatBusy = true; $('#chat-input').value = ''; renderInteligencia();
+    var ctrl = new AbortController(), to = setTimeout(function () { ctrl.abort(); }, 60000);
+    fetch(WEBHOOK_IA, { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: ctrl.signal,
+      body: JSON.stringify({ pergunta: q, contexto: contextoIA(), filtros: { pagina: 'painel-pes-2' }, historico: estado.chat.slice(-9, -1).map(function (m) { return { role: m.role, text: m.text }; }) }) })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(function (raw) {
+        var out = raw; try { var j = JSON.parse(raw); out = j.output || j.text || j.resposta || j.answer || j.message || j.reply || (typeof j === 'string' ? j : raw); } catch (e) { /* texto puro */ }
+        estado.chat.push({ role: 'assistant', text: String(out || '(sem resposta)').replace(/[#*`_]{1,}/g, '').replace(/\n{3,}/g, '\n\n').trim() });
+      })
+      .catch(function (e) { estado.chat.push({ role: 'assistant', text: 'Não consegui falar com o agente agora (' + (e.name === 'AbortError' ? 'tempo esgotado' : e.message) + '). Confira se o workflow do agente está ativo no n8n e se o webhook aceita chamadas deste endereço.' }); })
+      .then(function () { clearTimeout(to); estado.chatBusy = false; renderInteligencia(); });
+  }
+
+  /* =================================================================
      Navegação, filtros e eventos
      ================================================================= */
-  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, comparacao: renderComparacao };
+  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, inteligencia: renderInteligencia, comparacao: renderComparacao };
   function irPara(pg, semHash) {
     if (pg === 'cursos') pg = 'atividades';
     if (!renders[pg]) pg = 'atividades';
@@ -2073,6 +2593,10 @@ window.iniciarPainel = function () {
       onChange: function (v) { estado.f.formato = v; renderAtividades(); } });
     dd.ano = new Dropdown($('#dd-ano'), { rotulo: 'Ano', valor: estado.f.ano, padrao: ANO_ATUAL, opcoes: anos.map(function (a) { return { v: a, t: a }; }).concat([{ v: 'todos', t: 'Todos os anos', curto: 'Todos' }]),
       onChange: function (v) { estado.f.ano = v; renderAtividades(); } });
+    var areas = uniq(IDX.cursos.map(function (c) { return c.area; }).filter(Boolean)).sort(function (a, b) { return a.localeCompare(b, 'pt-BR'); });
+    dd.area = new Dropdown($('#dd-area'), { rotulo: 'Área', valor: 'todos', padrao: 'todos', busca: areas.length > 8 ? 'Buscar área' : null,
+      opcoes: [{ v: 'todos', t: 'Todas as áreas', curto: 'Todas' }].concat(areas.map(function (a) { return { v: a, t: a, cor: corArea(a) }; })),
+      onChange: function (v) { estado.f.area = v; renderAtividades(); } });
     var rotUltima = META.ref_ultima ? 'Desde ' + C.dataCurta(diaLocal(META.ref_ultima)) + ', ' + hora(META.ref_ultima) : 'Desde a última atualização';
     dd.ref = new Dropdown($('#dd-ref'), { rotulo: 'Comparar com', valor: 'ultima', semDestaque: true,
       opcoes: [{ v: 'ultima', t: 'A última atualização', curto: rotUltima, sub: META.ref_ultima ? C.dataCurta(diaLocal(META.ref_ultima)) + ', ' + hora(META.ref_ultima) : '' }, { v: 'semana', t: 'Os últimos 7 dias', curto: 'Últimos 7 dias' }],
@@ -2084,8 +2608,8 @@ window.iniciarPainel = function () {
       renderAtividades();
     };
     $('#limpar-atv').onclick = function () {
-      estado.f = { status: 'todos', modelo: 'todos', formato: 'todos', ano: anos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (anos[0] || 'todos') };
-      dd.status.definir('todos'); dd.modelo.definir('todos'); dd.formato.definir('todos'); dd.ano.definir(estado.f.ano);
+      estado.f = { status: 'todos', modelo: 'todos', formato: 'todos', area: 'todos', ano: anos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (anos[0] || 'todos') };
+      dd.status.definir('todos'); dd.modelo.definir('todos'); dd.formato.definir('todos'); dd.area.definir('todos'); dd.ano.definir(estado.f.ano);
       renderAtividades();
     };
 
@@ -2140,6 +2664,35 @@ window.iniciarPainel = function () {
       };
     });
 
+    // ---- página de qualidade
+    if (QEV.length) {
+      var qe = QEV;
+      var qAreas = uniq(qe.map(function (e) { return e.area; }).filter(Boolean)).sort(function (a, b) { return a.localeCompare(b, 'pt-BR'); });
+      var qMods = uniq(qe.map(function (e) { return e.mod; }).filter(Boolean));
+      var qMeses = uniq(qe.map(function (e) { return e._dia.slice(0, 7); })).sort().reverse();
+      dd.qArea = new Dropdown($('#dd-q-area'), { rotulo: 'Área', valor: 'todos', padrao: 'todos', opcoes: [{ v: 'todos', t: 'Todas as áreas', curto: 'Todas' }].concat(qAreas.map(function (a) { return { v: a, t: a, cor: corArea(a) }; })),
+        onChange: function (v) { estado.q.area = v; renderQualidade(); } });
+      dd.qMod = new Dropdown($('#dd-q-mod'), { rotulo: 'Modalidade', valor: 'todos', padrao: 'todos', opcoes: [{ v: 'todos', t: 'Todas' }].concat(qMods.map(function (m) { return { v: m, t: m }; })),
+        onChange: function (v) { estado.q.mod = v; renderQualidade(); } });
+      var qAnos = uniq(qe.map(function (e) { return e._dia.slice(0, 4); })).sort().reverse();
+      if (qAnos.indexOf(estado.q.ano) < 0) estado.q.ano = qAnos[0] || 'todos';
+      dd.qAno = new Dropdown($('#dd-q-ano'), { rotulo: 'Ano', valor: estado.q.ano, padrao: ANO_ATUAL, opcoes: qAnos.map(function (a) { return { v: a, t: a }; }).concat([{ v: 'todos', t: 'Todos os anos', curto: 'Todos' }]),
+        onChange: function (v) { estado.q.ano = v; renderQualidade(); } });
+      dd.qMes = new Dropdown($('#dd-q-mes'), { rotulo: 'Mês', valor: 'todos', padrao: 'todos', opcoes: [{ v: 'todos', t: 'Todos os meses', curto: 'Todos' }].concat(qMeses.map(function (m) { return { v: m, t: C.MESES[+m.slice(5, 7) - 1] + '/' + m.slice(0, 4) }; })),
+        onChange: function (v) { estado.q.mes = v; renderQualidade(); } });
+      dd.qVer = new Dropdown($('#dd-q-ver'), { rotulo: 'Ver', valor: 'eventos', semDestaque: true, opcoes: [{ v: 'eventos', t: 'Eventos' }, { v: 'palestrantes', t: 'Palestrantes' }],
+        onChange: function (v) { estado.q.ver = v; renderQualidade(); } });
+      var tmq; $('#q-busca').oninput = function () { var v = this.value; clearTimeout(tmq); tmq = setTimeout(function () { estado.q.busca = v; renderQualidade(); }, 180); };
+      $('#limpar-q').onclick = function () { estado.q = { area: 'todos', mod: 'todos', ano: qAnos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (qAnos[0] || 'todos'), mes: 'todos', busca: '', ver: estado.q.ver }; dd.qArea.definir('todos'); dd.qMod.definir('todos'); dd.qAno.definir(estado.q.ano); dd.qMes.definir('todos'); $('#q-busca').value = ''; renderQualidade(); };
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest('#pg-qualidade [data-ev]'); if (!b) return;
+        abrirComentarios(b.getAttribute('data-ev'));
+      });
+    }
+    $('#chat-form').onsubmit = function (e) { e.preventDefault(); perguntar($('#chat-input').value); };
+    $('#chat-input').onkeydown = function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); perguntar(this.value); } };
+    $('#sugestoes').onclick = function (e) { var b = e.target.closest('.sugestao'); if (b) perguntar(b.textContent); };
+
     // ---- tabelas, leitura e navegação
     $('#t-atv').addEventListener('click', function (e) {
       var b = e.target.closest('button[data-sort]'); if (!b) return;
@@ -2147,7 +2700,8 @@ window.iniciarPainel = function () {
       estado.sortA = { col: k, dir: s.col === k ? -s.dir : (k === 'titulo' ? 1 : -1) }; renderAtividades();
     });
     $$('[data-gaveta]').forEach(function (b) { var id = b.getAttribute('data-gaveta'); b.onclick = function () { gaveta(id); }; gaveta(id, le('pes-' + id) === '1'); });
-    $$('[data-fecha]').forEach(function (b) { b.onclick = function () { var id = b.getAttribute('data-fecha'); gaveta(id, false); $('[data-gaveta="' + id + '"]').focus(); }; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('#gav-q').classList.contains('aberta')) gaveta('gav-q', false); });
+    $$('[data-fecha]').forEach(function (b) { b.onclick = function () { var id = b.getAttribute('data-fecha'); gaveta(id, false); var bt = $('[data-gaveta="' + id + '"]'); if (bt) bt.focus(); }; });
     function destaca(e) {
       if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
       var it = e.target.closest('.insight[role="button"]'); if (!it) return;
@@ -2172,12 +2726,12 @@ window.iniciarPainel = function () {
       guarda('pes-tema', t);
       if (!primeiraVez) renders[estado.pg]();
     }
-    var temaAtual = le('pes-tema') || 'auto';
+    var temaAtual = le('pes-tema') || 'dark';
     aplicaTema(temaAtual);
     $('#btn-tema').onclick = function () { temaAtual = temas[(temas.indexOf(temaAtual) + 1) % 3]; aplicaTema(temaAtual); };
 
     var tm;
-    window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(function () { if (estado.pg === 'comparacao') renderComparacao(); }, 160); });
+    window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(function () { if (estado.pg === 'comparacao') renderComparacao(); if (estado.pg === 'qualidade') renderQualidade(); }, 160); });
     irPara(location.hash.slice(1) || 'atividades', true);
   }
   iniciar();
@@ -2185,19 +2739,25 @@ window.iniciarPainel = function () {
 
 </script>
 <script>
-/* Carrega data_dash.js (publicado pelo n8n) sem cache. Sem o arquivo, o painel abre com dados de demonstração. */
+/* Carrega, em paralelo, os dados do painel (data_dash.js, publicado pelo n8n) e as pesquisas de
+   qualidade (acervo_pesquisas_qualidade). Sem os dados do painel, abre em demonstração. */
 (function () {
-  var feito = false;
+  var QUALIDADE = 'https://programaeducacional.github.io/acervo_pesquisas_qualidade/data_dash.js';
+  var faltam = 2, feito = false;
   function seguir() {
     if (feito) return; feito = true;
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.iniciarPainel);
     else window.iniciarPainel();
   }
-  var s = document.createElement('script');
-  s.src = 'data_dash.js?v=' + Date.now();
-  s.onload = seguir; s.onerror = seguir;
-  document.head.appendChild(s);
-  setTimeout(seguir, 5000);
+  function carregar(url) {
+    var s = document.createElement('script');
+    s.src = url + '?v=' + Date.now();
+    s.onload = s.onerror = function () { if (--faltam === 0) seguir(); };
+    document.head.appendChild(s);
+  }
+  carregar('data_dash.js');
+  carregar(QUALIDADE);
+  setTimeout(seguir, 6000);
 })();
 </script>
 </body>
