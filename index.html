@@ -574,6 +574,89 @@ body.pes { background: var(--bg-grad); background-attachment: fixed; }
 }
 @media (prefers-reduced-motion: reduce) { .orb, .digitando i { animation: none !important; } }
 
+/* =====================================================================
+   Tabelas para apresentar: maiores e com menos texto
+   ===================================================================== */
+#t-atv td, #t-div tr.grupo > td { padding-top: 16px; padding-bottom: 16px; }
+#t-atv { font-size: 15px; }
+#t-atv th, #t-div th { font-size: 13px; }
+#t-atv .titulo b, #t-div tr.grupo .titulo b { font-size: 16.5px; line-height: 1.35; }
+#t-atv .titulo { max-width: 560px; }
+#t-atv .chip-area, #t-div .chip-area { font-size: 12.5px; padding: 3px 11px; }
+#t-atv .data2 b, #t-atv td.data2 b { font-size: 15.5px; font-weight: 500; }
+#t-atv .data2 span { font-size: 12.5px; }
+.num-g { font: 600 19px/1 var(--f-display); letter-spacing: -.01em; }
+#t-atv .nps-cel { font-size: 16px; }
+#t-atv .nps-cel i { width: 9px; height: 9px; }
+.tabela tr.aberta > td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+
+/* =====================================================================
+   Qualidade: três seções
+   ===================================================================== */
+.vistas { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); }
+.vista { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 14px 0 11px; border: 0; border-radius: 999px; background: transparent;
+  color: var(--fg-2); cursor: pointer; font-size: 13px; transition: background .3s var(--ease), color .3s var(--ease); }
+.vista svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; }
+.vista:hover { color: var(--fg); }
+.vista[aria-pressed="true"] { background: var(--accent); color: #002D78; font-weight: 600; }
+.vista-q { min-height: 0; min-width: 0; animation: entra .45s var(--ease) both; }
+#q-tabela { display: grid; grid-template-rows: minmax(0, 1fr); }
+.q-graf { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr); grid-template-rows: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--gap); }
+.q-graf .g-tend { grid-column: 1; grid-row: 1; }
+.q-graf .g-aten { grid-column: 2; grid-row: 1 / 3; }
+.q-graf .g-area { grid-column: 1; grid-row: 2; }
+.q-graf .hbar .nome { overflow: visible; }
+.q-com { display: grid; grid-template-columns: minmax(300px, .85fr) minmax(0, 1.6fr); gap: var(--gap); }
+.curso-com { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 12px; width: 100%; text-align: left; padding: 12px 14px; margin-bottom: 6px;
+  border-radius: 14px; border: 1px solid transparent; background: transparent; color: var(--fg); cursor: pointer; transition: background .25s var(--ease), border-color .25s var(--ease); font: inherit; }
+.curso-com:hover { background: var(--panel-sub); }
+.curso-com.ativo { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.curso-com .t { font-weight: 500; line-height: 1.35; }
+.curso-com .m { grid-column: 1; font-size: 12px; color: var(--muted); }
+.curso-com .cont { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+.tit-com { min-width: 0; display: grid; gap: 3px; }
+.tit-com h2 { font-size: 16px; line-height: 1.3; }
+.q-com .coment { font-size: 14px; padding: 14px 16px; }
+
+/* =====================================================================
+   Paletas de cor (gradientes do manual: azul, verde e roxo)
+   ===================================================================== */
+.paletas { display: grid; gap: 9px; justify-items: center; margin-bottom: 14px; }
+.paleta { width: 22px; height: 22px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.paleta:hover { transform: scale(1.12); }
+.paleta[aria-pressed="true"] { box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .5), 0 0 0 2px var(--bg), 0 0 0 4px var(--fg); }
+.paleta[data-paleta="azul"] { background: radial-gradient(circle at 70% 72%, #00F0B4 0 26%, transparent 29%), linear-gradient(135deg, #00B9F2, #002D78); }
+.paleta[data-paleta="verde"] { background: radial-gradient(circle at 70% 72%, #FFC56E 0 26%, transparent 29%), linear-gradient(135deg, #00F0B4, #00554B); }
+.paleta[data-paleta="roxo"] { background: radial-gradient(circle at 70% 72%, #00F0B4 0 26%, transparent 29%), linear-gradient(135deg, #AD96DC, #440099); }
+:root[data-paleta="verde"][data-theme="dark"] {
+  --bg: #00554B; --bg-grad: linear-gradient(165deg, #00806A 0%, #00554B 45%, #003A33 100%);
+  --bg-glow-a: rgba(255, 197, 110, .14); --bg-glow-b: rgba(0, 240, 180, .14);
+  --panel-solid: #0B6356; --th-bg: #0A5E52; --fg-2: #D6F2EA; --muted: #A6D4C8;
+  --accent: #FFC56E; --accent-soft: rgba(255, 197, 110, .16); --data: #FFC56E; --data-2: #00F0B4;
+  --edge-a: rgba(255, 197, 110, .55); --edge-b: rgba(0, 240, 180, .4); --organico: #5FA392;
+}
+:root[data-paleta="roxo"][data-theme="dark"] {
+  --bg: #440099; --bg-grad: linear-gradient(165deg, #6A2BC4 0%, #440099 45%, #2A005E 100%);
+  --bg-glow-a: rgba(173, 150, 220, .22); --bg-glow-b: rgba(0, 240, 180, .14);
+  --panel-solid: #4E1A9E; --th-bg: #4A1898; --fg-2: #E6DDFB; --muted: #C2B1EA;
+  --accent: #00F0B4; --accent-soft: rgba(0, 240, 180, .14); --data: #00F0B4; --data-2: #AD96DC;
+  --edge-a: rgba(0, 240, 180, .55); --edge-b: rgba(173, 150, 220, .5); --organico: #8F75C9;
+}
+:root[data-paleta="verde"][data-theme="light"] { --accent: #00805F; --accent-soft: rgba(0, 128, 95, .12); --data: #00805F; }
+:root[data-paleta="roxo"][data-theme="light"] { --accent: #6B3FB8; --accent-soft: rgba(107, 63, 184, .12); --data: #6B3FB8; }
+:root[data-theme="dark"] .dd-menu { background: color-mix(in srgb, var(--panel-solid) 95%, transparent); }
+.navbtn[aria-current="page"] { background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 24%, transparent), rgba(255, 255, 255, .06));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); }
+.vista[aria-pressed="true"], .chat-form button { color: var(--bg); }
+
+@media (max-width: 1180px) {
+  .q-graf, .q-com { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+  .q-graf > .painel { grid-column: auto !important; grid-row: auto !important; min-height: 300px; }
+  .q-com > .painel { min-height: 320px; max-height: 640px; }
+}
+@media (max-width: 760px) { .paletas { display: none; } }
+
 </style>
 </head>
 <body class="pes">
@@ -601,15 +684,16 @@ body.pes { background: var(--bg-grad); background-attachment: fixed; }
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
       Qualidade
     </button>
-    <button class="navbtn" data-pg="inteligencia" type="button">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 8.5c.8 2 1.5 2.7 3.5 3.5-2 .8-2.7 1.5-3.5 3.5-.8-2-1.5-2.7-3.5-3.5 2-.8 2.7-1.5 3.5-3.5z"/></svg>
-      Inteligência
-    </button>
     <button class="navbtn" data-pg="comparacao" type="button">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10"/><path d="M10 20V4"/><path d="M15 20v-7"/><path d="M20 20V8"/><path d="M3 20h18"/></svg>
       Comparação
     </button>
     <div class="fim">
+      <div class="paletas" role="group" aria-label="Cores do painel">
+        <button type="button" class="paleta" data-paleta="azul" aria-label="Cores: azul com verde" title="Azul"></button>
+        <button type="button" class="paleta" data-paleta="verde" aria-label="Cores: verde com amarelo" title="Verde"></button>
+        <button type="button" class="paleta" data-paleta="roxo" aria-label="Cores: roxo com verde" title="Roxo"></button>
+      </div>
       <button class="tema" id="btn-tema" type="button" aria-label="Alternar tema">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></svg>
       </button>
@@ -710,45 +794,50 @@ body.pes { background: var(--bg-grad); background-attachment: fixed; }
         <div class="dd" id="dd-q-mod"></div>
         <div class="dd" id="dd-q-ano"></div>
         <div class="dd" id="dd-q-mes"></div>
-        <label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="q-busca" type="search" placeholder="Buscar evento" aria-label="Buscar evento"></label>
+        <label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="q-busca" type="search" placeholder="Buscar curso" aria-label="Buscar curso"></label>
         <button class="limpar" type="button" id="limpar-q" hidden>Limpar filtros</button>
-      </div>
-      <div class="painel cluster" id="kpis-q" aria-live="polite"></div>
-      <div class="area">
-        <div class="q-grid">
-          <div class="painel">
-            <header><h2>Tendência mensal</h2>
-              <div class="dir legenda"><span><i></i>NPS ponderado</span><span><i class="barra"></i>Avaliações</span><span><i class="meta"></i>Meta 75</span></div></header>
-            <div class="corpo"><div class="grafico" id="g-tendencia"></div></div>
-          </div>
-          <div class="painel">
-            <header><h2>Requer atenção</h2><span class="cont alerta" id="n-atencao">0</span></header>
-            <div class="corpo rolagem"><div id="lista-atencao"></div></div>
-          </div>
-          <div class="painel tabela-p q-tab">
-            <header><h2>Acervo de avaliações</h2><span class="nota" id="n-q"></span><div class="dir"><div class="dd" id="dd-q-ver"></div></div></header>
-            <div class="corpo rolagem"><table class="tabela" id="t-q"></table></div>
+        <div class="direita">
+          <div class="vistas" role="group" aria-label="Seção da página">
+            <button type="button" class="vista" data-vista="grafico" title="Desempenho e evolução"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg><span>Desempenho</span></button>
+            <button type="button" class="vista" data-vista="tabela" title="Acervo de avaliações"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M4 14.5h16M10 10v9"/></svg><span>Acervo</span></button>
+            <button type="button" class="vista" data-vista="comentarios" title="Comentários dos participantes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg><span>Comentários</span></button>
           </div>
         </div>
-        <aside class="gaveta" id="gav-q" aria-label="Comentários do evento">
-          <div class="painel">
-            <header><div><h2 id="tit-coment">Comentários</h2><span class="nota" id="sub-coment"></span></div>
-              <button class="fechar" type="button" data-fecha="gav-q" aria-label="Fechar comentários"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
-            <div class="corpo rolagem"><div id="lista-coment"></div></div>
-          </div>
-        </aside>
       </div>
-    </section>
+      <div class="painel cluster" id="kpis-q" aria-live="polite"></div>
 
-    <!-- ===================== Página · Inteligência ===================== -->
-    <section class="pagina pg-chat" id="pg-inteligencia" data-pg="inteligencia" aria-labelledby="titulo-pg" hidden>
-      <div class="painel chat-wrap">
-        <div class="chat rolagem" id="chat" aria-live="polite"></div>
-        <div class="sugestoes" id="sugestoes"></div>
-        <form class="chat-form" id="chat-form">
-          <textarea id="chat-input" rows="1" placeholder="Pergunte sobre cursos, divulgações ou pesquisas" aria-label="Sua pergunta"></textarea>
-          <button id="btn-enviar" type="submit">Enviar</button>
-        </form>
+      <div class="vista-q q-graf" id="q-grafico">
+        <div class="painel g-tend">
+          <header><h2>Evolução mensal</h2>
+            <div class="dir legenda"><span><i></i>NPS ponderado</span><span><i class="barra"></i>Avaliações</span><span><i class="meta"></i>Meta 75</span></div></header>
+          <div class="corpo"><div class="grafico" id="g-tendencia"></div></div>
+        </div>
+        <div class="painel g-aten">
+          <header><h2>Requer atenção</h2><span class="cont alerta" id="n-atencao">0</span></header>
+          <div class="corpo rolagem"><div id="lista-atencao"></div></div>
+        </div>
+        <div class="painel g-area">
+          <header><h2>Desempenho por área</h2><span class="nota">NPS ponderado e taxa de resposta</span></header>
+          <div class="corpo rolagem"><div class="hbars" id="g-area-q"></div></div>
+        </div>
+      </div>
+
+      <div class="vista-q" id="q-tabela" hidden>
+        <div class="painel tabela-p">
+          <header><h2>Acervo de avaliações</h2><span class="nota" id="n-q"></span><div class="dir"><div class="dd" id="dd-q-ver"></div></div></header>
+          <div class="corpo rolagem"><table class="tabela" id="t-q"></table></div>
+        </div>
+      </div>
+
+      <div class="vista-q q-com" id="q-coment" hidden>
+        <div class="painel">
+          <header><h2>Cursos</h2><span class="nota" id="n-com"></span></header>
+          <div class="corpo rolagem"><div id="lista-cursos-com"></div></div>
+        </div>
+        <div class="painel">
+          <header><div class="tit-com"><h2 id="tit-coment">Comentários</h2><span class="nota" id="sub-coment"></span></div></header>
+          <div class="corpo rolagem"><div id="lista-coment"></div></div>
+        </div>
       </div>
     </section>
 
@@ -1653,12 +1742,11 @@ window.iniciarPainel = function () {
     f: { status: 'todos', modelo: 'todos', formato: 'todos', area: 'todos', ano: ANO_ATUAL },
     evo: false, ref: 'ultima',
     sortA: { col: 'agenda', dir: 1 },
-    d: { per: '90', tipos: new Set(Object.keys(C.TIPOS)), curso: 'todos' },
+    d: { per: '30', tipos: new Set(Object.keys(C.TIPOS)), curso: 'todos' },
     sortD: { col: 'proxima', dir: 1 },
     abertos: new Set(),
     c: { preset: 'mes', grupo: 'formato', a: null, b: null },
-    q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos' },
-    chat: [], chatBusy: false
+    q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos', vista: 'grafico', sel: null }
   };
   var primeiraVez = true;
 
@@ -1866,8 +1954,7 @@ window.iniciarPainel = function () {
     atividades: ['Acompanhamento das atividades', 'Inscrições, participação e satisfação por atividade'],
     divulgacoes: ['Divulgações', 'Ações do Trello e e-mails do sistema, atividade por atividade'],
     comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê'],
-    qualidade: ['Pesquisas de qualidade', 'Satisfação dos eventos, palestrantes e comentários dos participantes'],
-    inteligencia: ['Inteligência', 'Pergunte ao agente do PES sobre atividades, divulgações e pesquisas']
+    qualidade: ['Pesquisas de qualidade', 'Desempenho, acervo de avaliações e comentários dos participantes']
   };
   function cabecalho() {
     $('#selo-demo').hidden = !DEMO;
@@ -1984,10 +2071,10 @@ window.iniciarPainel = function () {
       var c = l.c, ocup = c.limite ? Math.min(1, l.inscricoes / c.limite) : null;
       var pal = (c.palestrantes || []).map(function (p) { return p.nome; }).filter(Boolean);
       var cel = {
-        titulo: '<td class="titulo"><b>' + esc(c.titulo) + '</b><span class="linha-sub">' + chipArea(c.area) + (pal.length ? '<span class="pal">com ' + esc(pal.join(' e ')) + '</span>' : '') + '</span></td>',
+        titulo: '<td class="titulo"><b>' + esc(c.titulo) + '</b><span class="linha-sub">' + chipArea(c.area) + '</span></td>',
         inicio: '<td class="data2"><b>' + dataCurtaAno(c.inicio) + '</b><span class="' + (c.status === 'abertas' ? 'st-ab' : 'st-enc') + '">' + STATUS_TXT[c.status] + '</span></td>',
         formato: '<td class="data2"><b>' + esc(C.FORMATOS[c.formato] || '—') + '</b><span class="st-enc">' + esc(C.MODELOS[c.modelo] || 'sem preço definido') + '</span></td>',
-        inscricoes: '<td class="n">' + (ocup != null ? '<span class="ocup" title="' + C.fmtInt(l.inscricoes) + ' de ' + C.fmtInt(c.limite) + ' vagas"><span class="t"><i class="' + (ocup >= 0.9 ? 'cheio' : '') + '" style="width:' + (ocup * 100) + '%"></i></span><span>' + C.fmtInt(l.inscricoes) + '</span></span>' : C.fmtInt(l.inscricoes)) + '</td>',
+        inscricoes: '<td class="n"><span class="num-g">' + C.fmtInt(l.inscricoes) + '</span></td>',
         ganho: '<td class="n"><span class="ganho' + (l.ganho > 0 ? ' pos' : '') + '">' + (l.ganho ? C.sinal(l.ganho) : '—') + '</span></td>',
         origem: '<td>' + (l.divs.length ? '<span class="origem" data-tip="' + c.id + '"><span class="pontos">' + uniq(l.divs.map(function (d) { return d.tipo; })).map(function (t) { return '<i style="background:' + C.TIPOS[t].cor + '"></i>'; }).join('') + '</span>Divulgada</span>'
           : (l.ganho > 0 ? '<span class="origem org">Orgânica</span>' : '<span class="nota">—</span>')) + '</td>',
@@ -2014,7 +2101,7 @@ window.iniciarPainel = function () {
   }
   function renderDivulgacoes() {
     var J = janelaDiv(), cursoSel = estado.d.curso === 'todos' ? null : +estado.d.curso;
-    var semFiltro = estado.d.per === '90' && estado.d.tipos.size === Object.keys(C.TIPOS).length && !cursoSel;
+    var semFiltro = estado.d.per === '30' && estado.d.tipos.size === Object.keys(C.TIPOS).length && !cursoSel;
     $('#limpar-div').hidden = semFiltro;
     var sel = IDX.divs.filter(function (d) { return estado.d.tipos.has(d.tipo) && (!cursoSel || d.curso_ids.indexOf(cursoSel) >= 0); });
     var at = C.atribuir(IDX, sel);
@@ -2062,7 +2149,7 @@ window.iniciarPainel = function () {
     tabelaDivulgacoes(efeito, at.porDiv, A.ds.filter(function (d) { return d.sem_atividade; }), prox, cursoSel);
 
     var ia = INS.divulgacoes || [], aviso = '';
-    if (ia.length && !semFiltro) { aviso = 'A leitura da IA considera os últimos 90 dias, todos os tipos e atividades. Limpe os filtros para vê-la.'; ia = []; }
+    if (ia.length && !semFiltro) { aviso = 'A leitura da IA considera os últimos 30 dias, todos os tipos e atividades. Limpe os filtros para vê-la.'; ia = []; }
     else if (!ia.length && DEMO) aviso = 'Na versão conectada, a IA acrescenta aqui a leitura em texto das campanhas.';
     var regras = avisoSerie(J.ini).concat(C.destaquesDivulgacoes(IDX, A.ds, at.porDiv).slice(0, 6));
     $('#ins-div').innerHTML = insightsHtml(ia, regras, aviso);
@@ -2182,7 +2269,7 @@ window.iniciarPainel = function () {
           (nPerd ? '<span class="aviso-cruz" title="' + nPerd + (nPerd > 1 ? ' e-mails do Trello não achados' : ' e-mail do Trello não achado') + ' no sistema">!</span>' : '') + '</span>' : nd) + '</td>' +
         '<td>' + (e.ultima ? C.dataLonga(e.ultima) : nd) + '</td>' +
         '<td>' + (l.px.length ? proximaHtml(l.px[0]) + (l.px.length > 1 ? '<small class="mais">+' + (l.px.length - 1) + '</small>' : '') : c.status === 'abertas' && TEM_PROXIMAS ? '<span class="alerta-txt">Nenhuma planejada</span>' : '<span class="nota"' + (TEM_PROXIMAS ? '' : ' title="Atualize o workflow do n8n para trazer as próximas ações do Trello"') + '>—</span>') + '</td>' +
-        '<td class="n">' + (ocup != null ? '<span class="ocup" title="' + C.fmtInt(c.inscricoes) + ' de ' + C.fmtInt(c.limite) + ' vagas"><span class="t"><i class="' + (ocup >= 0.9 ? 'cheio' : '') + '" style="width:' + (ocup * 100) + '%"></i></span><span>' + C.fmtInt(c.inscricoes) + '</span></span>' : C.fmtInt(c.inscricoes)) + '</td>' +
+        '<td class="n"><span class="num-g">' + C.fmtInt(c.inscricoes) + '</span></td>' +
         '<td class="n">' + (e.em72h == null || (SERIE && e.ultima < SERIE) ? '<span class="nota" title="' + TIT_SERIE + '">—</span>' : '<b>' + C.fmtInt(e.em72h) + '</b>') + '</td>' +
         '<td class="n">' + (e.semAcao ? nd : semSerie(e.ultima) ? '<span class="nota" title="' + TIT_SERIE + '">antes da série</span>' : ritmoTxt(e.antes, e.depois, e.parcial ? 0 : null).replace('<span class="nota parcial-dias">0 de 3 dias</span>', '<span class="nota parcial-dias">janela incompleta</span>')) + '</td>' +
         '<td class="n">' + (e.semAcao || semSerie(e.ultima) ? nd : variacaoChip(e.antes, e.depois, e.parcial)) + '</td></tr>';
@@ -2361,10 +2448,9 @@ window.iniciarPainel = function () {
   }
 
   /* =================================================================
-     Pesquisas de qualidade (acervo_pesquisas_qualidade) dentro do painel
+     Pesquisas de qualidade (três seções: desempenho, acervo, comentários)
      ================================================================= */
   var META_NPS = 75, AMOSTRA_MIN = 20;
-  var WEBHOOK_IA = 'https://gibs-sindusfarma.app.n8n.cloud/webhook/pes-ai-chat';
   function serialParaIso(n) { return typeof n === 'number' ? new Date(Date.UTC(1899, 11, 30) + n * 864e5).toISOString().slice(0, 10) : String(n || '').slice(0, 10); }
 
   // junta presença e NPS das pesquisas às atividades, pelo ID da mídia
@@ -2400,31 +2486,6 @@ window.iniciarPainel = function () {
   }
   function npsPond(evs) { var a = C.npsVazio(); evs.forEach(function (e) { if (e.aval) C.somaNps(a, { valor: e.nps, respostas: e.aval }); }); return C.nps(a); }
   var ZONA_TXT = { excelencia: 'Excelente', qualidade: 'Muito bom', aperfeicoamento: 'Razoável', critica: 'Crítico' };
-
-  function renderQualidade() {
-    var el = $('#pg-qualidade');
-    if (!QEV.length) { $('#kpis-q').innerHTML = '<div class="kpi"><div class="rot"><span>Pesquisas de qualidade</span></div><div class="valor">—</div><div class="ctx">Não foi possível carregar o arquivo de pesquisas.</div></div>'; return; }
-    var evs = eventosQ(), f = estado.q;
-    $('#limpar-q').hidden = f.area === 'todos' && f.mod === 'todos' && f.ano === ANO_ATUAL && f.mes === 'todos' && !f.busca;
-    var insc = 0, conf = 0, inscComPresenca = 0, aval = 0, notaS = 0;
-    evs.forEach(function (e) {
-      insc += e.inscritos || 0; aval += e.aval || 0; notaS += (e.nota || 0) * (e.aval || 0);
-      if (e.confirmados != null) { conf += e.confirmados; inscComPresenca += e.inscritos || 0; }   // mesma base da página Atividades
-    });
-    var npsW = npsPond(evs), taxa = evs.length ? evs.reduce(function (s, e) { return s + (e.taxa || 0); }, 0) / evs.length : null;
-    var z = C.zonaNps(npsW);
-    $('#kpis-q').innerHTML =
-      kpi('Eventos avaliados', C.fmtInt(evs.length), '', '', evs.length) +
-      kpi('Inscritos', C.fmtInt(insc), '', '', insc) +
-      kpi('Confirmados', C.fmtInt(conf), inscComPresenca ? C.fmtPct(conf / inscComPresenca, 0) + ' dos inscritos com presença registrada' : '', '', conf) +
-      kpi('Avaliações', C.fmtInt(aval), taxa != null ? C.fmtPct(taxa, 0) + ' de taxa de resposta' : '', '', aval) +
-      kpi('NPS ponderado', npsW == null ? '—' : C.fmtDec(npsW, 0) + '<small>de 100</small>', z ? '<span class="zona z-txt-' + z + '">' + ZONA_TXT[z] + '</span>' : '', '') +
-      kpi('Nota média', aval ? C.fmtDec(notaS / aval, 1) + '<small>de 10</small>' : '—', '', '');
-    graficoTendencia(evs);
-    atencao(evs);
-    tabelaQualidade(evs);
-    contar(); requestAnimationFrame(marcaRolagem);
-  }
 
   function graficoTendencia(evs) {
     var el = $('#g-tendencia'), meses = {};
@@ -2509,57 +2570,79 @@ window.iniciarPainel = function () {
       }).join('') + '</tbody>';
   }
 
-  function abrirComentarios(id) {
-    var e = QEV.filter(function (x) { return String(x.id) === String(id); })[0]; if (!e) return;
-    var cs = (COMENTARIOS[String(id)] || []).filter(function (c) { return c && !/^sem coment/i.test(String(c).trim()); });
-    $('#tit-coment').textContent = e.curso;
-    $('#sub-coment').textContent = (cs.length ? cs.length + (cs.length > 1 ? ' comentários' : ' comentário') : 'Sem comentários') + ', NPS ' + e.nps + ', ' + (e.aval || 0) + ' avaliações';
-    $('#lista-coment').innerHTML = cs.length ? cs.map(function (c) { return '<blockquote class="coment">' + esc(c) + '</blockquote>'; }).join('') : '<p class="aviso-ia">Nenhum comentário escrito neste evento.</p>';
-    gaveta('gav-q', true);
+
+  function renderQualidade() {
+    var f = estado.q;
+    $$('.vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-vista') === f.vista)); });
+    $('#q-grafico').hidden = f.vista !== 'grafico'; $('#q-tabela').hidden = f.vista !== 'tabela'; $('#q-coment').hidden = f.vista !== 'comentarios';
+    if (!QEV.length) { $('#kpis-q').innerHTML = '<div class="kpi"><div class="rot"><span>Pesquisas de qualidade</span></div><div class="valor">—</div><div class="ctx">Sem avaliações carregadas.</div></div>'; return; }
+    var evs = eventosQ();
+    $('#limpar-q').hidden = f.area === 'todos' && f.mod === 'todos' && f.ano === ANO_ATUAL && f.mes === 'todos' && !f.busca;
+    // indicadores do dashboard de pesquisas de qualidade
+    var insc = 0, conf = 0, aval = 0, notaS = 0;
+    evs.forEach(function (e) { insc += e.inscritos || 0; conf += e.confirmados || 0; aval += e.aval || 0; notaS += (e.nota || 0) * (e.aval || 0); });
+    var comTaxa = evs.filter(function (e) { return e.taxa != null; });
+    var taxa = comTaxa.length ? comTaxa.reduce(function (a, e) { return a + e.taxa; }, 0) / comTaxa.length : null;
+    var npsW = npsPond(evs), z = C.zonaNps(npsW);
+    $('#kpis-q').innerHTML =
+      kpi('Eventos', C.fmtInt(evs.length), '', '', evs.length) +
+      kpi('Inscritos', C.fmtInt(insc), '', '', insc) +
+      kpi('Confirmados', C.fmtInt(conf), '', '', conf) +
+      kpi('Avaliações', C.fmtInt(aval), '', '', aval) +
+      kpi('Taxa de resposta', taxa == null ? '—' : C.fmtPct(taxa, 0), '', '') +
+      kpi('NPS ponderado', npsW == null ? '—' : C.fmtDec(npsW, 0), z ? '<span class="zona z-txt-' + z + '">' + ZONA_TXT[z] + '</span>' : '', '') +
+      kpi('Nota média (0–10)', aval ? C.fmtDec(notaS / aval, 1) : '—', '', '');
+    if (f.vista === 'grafico') { graficoTendencia(evs); atencao(evs); desempenhoArea(evs); }
+    else if (f.vista === 'tabela') tabelaQualidade(evs);
+    else comentariosView(evs);
+    contar(); requestAnimationFrame(marcaRolagem);
   }
 
-  /* ---------------- Inteligência (agente do n8n) ---------------- */
-  var SUGESTOES = ['Quais cursos com inscrições abertas precisam de reforço de divulgação?', 'Quais palestrantes têm o melhor NPS este ano?',
-    'Compare o NPS e a taxa de resposta por área.', 'Quais e-mails tiveram a melhor abertura nos últimos 90 dias?', 'O que explica a variação das inscrições no último mês?'];
-  function contextoIA() {
-    var evs = QEV.map(function (e) { return { curso: e.curso, data: e._dia, area: e.area, modalidade: e.mod, inscritos: e.inscritos, confirmados: e.confirmados, avaliacoes: e.aval, taxa_resposta: e.taxa, nota: e.nota, nps: e.nps }; });
-    var abertas = IDX.cursos.filter(function (c) { return c.status === 'abertas'; }).map(function (c) {
-      var prox = PROXIMAS.filter(function (p) { return p.curso_id === c.id; })[0];
-      return { atividade: c.titulo, inicio: c.inicio, area: c.area, inscricoes: c.inscricoes, limite: c.limite, proxima_divulgacao: prox ? prox.data + ' ' + C.TIPOS[prox.tipo].nome : null };
-    });
-    var ini = C.addDias(HOJE, -90);
-    var emails = IDX.divs.filter(function (d) { return d.email && d.data >= ini && d.email.entregues; }).map(function (d) {
-      return { data: d.data, assunto: d.email.assunto || d.titulo, entregues: d.email.entregues, abertura: +(d.email.aberturas_unicas / d.email.entregues).toFixed(3) };
-    });
-    return { hoje: HOJE, pesquisas_de_qualidade: evs, atividades_com_inscricoes_abertas: abertas, emails_ultimos_90_dias: emails };
+  function desempenhoArea(evs) {
+    var por = {};
+    evs.forEach(function (e) { var a = e.area || 'Sem área'; (por[a] = por[a] || []).push(e); });
+    var linhas = Object.keys(por).map(function (a) {
+      var l = por[a], n = npsPond(l), comT = l.filter(function (e) { return e.taxa != null; });
+      return { a: a, nps: n, ev: l.length, aval: l.reduce(function (s, e) { return s + (e.aval || 0); }, 0),
+        taxa: comT.length ? comT.reduce(function (s, e) { return s + e.taxa; }, 0) / comT.length : null };
+    }).sort(function (x, y) { return (y.nps == null ? -999 : y.nps) - (x.nps == null ? -999 : x.nps); });
+    $('#g-area-q').innerHTML = linhas.map(function (l) {
+      var z = C.zonaNps(l.nps);
+      return '<div class="hbar"><span class="nome">' + chipArea(l.a) + '</span><span class="num">' + (l.nps == null ? '—' : '<span class="z-txt-' + z + '">' + C.fmtDec(l.nps, 0) + '</span>') + '</span>' +
+        '<span class="trilha"><i style="width:' + Math.max(0, l.nps == null ? 0 : l.nps) + '%;background:var(--accent)"></i></span>' +
+        '<span class="det">' + l.ev + (l.ev > 1 ? ' eventos' : ' evento') + ', ' + C.fmtInt(l.aval) + ' avaliações' + (l.taxa != null ? ', ' + C.fmtPct(l.taxa, 0) + ' de resposta' : '') + '</span></div>';
+    }).join('') || '<p class="aviso-ia">Sem eventos nesta seleção.</p>';
   }
-  function renderInteligencia() {
-    $('#sugestoes').innerHTML = SUGESTOES.map(function (s) { return '<button type="button" class="sugestao">' + esc(s) + '</button>'; }).join('');
-    var h = estado.chat.map(function (m) { return '<div class="msg ' + m.role + '"><div class="bolha">' + esc(m.text).replace(/\n/g, '<br>') + '</div></div>'; }).join('');
-    if (estado.chatBusy) h += '<div class="msg assistant"><div class="bolha digitando"><i></i><i></i><i></i></div></div>';
-    if (!estado.chat.length && !estado.chatBusy) h = '<div class="chat-vazio"><div class="orb" aria-hidden="true"></div><h2>Pergunte sobre o PES</h2><p>O agente conhece as pesquisas de qualidade, as atividades com inscrições abertas e os e-mails dos últimos 90 dias.</p></div>';
-    var el = $('#chat'); el.innerHTML = h; el.scrollTop = el.scrollHeight;
-    $('#btn-enviar').disabled = estado.chatBusy;
+
+  function comentariosDe(id) {
+    return (COMENTARIOS[String(id)] || []).filter(function (c) { return c && String(c).trim().length > 2 && !/^sem coment/i.test(String(c).trim()); });
   }
-  function perguntar(q) {
-    q = (q || '').trim(); if (!q || estado.chatBusy) return;
-    estado.chat.push({ role: 'user', text: q }); estado.chatBusy = true; $('#chat-input').value = ''; renderInteligencia();
-    var ctrl = new AbortController(), to = setTimeout(function () { ctrl.abort(); }, 60000);
-    fetch(WEBHOOK_IA, { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: ctrl.signal,
-      body: JSON.stringify({ pergunta: q, contexto: contextoIA(), filtros: { pagina: 'painel-pes-2' }, historico: estado.chat.slice(-9, -1).map(function (m) { return { role: m.role, text: m.text }; }) }) })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-      .then(function (raw) {
-        var out = raw; try { var j = JSON.parse(raw); out = j.output || j.text || j.resposta || j.answer || j.message || j.reply || (typeof j === 'string' ? j : raw); } catch (e) { /* texto puro */ }
-        estado.chat.push({ role: 'assistant', text: String(out || '(sem resposta)').replace(/[#*`_]{1,}/g, '').replace(/\n{3,}/g, '\n\n').trim() });
-      })
-      .catch(function (e) { estado.chat.push({ role: 'assistant', text: 'Não consegui falar com o agente agora (' + (e.name === 'AbortError' ? 'tempo esgotado' : e.message) + '). Confira se o workflow do agente está ativo no n8n e se o webhook aceita chamadas deste endereço.' }); })
-      .then(function () { clearTimeout(to); estado.chatBusy = false; renderInteligencia(); });
+  function comentariosView(evs) {
+    var lista = evs.map(function (e) { return { e: e, cs: comentariosDe(e.id) }; }).filter(function (x) { return x.cs.length; })
+      .sort(function (a, b) { return a.e._dia < b.e._dia ? 1 : -1; });
+    var total = lista.reduce(function (s, x) { return s + x.cs.length; }, 0);
+    $('#n-com').textContent = lista.length + (lista.length === 1 ? ' curso, ' : ' cursos, ') + total + (total === 1 ? ' comentário' : ' comentários');
+    if (!lista.some(function (x) { return String(x.e.id) === String(estado.q.sel); })) estado.q.sel = lista.length ? lista[0].e.id : null;
+    $('#lista-cursos-com').innerHTML = lista.length ? lista.map(function (x) {
+      var e = x.e, ativo = String(e.id) === String(estado.q.sel);
+      return '<button type="button" class="curso-com' + (ativo ? ' ativo' : '') + '" data-sel="' + e.id + '" aria-pressed="' + ativo + '">' +
+        '<span class="t">' + esc(e.curso) + '</span><span class="m">' + dataCurtaAno(e._dia) + (e.nps != null ? ', NPS <b class="z-txt-' + C.zonaNps(e.nps) + '">' + e.nps + '</b>' : '') + '</span>' +
+        '<span class="cont">' + x.cs.length + '</span></button>';
+    }).join('') : '<p class="aviso-ia">Nenhum comentário escrito nesta seleção.</p>';
+    var sel = lista.filter(function (x) { return String(x.e.id) === String(estado.q.sel); })[0];
+    if (!sel) { $('#tit-coment').textContent = 'Comentários'; $('#sub-coment').textContent = ''; $('#lista-coment').innerHTML = ''; return; }
+    var e = sel.e;
+    $('#tit-coment').textContent = e.curso;
+    $('#sub-coment').innerHTML = esc(dataCurtaAno(e._dia)) + (e.nps != null ? ', NPS <b class="z-txt-' + C.zonaNps(e.nps) + '">' + e.nps + '</b>' : '') + ', ' + C.fmtInt(e.aval) + ' avaliações, ' + sel.cs.length + (sel.cs.length > 1 ? ' comentários' : ' comentário');
+    $('#lista-coment').innerHTML = sel.cs.map(function (c) { return '<blockquote class="coment">' + esc(c) + '</blockquote>'; }).join('');
+    $('#lista-coment').closest('.rolagem').scrollTop = 0;
   }
+  function abrirComentarios(id) { estado.q.vista = 'comentarios'; estado.q.sel = id; renderQualidade(); }
 
   /* =================================================================
      Navegação, filtros e eventos
      ================================================================= */
-  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, inteligencia: renderInteligencia, comparacao: renderComparacao };
+  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, comparacao: renderComparacao };
   function irPara(pg, semHash) {
     if (pg === 'cursos') pg = 'atividades';
     if (!renders[pg]) pg = 'atividades';
@@ -2614,8 +2697,8 @@ window.iniciarPainel = function () {
     };
 
     // ---- página 2
-    dd.per = new Dropdown($('#dd-per'), { rotulo: 'Período', valor: '90', padrao: '90',
-      opcoes: [{ v: '30', t: 'Últimos 30 dias' }, { v: '90', t: 'Últimos 90 dias' }, { v: '365', t: 'Últimos 12 meses' }, { v: 'ano', t: 'Ano atual (' + ANO_ATUAL + ')', curto: 'Ano atual' }],
+    dd.per = new Dropdown($('#dd-per'), { rotulo: 'Período', valor: '30', padrao: '30',
+      opcoes: [{ v: '7', t: 'Últimos 7 dias' }, { v: '15', t: 'Últimos 15 dias' }, { v: '30', t: 'Últimos 30 dias' }, { v: 'ano', t: 'Ano inteiro (' + ANO_ATUAL + ')', curto: 'Ano inteiro' }],
       onChange: function (v) { estado.d.per = v; renderDivulgacoes(); } });
     dd.tipos = new Dropdown($('#dd-tipos'), { rotulo: 'Tipo', multi: true, todos: 'Todos os tipos', valor: estado.d.tipos,
       opcoes: Object.keys(C.TIPOS).map(function (k) { return { v: k, t: C.TIPOS[k].nome, cor: C.TIPOS[k].cor }; }),
@@ -2625,8 +2708,8 @@ window.iniciarPainel = function () {
       opcoes: [{ v: 'todos', t: 'Todas as atividades', curto: 'Todas' }].concat(comDiv.map(function (c) { return { v: String(c.id), t: c.titulo, sub: dataCurtaAno(c.inicio) }; })),
       onChange: function (v) { estado.d.curso = v; renderDivulgacoes(); } });
     $('#limpar-div').onclick = function () {
-      estado.d.per = '90'; estado.d.curso = 'todos'; Object.keys(C.TIPOS).forEach(function (k) { estado.d.tipos.add(k); });
-      dd.per.definir('90'); dd.curso.definir('todos'); dd.tipos.render(); renderDivulgacoes();
+      estado.d.per = '30'; estado.d.curso = 'todos'; Object.keys(C.TIPOS).forEach(function (k) { estado.d.tipos.add(k); });
+      dd.per.definir('30'); dd.curso.definir('todos'); dd.tipos.render(); renderDivulgacoes();
     };
     $('#t-div').addEventListener('click', function (e) {
       if (e.target.closest('a')) return;
@@ -2683,15 +2766,14 @@ window.iniciarPainel = function () {
       dd.qVer = new Dropdown($('#dd-q-ver'), { rotulo: 'Ver', valor: 'eventos', semDestaque: true, opcoes: [{ v: 'eventos', t: 'Eventos' }, { v: 'palestrantes', t: 'Palestrantes' }],
         onChange: function (v) { estado.q.ver = v; renderQualidade(); } });
       var tmq; $('#q-busca').oninput = function () { var v = this.value; clearTimeout(tmq); tmq = setTimeout(function () { estado.q.busca = v; renderQualidade(); }, 180); };
-      $('#limpar-q').onclick = function () { estado.q = { area: 'todos', mod: 'todos', ano: qAnos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (qAnos[0] || 'todos'), mes: 'todos', busca: '', ver: estado.q.ver }; dd.qArea.definir('todos'); dd.qMod.definir('todos'); dd.qAno.definir(estado.q.ano); dd.qMes.definir('todos'); $('#q-busca').value = ''; renderQualidade(); };
+      $('#limpar-q').onclick = function () { estado.q = { area: 'todos', mod: 'todos', ano: qAnos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (qAnos[0] || 'todos'), mes: 'todos', busca: '', ver: estado.q.ver, vista: estado.q.vista, sel: null }; dd.qArea.definir('todos'); dd.qMod.definir('todos'); dd.qAno.definir(estado.q.ano); dd.qMes.definir('todos'); $('#q-busca').value = ''; renderQualidade(); };
       document.addEventListener('click', function (e) {
-        var b = e.target.closest('#pg-qualidade [data-ev]'); if (!b) return;
-        abrirComentarios(b.getAttribute('data-ev'));
+        var sel = e.target.closest('#pg-qualidade [data-sel]');
+        if (sel) { estado.q.sel = sel.getAttribute('data-sel'); renderQualidade(); return; }
+        var b = e.target.closest('#pg-qualidade [data-ev]'); if (b) abrirComentarios(b.getAttribute('data-ev'));
       });
     }
-    $('#chat-form').onsubmit = function (e) { e.preventDefault(); perguntar($('#chat-input').value); };
-    $('#chat-input').onkeydown = function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); perguntar(this.value); } };
-    $('#sugestoes').onclick = function (e) { var b = e.target.closest('.sugestao'); if (b) perguntar(b.textContent); };
+    $$('.vista').forEach(function (b) { b.onclick = function () { estado.q.vista = b.getAttribute('data-vista'); renderQualidade(); }; });
 
     // ---- tabelas, leitura e navegação
     $('#t-atv').addEventListener('click', function (e) {
@@ -2700,7 +2782,6 @@ window.iniciarPainel = function () {
       estado.sortA = { col: k, dir: s.col === k ? -s.dir : (k === 'titulo' ? 1 : -1) }; renderAtividades();
     });
     $$('[data-gaveta]').forEach(function (b) { var id = b.getAttribute('data-gaveta'); b.onclick = function () { gaveta(id); }; gaveta(id, le('pes-' + id) === '1'); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('#gav-q').classList.contains('aberta')) gaveta('gav-q', false); });
     $$('[data-fecha]').forEach(function (b) { b.onclick = function () { var id = b.getAttribute('data-fecha'); gaveta(id, false); var bt = $('[data-gaveta="' + id + '"]'); if (bt) bt.focus(); }; });
     function destaca(e) {
       if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
@@ -2719,6 +2800,13 @@ window.iniciarPainel = function () {
     $$('.navbtn').forEach(function (b) { b.onclick = function () { irPara(b.getAttribute('data-pg')); }; });
     window.addEventListener('hashchange', function () { irPara(location.hash.slice(1), true); });
 
+    function aplicaPaleta(pl) {
+      document.documentElement.setAttribute('data-paleta', pl);
+      $$('.paleta').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-paleta') === pl)); });
+      guarda('pes-paleta', pl);
+    }
+    aplicaPaleta(le('pes-paleta') || 'azul');
+    $$('.paleta').forEach(function (b) { b.onclick = function () { aplicaPaleta(b.getAttribute('data-paleta')); if (!primeiraVez) renders[estado.pg](); }; });
     var temas = ['auto', 'dark', 'light'], nomesTema = { auto: 'automático', dark: 'escuro', light: 'claro' };
     function aplicaTema(t) {
       if (t === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
