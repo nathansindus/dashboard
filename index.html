@@ -677,6 +677,81 @@ body.pes { background: var(--bg-grad); background-attachment: fixed; }
   :root[data-paleta="roxo"]:not([data-theme="dark"]) { --accent: #6B3FB8; --accent-soft: rgba(107, 63, 184, .12); --data: #6B3FB8; }
 }
 
+/* =====================================================================
+   Margens menores: mais espaço para as tabelas
+   ===================================================================== */
+.pagina { gap: 10px; }
+main.palco { gap: 10px; }
+#kpis-atv .kpi, #kpis-div .kpi, #kpis-q .kpi { padding-top: 11px; padding-bottom: 11px; }
+.painel.tabela-p.compacta { padding: 4px 6px 4px; }
+.tabela th { white-space: nowrap; }
+.tabela th button { max-width: none; }
+.th-n { display: inline-grid; place-items: center; min-width: 26px; height: 20px; padding: 0 7px; margin-left: 8px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--fg); font: 600 11.5px var(--f-text); }
+
+/* =====================================================================
+   Divulgações: linhas clicáveis e seção lateral de detalhes
+   ===================================================================== */
+.area { position: relative; }
+#t-div tr.grupo { cursor: pointer; }
+#t-div tr.grupo:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+#t-div tr.sel > td { background: color-mix(in srgb, var(--accent) 14%, transparent) !important; }
+td.abrir { width: 28px; padding-left: 0; padding-right: 10px; }
+td.abrir svg { width: 8px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 1.8; transition: transform .25s var(--ease), stroke .25s; }
+tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transform: translateX(2px); }
+.dica-det { margin-left: auto; }
+.gaveta.sobre { position: absolute; top: 0; right: 0; bottom: 0; z-index: 16; margin-left: 0 !important; }
+.gaveta.sobre.aberta { width: min(660px, 94%); }
+.gaveta.sobre > .painel { width: 100%; padding: 0; background: var(--panel-solid); box-shadow: var(--menu-shadow); border-color: var(--line-strong); }
+.gaveta.sobre .corpo { padding: 18px 20px 20px; }
+.det-topo { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.det-topo > div { min-width: 0; flex: 1; display: grid; gap: 8px; }
+.det-topo h2 { margin: 0; font: 600 19px/1.3 var(--f-display); }
+.det-topo .linha-sub { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.det-topo .pal { font-size: 12.5px; color: var(--muted); }
+.det-kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; border-radius: 16px; overflow: hidden; background: var(--line); margin-bottom: 18px; }
+.det-kpis > div { display: grid; gap: 4px; padding: 12px 12px; background: var(--panel-solid); align-content: start; }
+.det-kpis .k, .ca-metr .k, .ca-efeito .k { font-size: 11.5px; color: var(--muted); }
+.det-kpis b { font: 600 20px/1.1 var(--f-display); }
+.mbar { display: block; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; margin-top: 2px; }
+.mbar i { display: block; height: 100%; border-radius: 2px; background: var(--accent); }
+.det-sec { margin-bottom: 18px; }
+.det-sec h3 { margin: 0 0 10px; font: 600 14px var(--f-display); color: var(--accent); }
+.linha-tempo { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.linha-tempo li { display: grid; grid-template-columns: 74px auto minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--panel-sub); border: 1px solid var(--line); }
+.lt-data { display: grid; line-height: 1.2; }
+.lt-data small { font-size: 11px; color: var(--muted); }
+.lt-t { font-size: 13px; line-height: 1.4; }
+.lt-t a, .ca-tit a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 2px; }
+.cartao-acao { padding: 14px 16px; border-radius: 16px; background: var(--panel-sub); border: 1px solid var(--line); margin-bottom: 10px; display: grid; gap: 10px; }
+.ca-topo { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ca-topo b { font-size: 13px; }
+.ca-topo .tag { margin: 0; }
+.ca-tit { font-weight: 500; line-height: 1.4; }
+.ca-linhas, .ca-dest { display: grid; gap: 4px; font-size: 12.5px; }
+.ca-dest b { font: 600 14px var(--f-display); }
+.ca-metr, .ca-efeito { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.ca-metr > div, .ca-efeito > div { display: grid; gap: 3px; align-content: start; }
+.ca-metr b, .ca-efeito b { font: 600 15px var(--f-display); }
+.ca-efeito b .ritmo { font-family: var(--f-text); font-size: 13px; }
+
+/* =====================================================================
+   Qualidade: gráfico maior, áreas como filtro
+   ===================================================================== */
+.q-graf { grid-template-rows: minmax(0, 1fr); }
+.q-graf .g-tend, .q-graf .g-aten { grid-row: 1; }
+.chips-area { display: flex; flex-wrap: wrap; gap: 6px; margin: -2px 0 8px; }
+.chip-filtro { display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel-sub);
+  color: var(--fg-2); font: 500 12px var(--f-text); cursor: pointer; transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease); }
+.chip-filtro i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.chip-filtro b { font: 600 12.5px var(--f-display); }
+.chip-filtro:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+.chip-filtro.ativo { border-color: var(--accent); background: var(--accent-soft); color: var(--fg); }
+@media (max-width: 1180px) {
+  .gaveta.sobre, .gaveta.sobre.aberta { position: static; width: auto; }
+  .det-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 </style>
 </head>
 <body class="pes">
@@ -756,11 +831,7 @@ body.pes { background: var(--bg-grad); background-attachment: fixed; }
       <div class="painel cluster" id="kpis-atv" aria-live="polite"></div>
 
       <div class="area">
-        <div class="painel tabela-p">
-          <header>
-            <h2>Atividades</h2><span class="nota" id="n-atv"></span>
-            <div class="dir so-evo" id="resumo-evo"></div>
-          </header>
+        <div class="painel tabela-p compacta">
           <div class="corpo rolagem"><table class="tabela" id="t-atv"></table></div>
         </div>
         <aside class="gaveta" id="gav-atv" aria-label="Leitura do período">
@@ -793,10 +864,13 @@ body.pes { background: var(--bg-grad); background-attachment: fixed; }
         <div class="painel tabela-p">
           <header>
             <h2>Atividades divulgadas</h2><span class="nota" id="n-div"></span>
-            <div class="dir"><button class="limpar" type="button" id="abrir-todas">Abrir todas</button></div>
+            <span class="nota dica-det">Clique numa atividade para ver o cronograma completo</span>
           </header>
           <div class="corpo rolagem"><table class="tabela" id="t-div"></table></div>
         </div>
+        <aside class="gaveta sobre detalhe" id="gav-acao" aria-label="Detalhes da divulgação">
+          <div class="painel"><div class="corpo rolagem" id="det-acao"></div></div>
+        </aside>
         <aside class="gaveta" id="gav-div" aria-label="Leitura das divulgações">
           <div class="painel">
             <header><h2>Leitura das divulgações</h2>
@@ -828,17 +902,14 @@ body.pes { background: var(--bg-grad); background-attachment: fixed; }
 
       <div class="vista-q q-graf" id="q-grafico">
         <div class="painel g-tend">
-          <header><h2>Evolução mensal</h2>
+          <header><h2 id="tit-tend">Evolução mensal</h2>
             <div class="dir legenda"><span><i></i>NPS ponderado</span><span><i class="barra"></i>Avaliações</span><span><i class="meta"></i>Meta 75</span></div></header>
+          <div class="chips-area" id="chips-area" role="group" aria-label="Filtrar o gráfico por área"></div>
           <div class="corpo"><div class="grafico" id="g-tendencia"></div></div>
         </div>
         <div class="painel g-aten">
           <header><h2>Requer atenção</h2><span class="cont alerta" id="n-atencao">0</span></header>
           <div class="corpo rolagem"><div id="lista-atencao"></div></div>
-        </div>
-        <div class="painel g-area">
-          <header><h2>Desempenho por área</h2><span class="nota">NPS ponderado e taxa de resposta</span></header>
-          <div class="corpo rolagem"><div class="hbars" id="g-area-q"></div></div>
         </div>
       </div>
 
@@ -1127,14 +1198,15 @@ var PESCore = (function () {
     return dataLonga(p[0]) + ' a ' + dataLonga(p[1]);
   }
 
+  /* inscrições contadas pela data da atividade: cada curso entra com o total de inscritos no dia em que
+     começou. Funciona para qualquer período, inclusive antes do início da contagem diária. */
   function metricasPeriodo(idx, atrib, ini, fim) {
     var real = idx.cursos.filter(function (c) { return c.inicio >= ini && c.inicio <= fim; });
-    var insc = 0, atr = 0, porCurso = new Map();
-    atrib.registros.forEach(function (r) {
-      if (r.d < ini || r.d > fim) return;
-      insc += r.q; if (r.a) atr += r.q;
-      porCurso.set(r.c, (porCurso.get(r.c) || 0) + r.q);
-    });
+    var insc = 0, porCurso = new Map();
+    real.forEach(function (c) { insc += c.inscricoes || 0; porCurso.set(c.id, c.inscricoes || 0); });
+    // inscrições em até 72h após divulgação dependem da contagem diária (data da inscrição)
+    var serie = idx.meta && idx.meta.serie_inscricoes_desde, diaTot = 0, atr = 0;
+    atrib.registros.forEach(function (r) { if (r.d >= ini && r.d <= fim) { diaTot += r.q; if (r.a) atr += r.q; } });
     var inscReal = 0, partBase = 0, part = 0, nc = npsVazio(), np = npsVazio();
     real.forEach(function (c) {
       inscReal += c.inscricoes || 0;
@@ -1153,7 +1225,7 @@ var PESCore = (function () {
     }
     return {
       ini: ini, fim: fim, atividades: real.length, inscricoes: insc, atribuidas: atr,
-      pctAtribuidas: insc ? atr / insc : null,
+      pctAtribuidas: diaTot && (!serie || ini >= serie) ? atr / diaTot : null,
       mediaInscritos: real.length ? inscReal / real.length : null,
       participacao: partBase ? part / partBase : null,
       nps_curso: nps(nc), resp_curso: respostas(nc),
@@ -1176,7 +1248,7 @@ var PESCore = (function () {
       var difs = chaves.map(function (k) {
         return { k: k, d: ((A.porFormato[k] || {}).insc || 0) - ((B.porFormato[k] || {}).insc || 0) };
       }).sort(function (a, b) { return Math.abs(b.d) - Math.abs(a.d); });
-      var txt = 'As inscrições ' + (dI >= 0 ? 'subiram ' : 'caíram ') + (pI == null ? '' : fmtPct(Math.abs(pI), 0) + ' ') +
+      var txt = 'As inscrições nas atividades do período ' + (dI >= 0 ? 'subiram ' : 'caíram ') + (pI == null ? '' : fmtPct(Math.abs(pI), 0) + ' ') +
         '(' + sinal(dI) + ').';
       if (difs.length && difs[0].d) {
         txt += ' A maior variação veio dos cursos ' + nomeF(difs[0].k) + ' (' + sinal(difs[0].d) + ')';
@@ -1200,9 +1272,9 @@ var PESCore = (function () {
     }
 
     // 3. divulgação
-    if (A.divulgacoes || B.divulgacoes) {
+    if ((A.divulgacoes || B.divulgacoes) && A.divulgacoes != null && B.divulgacoes != null) {
       var dd = A.divulgacoes - B.divulgacoes;
-      var t3 = A.divulgacoes + ' divulgações no período contra ' + B.divulgacoes + '.';
+      var t3 = A.divulgacoes + ' divulgações no período contra ' + B.divulgacoes + (A.pctAtribuidas == null || B.pctAtribuidas == null ? '. A contagem diária de inscrições ainda não cobre os dois períodos, então não dá para medir quanto veio logo após cada divulgação.' : '.');
       if (A.pctAtribuidas != null && B.pctAtribuidas != null) {
         t3 += ' Inscrições feitas em até 72h após uma divulgação foram ' + fmtPct(A.pctAtribuidas, 0) + ' do total, contra ' + fmtPct(B.pctAtribuidas, 0) + '.';
         var dpp = (A.pctAtribuidas - B.pctAtribuidas) * 100;
@@ -1762,11 +1834,11 @@ window.iniciarPainel = function () {
     f: { status: 'todos', modelo: 'todos', formato: 'todos', area: 'todos', ano: ANO_ATUAL },
     evo: false, ref: 'ultima',
     sortA: { col: 'agenda', dir: 1 },
-    d: { per: '30', tipos: new Set(Object.keys(C.TIPOS)), curso: 'todos' },
+    d: { detalhe: null, per: '30', tipos: new Set(Object.keys(C.TIPOS)), curso: 'todos' },
     sortD: { col: 'proxima', dir: 1 },
     abertos: new Set(),
     c: { preset: 'mes', grupo: 'formato', a: null, b: null },
-    q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos', vista: 'grafico', sel: null }
+    q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos', vista: 'grafico', sel: null, areaGraf: 'todas' }
   };
   var primeiraVez = true;
 
@@ -2025,19 +2097,8 @@ window.iniciarPainel = function () {
       if (fo.participantes != null) { r.part += fo.participantes; r.partB += fo.inscricoes || 0; }
       C.somaNps(r.nc, fo.nps_curso); C.somaNps(r.np, fo.nps_palestrantes);
     });
-    var taxa = a.partB ? a.part / a.partB : null, taxaR = r.partB ? r.part / r.partB : null;
-    var npsC = C.nps(a.nc), npsP = C.nps(a.np), npsCR = C.nps(r.nc), npsPR = C.nps(r.np), dI = a.insc - r.insc;
-    $('#kpis-atv').innerHTML =
-      kpi('Atividades', C.fmtInt(lista.length), '', r.novos ? '<span class="delta up" title="Atividades que entraram ' + ref.rot + '">+' + r.novos + (r.novos > 1 ? ' novas' : ' nova') + '</span>' : chip(0), lista.length) +
-      kpi('Inscrições', C.fmtInt(a.insc), '', dI ? '<span class="delta ' + (dI > 0 ? 'up' : 'down') + '" title="' + ref.rot + '">' + C.sinal(dI) + (r.insc ? ' (' + C.fmtDec(Math.abs(dI) * 100 / r.insc, 1) + '%)' : '') + '</span>' : chip(0), a.insc) +
-      kpi('Taxa de participação', anel(taxa) + '<span>' + C.fmtPct(taxa, 0) + '</span>',
-        taxa == null ? (lista.some(function (c) { return c.fim < HOJE; }) ? 'Sem dados de presença conectados' : 'Disponível após a realização') : C.fmtInt(a.part) + ' participantes de ' + C.fmtInt(a.partB) + ' inscritos', taxa != null && taxaR != null ? chip((taxa - taxaR) * 100, 'pp') : '') +
-      kpi('NPS das atividades', npsC == null ? '—' : C.fmtDec(npsC, 0) + '<small>de 100</small>', npsC == null ? SEM_NPS : npsBarra(a.nc) + C.fmtInt(C.respostas(a.nc)) + ' respostas',
-        npsC != null && npsCR != null ? chip(npsC - npsCR, 'pts') : '') +
-      kpi('NPS dos palestrantes', npsP == null ? '—' : C.fmtDec(npsP, 0) + '<small>de 100</small>', npsP == null ? SEM_NPS : npsBarra(a.np) + C.fmtInt(C.respostas(a.np)) + ' avaliações',
-        npsP != null && npsPR != null ? chip(npsP - npsPR, 'pts') : '');
-
     var ganhoDiv = 0, ganhoOrg = 0, porCurso = new Map();
+    // (o resumo da evolução entra no indicador de Inscrições, logo abaixo)
     lista.forEach(function (c) {
       var fo = c.ref && c.ref[rk], g = (c.inscricoes || 0) - (fo ? fo.inscricoes || 0 : 0);
       var dv = ref.dia ? (IDX.divPorCurso.get(c.id) || []).filter(function (d) { return d.data >= ref.dia && d.data <= HOJE; }) : [];
@@ -2045,9 +2106,20 @@ window.iniciarPainel = function () {
       if (g > 0) { if (dv.length) ganhoDiv += g; else ganhoOrg += g; }
     });
     var tot = ganhoDiv + ganhoOrg;
-    $('#resumo-evo').innerHTML = '<span class="resumo-evo"><b>' + C.sinal(tot) + '</b> inscrições ' + esc(ref.rot) +
-      (tot ? '<span class="barra-origem" title="Atividades com divulgação no período × orgânicas"><i style="width:' + (ganhoDiv * 100 / tot) + '%"></i><i style="width:' + (ganhoOrg * 100 / tot) + '%"></i></span>' +
-        C.fmtPct(ganhoDiv / tot, 0) + ' em atividades divulgadas, ' + C.fmtPct(ganhoOrg / tot, 0) + ' orgânicas' : '') + '</span>';
+    var tot = ganhoDiv + ganhoOrg;
+    var ctxInsc = estado.evo && tot ? '<span class="barra-origem" title="Inscrições ' + esc(ref.rot) + ': em atividades com divulgação no período × orgânicas"><i style="width:' + (ganhoDiv * 100 / tot) + '%"></i><i style="width:' + (ganhoOrg * 100 / tot) + '%"></i></span>' +
+      C.fmtPct(ganhoDiv / tot, 0) + ' em atividades divulgadas' : '';
+    var taxa = a.partB ? a.part / a.partB : null, taxaR = r.partB ? r.part / r.partB : null;
+    var npsC = C.nps(a.nc), npsP = C.nps(a.np), npsCR = C.nps(r.nc), npsPR = C.nps(r.np), dI = a.insc - r.insc;
+    $('#kpis-atv').innerHTML =
+      kpi('Atividades', C.fmtInt(lista.length), '', r.novos ? '<span class="delta up" title="Atividades que entraram ' + ref.rot + '">+' + r.novos + (r.novos > 1 ? ' novas' : ' nova') + '</span>' : chip(0), lista.length) +
+      kpi('Inscrições', C.fmtInt(a.insc), ctxInsc, dI ? '<span class="delta ' + (dI > 0 ? 'up' : 'down') + '" title="' + ref.rot + '">' + C.sinal(dI) + (r.insc ? ' (' + C.fmtDec(Math.abs(dI) * 100 / r.insc, 1) + '%)' : '') + '</span>' : chip(0), a.insc) +
+      kpi('Taxa de participação', anel(taxa) + '<span>' + C.fmtPct(taxa, 0) + '</span>',
+        taxa == null ? (lista.some(function (c) { return c.fim < HOJE; }) ? 'Sem dados de presença conectados' : 'Disponível após a realização') : C.fmtInt(a.part) + ' participantes de ' + C.fmtInt(a.partB) + ' inscritos', taxa != null && taxaR != null ? chip((taxa - taxaR) * 100, 'pp') : '') +
+      kpi('NPS das atividades', npsC == null ? '—' : C.fmtDec(npsC, 0) + '<small>de 100</small>', npsC == null ? SEM_NPS : npsBarra(a.nc) + C.fmtInt(C.respostas(a.nc)) + ' respostas',
+        npsC != null && npsCR != null ? chip(npsC - npsCR, 'pts') : '') +
+      kpi('NPS dos palestrantes', npsP == null ? '—' : C.fmtDec(npsP, 0) + '<small>de 100</small>', npsP == null ? SEM_NPS : npsBarra(a.np) + C.fmtInt(C.respostas(a.np)) + ' avaliações',
+        npsP != null && npsPR != null ? chip(npsP - npsPR, 'pts') : '');
 
     tabelaAtividades(lista, porCurso, ref);
 
@@ -2062,7 +2134,7 @@ window.iniciarPainel = function () {
   }
 
   var COLS_A = [
-    { k: 'titulo', t: 'Atividade' }, { k: 'inicio', t: 'Início' }, { k: 'formato', t: 'Formato e modelo' },
+    { k: 'titulo', t: 'Atividade' }, { k: 'inicio', t: 'Início' }, { k: 'formato', t: 'Formato' },
     { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'ganho', t: 'Evolução', n: 1, evo: 1 }, { k: 'origem', t: 'Origem', evo: 1 },
     { k: 'participacao', t: 'Participação', n: 1 }, { k: 'nps_c', t: 'NPS atividade', n: 1 }, { k: 'nps_p', t: 'NPS palestrantes', n: 1 }
   ];
@@ -2086,7 +2158,7 @@ window.iniciarPainel = function () {
       var a = x[s.col], b = y[s.col]; if (a == null) a = -1e9; if (b == null) b = -1e9;
       return (a < b ? -1 : a > b ? 1 : 0) * s.dir || (x.inicio < y.inicio ? 1 : -1);
     });
-    $('#n-atv').textContent = lista.length + (lista.length === 1 ? ' atividade' : ' atividades');
+    COLS_A[0].t = 'Atividades <span class="th-n">' + lista.length + '</span>';
     var tb = '<tbody>' + linhas.map(function (l) {
       var c = l.c, ocup = c.limite ? Math.min(1, l.inscricoes / c.limite) : null;
       var pal = (c.palestrantes || []).map(function (p) { return p.nome; }).filter(Boolean);
@@ -2178,8 +2250,8 @@ window.iniciarPainel = function () {
   }
 
   var COLS_D = [
-    { k: 'exp', sr: 'Abrir' }, { k: 'titulo', t: 'Atividade' }, { k: 'acoes', t: 'Ações', n: 1 }, { k: 'ultima', t: 'Última ação' }, { k: 'proxima', t: 'Próxima ação' },
-    { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'em72h', t: 'Em até 72h', n: 1 }, { k: 'antes', t: 'Ritmo antes e depois', n: 1 }, { k: 'variacao', t: 'Variação', n: 1 }
+    { k: 'titulo', t: 'Atividade' }, { k: 'acoes', t: 'Ações', n: 1 }, { k: 'ultima', t: 'Última ação' }, { k: 'proxima', t: 'Próxima ação' },
+    { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'em72h', t: 'Em até 72h', n: 1 }, { k: 'variacao', t: 'Variação', n: 1 }, { k: 'abrir', sr: 'Detalhes' }
   ];
   function ritmoTxt(antes, depois, dias) {
     if (depois == null) return '<span class="nota">aguardando dados</span>';
@@ -2257,6 +2329,7 @@ window.iniciarPainel = function () {
     return '<span class="prox"><span class="badge"><i style="background:' + C.TIPOS[p.tipo].cor + '"></i>' + C.TIPOS[p.tipo].curto + '</span>' +
       '<span>' + C.dataCurta(p.data) + '<small>' + (dias === 0 ? 'hoje' : dias === 1 ? 'amanhã' : 'em ' + dias + ' dias') + '</small></span></span>';
   }
+  var LINHAS_DIV = new Map();
   function tabelaDivulgacoes(efeito, porDiv, semAtiv, prox, cursoSel) {
     var s = estado.sortD;
     // atividades divulgadas no período + atividades com inscrições abertas (com ou sem ação planejada)
@@ -2268,22 +2341,20 @@ window.iniciarPainel = function () {
     var linhas = Array.from(mapa.values()).map(function (e) {
       var px = prox.get(e.id) || [];
       return { e: e, px: px, titulo: e.c.titulo, acoes: e.divs.length, ultima: e.ultima || '', proxima: px.length ? px[0].data : (e.c.status === 'abertas' ? '9998' : '9999'),
-        inscricoes: e.c.inscricoes || 0, em72h: e.em72h == null ? -1 : e.em72h, antes: e.depois == null ? -1e6 : e.depois - e.antes,
+        inscricoes: e.c.inscricoes || 0, em72h: e.em72h == null ? -1 : e.em72h,
         variacao: e.semAcao ? -1e8 : e.parcial || e.depois == null ? -1e7 : e.variacao == null ? (e.depois > 0 ? 1e6 + e.depois : -1e6) : e.variacao };
     });
     linhas.sort(function (x, y) { var a = x[s.col], b = y[s.col]; return (a < b ? -1 : a > b ? 1 : 0) * s.dir || (x.e.c.inicio < y.e.c.inicio ? -1 : 1); });
+    LINHAS_DIV = new Map(linhas.map(function (l) { return [String(l.e.id), l]; }));
+    if (semAtiv && semAtiv.length) LINHAS_DIV.set('sem', { sem: semAtiv.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; }) });
     var nAb = linhas.filter(function (l) { return l.e.c.status === 'abertas'; }).length;
     $('#n-div').textContent = linhas.length + (linhas.length === 1 ? ' atividade' : ' atividades') + ', ' + nAb + ' com inscrições abertas' +
       (semAtiv && semAtiv.length ? ', mais ' + semAtiv.length + (semAtiv.length > 1 ? ' e-mails sem atividade' : ' e-mail sem atividade') : '');
-    var todasAbertas = linhas.length && linhas.every(function (l) { return estado.abertos.has(l.e.id); });
-    $('#abrir-todas').textContent = todasAbertas ? 'Fechar todas' : 'Abrir todas';
-    $('#abrir-todas').hidden = !linhas.length && !(semAtiv && semAtiv.length);
-    var nd = '<span class="nota">—</span>';
+    var nd = '<span class="nota">—</span>', seta = '<td class="abrir" aria-hidden="true"><svg viewBox="0 0 8 12"><path d="M1.5 1 6.5 6l-5 5"/></svg></td>';
     var tb = '<tbody>' + linhas.map(function (l) {
-      var e = l.e, c = e.c, aberto = estado.abertos.has(e.id), ocup = c.limite ? Math.min(1, (c.inscricoes || 0) / c.limite) : null;
+      var e = l.e, c = e.c, sel = String(estado.d.detalhe) === String(c.id);
       var nPerd = e.divs.filter(function (x) { return x.d.email_nao_encontrado; }).length;
-      var grupo = '<tr class="grupo' + (c.status === 'abertas' ? ' aberta' : '') + '" data-id="' + c.id + '" aria-expanded="' + aberto + '">' +
-        '<td><button type="button" class="exp" aria-label="' + (aberto ? 'Fechar' : 'Abrir') + ' ações de ' + esc(c.titulo) + '">' + SETA + '</button></td>' +
+      return '<tr class="grupo' + (c.status === 'abertas' ? ' aberta' : '') + (sel ? ' sel' : '') + '" data-id="' + c.id + '" tabindex="0" aria-label="Ver detalhes de ' + esc(c.titulo) + '">' +
         '<td class="titulo"><b>' + esc(c.titulo) + '</b><span class="linha-sub">' + chipArea(c.area) + '<span class="pal">Início ' + dataCurtaAno(c.inicio) + ', ' + STATUS_TXT[c.status] + '</span></span></td>' +
         '<td class="n">' + (e.divs.length ? '<span class="origem"><span class="pontos">' + uniq(e.divs.map(function (x) { return x.d.tipo; })).map(function (t) { return '<i title="' + C.TIPOS[t].nome + '" style="background:' + C.TIPOS[t].cor + '"></i>'; }).join('') + '</span>' + e.divs.length +
           (nPerd ? '<span class="aviso-cruz" title="' + nPerd + (nPerd > 1 ? ' e-mails do Trello não achados' : ' e-mail do Trello não achado') + ' no sistema">!</span>' : '') + '</span>' : nd) + '</td>' +
@@ -2291,31 +2362,81 @@ window.iniciarPainel = function () {
         '<td>' + (l.px.length ? proximaHtml(l.px[0]) + (l.px.length > 1 ? '<small class="mais">+' + (l.px.length - 1) + '</small>' : '') : c.status === 'abertas' && TEM_PROXIMAS ? '<span class="alerta-txt">Nenhuma planejada</span>' : '<span class="nota"' + (TEM_PROXIMAS ? '' : ' title="Atualize o workflow do n8n para trazer as próximas ações do Trello"') + '>—</span>') + '</td>' +
         '<td class="n"><span class="num-g">' + C.fmtInt(c.inscricoes) + '</span></td>' +
         '<td class="n">' + (e.em72h == null || (SERIE && e.ultima < SERIE) ? '<span class="nota" title="' + TIT_SERIE + '">—</span>' : '<b>' + C.fmtInt(e.em72h) + '</b>') + '</td>' +
-        '<td class="n">' + (e.semAcao ? nd : semSerie(e.ultima) ? '<span class="nota" title="' + TIT_SERIE + '">antes da série</span>' : ritmoTxt(e.antes, e.depois, e.parcial ? 0 : null).replace('<span class="nota parcial-dias">0 de 3 dias</span>', '<span class="nota parcial-dias">janela incompleta</span>')) + '</td>' +
-        '<td class="n">' + (e.semAcao || semSerie(e.ultima) ? nd : variacaoChip(e.antes, e.depois, e.parcial)) + '</td></tr>';
-      var det = '';
-      if (aberto) {
-        det = '<tr class="det" data-de="' + c.id + '"><td colspan="' + COLS_D.length + '">' +
-          (l.px.length ? '<div class="proximas"><span class="rot-bloco">Próximas ações no Trello</span>' + l.px.map(function (p) {
-            return '<div class="prox-item">' + proximaHtml(p) + '<span class="prox-t">' + (p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.titulo || C.TIPOS[p.tipo].nome) + '</a>' : esc(p.titulo || C.TIPOS[p.tipo].nome)) + '</span></div>';
-          }).join('') + '</div>' : (c.status === 'abertas' && TEM_PROXIMAS ? '<div class="proximas"><span class="rot-bloco">Próximas ações no Trello</span><span class="alerta-txt">Nenhuma divulgação planejada para esta atividade.</span></div>' : '')) +
-          (e.divs.length ? '<div class="acoes">' + e.divs.map(function (x) { return acaoHtml(x); }).join('') + '</div>' : '') + '</td></tr>';
-      }
-      return grupo + det;
-    }).join('') + (function () {
-      if (!semAtiv || !semAtiv.length) return '';
-      var lista = semAtiv.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; }), aberto = estado.abertos.has('sem');
-      return '<tr class="grupo" data-id="sem" aria-expanded="' + aberto + '">' +
-        '<td><button type="button" class="exp" aria-label="' + (aberto ? 'Fechar' : 'Abrir') + ' e-mails do PES sem atividade identificada">' + SETA + '</button></td>' +
+        '<td class="n">' + (e.semAcao || semSerie(e.ultima) ? nd : variacaoChip(e.antes, e.depois, e.parcial)) + '</td>' + seta + '</tr>';
+    }).join('') + (semAtiv && semAtiv.length ? '<tr class="grupo' + (estado.d.detalhe === 'sem' ? ' sel' : '') + '" data-id="sem" tabindex="0" aria-label="Ver e-mails do PES sem atividade identificada">' +
         '<td class="titulo"><b>E-mails do PES sem atividade identificada</b><span class="linha-sub"><span class="pal">Não citam nenhuma atividade da pasta 124</span></span></td>' +
-        '<td class="n"><span class="origem"><span class="pontos"><i style="background:' + C.TIPOS.email_marketing.cor + '"></i></span>' + lista.length + '</span></td>' +
-        '<td>' + C.dataLonga(lista[0].data) + '</td><td>' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td></tr>' +
-        (aberto ? '<tr class="det" data-de="sem"><td colspan="' + COLS_D.length + '"><div class="acoes">' + lista.map(function (d) { return acaoHtml({ d: d, semAtividade: true }); }).join('') + '</div></td></tr>' : '');
-    })() + '</tbody>';
+        '<td class="n"><span class="origem"><span class="pontos"><i style="background:' + C.TIPOS.email_marketing.cor + '"></i></span>' + semAtiv.length + '</span></td>' +
+        '<td>' + C.dataLonga(LINHAS_DIV.get('sem').sem[0].data) + '</td><td>' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td><td class="n">' + nd + '</td>' + seta + '</tr>' : '') + '</tbody>';
     var temLinhas = linhas.length || (semAtiv && semAtiv.length);
     $('#t-div').innerHTML = temLinhas ? cabecalhoTabela(COLS_D, s) + tb :
       '<tbody><tr><td class="nota" style="padding:24px 10px;white-space:normal">Nenhuma divulgação registrada para essa combinação de período, tipo e atividade.</td></tr></tbody>';
+    if (estado.d.detalhe != null) { if (LINHAS_DIV.has(String(estado.d.detalhe))) detalheDiv(estado.d.detalhe); else fecharDetalhe(); }
   }
+
+  /* ---- seção lateral: cronograma completo de uma atividade ---- */
+  function barraPct(v) { return v == null ? '' : '<span class="mbar"><i style="width:' + Math.min(100, v * 100) + '%"></i></span>'; }
+  function cartaoAcao(x) {
+    var d = x.d, e = d.email, ps = e && e.publico_selecionado, ehEmail = d.tipo === 'email_marketing' || d.tipo === 'mala_direta';
+    var ab = e && e.entregues ? e.aberturas_unicas / e.entregues : null, cl = e && e.entregues ? e.cliques_unicos / e.entregues : null;
+    var h = '<article class="cartao-acao"><div class="ca-topo"><span class="badge"><i style="background:' + C.TIPOS[d.tipo].cor + '"></i>' + C.TIPOS[d.tipo].nome + '</span><b>' + C.dataLonga(d.data) + '</b>' +
+      (d.origem === 'sistema' ? '<span class="tag">só no sistema</span>' : '') + '</div>';
+    h += '<div class="ca-tit">' + (d.link ? '<a href="' + esc(d.link) + '" target="_blank" rel="noopener">' + esc(d.titulo) + '</a>' : esc(d.titulo)) + '</div>';
+    if (e) {
+      h += '<div class="ca-linhas">' + (e.assunto ? lin('Assunto:', esc(e.assunto)) : '') + (e.remetente ? lin('Remetente:', esc(e.remetente)) : '') +
+        (e.vinculo ? lin('Ligado pelo', esc(VINCULO[e.vinculo] || e.vinculo)) : '') + '</div>';
+      if (ps) {
+        var dep = topMapa(ps.por_departamento, ps.total), car = topMapa(ps.por_cargo, ps.total);
+        h += '<div class="ca-dest"><span class="rot-bloco">Destinatários</span><b>' + C.fmtInt(ps.total) + ' pessoas' + (ps.empresas != null ? ' de ' + C.fmtInt(ps.empresas) + ' empresas' : '') + '</b>' +
+          lin('Departamentos:', dep || 'sem classificação') + lin('Cargos:', car || 'sem classificação') + '</div>';
+      } else h += '<div class="ca-dest"><span class="rot-bloco">Destinatários</span><span class="v">' + (e.destinatarios != null ? C.fmtInt(e.destinatarios) + ' destinatários. ' : '') + 'Departamentos e cargos entram na próxima atualização.</span></div>';
+      h += '<div class="ca-metr">' +
+        '<div><span class="k">Entregues</span><b>' + (e.entregues != null ? C.fmtInt(e.entregues) : '—') + '</b></div>' +
+        '<div><span class="k">Abertura</span><b>' + (ab != null ? C.fmtPct(ab, 1) : '—') + '</b>' + barraPct(ab) + '</div>' +
+        '<div><span class="k">Clique</span><b>' + (cl != null ? C.fmtPct(cl, 1) : '—') + '</b>' + barraPct(cl) + '</div></div>';
+    } else if (d.email_nao_encontrado) h += '<p class="alerta-txt">Nenhuma comunicação desta atividade enviada no sistema entre ' + C.dataCurta(d.email_nao_encontrado.de) + ' e ' + C.dataCurta(d.email_nao_encontrado.ate) + '.</p>';
+    else if (d.email_aguardando_carga) h += '<p class="nota">Os e-mails do sistema anteriores a ' + C.dataLonga(d.email_aguardando_carga) + ' ainda estão sendo carregados.</p>';
+    else if (!ehEmail) h += '<p class="nota">Canal sem lista de envio no sistema.</p>';
+    if (!x.semAtividade) {
+      h += '<div class="ca-efeito"><div><span class="k">Em até 72h</span><b>' + (SERIE && d.data < SERIE ? '—' : C.fmtInt(x.emJanela)) + '</b></div>' +
+        '<div><span class="k">Ritmo antes e depois</span><b>' + (semSerie(d.data) ? '<span class="nota" title="' + TIT_SERIE + '">antes da série</span>' : ritmoTxt(x.antes, x.depois, x.diasDepois)) + '</b></div>' +
+        '<div><span class="k">Variação</span><b>' + (semSerie(d.data) ? '—' : variacaoChip(x.antes, x.depois, x.parcial)) + '</b></div></div>';
+    }
+    return h + '</article>';
+  }
+  function detalheDiv(id) {
+    var l = LINHAS_DIV.get(String(id)); if (!l) return;
+    estado.d.detalhe = String(id);
+    var h = '<header class="det-topo"><div>';
+    if (l.sem) {
+      h += '<h2>E-mails do PES sem atividade identificada</h2><span class="nota">' + l.sem.length + (l.sem.length > 1 ? ' e-mails' : ' e-mail') + ' no período</span></div>' + BTN_FECHAR + '</header>';
+      h += '<section class="det-sec"><h3>E-mails</h3>' + l.sem.map(function (d) { return cartaoAcao({ d: d, semAtividade: true }); }).join('') + '</section>';
+    } else {
+      var e = l.e, c = e.c, ent = 0, ab = 0, cl = 0;
+      e.divs.forEach(function (x) { var m = x.d.email; if (m && m.entregues) { ent += m.entregues; ab += m.aberturas_unicas || 0; cl += m.cliques_unicos || 0; } });
+      h += '<h2>' + esc(c.titulo) + '</h2><span class="linha-sub">' + chipArea(c.area) + '<span class="pal">Início ' + C.dataLonga(c.inicio) + ', ' + STATUS_TXT[c.status] + '</span></span></div>' + BTN_FECHAR + '</header>';
+      h += '<div class="det-kpis">' +
+        '<div><span class="k">Inscrições</span><b>' + C.fmtInt(c.inscricoes) + '</b></div>' +
+        '<div><span class="k">Ações realizadas</span><b>' + e.divs.length + '</b></div>' +
+        '<div><span class="k">E-mails entregues</span><b>' + (ent ? C.fmtInt(ent) : '—') + '</b></div>' +
+        '<div><span class="k">Abertura</span><b>' + (ent ? C.fmtPct(ab / ent, 1) : '—') + '</b>' + (ent ? barraPct(ab / ent) : '') + '</div>' +
+        '<div><span class="k">Clique</span><b>' + (ent ? C.fmtPct(cl / ent, 1) : '—') + '</b>' + (ent ? barraPct(cl / ent) : '') + '</div></div>';
+      h += '<section class="det-sec"><h3>Próximas divulgações</h3>' + (l.px.length ? '<ol class="linha-tempo">' + l.px.map(function (p) {
+        var dias = C.difDias(HOJE, p.data);
+        return '<li><span class="lt-data"><b>' + C.dataCurta(p.data) + '</b><small>' + (dias === 0 ? 'hoje' : dias === 1 ? 'amanhã' : 'em ' + dias + ' dias') + '</small></span>' +
+          '<span class="badge"><i style="background:' + C.TIPOS[p.tipo].cor + '"></i>' + C.TIPOS[p.tipo].curto + '</span>' +
+          '<span class="lt-t">' + (p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.titulo || C.TIPOS[p.tipo].nome) + '</a>' : esc(p.titulo || C.TIPOS[p.tipo].nome)) + '</span></li>';
+      }).join('') + '</ol>' : c.status === 'abertas' && TEM_PROXIMAS ? '<p class="alerta-txt">Nenhuma divulgação planejada no Trello para esta atividade.</p>' : '<p class="nota">' + (TEM_PROXIMAS ? 'Sem próximas ações.' : 'Atualize o workflow do n8n para trazer as próximas ações do Trello.') + '</p>') + '</section>';
+      h += '<section class="det-sec"><h3>Cronograma realizado</h3>' + (e.divs.length ? e.divs.map(cartaoAcao).join('') : '<p class="nota">Nenhuma divulgação realizada no período selecionado.</p>') + '</section>';
+    }
+    $('#det-acao').innerHTML = h;
+    $('#det-acao').scrollTop = 0;
+    $$('#t-div tr.grupo').forEach(function (tr) { tr.classList.toggle('sel', tr.getAttribute('data-id') === String(id)); });
+    if ($('#gav-div').classList.contains('aberta')) gaveta('gav-div', false);
+    abreLateral(true);
+  }
+  var BTN_FECHAR = '<button class="fechar" type="button" data-fecha-det aria-label="Fechar detalhes"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button>';
+  function abreLateral(sim) { var g = $('#gav-acao'); g.classList.toggle('aberta', sim); g.setAttribute('aria-hidden', String(!sim)); if ('inert' in g) g.inert = !sim; setTimeout(marcaRolagem, 280); }
+  function fecharDetalhe() { estado.d.detalhe = null; abreLateral(false); $$('#t-div tr.grupo.sel').forEach(function (tr) { tr.classList.remove('sel'); }); }
 
   /* =================================================================
      Página 3 · Comparação
@@ -2328,6 +2449,10 @@ window.iniciarPainel = function () {
   function renderComparacao() {
     var P = periodos();
     var A = C.metricasPeriodo(IDX, ATRIB, P.a[0], P.a[1]), B = C.metricasPeriodo(IDX, ATRIB, P.b[0], P.b[1]);
+    // divulgações só existem a partir da carga do Trello e dos e-mails: período anterior a isso fica sem base
+    var primeiraDiv = IDX.divs.length ? IDX.divs[0].data : null;
+    if (!primeiraDiv || P.b[0] < primeiraDiv) B.divulgacoes = null;
+    if (!primeiraDiv || P.a[0] < primeiraDiv) A.divulgacoes = A.divulgacoes || null;
     $('#periodos').innerHTML = '<span class="periodo a"><i></i>' + esc(C.rotuloPeriodo(P.a)) + '</span><span class="nota">comparado a</span><span class="periodo b"><i></i>' + esc(C.rotuloPeriodo(P.b)) + '</span>';
     $('#datas-custom').hidden = estado.c.preset !== 'custom';
     if (estado.c.preset !== 'custom') { $('#a-ini').value = P.a[0]; $('#a-fim').value = P.a[1]; $('#b-ini').value = P.b[0]; $('#b-fim').value = P.b[1]; }
@@ -2344,7 +2469,7 @@ window.iniciarPainel = function () {
     var npsEsc = function (v) { return v == null ? 0 : (v + 100) / 200; };
     $('#cards-comp').innerHTML =
       card('Atividades realizadas', A.atividades, B.atividades, fI, 'pct') +
-      card('Inscrições recebidas', A.inscricoes, B.inscricoes, fI, 'pct') +
+      card('Inscrições nas atividades', A.inscricoes, B.inscricoes, fI, 'pct') +
       card('Taxa de participação', A.participacao, B.participacao, fP, 'pp') +
       card('NPS das atividades', A.nps_curso, B.nps_curso, fN, 'pts', npsEsc) +
       card('NPS dos palestrantes', A.nps_palestrantes, B.nps_palestrantes, fN, 'pts', npsEsc) +
@@ -2355,15 +2480,16 @@ window.iniciarPainel = function () {
     var ia = estado.c.preset !== 'custom' && INS.comparacao ? INS.comparacao[estado.c.preset] || [] : [];
     var aviso = !ia.length && DEMO ? 'Na versão conectada, a IA escreve aqui a justificativa de cada movimento.' :
       (!ia.length && estado.c.preset === 'custom' && INS.comparacao ? 'Períodos personalizados mostram só a explicação automática.' : '');
-    $('#ins-comp').innerHTML = insightsHtml(ia, avisoSerie(P.b[0]).concat(C.explicarComparacao(IDX, A, B)), aviso);
+    $('#ins-comp').innerHTML = insightsHtml(ia, C.explicarComparacao(IDX, A, B), aviso);
     contar(); requestAnimationFrame(marcaRolagem);
   }
 
   /* inscrições acumuladas: ano do período atual × ano anterior, mês a mês */
-  function somaPeriodo(ini, fim) { var t = 0; ATRIB.registros.forEach(function (r) { if (r.d >= ini && r.d <= fim) t += r.q; }); return t; }
+  // inscrições pela data da atividade: cada curso entra com seu total no dia em que começou
+  function somaPeriodo(ini, fim) { var t = 0; IDX.cursos.forEach(function (c) { if (c.inicio >= ini && c.inicio <= fim) t += c.inscricoes || 0; }); return t; }
   function acumulado(ini, fim) {
     var n = C.difDias(ini, fim) + 1, arr = new Array(Math.max(0, n)).fill(0);
-    ATRIB.registros.forEach(function (r) { if (r.d >= ini && r.d <= fim) arr[C.difDias(ini, r.d)] += r.q; });
+    IDX.cursos.forEach(function (c) { if (c.inicio >= ini && c.inicio <= fim) arr[C.difDias(ini, c.inicio)] += c.inscricoes || 0; });
     for (var i = 1; i < arr.length; i++) arr[i] += arr[i - 1];
     return arr;
   }
@@ -2373,9 +2499,9 @@ window.iniciarPainel = function () {
     var iniB = Yb + '-01-01', fimB = Yb + '-12-31';
     var cur = fimA >= ini ? acumulado(ini, fimA) : [], prev = acumulado(iniB, fimB);
     var nDias = Math.max(C.difDias(ini, fimAno), C.difDias(iniB, fimB)) + 1;
-    $('#tit-anual').textContent = 'Inscrições acumuladas: ' + Y + ' × ' + Yb;
+    $('#tit-anual').innerHTML = 'Inscrições acumuladas: ' + Y + ' × ' + Yb + ' <span class="nota">pela data das atividades</span>';
     $('#leg-anual').innerHTML = '<span><i></i>' + Y + '</span><span><i class="tracejada"></i>' + Yb + '</span>';
-    var notaSerie = SERIE && SERIE > iniB ? 'Série diária desde ' + C.dataLonga(SERIE) + '. ' : '';
+    var notaSerie = '';
     var el = $('#g-anual');
     var ultimoA = cur.length ? cur[cur.length - 1] : 0, totalB = prev.length ? prev[prev.length - 1] : 0;
     if (!ultimoA && !totalB) { el.innerHTML = '<div class="vazio">Sem inscrições registradas em ' + Yb + ' e ' + Y + '.</div>'; meses(Y); return; }
@@ -2612,26 +2738,32 @@ window.iniciarPainel = function () {
       kpi('Taxa de resposta', taxa == null ? '—' : C.fmtPct(taxa, 0), '', '') +
       kpi('NPS ponderado', npsW == null ? '—' : C.fmtDec(npsW, 0), z ? '<span class="zona z-txt-' + z + '">' + ZONA_TXT[z] + '</span>' : '', '') +
       kpi('Nota média (0–10)', aval ? C.fmtDec(notaS / aval, 1) : '—', '', '');
-    if (f.vista === 'grafico') { graficoTendencia(evs); atencao(evs); desempenhoArea(evs); }
+    if (f.vista === 'grafico') {
+      var areasV = uniq(evs.map(function (e) { return e.area || 'Sem área'; }));
+      if (f.areaGraf !== 'todas' && areasV.indexOf(f.areaGraf) < 0) f.areaGraf = 'todas';
+      chipsArea(evs);
+      var evsG = f.areaGraf === 'todas' ? evs : evs.filter(function (e) { return (e.area || 'Sem área') === f.areaGraf; });
+      $('#tit-tend').textContent = f.areaGraf === 'todas' ? 'Evolução mensal' : 'Evolução mensal: ' + f.areaGraf;
+      graficoTendencia(evsG); atencao(evs);
+    }
     else if (f.vista === 'tabela') tabelaQualidade(evs);
     else comentariosView(evs);
     contar(); requestAnimationFrame(marcaRolagem);
   }
 
-  function desempenhoArea(evs) {
+  // desempenho por área: cada área vira um filtro do gráfico de evolução
+  function chipsArea(evs) {
     var por = {};
     evs.forEach(function (e) { var a = e.area || 'Sem área'; (por[a] = por[a] || []).push(e); });
-    var linhas = Object.keys(por).map(function (a) {
-      var l = por[a], n = npsPond(l), comT = l.filter(function (e) { return e.taxa != null; });
-      return { a: a, nps: n, ev: l.length, aval: l.reduce(function (s, e) { return s + (e.aval || 0); }, 0),
-        taxa: comT.length ? comT.reduce(function (s, e) { return s + e.taxa; }, 0) / comT.length : null };
-    }).sort(function (x, y) { return (y.nps == null ? -999 : y.nps) - (x.nps == null ? -999 : x.nps); });
-    $('#g-area-q').innerHTML = linhas.map(function (l) {
-      var z = C.zonaNps(l.nps);
-      return '<div class="hbar"><span class="nome">' + chipArea(l.a) + '</span><span class="num">' + (l.nps == null ? '—' : '<span class="z-txt-' + z + '">' + C.fmtDec(l.nps, 0) + '</span>') + '</span>' +
-        '<span class="trilha"><i style="width:' + Math.max(0, l.nps == null ? 0 : l.nps) + '%;background:var(--accent)"></i></span>' +
-        '<span class="det">' + l.ev + (l.ev > 1 ? ' eventos' : ' evento') + ', ' + C.fmtInt(l.aval) + ' avaliações' + (l.taxa != null ? ', ' + C.fmtPct(l.taxa, 0) + ' de resposta' : '') + '</span></div>';
-    }).join('') || '<p class="aviso-ia">Sem eventos nesta seleção.</p>';
+    var areas = Object.keys(por).map(function (a) { return { a: a, nps: npsPond(por[a]), n: por[a].length }; })
+      .sort(function (x, y) { return (y.nps == null ? -999 : y.nps) - (x.nps == null ? -999 : x.nps); });
+    var tot = npsPond(evs), atual = estado.q.areaGraf;
+    function chip(v, rot, nps, n, cor) {
+      var z = C.zonaNps(nps);
+      return '<button type="button" class="chip-filtro' + (atual === v ? ' ativo' : '') + '" data-area-graf="' + esc(v) + '" aria-pressed="' + (atual === v) + '"' + (cor ? ' style="--c:' + cor + '"' : '') +
+        ' title="' + n + (n > 1 ? ' eventos' : ' evento') + '">' + (cor ? '<i></i>' : '') + '<span>' + esc(rot) + '</span>' + (nps == null ? '' : '<b class="z-txt-' + z + '">' + Math.round(nps) + '</b>') + '</button>';
+    }
+    $('#chips-area').innerHTML = chip('todas', 'Todas as áreas', tot, evs.length, null) + areas.map(function (x) { return chip(x.a, x.a, x.nps, x.n, corArea(x.a)); }).join('');
   }
 
   function comentariosDe(id) {
@@ -2735,18 +2867,11 @@ window.iniciarPainel = function () {
       if (e.target.closest('a')) return;
       var b = e.target.closest('button[data-sort]');
       if (b) { var k = b.getAttribute('data-sort'), s = estado.sortD; estado.sortD = { col: k, dir: s.col === k ? -s.dir : (k === 'titulo' ? 1 : -1) }; return renderDivulgacoes(); }
-      var tr = e.target.closest('tr.grupo'); if (!tr) return;
-      var id = tr.getAttribute('data-id'); id = id === 'sem' ? 'sem' : +id;
-      if (estado.abertos.has(id)) estado.abertos.delete(id); else estado.abertos.add(id);
-      renderDivulgacoes();
-      var foco = $('#t-div tr.grupo[data-id="' + id + '"] .exp'); if (foco) foco.focus();
+      var tr = e.target.closest('tr.grupo'); if (tr) detalheDiv(tr.getAttribute('data-id'));
     });
-    $('#abrir-todas').onclick = function () {
-      var ids = $$('#t-div tr.grupo').map(function (tr) { var v = tr.getAttribute('data-id'); return v === 'sem' ? 'sem' : +v; });
-      var todas = ids.every(function (id) { return estado.abertos.has(id); });
-      ids.forEach(function (id) { if (todas) estado.abertos.delete(id); else estado.abertos.add(id); });
-      renderDivulgacoes();
-    };
+    $('#t-div').addEventListener('keydown', function (e) { var tr = e.target.closest('tr.grupo'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); detalheDiv(tr.getAttribute('data-id')); } });
+    $('#det-acao').addEventListener('click', function (e) { if (e.target.closest('[data-fecha-det]')) fecharDetalhe(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('#gav-acao').classList.contains('aberta')) fecharDetalhe(); });
 
     // ---- página 3
     dd.preset = new Dropdown($('#dd-preset'), { rotulo: 'Comparar', valor: 'mes', semDestaque: true,
@@ -2786,8 +2911,10 @@ window.iniciarPainel = function () {
       dd.qVer = new Dropdown($('#dd-q-ver'), { rotulo: 'Ver', valor: 'eventos', semDestaque: true, opcoes: [{ v: 'eventos', t: 'Eventos' }, { v: 'palestrantes', t: 'Palestrantes' }],
         onChange: function (v) { estado.q.ver = v; renderQualidade(); } });
       var tmq; $('#q-busca').oninput = function () { var v = this.value; clearTimeout(tmq); tmq = setTimeout(function () { estado.q.busca = v; renderQualidade(); }, 180); };
-      $('#limpar-q').onclick = function () { estado.q = { area: 'todos', mod: 'todos', ano: qAnos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (qAnos[0] || 'todos'), mes: 'todos', busca: '', ver: estado.q.ver, vista: estado.q.vista, sel: null }; dd.qArea.definir('todos'); dd.qMod.definir('todos'); dd.qAno.definir(estado.q.ano); dd.qMes.definir('todos'); $('#q-busca').value = ''; renderQualidade(); };
+      $('#limpar-q').onclick = function () { estado.q = { area: 'todos', mod: 'todos', ano: qAnos.indexOf(ANO_ATUAL) >= 0 ? ANO_ATUAL : (qAnos[0] || 'todos'), mes: 'todos', busca: '', ver: estado.q.ver, vista: estado.q.vista, sel: null, areaGraf: 'todas' }; dd.qArea.definir('todos'); dd.qMod.definir('todos'); dd.qAno.definir(estado.q.ano); dd.qMes.definir('todos'); $('#q-busca').value = ''; renderQualidade(); };
       document.addEventListener('click', function (e) {
+        var ag = e.target.closest('#pg-qualidade [data-area-graf]');
+        if (ag) { estado.q.areaGraf = ag.getAttribute('data-area-graf'); renderQualidade(); return; }
         var sel = e.target.closest('#pg-qualidade [data-sel]');
         if (sel) { estado.q.sel = sel.getAttribute('data-sel'); renderQualidade(); return; }
         var b = e.target.closest('#pg-qualidade [data-ev]'); if (b) abrirComentarios(b.getAttribute('data-ev'));
@@ -2801,14 +2928,14 @@ window.iniciarPainel = function () {
       var k = b.getAttribute('data-sort'), s = estado.sortA;
       estado.sortA = { col: k, dir: s.col === k ? -s.dir : (k === 'titulo' ? 1 : -1) }; renderAtividades();
     });
-    $$('[data-gaveta]').forEach(function (b) { var id = b.getAttribute('data-gaveta'); b.onclick = function () { gaveta(id); }; gaveta(id, le('pes-' + id) === '1'); });
+    $$('[data-gaveta]').forEach(function (b) { var id = b.getAttribute('data-gaveta'); b.onclick = function () { if (id === 'gav-div') fecharDetalhe(); gaveta(id); }; gaveta(id, le('pes-' + id) === '1' && id !== 'gav-div'); });
     $$('[data-fecha]').forEach(function (b) { b.onclick = function () { var id = b.getAttribute('data-fecha'); gaveta(id, false); var bt = $('[data-gaveta="' + id + '"]'); if (bt) bt.focus(); }; });
     function destaca(e) {
       if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
       var it = e.target.closest('.insight[role="button"]'); if (!it) return;
       e.preventDefault();
       var id = it.getAttribute('data-curso');
-      if (estado.pg === 'divulgacoes') { estado.abertos.add(+id); renderDivulgacoes(); }
+      if (estado.pg === 'divulgacoes') { detalheDiv(id); return; }
       else if (estado.pg === 'comparacao') irPara('atividades');
       var tabela = estado.pg === 'divulgacoes' ? '#t-div' : '#t-atv';
       var tr = $(tabela + ' tr[data-id="' + CSS.escape(id) + '"]');
