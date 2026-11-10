@@ -259,7 +259,7 @@ main.palco { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 12px; 
 
 /* página 2: atividade com divulgações abertas */
 .tabela tr.grupo { cursor: pointer; }
-.tabela tr.grupo td:first-child { padding-left: 4px; }
+.tabela tr.grupo td:first-child { padding-left: 18px; }   /* mesmo recuo da tabela de Atividades */
 .exp { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; display: inline-grid; place-items: center; color: var(--accent); }
 .exp svg { width: 10px; height: 6px; stroke: currentColor; fill: none; stroke-width: 1.6; transition: transform .15s; }
 tr.grupo[aria-expanded="true"] .exp svg { transform: rotate(180deg); }
@@ -751,6 +751,11 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
   .gaveta.sobre, .gaveta.sobre.aberta { position: static; width: auto; }
   .det-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+/* primeira coluna: mesmo recuo nas linhas e no título da coluna, nas duas tabelas */
+#t-atv td.titulo, #t-div td.titulo { padding-left: 18px; }
+#t-atv thead th:first-child, #t-div thead th:first-child { padding-left: 18px; }
+#t-atv thead th:first-child button, #t-div thead th:first-child button { padding-left: 0; }
 
 </style>
 </head>
