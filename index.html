@@ -1017,6 +1017,20 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .afin-n { font-size: 12px; color: var(--fg-2); line-height: 1.4; }
 .afin-n b { font: 600 13px var(--f-display); color: var(--accent); }
 .tabela .titulo .afin-n b, .tabela td.titulo .afin-n b, .afin-n b { display: inline; margin: 0; font: 600 13px var(--f-display); color: var(--accent); }
+.explica-pot { margin: -8px 0 16px; font-size: 12.5px; line-height: 1.5; }
+/* Público com leitura do observador; público-alvo na lateral de Divulgações */
+.p-vistas { display: grid; grid-template-rows: minmax(0, 1fr); min-height: 0; min-width: 0; }
+.p-vistas > [hidden] { display: none; }
+.lt-pub { grid-column: 1 / -1; display: grid; gap: 2px; font-size: 12.5px; color: var(--fg-2); padding-top: 6px; border-top: 1px dashed var(--line); }
+.lt-pub b { color: var(--accent); font-weight: 600; margin-right: 4px; }
+.lt-ang { color: var(--muted); }
+.pot-sec .tabela { font-size: 13px; }
+.pot-sec .det-kpis { margin-bottom: 10px; }
+.pot-sec .tabela { table-layout: fixed; width: 100%; }
+.pot-sec .tabela th { white-space: normal; line-height: 1.3; }
+.pot-sec .tabela td, .pot-sec .tabela th { padding: 8px 6px; }
+.pot-sec .tabela th:first-child, .pot-sec .tabela td.titulo { width: 46%; padding-left: 10px; min-width: 0; }
+.pot-sec .tabela td.titulo b { white-space: normal; overflow-wrap: anywhere; }
 
 </style>
 </head>
@@ -1219,27 +1233,36 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           <button class="limpar" type="button" id="limpar-p" hidden>Limpar filtros</button>
         </span>
         <div class="direita">
+          <button class="btn-leitura" type="button" aria-expanded="false" aria-controls="gav-pub" data-gaveta="gav-pub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Leitura do público<span class="cont" id="cont-pub">0</span>
+          </button>
           <div class="vistas" role="group" aria-label="Seção da página">
             <button type="button" class="vista" data-pvista="usuarios" title="Departamentos, cargos e engajamento"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg><span>Usuários</span></button>
             <button type="button" class="vista" data-pvista="empresas" title="Relação de empresas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l6-3v15M10 20V10l10-3v13M3 20h18"/><path d="M13.5 11.5h3M13.5 15h3"/></svg><span>Empresas</span></button>
-            <button type="button" class="vista" data-pvista="potencial" title="Usuários em potencial para as próximas atividades"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/><path d="M11 8v6M8 11h6"/></svg><span>Em potencial</span></button>
           </div>
         </div>
       </div>
       <div class="painel cluster" id="kpis-p" aria-live="polite"></div>
 
-      <div class="vista-q p-usu" id="p-usuarios">
+      <div class="area">
+        <div class="p-vistas">
+        <div class="vista-q p-usu" id="p-usuarios">
         <div class="painel tabela-p p-dep"><header><h2>Departamentos</h2><span class="nota">área de destaque: onde o grupo concentra mais inscrições do que o PES como um todo</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-dep"></table></div></div>
         <div class="painel tabela-p p-car"><header><h2>Cargos</h2><span class="nota" id="n-p-car"></span></header><div class="corpo rolagem"><table class="tabela" id="t-p-car"></table></div></div>
       </div>
 
-      <div class="vista-q" id="p-empresas" hidden>
+        <div class="vista-q" id="p-empresas" hidden>
         <div class="painel tabela-p"><header><h2>Empresas</h2><span class="nota" id="n-p-emp"></span></header><div class="corpo rolagem"><table class="tabela" id="t-p-emp"></table></div></div>
       </div>
 
-      <div class="vista-q q-com" id="p-potencial" hidden>
-        <div class="painel"><header><h2>Próximas atividades</h2><span class="nota" id="n-p-pot"></span></header><div class="corpo rolagem"><div id="lista-pot"></div></div></div>
-        <div class="painel"><div class="corpo rolagem"><div id="det-pot"></div></div></div>
+        </div>
+        <aside class="gaveta" id="gav-pub" aria-label="Leitura do público">
+          <div class="painel">
+            <header><h2>Leitura do público</h2><span class="nota">observador de empresas e usuários</span>
+              <button class="fechar" type="button" data-fecha="gav-pub" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
+            <div class="corpo rolagem"><div class="insights" id="ins-pub"></div></div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -2152,6 +2175,21 @@ function gerarPublicoDemo(P) {
 window.iniciarPainel = function () {
   'use strict';
   var C = PESCore;
+  (function juntarArquivos() {
+    var A = window.PES_ATIVIDADES, D = window.PES_DIVULGACOES, P = window.PES_PUBLICO, K = window.PES_COMPARACAO;
+    if (!A) return;
+    var meta = Object.assign({}, A.meta); meta.fontes = Object.assign({}, A.meta && A.meta.fontes);
+    if (D && D.meta) { meta.cruzamento = D.meta.cruzamento; if (D.meta.fontes) meta.fontes.trello = D.meta.fontes.trello; }
+    meta.fontes.ia = [A, D, P, K].some(function (x) { return x && x.insights; }) ? 'ok' : 'erro';
+    var dim = { e: {}, d: {}, c: {}, a: {} };
+    [P && P.publico && P.publico.dim, D && D.dim_potencial].forEach(function (x) { if (x) ['e', 'd', 'c', 'a'].forEach(function (t) { Object.assign(dim[t], x[t] || {}); }); });
+    var ins = function (x, k) { return x && x.insights && x.insights[k] || null; };
+    window.PES_DATA = { meta: meta, cursos: A.cursos, inscricoes_diarias: A.inscricoes_diarias || [], divulgacoes: D ? D.divulgacoes || [] : [], proximas: D ? D.proximas : undefined,
+      publico: P && P.publico ? Object.assign({}, P.publico, { dim: dim, potencial: D ? D.potencial || [] : [] }) : (D && D.potencial ? { cubo: [], dim: dim, potencial: D.potencial } : null),
+      agente_publico: D ? D.agente_publico || [] : [],
+      insights: { cursos: ins(A, 'cursos') || [], divulgacoes: ins(D, 'divulgacoes') || [], publico: ins(D, 'publico') || [], comparacao: ins(K, 'comparacao') || {},
+        empresas: ins(P, 'empresas') || [], usuarios: ins(P, 'usuarios') || [] } };
+  })();
   var DATA = window.PES_DATA || gerarDadosDemo();
   var DEMO = !window.PES_DATA || !!(DATA.meta && DATA.meta.demo);
   var META = DATA.meta || {};
@@ -2813,8 +2851,11 @@ window.iniciarPainel = function () {
         var dias = C.difDias(HOJE, p.data);
         return '<li><span class="lt-data"><b>' + C.dataCurta(p.data) + '</b><small>' + (dias === 0 ? 'hoje' : dias === 1 ? 'amanhã' : 'em ' + dias + ' dias') + '</small></span>' +
           '<span class="badge"><i style="background:' + C.TIPOS[p.tipo].cor + '"></i>' + C.TIPOS[p.tipo].curto + '</span>' +
-          '<span class="lt-t">' + (p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.titulo || C.TIPOS[p.tipo].nome) + '</a>' : esc(p.titulo || C.TIPOS[p.tipo].nome)) + '</span></li>';
+          '<span class="lt-t">' + (p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.titulo || C.TIPOS[p.tipo].nome) + '</a>' : esc(p.titulo || C.TIPOS[p.tipo].nome)) + '</span>' +
+          (function () { var a = acaoDoAgente(c.id, p); return a ? '<span class="lt-pub"><b>Para quem:</b> ' + esc(a.publico_alvo) + (a.angulo ? '<span class="lt-ang">Ângulo: ' + esc(a.angulo) + '</span>' : '') + '</span>' : ''; })() + '</li>';
       }).join('') + '</ol>' : c.status === 'abertas' && TEM_PROXIMAS ? '<p class="alerta-txt">Nenhuma divulgação planejada no Trello para esta atividade.</p>' : '<p class="nota">' + (TEM_PROXIMAS ? 'Sem próximas ações.' : 'Atualize o workflow do n8n para trazer as próximas ações do Trello.') + '</p>') + '</section>';
+      var pot = PUB && (PUB.potencial || []).filter(function (y) { return y.curso_id === c.id; })[0];
+      if (pot) h += '<section class="det-sec pot-sec"><h3>Público-alvo sugerido</h3>' + potHtml(pot) + '</section>';
       h += '<section class="det-sec"><h3>Cronograma realizado</h3>' + (e.divs.length ? e.divs.map(cartaoAcao).join('') : '<p class="nota">Nenhuma divulgação realizada no período selecionado.</p>') + '</section>';
     }
     $('#det-acao').innerHTML = h;
@@ -3335,13 +3376,13 @@ window.iniciarPainel = function () {
   function renderPublico() {
     var f = estado.p;
     $$('#pg-publico .vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pvista') === f.vista)); });
-    ['usuarios', 'empresas', 'potencial'].forEach(function (v) { $('#p-' + v).hidden = f.vista !== v; });
-    $('#p-filtros-perfil').hidden = f.vista === 'potencial';
-    $('#dd-p-ano').hidden = f.vista === 'potencial'; $('#sw-p-evo').hidden = f.vista === 'potencial';
+    ['usuarios', 'empresas'].forEach(function (v) { $('#p-' + v).hidden = f.vista !== v; });
+    var leitura = (INS.empresas || []).concat(INS.usuarios || []);
+    $('#ins-pub').innerHTML = insightsHtml(leitura, [], leitura.length ? '' : 'A leitura do observador de empresas e usuários aparece aqui depois da execução do workflow de Público no n8n.');
+    $('#cont-pub').textContent = leitura.length;
     $('#sw-p-evo').setAttribute('aria-checked', String(!!f.evo));
     if (!PUB) { $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Público</span></div><div class="valor">—</div><div class="ctx">Atualize o workflow do n8n para trazer os dados do público.</div></div>'; return; }
     $('#limpar-p').hidden = f.dep === 'todos' && f.car === 'todos' && f.assoc === 'todas' && !f.busca;
-    if (f.vista === 'potencial') { $('#kpis-p').hidden = true; potencialP(); requestAnimationFrame(marcaRolagem); return; }
     $('#kpis-p').hidden = false;
     var rows = linhasP(), rowsB = linhasP(anoRef(f.ano)), rot = rotRef(f.ano);
     var tot = agrupaP(rows)[0] || VAZIO_P, totB = agrupaP(rowsB)[0] || null;
@@ -3409,6 +3450,28 @@ window.iniciarPainel = function () {
         '<td class="n">' + partP(x) + '</td><td class="n">' + C.fmtDec(x.cpp, 1) + '</td><td class="n">' + npsP(x) + '</td><td>' + (afinidadeP(x, base) || '<span class="nota">—</span>') + '</td></tr>';
     }).join('') + '</tbody>';
   }
+  function potHtml(x) {
+    var ag = AGENTE[x.curso_id], ia = SUG_IA[x.curso_id];
+    var deps = x.alvo_dep.slice(0, 4).map(function (d) { return nomeP('d', d); }).join(', ') + (x.alvo_dep.length > 4 ? ' e outros ' + (x.alvo_dep.length - 4) + ' departamentos' : '');
+    var auto = 'Divulgue para ' + x.alvo_dep.slice(0, 3).map(function (d) { return nomeP('d', d); }).join(', ') +
+      (x.cargos_alvo.length ? ', principalmente ' + x.cargos_alvo.slice(0, 2).map(function (y) { return nomeP('c', y[0]); }).join(' e ') : '') + '. ' + C.fmtInt(x.total.pessoas) +
+      ' pessoas desses departamentos participaram de cursos da mesma área nos últimos 12 meses e ainda não se inscreveram' +
+      (x.ranking.length ? '; as empresas com mais delas são ' + x.ranking.slice(0, 3).map(function (r) { return nomeP('e', r[0]) + ' (' + r[1] + ')'; }).join(', ') : '') + '.';
+    return (ag ? agenteHtml(ag, x) : '<div class="sug ' + (ia ? 'ia' : '') + '"><span class="rot-bloco">' + (ia ? 'Sugestão da IA' : 'Sugestão automática') + '</span><p>' + esc(ia ? ia.texto : auto) + '</p>' +
+        (ia ? '' : '<p class="nota">A análise do agente de público aparece aqui depois da execução do workflow de Divulgações.</p>') + '</div>') +
+      '<div class="det-kpis p3"><div><span class="k">Pessoas com potencial</span><b>' + C.fmtInt(x.total.pessoas) + '</b></div>' +
+        '<div><span class="k">Empresas com essas pessoas</span><b>' + C.fmtInt(x.total.empresas) + '</b></div>' +
+        '<div><span class="k">Dessas, sem nenhum inscrito</span><b>' + C.fmtInt(x.total.sem_inscritos) + '</b></div></div>' +
+      '<p class="nota explica-pot">Pessoas com potencial: quem trabalha em ' + esc(deps) + ', esteve presente em algum curso de ' + esc(nomeP('a', x.area)) + ' nos últimos 12 meses e ainda não se inscreveu nesta atividade.</p>' +
+      '<table class="tabela"><thead><tr><th>Empresa</th><th class="n">Com potencial</th><th class="n" title="Presenças dessas pessoas em cursos da mesma área nos últimos 12 meses">Presenças em 12 meses</th><th class="n">Já inscritas</th></tr></thead><tbody>' +
+        x.ranking.slice(0, 8).map(function (r) { var as = assocP(r[0]); return '<tr><td class="titulo"><b>' + esc(nomeP('e', r[0])) + '</b>' + (as == null ? '' : '<span class="tag' + (as ? ' assoc' : '') + '">' + (as ? 'associada' : 'não associada') + '</span>') + '</td><td class="n"><span class="num-g">' + C.fmtInt(r[1]) + '</span></td><td class="n">' + C.fmtInt(r[2]) + '</td><td class="n">' + (r[3] ? C.fmtInt(r[3]) : '<span class="alerta-txt">0</span>') + '</td></tr>'; }).join('') +
+      '</tbody></table>';
+  }
+  function acaoDoAgente(cursoId, p) {
+    var ag = AGENTE[cursoId]; if (!ag || !ag.acoes) return null;
+    var t = semAcento(p.titulo || '').slice(0, 18);
+    return ag.acoes.filter(function (a) { return a.data === p.data && semAcento(a.titulo || '').slice(0, 18) === t; })[0] || ag.acoes.filter(function (a) { return a.data === p.data; })[0] || null;
+  }
   function agenteHtml(ag, x) {
     var cor = { 'faz sentido': 'var(--g-bom)', 'em parte': 'var(--g-medio)', 'não faz sentido': 'var(--g-ruim)' };
     return '<div class="sug ia"><span class="rot-bloco">Análise do agente de público</span><p>' + esc(ag.resumo) + '</p></div>' +
@@ -3426,7 +3489,7 @@ window.iniciarPainel = function () {
     $('#lista-pot').innerHTML = lista.length ? lista.map(function (x) {
       var c = IDX.porId.get(x.curso_id), at = String(x.curso_id) === String(estado.p.sel);
       return '<button type="button" class="curso-com' + (at ? ' ativo' : '') + '" data-pot="' + x.curso_id + '" aria-pressed="' + at + '"><span class="t">' + esc(c.titulo) + '</span>' +
-        '<span class="m">' + dataCurtaAno(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos, ' + C.fmtInt(x.total.pessoas) + ' no perfil</span>' + (AGENTE[x.curso_id] || SUG_IA[x.curso_id] ? '<span class="cont" title="Análise do agente de público">IA</span>' : '') + '</button>';
+        '<span class="m">' + dataCurtaAno(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos, ' + C.fmtInt(x.total.pessoas) + ' com potencial</span>' + (AGENTE[x.curso_id] || SUG_IA[x.curso_id] ? '<span class="cont" title="Análise do agente de público">IA</span>' : '') + '</button>';
     }).join('') : '<p class="aviso-ia">Nenhuma atividade futura com dados do sistema.</p>';
     var x = lista.filter(function (y) { return String(y.curso_id) === String(estado.p.sel); })[0];
     if (!x) { $('#det-pot').innerHTML = ''; return; }
@@ -3434,16 +3497,18 @@ window.iniciarPainel = function () {
     var pct = function (n, t) { return t ? Math.round(n * 100 / t) + '%' : ''; };
     var auto = 'Divulgue para ' + x.alvo_dep.slice(0, 3).map(function (d) { return nomeP('d', d); }).join(', ') +
       (x.cargos_alvo.length ? ', principalmente ' + x.cargos_alvo.slice(0, 2).map(function (y) { return nomeP('c', y[0]); }).join(' e ') : '') +
-      '. ' + C.fmtInt(x.total.pessoas) + ' pessoas desse perfil participaram de cursos da mesma área nos últimos 12 meses e ainda não se inscreveram' +
+      '. ' + C.fmtInt(x.total.pessoas) + ' pessoas desses departamentos participaram de cursos da mesma área nos últimos 12 meses e ainda não se inscreveram' +
       (x.ranking.length ? '; as empresas com mais delas são ' + x.ranking.slice(0, 3).map(function (r) { return nomeP('e', r[0]) + ' (' + r[1] + ')'; }).join(', ') : '') + '.';
     $('#det-pot').innerHTML =
       '<header class="det-topo"><div><h2>' + esc(c.titulo) + '</h2><span class="linha-sub">' + chipArea(c.area) + '<span class="pal">Início ' + C.dataLonga(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos</span></span></div></header>' +
       (AGENTE[x.curso_id] ? agenteHtml(AGENTE[x.curso_id], x) : '<div class="sug ' + (ia ? 'ia' : '') + '"><span class="rot-bloco">' + (ia ? 'Sugestão da IA' : 'Sugestão automática') + '</span><p>' + esc(ia ? ia.texto : auto) + '</p>' +
         (ia ? '' : '<p class="nota">A análise do agente de público aparece aqui depois da próxima execução do n8n.</p>') + '</div>') +
       '<div class="det-kpis p3">' +
-        '<div><span class="k">Pessoas do perfil ainda não inscritas</span><b>' + C.fmtInt(x.total.pessoas) + '</b></div>' +
-        '<div><span class="k">Empresas com pessoas do perfil</span><b>' + C.fmtInt(x.total.empresas) + '</b></div>' +
-        '<div><span class="k">Sem nenhum inscrito</span><b>' + C.fmtInt(x.total.sem_inscritos) + '</b></div></div>' +
+        '<div><span class="k">Pessoas com potencial</span><b>' + C.fmtInt(x.total.pessoas) + '</b></div>' +
+        '<div><span class="k">Empresas com essas pessoas</span><b>' + C.fmtInt(x.total.empresas) + '</b></div>' +
+        '<div><span class="k">Dessas, sem nenhum inscrito</span><b>' + C.fmtInt(x.total.sem_inscritos) + '</b></div></div>' +
+      '<p class="nota explica-pot">Pessoas com potencial: quem trabalha em ' + esc(x.alvo_dep.slice(0, 4).map(function (d) { return nomeP('d', d); }).join(', ')) + (x.alvo_dep.length > 4 ? ' e outros ' + (x.alvo_dep.length - 4) + ' departamentos' : '') +
+        ', esteve presente em algum curso de ' + esc(nomeP('a', x.area)) + ' nos últimos 12 meses e ainda não se inscreveu nesta atividade.</p>' +
       '<section class="det-sec"><h3>' + (x.fonte === 'inscritos' ? 'Perfil de quem já se inscreveu' : 'Perfil de quem participa desta área') + '</h3>' +
         (x.fonte !== 'inscritos' ? '<p class="nota">Poucos inscritos até agora; o perfil vem de quem participou de cursos da mesma área nos últimos 12 meses.</p>' : '') +
         '<div class="p-perfil">' + (x.perfil_dep.length ? x.perfil_dep : []).map(function (y) {
@@ -3451,7 +3516,7 @@ window.iniciarPainel = function () {
         }).join('') + '</div>' +
         '<div class="alvo">' + x.alvo_dep.map(function (d) { return '<span class="tag assoc">' + esc(nomeP('d', d)) + '</span>'; }).join('') +
           x.cargos_alvo.map(function (y) { return '<span class="tag">' + esc(nomeP('c', y[0])) + '</span>'; }).join('') + '</div></section>' +
-      '<section class="det-sec"><h3>Empresas com mais pessoas do perfil</h3><table class="tabela"><thead><tr><th>Empresa</th><th class="n">Pessoas do perfil</th><th class="n">Presenças em 12 meses</th><th class="n">Já inscritas</th></tr></thead><tbody>' +
+      '<section class="det-sec"><h3>Empresas com mais pessoas com potencial</h3><table class="tabela"><thead><tr><th>Empresa</th><th class="n">Pessoas com potencial</th><th class="n">Presenças delas na área em 12 meses</th><th class="n">Já inscritas</th></tr></thead><tbody>' +
         x.ranking.map(function (r) { var as = assocP(r[0]); return '<tr><td class="titulo"><b>' + esc(nomeP('e', r[0])) + '</b>' + (as == null ? '' : '<span class="tag' + (as ? ' assoc' : '') + '">' + (as ? 'associada' : 'não associada') + '</span>') + '</td><td class="n"><span class="num-g">' + C.fmtInt(r[1]) + '</span></td><td class="n">' + C.fmtInt(r[2]) + '</td><td class="n">' + (r[3] ? C.fmtInt(r[3]) : '<span class="alerta-txt">0</span>') + '</td></tr>'; }).join('') +
       '</tbody></table></section>';
     $('#det-pot').closest('.rolagem').scrollTop = 0;
@@ -3577,7 +3642,6 @@ window.iniciarPainel = function () {
       var tmp; $('#p-busca').oninput = function () { var v = this.value; clearTimeout(tmp); tmp = setTimeout(function () { estado.p.busca = v; renderPublico(); }, 180); };
       $('#limpar-p').onclick = function () { estado.p.dep = 'todos'; estado.p.car = 'todos'; estado.p.assoc = 'todas'; estado.p.busca = ''; dd.pDep.definir('todos'); dd.pCar.definir('todos'); dd.pAssoc.definir('todas'); $('#p-busca').value = ''; renderPublico(); };
       $('#t-p-emp').addEventListener('click', function (e) { var b = e.target.closest('button[data-sort]'); if (!b) return; var k = b.getAttribute('data-sort'), s = estado.p.sortE; estado.p.sortE = { col: k, dir: s.col === k ? -s.dir : (k === 'nome' ? 1 : -1) }; renderPublico(); });
-      $('#lista-pot').addEventListener('click', function (e) { var b = e.target.closest('[data-pot]'); if (b) { estado.p.sel = b.getAttribute('data-pot'); renderPublico(); } });
     }
     $$('#pg-publico .vista').forEach(function (b) { b.onclick = function () { estado.p.vista = b.getAttribute('data-pvista'); renderPublico(); }; });
     $('#sw-p-evo').onclick = function () { estado.p.evo = !estado.p.evo; renderPublico(); };
@@ -3665,7 +3729,7 @@ window.iniciarPainel = function () {
    qualidade (acervo_pesquisas_qualidade). Sem os dados do painel, abre em demonstração. */
 (function () {
   var QUALIDADE = 'https://programaeducacional.github.io/acervo_pesquisas_qualidade/data_dash.js';
-  var faltam = 3, feito = false;
+  var faltam = 7, feito = false;
   function seguir() {
     if (feito) return; feito = true;
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.iniciarPainel);
@@ -3677,6 +3741,8 @@ window.iniciarPainel = function () {
     s.onload = s.onerror = function () { if (--faltam === 0) seguir(); };
     document.head.appendChild(s);
   }
+  // um arquivo por workflow do n8n; o data_dash.js antigo continua aceito enquanto existir
+  carregar('atividades.js'); carregar('divulgacoes.js'); carregar('publico.js'); carregar('comparacao.js');
   carregar('data_dash.js');
   carregar('indicadores.js');   // metas e valores informados dos indicadores GIBS
   carregar(QUALIDADE);
