@@ -757,6 +757,198 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 #t-atv thead th:first-child, #t-div thead th:first-child { padding-left: 18px; }
 #t-atv thead th:first-child button, #t-div thead th:first-child button { padding-left: 0; }
 
+
+/* =====================================================================
+   Indicadores GIBS
+   ===================================================================== */
+:root { --g-ruim: #E5484D; --g-medio: #D99A00; --g-bom: #00A383; --g-otimo: #0072BC; }
+:root[data-theme="dark"] { --g-ruim: #FF7A85; --g-medio: #FFC56E; --g-bom: #00F0B4; --g-otimo: #00B9F2; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --g-ruim: #FF7A85; --g-medio: #FFC56E; --g-bom: #00F0B4; --g-otimo: #00B9F2; } }
+.g-hero { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; align-items: center; padding: 16px 24px; overflow: hidden; position: relative; }
+.g-hero::after { content: ""; position: absolute; inset: -40% -10% auto auto; width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 65%); pointer-events: none; }
+.g-anel { position: relative; width: 150px; height: 150px; flex: none; }
+.anel { width: 100%; height: 100%; filter: drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 35%, transparent)); }
+.anel-v { animation: anelEntra 1.1s var(--ease) both; }
+@keyframes anelEntra { from { stroke-dasharray: 0 999; } }
+.g-total { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 1px; }
+.g-total b { font: 700 38px/1 var(--f-display); letter-spacing: -.02em; }
+.g-total span { font-size: 12.5px; color: var(--fg-2); }
+.g-total small { font-size: 10.5px; color: var(--muted); }
+.g-resumo { position: relative; z-index: 1; display: grid; gap: 10px; min-width: 0; }
+.g-resumo h2 { margin: 0; font: 600 21px/1.2 var(--f-display); letter-spacing: -.01em; }
+.g-status { display: inline-flex; align-items: center; gap: 8px; justify-self: start; padding: 4px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
+  color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); }
+.g-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.g-pilulas { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.g-pil { display: grid; gap: 2px; padding: 10px 12px; border-radius: 14px; background: var(--panel-sub); border: 1px solid var(--line); position: relative; overflow: hidden; }
+.g-pil::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c); box-shadow: 0 0 12px var(--c); }
+.g-pil .n { font-size: 11.5px; color: var(--muted); line-height: 1.3; }
+.g-pil b { font: 700 22px/1.1 var(--f-display); color: var(--c); }
+.g-pil .p { font-size: 11.5px; color: var(--fg-2); }
+.g-matriz .corpo { padding: 0; }
+.tabela.matriz { font-size: 13px; }
+.tabela.matriz th.g-niv { color: var(--c); font: 700 12.5px var(--f-display); text-align: center; padding: 10px 4px; }
+.tabela.matriz td { padding: 12px 4px; vertical-align: middle; }
+.tabela.matriz .g-ind { padding-left: 18px; min-width: 300px; max-width: 380px; }
+.tabela.matriz td.g-ind b { display: block; font-size: 14.5px; font-weight: 600; line-height: 1.35; }
+.g-sub { display: block; margin-top: 5px; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+.g-fonte { display: inline-flex; margin-right: 7px; padding: 0 7px; border-radius: 999px; font-size: 10.5px; font-weight: 600; letter-spacing: .02em; vertical-align: 1px; }
+.g-fonte.auto { background: var(--accent-soft); color: var(--accent); }
+.g-fonte.inf { background: color-mix(in srgb, var(--data-2) 16%, transparent); color: var(--data-2); }
+.g-fonte.pend { background: color-mix(in srgb, var(--g-medio) 16%, transparent); color: var(--g-medio); }
+.g-peso { color: var(--fg-2); padding-left: 10px !important; padding-right: 10px !important; }
+.g-res { font: 600 15px var(--f-display); white-space: nowrap; padding-right: 14px !important; }
+.g-cel { text-align: center; }
+.g-cel span { display: inline-grid; place-items: center; min-width: 44px; height: 30px; padding: 0 5px; border-radius: 9px; color: var(--muted);
+  transition: background .4s var(--ease), color .4s var(--ease), transform .4s var(--ease); }
+.g-cel.alc span { background: color-mix(in srgb, var(--accent) 9%, transparent); color: var(--fg-2); }
+.g-cel.atual span { background: var(--c); color: #001A44; font-weight: 700; transform: scale(1.08);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 60%, transparent), 0 8px 22px -6px color-mix(in srgb, var(--c) 70%, transparent); }
+.g-pts { font: 700 17px var(--f-display); padding-left: 14px !important; padding-right: 18px !important; }
+.tabela.matriz tfoot td { border-top: 1px solid var(--line-strong); padding-top: 14px; padding-bottom: 14px; background: color-mix(in srgb, var(--accent) 5%, transparent); }
+.g-trilha { position: relative; height: 10px; margin: 0 6px; border-radius: 999px; background: var(--line); }
+.g-trilha > i { display: block; height: 100%; border-radius: 999px; box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 45%, transparent); animation: trilha 1s var(--ease) both; }
+@keyframes trilha { from { width: 0 !important; } }
+.g-meta { position: absolute; top: -6px; bottom: -6px; width: 2px; background: var(--fg); border-radius: 2px; }
+.g-meta em { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font: 600 10.5px var(--f-text); font-style: normal; color: var(--fg-2); }
+.g-tot { color: var(--c); font-size: 22px !important; }
+@media (max-width: 1180px) { .g-hero { grid-template-columns: minmax(0, 1fr); justify-items: center; } .g-pilulas { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* matriz cabe em 1366 px: células dos níveis mais justas */
+.tabela.matriz td.g-cel, .tabela.matriz th.g-niv { padding-left: 2px; padding-right: 2px; }
+.g-cel span { min-width: 40px; padding: 0 3px; }
+.tabela.matriz .g-ind { min-width: 230px; }
+@media (max-width: 1440px) { .tabela.matriz { font-size: 12.5px; } .g-cel span { min-width: 37px; } .tabela.matriz td.g-ind b { font-size: 13.5px; } }
+/* telas abaixo de 1366 px: títulos de coluna podem quebrar e a matriz fica mais justa */
+@media (max-width: 1365px) {
+  .tabela th { white-space: normal; }
+  .tabela.matriz { font-size: 12px; }
+  .tabela.matriz .g-ind { min-width: 190px; }
+  .tabela.matriz td.g-ind b { font-size: 13px; }
+  .g-sub { font-size: 11px; }
+  .g-cel span { min-width: 33px; height: 28px; padding: 0 2px; }
+  .g-res { font-size: 14px; padding-right: 8px !important; }
+  .g-pts { font-size: 15px; padding-right: 12px !important; }
+  .g-peso { padding-left: 6px !important; padding-right: 6px !important; }
+}
+@media (max-width: 1365px) { .g-cel span { min-width: 31px; } .tabela.matriz .g-ind { min-width: 175px; } }
+.g-total b { font-size: 34px; }
+.g-total { padding-bottom: 6px; }
+.g-escala { position: absolute; left: 0; right: 0; bottom: 4px; text-align: center; font-size: 10.5px; color: var(--muted); }
+
+/* =====================================================================
+   Indicadores: botão redondo no rodapé do menu e matriz em destaque
+   ===================================================================== */
+.navbtn.nav-icone { width: 40px; height: 40px; min-height: 0; padding: 0; margin: 0 auto 14px; border-radius: 50%; display: grid; place-items: center; gap: 0;
+  border: 1px solid var(--line-strong); background: var(--panel); }
+.navbtn.nav-icone svg { width: 18px; height: 18px; margin: 0; }
+.navbtn.nav-icone::before { display: none; }
+.navbtn.nav-icone[aria-current="page"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent), 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent); }
+.pg-gibs { grid-template-rows: auto minmax(0, 1fr) auto; }
+.g-matriz { padding: 6px 8px 8px; }
+.g-matriz .corpo { padding: 0; }
+.g-matriz .tabela.matriz { height: 100%; }
+.g-matriz .tabela.matriz thead tr, .g-matriz .tabela.matriz tfoot tr { height: 1px; }
+.tabela.matriz { font-size: 13.5px; }
+.tabela.matriz th { padding-top: 12px; padding-bottom: 12px; }
+.tabela.matriz th.g-niv { font-size: 13px; }
+.tabela.matriz .g-ind { min-width: 250px; max-width: 360px; }
+.tabela.matriz td.g-ind b { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.g-un { font: 500 11.5px var(--f-text); color: var(--muted); }
+.g-fonte { margin: 0; font-size: 10.5px; }
+.g-cel span { min-width: 46px; height: 32px; font-size: 13.5px; }
+.g-cel.atual span { font-size: 14px; }
+.g-res { font-size: 17px; }
+.g-pts { font-size: 18px; }
+.tabela.matriz tbody tr { cursor: default; }
+.tabela.matriz tbody tr:hover > td { background: color-mix(in srgb, var(--accent) 4%, transparent); }
+#g-kpis .kpi { padding-top: 12px; padding-bottom: 12px; }
+#g-kpis .kpi .valor { font-size: 28px; }
+#g-kpis .ctx { font-size: 12px; }
+.g-st { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; color: var(--c); }
+.g-st i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+@media (max-width: 1440px) { .g-cel span { min-width: 40px; font-size: 12.5px; } .tabela.matriz td.g-ind b { font-size: 14px; } .tabela.matriz .g-ind { min-width: 220px; } }
+@media (max-width: 1365px) { .g-cel span { min-width: 32px; height: 28px; font-size: 12px; } .tabela.matriz .g-ind { min-width: 175px; } .g-res { font-size: 15px; } .g-pts { font-size: 15px; } }
+.tabela.matriz td.g-ind { white-space: normal; }
+.g-matriz .rolagem, .g-matriz .rolagem.tem-mais, .g-matriz .rolagem.tem-antes { -webkit-mask-image: none; mask-image: none; }
+.g-matriz .rolagem::before, .g-matriz .rolagem::after { display: none; }
+/* matriz cabe inteira: etiqueta de origem embaixo do resultado, nome com mais largura */
+.tabela.matriz td { padding-top: 9px; padding-bottom: 9px; }
+.tabela.matriz td.g-ind b { margin-bottom: 0; }
+.tabela.matriz .g-ind { max-width: 430px; }
+.g-res { text-align: right; }
+.g-res .g-val { display: block; line-height: 1.1; }
+.g-res .g-fonte { display: inline-flex; margin-top: 4px; }
+.tabela.matriz tfoot td { padding-top: 10px; padding-bottom: 10px; }
+
+/* =====================================================================
+   Menu lateral recolhível: recolhido, só os ícones
+   ===================================================================== */
+.app { transition: grid-template-columns .38s var(--ease); }
+.rot-nav { display: block; transition: opacity .2s var(--ease); }
+.recolher { width: 28px; height: 28px; margin: -8px 0 10px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--muted);
+  display: grid; place-items: center; cursor: pointer; transition: transform .38s var(--ease), color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease); }
+.recolher svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.recolher:hover { color: var(--fg); border-color: var(--line-strong); background: var(--panel); }
+.navbtn { transition: width .38s var(--ease), padding .38s var(--ease), background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease); }
+:root[data-menu="recolhido"] .app { grid-template-columns: 72px minmax(0, 1fr); }
+:root[data-menu="recolhido"] .rail { padding-left: 6px; padding-right: 6px; }
+:root[data-menu="recolhido"] .recolher { transform: rotate(180deg); }
+:root[data-menu="recolhido"] .navbtn:not(.nav-icone) { width: 52px; padding: 13px 0; }
+:root[data-menu="recolhido"] .rot-nav { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; opacity: 0; }
+@media (max-width: 760px) {
+  .recolher { display: none; }
+  :root[data-menu="recolhido"] .app { grid-template-columns: minmax(0, 1fr); }
+  :root[data-menu="recolhido"] .navbtn:not(.nav-icone) { width: auto; padding: 6px 10px; }
+  :root[data-menu="recolhido"] .rot-nav { position: static; width: auto; height: auto; clip: auto; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .app, .navbtn, .recolher { transition: none; } }
+
+/* =====================================================================
+   Menu lateral com o logo: aberto mostra o logo completo e os nomes ao lado
+   dos ícones; recolhido mostra só o círculo do logo e os ícones
+   ===================================================================== */
+@media (min-width: 761px) {
+  .app { grid-template-columns: 212px minmax(0, 1fr); }
+  :root[data-menu="recolhido"] .app { grid-template-columns: 76px minmax(0, 1fr); }
+  .rail { align-items: stretch; padding: 18px 12px; gap: 4px; }
+  .topo-rail { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 44px; margin: 0 2px 20px 4px; }
+  .marca-rail { position: relative; flex: 1; min-width: 0; height: 40px; display: flex; align-items: center; }
+  .logo-rail { width: 148px; height: 34px; -webkit-mask: var(--logo) left center / contain no-repeat; mask: var(--logo) left center / contain no-repeat;
+    background: linear-gradient(120deg, var(--logo-a), var(--logo-b)); animation: surge .4s var(--ease) both; }
+  .marca-rail .simbolo { display: none; margin: 0; }
+  .recolher { margin: 0; flex: none; }
+  .rail .navbtn { width: 100%; display: flex; align-items: center; justify-content: flex-start; gap: 12px; padding: 11px 14px; font-size: 14px; border-radius: 14px; }
+  .rail .navbtn svg { width: 20px; height: 20px; flex: none; }
+  .rail .rot-nav { display: inline; }
+  .rail .navbtn[aria-current="page"]::before { left: -12px; top: 10px; bottom: 10px; }
+  .rail .fim { width: 100%; }
+  .topo .logo, .topo .divisor { display: none; }
+  .topo { grid-template-columns: minmax(0, 1fr) auto; }
+  /* recolhido */
+  :root[data-menu="recolhido"] .rail { align-items: center; padding: 18px 10px; }
+  :root[data-menu="recolhido"] .topo-rail { flex-direction: column; height: auto; gap: 12px; margin: 0 0 18px; }
+  :root[data-menu="recolhido"] .marca-rail { flex: none; height: auto; }
+  :root[data-menu="recolhido"] .logo-rail { display: none; }
+  :root[data-menu="recolhido"] .marca-rail .simbolo { display: block; animation: surge .4s var(--ease) both; }
+  :root[data-menu="recolhido"] .rail .navbtn { width: 52px; padding: 13px 0; justify-content: center; gap: 0; }
+  :root[data-menu="recolhido"] .rail .navbtn[aria-current="page"]::before { left: -10px; }
+  :root[data-menu="recolhido"] .rail .fim { width: auto; }
+}
+@keyframes surge { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) { .topo-rail { display: none; } }
+
+/* Indicadores: só a matriz, ocupando a página inteira, sem rolagem */
+.pg-gibs { grid-template-rows: auto minmax(0, 1fr); }
+@media (min-width: 761px) and (max-width: 1440px) {
+  .app { grid-template-columns: 196px minmax(0, 1fr); }
+  .logo-rail { width: 136px; }
+  #t-atv .titulo { min-width: 190px; }
+  #t-atv td, #t-atv th { padding-left: 8px; padding-right: 8px; }
+  #t-atv td.titulo, #t-atv thead th:first-child { padding-left: 16px; }
+}
+
 </style>
 </head>
 <body class="pes">
@@ -771,31 +963,35 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 
 <div class="app">
   <nav class="rail" aria-label="Páginas do painel">
-    <div class="simbolo" aria-hidden="true"></div>
-    <button class="navbtn" data-pg="atividades" type="button">
+    <div class="topo-rail">
+      <div class="marca-rail" role="img" aria-label="PES, Programa Educacional Sindusfarma">
+        <div class="simbolo" aria-hidden="true"></div>
+        <div class="logo-rail" aria-hidden="true"></div>
+      </div>
+      <button class="recolher" id="btn-recolher" type="button" aria-label="Recolher menu" aria-expanded="true" title="Recolher menu">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5"/></svg>
+      </button>
+    </div>
+    <button class="navbtn" data-pg="atividades" type="button" title="Atividades">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5 12 3l9 3.5-9 3.5z"/><path d="M6.5 8.3v5.2c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3V8.3"/><path d="M21 6.5v6"/></svg>
-      Atividades
+      <span class="rot-nav">Atividades</span>
     </button>
-    <button class="navbtn" data-pg="divulgacoes" type="button">
+    <button class="navbtn" data-pg="divulgacoes" type="button" title="Divulgações">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
-      Divulgações
+      <span class="rot-nav">Divulgações</span>
     </button>
-    <button class="navbtn" data-pg="qualidade" type="button">
+    <button class="navbtn" data-pg="qualidade" type="button" title="Qualidade">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
-      Qualidade
+      <span class="rot-nav">Qualidade</span>
     </button>
-    <button class="navbtn" data-pg="comparacao" type="button">
+    <button class="navbtn" data-pg="comparacao" type="button" title="Comparação">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10"/><path d="M10 20V4"/><path d="M15 20v-7"/><path d="M20 20V8"/><path d="M3 20h18"/></svg>
-      Comparação
+      <span class="rot-nav">Comparação</span>
     </button>
     <div class="fim">
-      <div class="paletas" role="group" aria-label="Cores do painel">
-        <button type="button" class="paleta" data-paleta="azul" aria-label="Cores: azul com verde" title="Azul"></button>
-        <button type="button" class="paleta" data-paleta="verde" aria-label="Cores: verde com amarelo" title="Verde"></button>
-        <button type="button" class="paleta" data-paleta="roxo" aria-label="Cores: roxo com verde" title="Roxo"></button>
-      </div>
-      <button class="tema" id="btn-tema" type="button" aria-label="Alternar tema">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></svg>
+      <button class="navbtn" data-pg="indicadores" type="button" title="Indicadores">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4.5h11.5l-2.2 4 2.2 4H5"/></svg>
+        <span class="rot-nav">Indicadores</span>
       </button>
     </div>
   </nav>
@@ -934,6 +1130,17 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           <header><div class="tit-com"><h2 id="tit-coment">Comentários</h2><span class="nota" id="sub-coment"></span></div></header>
           <div class="corpo rolagem"><div id="lista-coment"></div></div>
         </div>
+      </div>
+    </section>
+
+    <!-- ===================== Página · Indicadores GIBS ===================== -->
+    <section class="pagina pg-gibs" id="pg-indicadores" data-pg="indicadores" aria-labelledby="titulo-pg" hidden>
+      <div class="filtros">
+        <div class="dd" id="dd-g-ano"></div>
+        <span class="nota" id="g-nota"></span>
+      </div>
+      <div class="painel g-matriz">
+        <div class="corpo rolagem"><table class="tabela matriz" id="t-gibs"></table></div>
       </div>
     </section>
 
@@ -1508,6 +1715,37 @@ if (typeof module !== 'undefined') module.exports = PESCore;
 
 </script>
 <script>
+/* Indicadores GIBS do PES: faixas padrão (Matriz de Indicadores de Performance, simulação 2025).
+   O arquivo indicadores.js do repositório pode trocar faixas e informar valores por ano. */
+var GIBS_NIVEIS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
+var GIBS_PADRAO = {
+  unidadeReceita: 'R$ mil',
+  indicadores: [
+    { id: 'participacao_pagos', nome: '% Participação dos Inscritos para cursos pagos', peso: 15, tipo: 'pct', fonte: 'auto',
+      faixas: [83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96] },
+    { id: 'participacao_gratuitos', nome: '% Participação dos Inscritos para cursos gratuitos', peso: 15, tipo: 'pct', fonte: 'auto',
+      faixas: [56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69] },
+    { id: 'receita', nome: 'Receita', peso: 25, tipo: 'num', fonte: 'informado',
+      faixas: [945, 955, 965, 974, 984, 994, 1004, 1014, 1025, 1035, 1045, 1056, 1066, 1077] },
+    { id: 'margem', nome: '% Margem (Receita/Despesas)', peso: 10, tipo: 'pct', fonte: 'informado',
+      faixas: [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85] },
+    { id: 'satisfacao_areas', nome: 'Pesquisa de Satisfação das Áreas Técnicas com a Área', peso: 5, tipo: 'nps', fonte: 'informado',
+      faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85, 90, 100] },
+    { id: 'satisfacao_cursos', nome: 'Pesquisa de Satisfação dos Cursos', peso: 30, tipo: 'nps', fonte: 'auto',
+      faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85, 90, 100] }
+  ]
+};
+// nível atingido: a maior faixa que o valor alcança (abaixo da primeira faixa, 0 ponto)
+function gibsNivel(valor, faixas) {
+  if (valor == null || isNaN(valor)) return null;
+  var idx = -1;
+  for (var i = 0; i < faixas.length; i++) if (valor >= faixas[i] - 1e-9) idx = i;
+  return idx;
+}
+function gibsPontos(peso, idx) { return idx == null ? null : idx < 0 ? 0 : peso * GIBS_NIVEIS[idx] / 100; }
+
+</script>
+<script>
 /* =====================================================================
    Dados de demonstração — só entram quando window.PES_DATA não existe.
    Mesmo formato que o n8n publica em data_dash.js.
@@ -1843,6 +2081,7 @@ window.iniciarPainel = function () {
     sortD: { col: 'proxima', dir: 1 },
     abertos: new Set(),
     c: { preset: 'mes', grupo: 'formato', a: null, b: null },
+    g: { ano: ANO_ATUAL },
     q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos', vista: 'grafico', sel: null, areaGraf: 'todas' }
   };
   var primeiraVez = true;
@@ -2051,7 +2290,8 @@ window.iniciarPainel = function () {
     atividades: ['Acompanhamento das atividades', 'Inscrições, participação e satisfação por atividade'],
     divulgacoes: ['Divulgações', 'Ações do Trello e e-mails do sistema, atividade por atividade'],
     comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê'],
-    qualidade: ['Pesquisas de qualidade', 'Desempenho, acervo de avaliações e comentários dos participantes']
+    qualidade: ['Pesquisas de qualidade', 'Desempenho, acervo de avaliações e comentários dos participantes'],
+    indicadores: ['Indicadores – Programa Educacional', 'Matriz anual de metas, atualizada com os dados que chegam']
   };
   function cabecalho() {
     $('#selo-demo').hidden = !DEMO;
@@ -2797,9 +3037,99 @@ window.iniciarPainel = function () {
   function abrirComentarios(id) { estado.q.vista = 'comentarios'; estado.q.sel = id; renderQualidade(); }
 
   /* =================================================================
+     Indicadores GIBS: matriz anual de metas do PES
+     ================================================================= */
+  var METAS = window.PES_METAS || {};
+  var CURTO_G = { participacao_pagos: 'Participação nos pagos', participacao_gratuitos: 'Participação nos gratuitos', receita: 'Receita',
+    margem: 'Margem', satisfacao_areas: 'Satisfação das áreas técnicas', satisfacao_cursos: 'Satisfação dos cursos' };
+  function faixaCor(idx) { return idx == null ? 'var(--muted)' : idx < 0 || GIBS_NIVEIS[idx] <= 40 ? 'var(--g-ruim)' : GIBS_NIVEIS[idx] <= 90 ? 'var(--g-medio)' : GIBS_NIVEIS[idx] <= 120 ? 'var(--g-bom)' : 'var(--g-otimo)'; }
+  function fmtG(tipo, v, dec) { if (v == null) return '—'; return tipo === 'pct' ? C.fmtDec(v, dec == null ? 1 : dec) + '%' : tipo === 'num' ? C.fmtInt(v) : C.fmtDec(v, 0); }
+  function gibsConfig(ano) {
+    var a = (METAS.anos || {})[ano] || {}, fa = a.faixas || {}, fg = METAS.faixas || {}, pa = a.pesos || {}, pg = METAS.pesos || {};
+    return GIBS_PADRAO.indicadores.map(function (i) {
+      var f = fa[i.id] || fg[i.id];
+      return Object.assign({}, i, { faixas: Array.isArray(f) && f.length === GIBS_NIVEIS.length ? f : i.faixas, peso: pa[i.id] != null ? pa[i.id] : pg[i.id] != null ? pg[i.id] : i.peso });
+    });
+  }
+  function gibsValores(ano) {
+    var ini = ano + '-01-01', fim = ano === ANO_ATUAL ? C.addDias(HOJE, -1) : ano + '-12-31';
+    var cs = IDX.cursos.filter(function (c) { return c.inicio >= ini && c.inicio <= fim; });
+    // participação das inscrições pagas e das gratuitas (status de pagamento de cada inscrição, vindo do JSON do sistema)
+    var temStatus = cs.some(function (c) { return c.gibs; });
+    function part(chave, modelo) {
+      var p = 0, b = 0, n = 0;
+      if (temStatus) {
+        cs.forEach(function (c) { var g = c.gibs && c.gibs[chave]; if (g && g[1]) { p += g[0]; b += g[1]; n++; } });
+        return b ? { v: p * 100 / b, det: C.fmtInt(p) + ' presentes de ' + C.fmtInt(b) + ' inscrições ' + (chave === 'pagas' ? 'pagas' : 'gratuitas') + ', em ' + n + (n > 1 ? ' cursos' : ' curso') } : null;
+      }
+      // dados antigos, sem o status de pagamento: aproximação pelo modelo do curso
+      cs.forEach(function (c) { if (c.modelo === modelo && c.participantes != null && C.basePart(c)) { p += c.participantes; b += C.basePart(c); n++; } });
+      return b ? { v: p * 100 / b, det: 'Aproximação pelo tipo de curso (' + n + ' cursos); atualize o workflow do n8n para usar o status de pagamento' } : null;
+    }
+    var acc = C.npsVazio(), nCur = 0;
+    cs.forEach(function (c) { if (c.nps_curso && C.respostas(c.nps_curso)) { C.somaNps(acc, c.nps_curso); nCur++; } });
+    var nps = C.nps(acc);
+    var auto = { participacao_pagos: part('pagas', 'pago'), participacao_gratuitos: part('gratuitas', 'gratuito'),
+      satisfacao_cursos: nps == null ? null : { v: nps, det: 'NPS ponderado de ' + nCur + (nCur > 1 ? ' cursos, ' : ' curso, ') + C.fmtInt(C.respostas(acc)) + ' avaliações' } };
+    var inf = ((METAS.anos || {})[ano] || {}).informados || {}, out = {};
+    GIBS_PADRAO.indicadores.forEach(function (i) {
+      var vi = inf[i.id];
+      if (vi != null && vi !== '' && !isNaN(+vi)) out[i.id] = { v: +vi, fonte: 'informado', det: i.fonte === 'auto' ? 'Valor informado (substitui o cálculo automático)' : 'Informado em indicadores.js' };
+      else if (auto[i.id]) out[i.id] = { v: auto[i.id].v, fonte: 'auto', det: auto[i.id].det };
+      else out[i.id] = { v: null, fonte: i.fonte === 'auto' ? 'auto' : 'pendente', det: i.fonte === 'auto' ? 'Sem dados no período' : 'Informe o valor em indicadores.js' };
+    });
+    return { out: out, fim: fim, obs: ((METAS.anos || {})[ano] || {}).observacao || '' };
+  }
+  function anelGibs(total, cor) {
+    var r = 56, c = 2 * Math.PI * r, arco = 0.75, frac = Math.max(0, Math.min(total / 130, 1)), meta = 100 / 130;
+    var ang = function (f) { var a = (135 + 270 * f) * Math.PI / 180; return [70 + r * Math.cos(a), 70 + r * Math.sin(a)]; };
+    var m1 = ang(meta), mi = [70 + (r - 6) * Math.cos((135 + 270 * meta) * Math.PI / 180), 70 + (r - 6) * Math.sin((135 + 270 * meta) * Math.PI / 180)], me = [70 + (r + 10) * Math.cos((135 + 270 * meta) * Math.PI / 180), 70 + (r + 10) * Math.sin((135 + 270 * meta) * Math.PI / 180)];
+    return '<svg viewBox="0 0 140 140" class="anel" aria-hidden="true"><defs><linearGradient id="gg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="var(--data-2)"/><stop offset="1" stop-color="' + cor + '"/></linearGradient></defs>' +
+      '<circle cx="70" cy="70" r="' + r + '" fill="none" stroke="var(--line-strong)" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + (c * arco) + ' ' + c + '" transform="rotate(135 70 70)"/>' +
+      '<circle class="anel-v" cx="70" cy="70" r="' + r + '" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + (c * arco * frac) + ' ' + c + '" transform="rotate(135 70 70)"/>' +
+      '<line x1="' + mi[0] + '" y1="' + mi[1] + '" x2="' + me[0] + '" y2="' + me[1] + '" stroke="var(--fg)" stroke-width="2" stroke-linecap="round"/></svg>';
+  }
+  function renderIndicadores() {
+    var ano = estado.g.ano, cfg = gibsConfig(ano), V = gibsValores(ano);
+    var linhas = cfg.map(function (i) {
+      // como na matriz: percentuais e NPS arredondados para inteiro antes de achar a faixa
+      var x = V.out[i.id], vr = x.v == null ? null : i.tipo === 'num' ? x.v : Math.round(x.v);
+      var idx = gibsNivel(vr, i.faixas), pts = gibsPontos(i.peso, idx);
+      var prox = idx != null && idx < i.faixas.length - 1 ? { nivel: GIBS_NIVEIS[idx + 1], faixa: i.faixas[idx + 1], falta: i.faixas[idx + 1] - vr } : null;
+      var dica = [x.det.replace(/\.+$/, '')];
+      if (x.v != null && i.tipo !== 'num' && Math.abs(x.v - vr) > 0.05) dica.push('Valor exato: ' + C.fmtDec(x.v, 1) + (i.tipo === 'pct' ? '%' : ''));
+      if (x.v != null) dica.push(idx < 0 ? 'Abaixo da primeira faixa (' + fmtG(i.tipo, i.faixas[0], 0) + ')' : prox ? 'Próximo nível, ' + prox.nivel + '%: ' + fmtG(i.tipo, prox.faixa, 0) +
+        ' (faltam ' + (i.tipo === 'pct' ? C.fmtDec(prox.falta, 0) + ' p.p.' : i.tipo === 'num' ? C.fmtInt(prox.falta) : C.fmtDec(prox.falta, 0) + ' pontos') + ')' : 'Nível máximo atingido');
+      return { i: i, x: x, vr: vr, idx: idx, pts: pts, prox: prox, dica: dica.join('. ') + '.' };
+    });
+    var comValor = linhas.filter(function (l) { return l.pts != null; });
+    var total = comValor.reduce(function (s, l) { return s + l.pts; }, 0), faltam = linhas.filter(function (l) { return l.pts == null; });
+    var status = faltam.length ? { t: 'Parcial', c: 'var(--g-medio)' } : total >= 100 ? { t: 'Meta atingida', c: 'var(--g-bom)' } : total >= 90 ? { t: 'Próximo da meta', c: 'var(--g-medio)' } : { t: 'Abaixo da meta', c: 'var(--g-ruim)' };
+    $('#g-nota').textContent = (ano === ANO_ATUAL ? 'Acumulado de 01/01 a ' + C.dataLonga(V.fim) : 'Ano fechado') + (V.obs ? '. ' + V.obs : '');
+    // ---- matriz
+    var cab = '<thead><tr><th class="g-ind">Indicador</th><th class="n">Peso</th><th class="n">Resultado</th>' +
+      GIBS_NIVEIS.map(function (n, k) { return '<th class="n g-niv" style="--c:' + faixaCor(k) + '">' + n + '%</th>'; }).join('') + '<th class="n">Pontos</th></tr></thead>';
+    var corpo = '<tbody>' + linhas.map(function (l) {
+      var i = l.i, x = l.x, fonte = x.fonte === 'auto' ? '<span class="g-fonte auto">automático</span>' : x.fonte === 'informado' ? '<span class="g-fonte inf">informado</span>' : '<span class="g-fonte pend">aguardando valor</span>';
+      return '<tr title="' + esc(l.dica) + '"><td class="g-ind"><b>' + esc(i.nome) + (i.id === 'receita' ? ' <span class="g-un">' + esc(METAS.unidadeReceita || 'R$ mil') + '</span>' : '') + '</b></td>' +
+        '<td class="n g-peso">' + C.fmtDec(i.peso, 0) + '%</td><td class="n g-res"><span class="g-val">' + fmtG(i.tipo, l.vr, 0) + '</span>' + fonte + '</td>' +
+        i.faixas.map(function (f, k) {
+          var cl = l.idx == null ? '' : k < l.idx ? ' alc' : k === l.idx ? ' atual' : '';
+          return '<td class="n g-cel' + cl + '"' + (k === l.idx ? ' style="--c:' + faixaCor(k) + '"' : '') + '><span>' + fmtG(i.tipo, f, 0) + '</span></td>';
+        }).join('') +
+        '<td class="n g-pts">' + (l.pts == null ? '<span class="nota">—</span>' : C.fmtDec(l.pts, 1)) + '</td></tr>';
+    }).join('') + '</tbody>';
+    var rodape = '<tfoot><tr><td class="g-ind"><b>Total</b></td><td class="n g-peso">' + C.fmtDec(cfg.reduce(function (s, i) { return s + i.peso; }, 0), 0) + '%</td><td></td>' +
+      '<td colspan="' + GIBS_NIVEIS.length + '"><div class="g-trilha"><i style="width:' + (Math.min(total / 130, 1) * 100) + '%;background:linear-gradient(90deg, var(--data-2), ' + status.c + ')"></i><span class="g-meta" style="left:' + (100 / 130 * 100) + '%"><em>meta 100</em></span></div></td>' +
+      '<td class="n g-pts g-tot" style="--c:' + status.c + '">' + C.fmtDec(total, 1) + '</td></tr></tfoot>';
+    $('#t-gibs').innerHTML = cab + corpo + rodape;
+    requestAnimationFrame(marcaRolagem);
+  }
+
+  /* =================================================================
      Navegação, filtros e eventos
      ================================================================= */
-  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, comparacao: renderComparacao };
+  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, indicadores: renderIndicadores, comparacao: renderComparacao };
   function irPara(pg, semHash) {
     if (pg === 'cursos') pg = 'atividades';
     if (!renders[pg]) pg = 'atividades';
@@ -2897,6 +3227,13 @@ window.iniciarPainel = function () {
       };
     });
 
+    // ---- indicadores GIBS: anos com dados ou com valores informados
+    var gAnos = uniq(IDX.cursos.map(function (c) { return c.inicio.slice(0, 4); }).concat(Object.keys(METAS.anos || {})))
+      .filter(function (a) { return /^\d{4}$/.test(a) && a <= ANO_ATUAL; }).sort().reverse();
+    if (gAnos.indexOf(estado.g.ano) < 0) estado.g.ano = gAnos[0] || ANO_ATUAL;
+    dd.gAno = new Dropdown($('#dd-g-ano'), { rotulo: 'Ano', valor: estado.g.ano, padrao: ANO_ATUAL, opcoes: gAnos.map(function (a) { return { v: a, t: a }; }),
+      onChange: function (v) { estado.g.ano = v; renderIndicadores(); } });
+
     // ---- página de qualidade
     if (QEV.length) {
       var qe = QEV;
@@ -2952,23 +3289,20 @@ window.iniciarPainel = function () {
     $$('.navbtn').forEach(function (b) { b.onclick = function () { irPara(b.getAttribute('data-pg')); }; });
     window.addEventListener('hashchange', function () { irPara(location.hash.slice(1), true); });
 
-    function aplicaPaleta(pl) {
-      document.documentElement.setAttribute('data-paleta', pl);
-      $$('.paleta').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-paleta') === pl)); });
-      guarda('pes-paleta', pl);
+    // menu lateral recolhível (a escolha fica salva no navegador)
+    function aplicaMenu(recolhido, animar) {
+      document.documentElement.setAttribute('data-menu', recolhido ? 'recolhido' : 'aberto');
+      var bt = $('#btn-recolher'), rot = recolhido ? 'Expandir menu' : 'Recolher menu';
+      bt.setAttribute('aria-expanded', String(!recolhido)); bt.setAttribute('aria-label', rot); bt.title = rot;
+      guarda('pes-menu', recolhido ? 'recolhido' : 'aberto');
+      if (animar) setTimeout(function () { renders[estado.pg](); }, 420);   // gráficos ocupam o espaço novo
     }
-    aplicaPaleta(le('pes-paleta') || 'azul');
-    $$('.paleta').forEach(function (b) { b.onclick = function () { aplicaPaleta(b.getAttribute('data-paleta')); if (!primeiraVez) renders[estado.pg](); }; });
-    var temas = ['auto', 'dark', 'light'], nomesTema = { auto: 'automático', dark: 'escuro', light: 'claro' };
-    function aplicaTema(t) {
-      if (t === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
-      $('#btn-tema').title = 'Tema: ' + nomesTema[t];
-      guarda('pes-tema', t);
-      if (!primeiraVez) renders[estado.pg]();
-    }
-    var temaAtual = le('pes-tema') || 'dark';
-    aplicaTema(temaAtual);
-    $('#btn-tema').onclick = function () { temaAtual = temas[(temas.indexOf(temaAtual) + 1) % 3]; aplicaTema(temaAtual); };
+    aplicaMenu(le('pes-menu') === 'recolhido', false);
+    $('#btn-recolher').onclick = function () { aplicaMenu(document.documentElement.getAttribute('data-menu') !== 'recolhido', true); };
+    // um só visual: o azul do Sindusfarma (sem troca de tema nem de cores)
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.removeAttribute('data-paleta');
+
 
     var tm;
     window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(function () { if (estado.pg === 'comparacao') renderComparacao(); if (estado.pg === 'qualidade') renderQualidade(); }, 160); });
@@ -2983,7 +3317,7 @@ window.iniciarPainel = function () {
    qualidade (acervo_pesquisas_qualidade). Sem os dados do painel, abre em demonstração. */
 (function () {
   var QUALIDADE = 'https://programaeducacional.github.io/acervo_pesquisas_qualidade/data_dash.js';
-  var faltam = 2, feito = false;
+  var faltam = 3, feito = false;
   function seguir() {
     if (feito) return; feito = true;
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.iniciarPainel);
@@ -2996,6 +3330,7 @@ window.iniciarPainel = function () {
     document.head.appendChild(s);
   }
   carregar('data_dash.js');
+  carregar('indicadores.js');   // metas e valores informados dos indicadores GIBS
   carregar(QUALIDADE);
   setTimeout(seguir, 6000);
 })();
