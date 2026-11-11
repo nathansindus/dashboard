@@ -949,6 +949,38 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
   #t-atv td.titulo, #t-atv thead th:first-child { padding-left: 16px; }
 }
 
+
+/* =====================================================================
+   Público
+   ===================================================================== */
+.filtros-inline { display: contents; }
+.filtros-inline[hidden] { display: none; }
+.p-usu { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: var(--gap); }
+.p-usu .p-dep { grid-row: 1 / 3; }
+#p-empresas { display: grid; grid-template-rows: minmax(0, 1fr); }
+#p-empresas[hidden], #p-usuarios[hidden], #p-potencial[hidden] { display: none; }
+.afin { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.afin b { font: 600 13px var(--f-display); color: var(--accent); }
+.tag.assoc { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); background: var(--accent-soft); }
+#t-p-emp td.titulo .tag { margin: 5px 0 0; display: inline-flex; }
+.p-faixa { display: grid; grid-template-columns: 110px minmax(0, 1fr) 64px; align-items: center; gap: 10px; padding: 5px 0; font-size: 12.5px; }
+.p-faixa .n { color: var(--fg-2); }
+.p-faixa b { font: 600 13.5px var(--f-display); text-align: right; }
+.p-faixa .trilha { height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.p-faixa .trilha i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--data-2), var(--accent)); }
+.p-perfil .p-faixa { grid-template-columns: minmax(150px, 220px) minmax(0, 1fr) 46px; }
+.sug { padding: 14px 16px; border-radius: 16px; background: var(--panel-sub); border: 1px solid var(--line); margin-bottom: 16px; }
+.sug.ia { border-color: color-mix(in srgb, var(--accent) 45%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%); }
+.sug p { margin: 6px 0 0; font-size: 14px; line-height: 1.6; }
+.det-kpis.p3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.alvo { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.alvo .tag { margin: 0; }
+#p-potencial .det-topo { margin-bottom: 12px; }
+@media (max-width: 1180px) { .p-usu { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; } .p-usu .p-dep { grid-row: auto; } .p-usu > .painel { min-height: 320px; } }
+#t-p-dep .titulo, #t-p-car .titulo { min-width: 0; }
+#t-p-dep td.titulo, #t-p-car td.titulo { white-space: normal; }
+.afin .chip-area { font-size: 11.5px; }
+
 </style>
 </head>
 <body class="pes">
@@ -983,6 +1015,10 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
     <button class="navbtn" data-pg="qualidade" type="button" title="Qualidade">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
       <span class="rot-nav">Qualidade</span>
+    </button>
+    <button class="navbtn" data-pg="publico" type="button" title="Público">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M15.2 14.2c2.6-.4 4.7 1.2 5.3 4.3"/></svg>
+      <span class="rot-nav">Público</span>
     </button>
     <button class="navbtn" data-pg="comparacao" type="button" title="Comparação">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10"/><path d="M10 20V4"/><path d="M15 20v-7"/><path d="M20 20V8"/><path d="M3 20h18"/></svg>
@@ -1130,6 +1166,43 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           <header><div class="tit-com"><h2 id="tit-coment">Comentários</h2><span class="nota" id="sub-coment"></span></div></header>
           <div class="corpo rolagem"><div id="lista-coment"></div></div>
         </div>
+      </div>
+    </section>
+
+    <!-- ===================== Página · Público ===================== -->
+    <section class="pagina" id="pg-publico" data-pg="publico" aria-labelledby="titulo-pg" hidden>
+      <div class="filtros">
+        <div class="dd" id="dd-p-ano"></div>
+        <span id="p-filtros-perfil" class="filtros-inline">
+          <span class="dd" id="dd-p-dep"></span>
+          <span class="dd" id="dd-p-car"></span>
+          <span class="dd" id="dd-p-assoc"></span>
+          <label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="p-busca" type="search" placeholder="Buscar empresa" aria-label="Buscar empresa"></label>
+          <button class="limpar" type="button" id="limpar-p" hidden>Limpar filtros</button>
+        </span>
+        <div class="direita">
+          <div class="vistas" role="group" aria-label="Seção da página">
+            <button type="button" class="vista" data-pvista="usuarios" title="Departamentos, cargos e engajamento"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg><span>Usuários</span></button>
+            <button type="button" class="vista" data-pvista="empresas" title="Relação de empresas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l6-3v15M10 20V10l10-3v13M3 20h18"/><path d="M13.5 11.5h3M13.5 15h3"/></svg><span>Empresas</span></button>
+            <button type="button" class="vista" data-pvista="potencial" title="Usuários em potencial para as próximas atividades"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/><path d="M11 8v6M8 11h6"/></svg><span>Em potencial</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="painel cluster" id="kpis-p" aria-live="polite"></div>
+
+      <div class="vista-q p-usu" id="p-usuarios">
+        <div class="painel tabela-p p-dep"><header><h2>Departamentos</h2><span class="nota">afinidade: área que o grupo procura mais que a média</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-dep"></table></div></div>
+        <div class="painel tabela-p p-car"><header><h2>Cargos</h2></header><div class="corpo rolagem"><table class="tabela" id="t-p-car"></table></div></div>
+        <div class="painel p-engaj"><header><h2>Engajamento</h2><span class="nota">pessoas por número de cursos no ano</span></header><div class="corpo"><div id="p-eng"></div></div></div>
+      </div>
+
+      <div class="vista-q" id="p-empresas" hidden>
+        <div class="painel tabela-p"><header><h2>Empresas</h2><span class="nota" id="n-p-emp"></span></header><div class="corpo rolagem"><table class="tabela" id="t-p-emp"></table></div></div>
+      </div>
+
+      <div class="vista-q q-com" id="p-potencial" hidden>
+        <div class="painel"><header><h2>Próximas atividades</h2><span class="nota" id="n-p-pot"></span></header><div class="corpo rolagem"><div id="lista-pot"></div></div></div>
+        <div class="painel"><div class="corpo rolagem"><div id="det-pot"></div></div></div>
       </div>
     </section>
 
@@ -2006,6 +2079,35 @@ function gerarQualidadeDemo(P) {
   return Q;
 }
 
+function gerarPublicoDemo(P) {
+  var seed = 4242; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var E = ['Laboratório Aurora', 'Farma Horizonte', 'BioVale', 'Química Serra Azul', 'Medfarma', 'Vitalis', 'NovaGen', 'Pharmatec', 'Solaris Saúde', 'Delta Biológicos', 'Cronos Farma', 'Atlas Medicamentos'];
+  var Dp = ['Assuntos Regulatórios', 'Garantia / Controle de Qualidade', 'Jurídico', 'Recursos Humanos', 'Marketing', 'Farmacovigilância', 'Comercial / Vendas'];
+  var Cg = ['Analista', 'Gerente', 'Coordenador (a) / Supervisor (a)', 'Especialista', 'Diretor (a)'];
+  var areas = []; P.cursos.forEach(function (c) { if (areas.indexOf(c.area) < 0) areas.push(c.area); });
+  var dim = { e: {}, d: {}, c: {}, a: {} };
+  E.forEach(function (n, i) { dim.e[i + 1] = [n, i < 9 ? 1 : 0]; }); Dp.forEach(function (n, i) { dim.d[i + 1] = n; }); Cg.forEach(function (n, i) { dim.c[i + 1] = n; }); areas.forEach(function (n, i) { dim.a[i + 1] = n; });
+  var cubo = [], anos = [new Date().getFullYear() - 1, new Date().getFullYear()];
+  anos.forEach(function (ano) {
+    for (var e = 1; e <= E.length; e++) for (var d = 1; d <= Dp.length; d++) for (var c = 1; c <= Cg.length; c++) {
+      if (rnd() < 0.45) continue;
+      var pes = 1 + Math.floor(rnd() * 14), ins = pes + Math.floor(rnd() * pes * 1.6), ir = Math.floor(ins * 0.85), pr = Math.floor(ir * (0.5 + rnd() * 0.35));
+      var h = [Math.ceil(pes * 0.6), Math.floor(pes * 0.2), Math.floor(pes * 0.12), Math.floor(pes * 0.06), 0];
+      var ar = areas.map(function (a, i) { var q = Math.floor(ins * (i === (d % areas.length) ? 0.55 : 0.45 / areas.length)); return [i + 1, q, Math.floor(q * 0.65)]; }).filter(function (x) { return x[1]; });
+      var av = Math.floor(pr * 0.4); cubo.push([ano, e, d, c, pes, ins, ir, pr].concat(h, [Math.floor(av * 0.7), Math.floor(av * 0.2), av - Math.floor(av * 0.7) - Math.floor(av * 0.2)], [ar]));
+    }
+  });
+  var potencial = P.cursos.filter(function (c) { return c.status !== 'encerradas'; }).map(function (c, k) {
+    var ins = c.inscricoes || 0, alvo = [1 + k % Dp.length, 1 + (k + 1) % Dp.length];
+    var ranking = E.map(function (n, i) { return [i + 1, 5 + Math.floor(rnd() * 60), 8 + Math.floor(rnd() * 90), rnd() < 0.3 ? 1 + Math.floor(rnd() * 3) : 0]; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10);
+    return { curso_id: c.id, area: 1 + areas.indexOf(c.area), inscritos: ins, fonte: ins >= 15 ? 'inscritos' : 'area',
+      perfil_dep: alvo.concat([1 + (k + 2) % Dp.length]).map(function (d, i) { return [d, Math.max(1, Math.round(ins * [0.45, 0.25, 0.12][i]))]; }),
+      perfil_car: [[1, Math.round(ins * 0.4)], [2, Math.round(ins * 0.25)]], alvo_dep: alvo, cargos_alvo: [[1, 40], [2, 22]], ranking: ranking,
+      total: { pessoas: ranking.reduce(function (s, r) { return s + r[1]; }, 0) + 120, empresas: 40, sem_inscritos: 31 } };
+  });
+  return { cubo: cubo, potencial: potencial, dim: dim };
+}
+
 </script>
 <script>
 window.iniciarPainel = function () {
@@ -2082,6 +2184,7 @@ window.iniciarPainel = function () {
     abertos: new Set(),
     c: { preset: 'mes', grupo: 'formato', a: null, b: null },
     g: { ano: ANO_ATUAL },
+    p: { vista: 'usuarios', ano: ANO_ATUAL, dep: 'todos', car: 'todos', assoc: 'todas', busca: '', sortE: { col: 'i', dir: -1 }, sel: null },
     q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos', vista: 'grafico', sel: null, areaGraf: 'todas' }
   };
   var primeiraVez = true;
@@ -2278,6 +2381,7 @@ window.iniciarPainel = function () {
   function cabecalhoTabela(cols, s) {
     return '<thead><tr>' + cols.map(function (c) {
       if (!c.t) return '<th scope="col"><span class="sr">' + (c.sr || '') + '</span></th>';
+      if (c.fixo) return '<th scope="col"' + (c.n ? ' class="n"' : '') + '>' + c.t + '</th>';
       return '<th scope="col"' + (c.n ? ' class="n"' : '') + (s.col === c.k ? ' aria-sort="' + (s.dir > 0 ? 'ascending' : 'descending') + '"' : '') +
         '><button type="button" data-sort="' + c.k + '">' + c.t + '</button></th>';
     }).join('') + '</tr></thead>';
@@ -2291,6 +2395,7 @@ window.iniciarPainel = function () {
     divulgacoes: ['Divulgações', 'Ações do Trello e e-mails do sistema, atividade por atividade'],
     comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê'],
     qualidade: ['Pesquisas de qualidade', 'Desempenho, acervo de avaliações e comentários dos participantes'],
+    publico: ['Público', 'Quem se inscreve e participa: departamentos, cargos, empresas e público em potencial'],
     indicadores: ['Indicadores – Programa Educacional', 'Matriz anual de metas, atualizada com os dados que chegam']
   };
   function cabecalho() {
@@ -2964,7 +3069,7 @@ window.iniciarPainel = function () {
 
   function renderQualidade() {
     var f = estado.q;
-    $$('.vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-vista') === f.vista)); });
+    $$('#pg-qualidade .vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-vista') === f.vista)); });
     $('#q-grafico').hidden = f.vista !== 'grafico'; $('#q-tabela').hidden = f.vista !== 'tabela'; $('#q-coment').hidden = f.vista !== 'comentarios';
     if (!QEV.length) { $('#kpis-q').innerHTML = '<div class="kpi"><div class="rot"><span>Pesquisas de qualidade</span></div><div class="valor">—</div><div class="ctx">Sem avaliações carregadas.</div></div>'; return; }
     var evs = eventosQ();
@@ -3127,9 +3232,142 @@ window.iniciarPainel = function () {
   }
 
   /* =================================================================
+     Público: quem se inscreve e participa (só totais por empresa,
+     departamento e cargo) e usuários em potencial por atividade
+     ================================================================= */
+  var PUB = DATA.publico || (DEMO ? gerarPublicoDemo(DATA) : null);
+  var SUG_IA = {}; ((INS && INS.publico) || []).forEach(function (x) { SUG_IA[x.curso_id] = x; });
+  var FAIXAS_P = ['1 curso', '2 cursos', '3 a 5', '6 a 10', 'mais de 10'];
+  function nomeP(t, id) { var v = PUB && PUB.dim[t][id]; return v == null ? '(não informado)' : Array.isArray(v) ? v[0] : v; }
+  function assocP(e) { var v = PUB && PUB.dim.e[e]; return v ? !!v[1] : null; }
+  function linhasP() {
+    var f = estado.p;
+    return PUB.cubo.filter(function (r) {
+      return String(r[0]) === f.ano && (f.dep === 'todos' || String(r[2]) === f.dep) && (f.car === 'todos' || String(r[3]) === f.car) &&
+        (f.assoc === 'todas' || (f.assoc === 'sim' ? assocP(r[1]) === true : assocP(r[1]) === false));
+    });
+  }
+  function agrupaP(rows, idx) {
+    var m = new Map();
+    rows.forEach(function (r) {
+      var k = idx == null ? 'tudo' : r[idx], x = m.get(k);
+      if (!x) { x = { k: k, pessoas: 0, i: 0, ir: 0, pr: 0, h: [0, 0, 0, 0, 0], n: [0, 0, 0], a: new Map() }; m.set(k, x); }
+      x.pessoas += r[4]; x.i += r[5]; x.ir += r[6]; x.pr += r[7];
+      for (var j = 0; j < 5; j++) x.h[j] += r[8 + j];
+      for (j = 0; j < 3; j++) x.n[j] += r[13 + j];
+      (r[16] || []).forEach(function (a) { x.a.set(a[0], (x.a.get(a[0]) || 0) + a[1]); });
+    });
+    return Array.from(m.values());
+  }
+  // afinidade: a área que o grupo procura mais que a média da seleção
+  function afinidadeP(x, base) {
+    var melhor = null;
+    x.a.forEach(function (q, a) {
+      var tot = base.a.get(a) || 0; if (q < 10 || !tot || !x.i || !base.i) return;
+      var lift = (q / x.i) / (tot / base.i);
+      if (lift >= 1.2 && (!melhor || lift > melhor.l)) melhor = { a: a, l: lift, q: q };
+    });
+    return melhor ? '<span class="afin" title="' + melhor.q + ' inscrições nesta área">' + chipArea(nomeP('a', melhor.a)) + '<b>' + C.fmtDec(melhor.l, 1) + '×</b></span>' : '<span class="nota">—</span>';
+  }
+  function npsP(x) { var t = x.n[0] + x.n[1] + x.n[2]; return t ? npsCel({ promotores: x.n[0], neutros: x.n[1], detratores: x.n[2] }) : '<span class="nota">—</span>'; }
+  function partP(x) { return x.ir ? C.fmtPct(x.pr / x.ir, 0) : '—'; }
+  function renderPublico() {
+    var f = estado.p;
+    $$('#pg-publico .vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pvista') === f.vista)); });
+    ['usuarios', 'empresas', 'potencial'].forEach(function (v) { $('#p-' + v).hidden = f.vista !== v; });
+    $('#p-filtros-perfil').hidden = f.vista === 'potencial';
+    $('#dd-p-ano').hidden = f.vista === 'potencial';
+    if (!PUB) { $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Público</span></div><div class="valor">—</div><div class="ctx">Atualize o workflow do n8n para trazer os dados do público.</div></div>'; return; }
+    $('#limpar-p').hidden = f.dep === 'todos' && f.car === 'todos' && f.assoc === 'todas' && !f.busca;
+    if (f.vista === 'potencial') { $('#kpis-p').hidden = true; potencialP(); requestAnimationFrame(marcaRolagem); return; }
+    $('#kpis-p').hidden = false;
+    var rows = linhasP(), tot = agrupaP(rows)[0] || { pessoas: 0, i: 0, ir: 0, pr: 0, h: [0, 0, 0, 0, 0], n: [0, 0, 0], a: new Map() };
+    var nEmp = new Set(rows.filter(function (r) { return r[1] != null; }).map(function (r) { return r[1]; })).size;
+    var nt = tot.n[0] + tot.n[1] + tot.n[2], nps = nt ? (tot.n[0] - tot.n[2]) * 100 / nt : null;
+    $('#kpis-p').innerHTML =
+      kpi('Pessoas', C.fmtInt(tot.pessoas), '', '', tot.pessoas) +
+      kpi('Inscrições', C.fmtInt(tot.i), '', '', tot.i) +
+      kpi('Taxa de participação', tot.ir ? C.fmtPct(tot.pr / tot.ir, 0) : '—', tot.ir ? C.fmtInt(tot.pr) + ' presenças em ' + C.fmtInt(tot.ir) + ' inscrições já realizadas' : '', '') +
+      kpi('Empresas', C.fmtInt(nEmp), '', '', nEmp) +
+      kpi('Cursos por pessoa', tot.pessoas ? C.fmtDec(tot.i / tot.pessoas, 1) : '—', tot.h[3] + tot.h[4] ? C.fmtInt(tot.h[3] + tot.h[4]) + ' pessoas com 6 ou mais' : '', '') +
+      kpi('NPS do público', nps == null ? '—' : C.fmtDec(nps, 0) + '<small>de 100</small>', nt ? C.fmtInt(nt) + ' avaliações' : '', '');
+    // a afinidade compara sempre com o ano inteiro, para continuar valendo com qualquer filtro
+    var baseAno = agrupaP(PUB.cubo.filter(function (r) { return String(r[0]) === f.ano; }))[0] || tot;
+    if (f.vista === 'usuarios') usuariosP(rows, baseAno); else empresasP(rows, baseAno);
+    contar(); requestAnimationFrame(marcaRolagem);
+  }
+  function tabelaGrupo(lista, tot, t) {
+    return '<thead><tr><th>' + (t === 'd' ? 'Departamento' : 'Cargo') + '</th><th class="n">Pessoas</th><th class="n">Inscrições</th><th class="n">Participação</th></tr></thead><tbody>' +
+      lista.map(function (x) {
+        var af = afinidadeP(x, tot);
+        return '<tr><td class="titulo"><b>' + esc(nomeP(t, x.k)) + '</b>' + (af.indexOf('afin') >= 0 ? '<span class="linha-sub">' + af + '</span>' : '') + '</td><td class="n">' + C.fmtInt(x.pessoas) + '</td><td class="n"><span class="num-g">' + C.fmtInt(x.i) + '</span></td>' +
+          '<td class="n">' + partP(x) + '</td></tr>';
+      }).join('') + '</tbody>';
+  }
+  function usuariosP(rows, tot) {
+    var porI = function (a, b) { return b.i - a.i; };
+    $('#t-p-dep').innerHTML = tabelaGrupo(agrupaP(rows, 2).sort(porI), tot, 'd');
+    $('#t-p-car').innerHTML = tabelaGrupo(agrupaP(rows, 3).sort(porI), tot, 'c');
+    var maxH = Math.max.apply(null, tot.h.concat([1]));
+    $('#p-eng').innerHTML = tot.h.map(function (n, i) {
+      return '<div class="p-faixa"><span class="n">' + FAIXAS_P[i] + '</span><span class="trilha"><i style="width:' + (n * 100 / maxH) + '%"></i></span><b>' + C.fmtInt(n) + '</b></div>';
+    }).join('');
+  }
+  function empresasP(rows, tot) {
+    var busca = semAcento(estado.p.busca.trim()), s = estado.p.sortE;
+    var lista = agrupaP(rows.filter(function (r) { return r[1] != null; }), 1).filter(function (x) { return !busca || semAcento(nomeP('e', x.k)).indexOf(busca) >= 0; });
+    lista.forEach(function (x) { x.nome = nomeP('e', x.k); x.part = x.ir ? x.pr / x.ir : -1; x.cpp = x.pessoas ? x.i / x.pessoas : 0; var t = x.n[0] + x.n[1] + x.n[2]; x.nps = t ? (x.n[0] - x.n[2]) / t : -9; });
+    lista.sort(function (a, b) { var p = a[s.col], q = b[s.col]; return (p < q ? -1 : p > q ? 1 : 0) * s.dir; });
+    $('#n-p-emp').textContent = lista.length + (lista.length === 1 ? ' empresa' : ' empresas');
+    var cols = [{ k: 'nome', t: 'Empresa' }, { k: 'pessoas', t: 'Pessoas', n: 1 }, { k: 'i', t: 'Inscrições', n: 1 }, { k: 'pr', t: 'Presenças', n: 1 }, { k: 'part', t: 'Participação', n: 1 }, { k: 'cpp', t: 'Cursos por pessoa', n: 1 }, { k: 'nps', t: 'NPS', n: 1 }, { k: 'af', t: 'Afinidade', fixo: 1 }];
+    $('#t-p-emp').innerHTML = cabecalhoTabela(cols, s) + '<tbody>' + lista.slice(0, 300).map(function (x) {
+      var as = assocP(x.k);
+      return '<tr><td class="titulo"><b>' + esc(x.nome) + '</b>' + (as == null ? '' : '<span class="tag' + (as ? ' assoc' : '') + '">' + (as ? 'associada' : 'não associada') + '</span>') + '</td>' +
+        '<td class="n">' + C.fmtInt(x.pessoas) + '</td><td class="n"><span class="num-g">' + C.fmtInt(x.i) + '</span></td><td class="n">' + C.fmtInt(x.pr) + '</td>' +
+        '<td class="n">' + partP(x) + '</td><td class="n">' + C.fmtDec(x.cpp, 1) + '</td><td class="n">' + npsP(x) + '</td><td>' + afinidadeP(x, tot) + '</td></tr>';
+    }).join('') + '</tbody>';
+  }
+  function potencialP() {
+    var lista = (PUB.potencial || []).filter(function (x) { return IDX.porId.has(x.curso_id); });
+    if (!lista.some(function (x) { return String(x.curso_id) === String(estado.p.sel); })) estado.p.sel = lista.length ? lista[0].curso_id : null;
+    $('#n-p-pot').textContent = lista.length + (lista.length === 1 ? ' atividade' : ' atividades');
+    $('#lista-pot').innerHTML = lista.length ? lista.map(function (x) {
+      var c = IDX.porId.get(x.curso_id), at = String(x.curso_id) === String(estado.p.sel);
+      return '<button type="button" class="curso-com' + (at ? ' ativo' : '') + '" data-pot="' + x.curso_id + '" aria-pressed="' + at + '"><span class="t">' + esc(c.titulo) + '</span>' +
+        '<span class="m">' + dataCurtaAno(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos, ' + C.fmtInt(x.total.pessoas) + ' no perfil</span>' + (SUG_IA[x.curso_id] ? '<span class="cont" title="Sugestão da IA">IA</span>' : '') + '</button>';
+    }).join('') : '<p class="aviso-ia">Nenhuma atividade futura com dados do sistema.</p>';
+    var x = lista.filter(function (y) { return String(y.curso_id) === String(estado.p.sel); })[0];
+    if (!x) { $('#det-pot').innerHTML = ''; return; }
+    var c = IDX.porId.get(x.curso_id), ia = SUG_IA[x.curso_id];
+    var pct = function (n, t) { return t ? Math.round(n * 100 / t) + '%' : ''; };
+    var auto = 'Divulgue para ' + x.alvo_dep.slice(0, 3).map(function (d) { return nomeP('d', d); }).join(', ') +
+      (x.cargos_alvo.length ? ', principalmente ' + x.cargos_alvo.slice(0, 2).map(function (y) { return nomeP('c', y[0]); }).join(' e ') : '') +
+      '. ' + C.fmtInt(x.total.pessoas) + ' pessoas desse perfil participaram de cursos da mesma área nos últimos 12 meses e ainda não se inscreveram' +
+      (x.ranking.length ? '; as empresas com mais delas são ' + x.ranking.slice(0, 3).map(function (r) { return nomeP('e', r[0]) + ' (' + r[1] + ')'; }).join(', ') : '') + '.';
+    $('#det-pot').innerHTML =
+      '<header class="det-topo"><div><h2>' + esc(c.titulo) + '</h2><span class="linha-sub">' + chipArea(c.area) + '<span class="pal">Início ' + C.dataLonga(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos</span></span></div></header>' +
+      '<div class="sug ' + (ia ? 'ia' : '') + '"><span class="rot-bloco">' + (ia ? 'Sugestão da IA' : 'Sugestão automática') + '</span><p>' + esc(ia ? ia.texto : auto) + '</p></div>' +
+      '<div class="det-kpis p3">' +
+        '<div><span class="k">Pessoas do perfil ainda não inscritas</span><b>' + C.fmtInt(x.total.pessoas) + '</b></div>' +
+        '<div><span class="k">Empresas com pessoas do perfil</span><b>' + C.fmtInt(x.total.empresas) + '</b></div>' +
+        '<div><span class="k">Sem nenhum inscrito</span><b>' + C.fmtInt(x.total.sem_inscritos) + '</b></div></div>' +
+      '<section class="det-sec"><h3>' + (x.fonte === 'inscritos' ? 'Perfil de quem já se inscreveu' : 'Perfil de quem participa desta área') + '</h3>' +
+        (x.fonte !== 'inscritos' ? '<p class="nota">Poucos inscritos até agora; o perfil vem de quem participou de cursos da mesma área nos últimos 12 meses.</p>' : '') +
+        '<div class="p-perfil">' + (x.perfil_dep.length ? x.perfil_dep : []).map(function (y) {
+          return '<div class="p-faixa"><span class="n">' + esc(nomeP('d', y[0])) + '</span><span class="trilha"><i style="width:' + (y[1] * 100 / Math.max(1, x.inscritos)) + '%"></i></span><b>' + pct(y[1], x.inscritos) + '</b></div>';
+        }).join('') + '</div>' +
+        '<div class="alvo">' + x.alvo_dep.map(function (d) { return '<span class="tag assoc">' + esc(nomeP('d', d)) + '</span>'; }).join('') +
+          x.cargos_alvo.map(function (y) { return '<span class="tag">' + esc(nomeP('c', y[0])) + '</span>'; }).join('') + '</div></section>' +
+      '<section class="det-sec"><h3>Empresas com mais pessoas do perfil</h3><table class="tabela"><thead><tr><th>Empresa</th><th class="n">Pessoas do perfil</th><th class="n">Presenças em 12 meses</th><th class="n">Já inscritas</th></tr></thead><tbody>' +
+        x.ranking.map(function (r) { var as = assocP(r[0]); return '<tr><td class="titulo"><b>' + esc(nomeP('e', r[0])) + '</b>' + (as == null ? '' : '<span class="tag' + (as ? ' assoc' : '') + '">' + (as ? 'associada' : 'não associada') + '</span>') + '</td><td class="n"><span class="num-g">' + C.fmtInt(r[1]) + '</span></td><td class="n">' + C.fmtInt(r[2]) + '</td><td class="n">' + (r[3] ? C.fmtInt(r[3]) : '<span class="alerta-txt">0</span>') + '</td></tr>'; }).join('') +
+      '</tbody></table></section>';
+    $('#det-pot').closest('.rolagem').scrollTop = 0;
+  }
+
+  /* =================================================================
      Navegação, filtros e eventos
      ================================================================= */
-  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, indicadores: renderIndicadores, comparacao: renderComparacao };
+  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, publico: renderPublico, indicadores: renderIndicadores, comparacao: renderComparacao };
   function irPara(pg, semHash) {
     if (pg === 'cursos') pg = 'atividades';
     if (!renders[pg]) pg = 'atividades';
@@ -3234,6 +3472,22 @@ window.iniciarPainel = function () {
     dd.gAno = new Dropdown($('#dd-g-ano'), { rotulo: 'Ano', valor: estado.g.ano, padrao: ANO_ATUAL, opcoes: gAnos.map(function (a) { return { v: a, t: a }; }),
       onChange: function (v) { estado.g.ano = v; renderIndicadores(); } });
 
+    // ---- público
+    if (PUB) {
+      var pAnos = uniq(PUB.cubo.map(function (r) { return String(r[0]); })).sort().reverse();
+      if (pAnos.indexOf(estado.p.ano) < 0) estado.p.ano = pAnos[0] || ANO_ATUAL;
+      var opDim = function (t) { return Object.keys(PUB.dim[t]).map(function (id) { return { v: id, t: nomeP(t, id) }; }).sort(function (a, b) { return a.t.localeCompare(b.t, 'pt-BR'); }); };
+      dd.pAno = new Dropdown($('#dd-p-ano'), { rotulo: 'Ano', valor: estado.p.ano, padrao: ANO_ATUAL, opcoes: pAnos.map(function (a) { return { v: a, t: a }; }), onChange: function (v) { estado.p.ano = v; renderPublico(); } });
+      dd.pDep = new Dropdown($('#dd-p-dep'), { rotulo: 'Departamento', valor: 'todos', padrao: 'todos', busca: 'Buscar departamento', opcoes: [{ v: 'todos', t: 'Todos os departamentos', curto: 'Todos' }].concat(opDim('d')), onChange: function (v) { estado.p.dep = v; renderPublico(); } });
+      dd.pCar = new Dropdown($('#dd-p-car'), { rotulo: 'Cargo', valor: 'todos', padrao: 'todos', busca: 'Buscar cargo', opcoes: [{ v: 'todos', t: 'Todos os cargos', curto: 'Todos' }].concat(opDim('c')), onChange: function (v) { estado.p.car = v; renderPublico(); } });
+      dd.pAssoc = new Dropdown($('#dd-p-assoc'), { rotulo: 'Empresas', valor: 'todas', padrao: 'todas', opcoes: [{ v: 'todas', t: 'Todas' }, { v: 'sim', t: 'Associadas' }, { v: 'nao', t: 'Não associadas' }], onChange: function (v) { estado.p.assoc = v; renderPublico(); } });
+      var tmp; $('#p-busca').oninput = function () { var v = this.value; clearTimeout(tmp); tmp = setTimeout(function () { estado.p.busca = v; renderPublico(); }, 180); };
+      $('#limpar-p').onclick = function () { estado.p.dep = 'todos'; estado.p.car = 'todos'; estado.p.assoc = 'todas'; estado.p.busca = ''; dd.pDep.definir('todos'); dd.pCar.definir('todos'); dd.pAssoc.definir('todas'); $('#p-busca').value = ''; renderPublico(); };
+      $('#t-p-emp').addEventListener('click', function (e) { var b = e.target.closest('button[data-sort]'); if (!b) return; var k = b.getAttribute('data-sort'), s = estado.p.sortE; estado.p.sortE = { col: k, dir: s.col === k ? -s.dir : (k === 'nome' ? 1 : -1) }; renderPublico(); });
+      $('#lista-pot').addEventListener('click', function (e) { var b = e.target.closest('[data-pot]'); if (b) { estado.p.sel = b.getAttribute('data-pot'); renderPublico(); } });
+    }
+    $$('#pg-publico .vista').forEach(function (b) { b.onclick = function () { estado.p.vista = b.getAttribute('data-pvista'); renderPublico(); }; });
+
     // ---- página de qualidade
     if (QEV.length) {
       var qe = QEV;
@@ -3262,7 +3516,7 @@ window.iniciarPainel = function () {
         var b = e.target.closest('#pg-qualidade [data-ev]'); if (b) abrirComentarios(b.getAttribute('data-ev'));
       });
     }
-    $$('.vista').forEach(function (b) { b.onclick = function () { estado.q.vista = b.getAttribute('data-vista'); renderQualidade(); }; });
+    $$('#pg-qualidade .vista').forEach(function (b) { b.onclick = function () { estado.q.vista = b.getAttribute('data-vista'); renderQualidade(); }; });
 
     // ---- tabelas, leitura e navegação
     $('#t-atv').addEventListener('click', function (e) {
