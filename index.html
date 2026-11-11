@@ -980,6 +980,43 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 #t-p-dep .titulo, #t-p-car .titulo { min-width: 0; }
 #t-p-dep td.titulo, #t-p-car td.titulo { white-space: normal; }
 .afin .chip-area { font-size: 11.5px; }
+/* Público: duas narrativas lado a lado e análise do agente */
+.p-usu { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+.p-usu .p-dep { grid-row: auto; }
+.afin b { font-size: 12px; white-space: nowrap; }
+.ag-emp { display: grid; gap: 10px; }
+.ag-card { padding: 12px 14px; border-radius: 14px; background: var(--panel-sub); border: 1px solid var(--line); border-left: 3px solid var(--c); }
+.ag-card header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.ag-card header b { font: 600 14px var(--f-display); }
+.ag-ver { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: var(--c); text-transform: none; white-space: nowrap; }
+.ag-ver i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.ag-card p { margin: 0; font-size: 13px; line-height: 1.55; color: var(--fg-2); }
+.ag-ang { margin-top: 6px !important; }
+.ag-ang span { font-weight: 600; color: var(--fg); margin-right: 6px; }
+.ag-msg { padding: 12px 14px; border-radius: 14px; background: var(--panel-sub); border: 1px dashed var(--line-strong); }
+.ag-msg p { margin: 6px 0 0; font-size: 13.5px; line-height: 1.6; }
+.ag-passos { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 13px; }
+/* Público: tabelas cabem com a Evolução ligada */
+.afin { flex-wrap: wrap; white-space: normal; row-gap: 4px; }
+.afin .chip-area { white-space: normal; text-align: left; line-height: 1.35; }
+#t-p-dep, #t-p-car, #t-p-emp { table-layout: auto; }
+@media (max-width: 1600px) {
+  #t-p-dep td, #t-p-dep th, #t-p-car td, #t-p-car th { padding-left: 8px; padding-right: 8px; }
+  #t-p-dep td.titulo, #t-p-car td.titulo, #t-p-dep thead th:first-child, #t-p-car thead th:first-child { padding-left: 14px; }
+  #t-p-emp td, #t-p-emp th { padding-left: 8px; padding-right: 8px; }
+  #t-p-emp td.titulo { padding-left: 14px; }
+}
+@media (max-width: 1440px) {
+  #t-p-dep, #t-p-car, #t-p-emp { font-size: 13px; }
+  #t-p-dep .num-g, #t-p-car .num-g, #t-p-emp .num-g { font-size: 16px; }
+  #t-p-dep td.titulo b, #t-p-car td.titulo b, #t-p-emp td.titulo b { font-size: 14px; }
+  .afin .chip-area { font-size: 11px; padding: 2px 8px; }
+}
+/* área de destaque: duas porcentagens lado a lado */
+.afin { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.afin-n { font-size: 12px; color: var(--fg-2); line-height: 1.4; }
+.afin-n b { font: 600 13px var(--f-display); color: var(--accent); }
+.tabela .titulo .afin-n b, .tabela td.titulo .afin-n b, .afin-n b { display: inline; margin: 0; font: 600 13px var(--f-display); color: var(--accent); }
 
 </style>
 </head>
@@ -1173,6 +1210,7 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
     <section class="pagina" id="pg-publico" data-pg="publico" aria-labelledby="titulo-pg" hidden>
       <div class="filtros">
         <div class="dd" id="dd-p-ano"></div>
+        <button class="switch" type="button" role="switch" aria-checked="false" id="sw-p-evo" title="Comparar com o ano anterior, até a mesma data"><span class="trilho" aria-hidden="true"></span>Evolução</button>
         <span id="p-filtros-perfil" class="filtros-inline">
           <span class="dd" id="dd-p-dep"></span>
           <span class="dd" id="dd-p-car"></span>
@@ -1191,9 +1229,8 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
       <div class="painel cluster" id="kpis-p" aria-live="polite"></div>
 
       <div class="vista-q p-usu" id="p-usuarios">
-        <div class="painel tabela-p p-dep"><header><h2>Departamentos</h2><span class="nota">afinidade: área que o grupo procura mais que a média</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-dep"></table></div></div>
-        <div class="painel tabela-p p-car"><header><h2>Cargos</h2></header><div class="corpo rolagem"><table class="tabela" id="t-p-car"></table></div></div>
-        <div class="painel p-engaj"><header><h2>Engajamento</h2><span class="nota">pessoas por número de cursos no ano</span></header><div class="corpo"><div id="p-eng"></div></div></div>
+        <div class="painel tabela-p p-dep"><header><h2>Departamentos</h2><span class="nota">área de destaque: onde o grupo concentra mais inscrições do que o PES como um todo</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-dep"></table></div></div>
+        <div class="painel tabela-p p-car"><header><h2>Cargos</h2><span class="nota" id="n-p-car"></span></header><div class="corpo rolagem"><table class="tabela" id="t-p-car"></table></div></div>
       </div>
 
       <div class="vista-q" id="p-empresas" hidden>
@@ -2094,7 +2131,9 @@ function gerarPublicoDemo(P) {
       var pes = 1 + Math.floor(rnd() * 14), ins = pes + Math.floor(rnd() * pes * 1.6), ir = Math.floor(ins * 0.85), pr = Math.floor(ir * (0.5 + rnd() * 0.35));
       var h = [Math.ceil(pes * 0.6), Math.floor(pes * 0.2), Math.floor(pes * 0.12), Math.floor(pes * 0.06), 0];
       var ar = areas.map(function (a, i) { var q = Math.floor(ins * (i === (d % areas.length) ? 0.55 : 0.45 / areas.length)); return [i + 1, q, Math.floor(q * 0.65)]; }).filter(function (x) { return x[1]; });
-      var av = Math.floor(pr * 0.4); cubo.push([ano, e, d, c, pes, ins, ir, pr].concat(h, [Math.floor(av * 0.7), Math.floor(av * 0.2), av - Math.floor(av * 0.7) - Math.floor(av * 0.2)], [ar]));
+      var av = Math.floor(pr * 0.4), lin = [ano, e, d, c, pes, ins, ir, pr].concat(h, [Math.floor(av * 0.7), Math.floor(av * 0.2), av - Math.floor(av * 0.7) - Math.floor(av * 0.2)], [Math.round(pes * (0.55 + rnd() * 0.3) * 100) / 100, pes, ar]);
+      cubo.push(lin);
+      if (ano === anos[0] && rnd() < 0.85) { var b = lin.slice(); b[0] = -ano; b[5] = Math.floor(ins * 0.85); b[4] = Math.max(1, Math.floor(pes * 0.9)); cubo.push(b); }
     }
   });
   var potencial = P.cursos.filter(function (c) { return c.status !== 'encerradas'; }).map(function (c, k) {
@@ -2105,7 +2144,7 @@ function gerarPublicoDemo(P) {
       perfil_car: [[1, Math.round(ins * 0.4)], [2, Math.round(ins * 0.25)]], alvo_dep: alvo, cargos_alvo: [[1, 40], [2, 22]], ranking: ranking,
       total: { pessoas: ranking.reduce(function (s, r) { return s + r[1]; }, 0) + 120, empresas: 40, sem_inscritos: 31 } };
   });
-  return { cubo: cubo, potencial: potencial, dim: dim };
+  return { cubo: cubo, potencial: potencial, dim: dim, empresas_cadastradas: { todas: E.length + 4, associadas: 9, nao_associadas: E.length - 5 } };
 }
 
 </script>
@@ -2184,7 +2223,7 @@ window.iniciarPainel = function () {
     abertos: new Set(),
     c: { preset: 'mes', grupo: 'formato', a: null, b: null },
     g: { ano: ANO_ATUAL },
-    p: { vista: 'usuarios', ano: ANO_ATUAL, dep: 'todos', car: 'todos', assoc: 'todas', busca: '', sortE: { col: 'i', dir: -1 }, sel: null },
+    p: { vista: 'usuarios', evo: false, ano: ANO_ATUAL, dep: 'todos', car: 'todos', assoc: 'todas', busca: '', sortE: { col: 'i', dir: -1 }, sel: null },
     q: { area: 'todos', mod: 'todos', ano: ANO_ATUAL, mes: 'todos', busca: '', ver: 'eventos', vista: 'grafico', sel: null, areaGraf: 'todas' }
   };
   var primeiraVez = true;
@@ -3237,6 +3276,7 @@ window.iniciarPainel = function () {
      ================================================================= */
   var PUB = DATA.publico || (DEMO ? gerarPublicoDemo(DATA) : null);
   var SUG_IA = {}; ((INS && INS.publico) || []).forEach(function (x) { SUG_IA[x.curso_id] = x; });
+  var AGENTE = {}; (DATA.agente_publico || []).forEach(function (x) { AGENTE[x.curso_id] = x; });
   var FAIXAS_P = ['1 curso', '2 cursos', '3 a 5', '6 a 10', 'mais de 10'];
   function nomeP(t, id) { var v = PUB && PUB.dim[t][id]; return v == null ? '(não informado)' : Array.isArray(v) ? v[0] : v; }
   function assocP(e) { var v = PUB && PUB.dim.e[e]; return v ? !!v[1] : null; }
@@ -3251,81 +3291,133 @@ window.iniciarPainel = function () {
     var m = new Map();
     rows.forEach(function (r) {
       var k = idx == null ? 'tudo' : r[idx], x = m.get(k);
-      if (!x) { x = { k: k, pessoas: 0, i: 0, ir: 0, pr: 0, h: [0, 0, 0, 0, 0], n: [0, 0, 0], a: new Map() }; m.set(k, x); }
+      if (!x) { x = { k: k, pessoas: 0, i: 0, ir: 0, pr: 0, h: [0, 0, 0, 0, 0], n: [0, 0, 0], st: 0, nt: 0, a: new Map() }; m.set(k, x); }
       x.pessoas += r[4]; x.i += r[5]; x.ir += r[6]; x.pr += r[7];
       for (var j = 0; j < 5; j++) x.h[j] += r[8 + j];
       for (j = 0; j < 3; j++) x.n[j] += r[13 + j];
-      (r[16] || []).forEach(function (a) { x.a.set(a[0], (x.a.get(a[0]) || 0) + a[1]); });
+      x.st += r[16] || 0; x.nt += r[17] || 0;
+      (r[18] || []).forEach(function (a) { x.a.set(a[0], (x.a.get(a[0]) || 0) + a[1]); });
     });
     return Array.from(m.values());
   }
-  // afinidade: a área que o grupo procura mais que a média da seleção
+  var VAZIO_P = { pessoas: 0, i: 0, ir: 0, pr: 0, h: [0, 0, 0, 0, 0], n: [0, 0, 0], st: 0, nt: 0, a: new Map() };
+  // ano anterior até a mesma data (para o ano atual) ou o ano anterior inteiro (para anos fechados)
+  function anoRef(ano) { return +ano === +ANO_ATUAL ? -(+ano - 1) : +ano - 1; }
+  function rotRef(ano) { return +ano === +ANO_ATUAL ? (+ano - 1) + ' até a mesma data' : String(+ano - 1); }
+  function filtraP(r) {
+    var f = estado.p;
+    return (f.dep === 'todos' || String(r[2]) === f.dep) && (f.car === 'todos' || String(r[3]) === f.car) &&
+      (f.assoc === 'todas' || (f.assoc === 'sim' ? assocP(r[1]) === true : assocP(r[1]) === false));
+  }
+  function linhasP(ano) { var a = ano == null ? +estado.p.ano : ano; return PUB.cubo.filter(function (r) { return r[0] === a && filtraP(r); }); }
+  // área de destaque: onde o grupo concentra mais inscrições do que o PES como um todo
+  // (maior diferença em pontos percentuais, mínimo de 10 pontos e 10 inscrições)
   function afinidadeP(x, base) {
     var melhor = null;
     x.a.forEach(function (q, a) {
-      var tot = base.a.get(a) || 0; if (q < 10 || !tot || !x.i || !base.i) return;
-      var lift = (q / x.i) / (tot / base.i);
-      if (lift >= 1.2 && (!melhor || lift > melhor.l)) melhor = { a: a, l: lift, q: q };
+      var tot = base.a.get(a) || 0; if (q < 10 || !x.i || !base.i) return;
+      var pg = q / x.i, pb = tot / base.i, dif = pg - pb;
+      if (dif >= 0.10 && (!melhor || dif > melhor.dif)) melhor = { a: a, pg: pg, pb: pb, dif: dif, q: q };
     });
-    return melhor ? '<span class="afin" title="' + melhor.q + ' inscrições nesta área">' + chipArea(nomeP('a', melhor.a)) + '<b>' + C.fmtDec(melhor.l, 1) + '×</b></span>' : '<span class="nota">—</span>';
+    return melhor ? '<span class="afin" title="' + C.fmtInt(melhor.q) + ' inscrições nesta área">' + chipArea(nomeP('a', melhor.a)) +
+      '<span class="afin-n"><b>' + C.fmtPct(melhor.pg, 0) + '</b> das inscrições do grupo, contra ' + C.fmtPct(melhor.pb, 0) + ' no PES</span></span>' : '';
   }
   function npsP(x) { var t = x.n[0] + x.n[1] + x.n[2]; return t ? npsCel({ promotores: x.n[0], neutros: x.n[1], detratores: x.n[2] }) : '<span class="nota">—</span>'; }
+  function npsV(x) { var t = x.n[0] + x.n[1] + x.n[2]; return t ? (x.n[0] - x.n[2]) * 100 / t : null; }
   function partP(x) { return x.ir ? C.fmtPct(x.pr / x.ir, 0) : '—'; }
+  // variação contra o período de comparação: pct (percentual), pp (pontos percentuais) ou pts (pontos)
+  function dP(v, b, modo, rot) {
+    if (v == null || b == null || (modo === 'pct' && !b)) return '<span class="delta" title="Sem base de comparação">sem base</span>';
+    var d = modo === 'pct' ? (v - b) / b : v - b, z = Math.abs(d) < (modo === 'pct' ? 0.0005 : 0.05);
+    var txt = modo === 'pct' ? (d > 0 ? '+' : '−') + C.fmtDec(Math.abs(d) * 100, 1) + '%' : modo === 'pp' ? (d > 0 ? '+' : '−') + C.fmtDec(Math.abs(d) * 100, 1) + ' p.p.' : (d > 0 ? '+' : '−') + C.fmtDec(Math.abs(d), 0) + ' pts';
+    return '<span class="delta ' + (z ? '' : d > 0 ? 'up' : 'down') + '" title="Comparado a ' + esc(rot) + '">' + (z ? '±0' : txt) + '</span>';
+  }
   function renderPublico() {
     var f = estado.p;
     $$('#pg-publico .vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pvista') === f.vista)); });
     ['usuarios', 'empresas', 'potencial'].forEach(function (v) { $('#p-' + v).hidden = f.vista !== v; });
     $('#p-filtros-perfil').hidden = f.vista === 'potencial';
-    $('#dd-p-ano').hidden = f.vista === 'potencial';
+    $('#dd-p-ano').hidden = f.vista === 'potencial'; $('#sw-p-evo').hidden = f.vista === 'potencial';
+    $('#sw-p-evo').setAttribute('aria-checked', String(!!f.evo));
     if (!PUB) { $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Público</span></div><div class="valor">—</div><div class="ctx">Atualize o workflow do n8n para trazer os dados do público.</div></div>'; return; }
     $('#limpar-p').hidden = f.dep === 'todos' && f.car === 'todos' && f.assoc === 'todas' && !f.busca;
     if (f.vista === 'potencial') { $('#kpis-p').hidden = true; potencialP(); requestAnimationFrame(marcaRolagem); return; }
     $('#kpis-p').hidden = false;
-    var rows = linhasP(), tot = agrupaP(rows)[0] || { pessoas: 0, i: 0, ir: 0, pr: 0, h: [0, 0, 0, 0, 0], n: [0, 0, 0], a: new Map() };
-    var nEmp = new Set(rows.filter(function (r) { return r[1] != null; }).map(function (r) { return r[1]; })).size;
-    var nt = tot.n[0] + tot.n[1] + tot.n[2], nps = nt ? (tot.n[0] - tot.n[2]) * 100 / nt : null;
-    $('#kpis-p').innerHTML =
-      kpi('Pessoas', C.fmtInt(tot.pessoas), '', '', tot.pessoas) +
-      kpi('Inscrições', C.fmtInt(tot.i), '', '', tot.i) +
-      kpi('Taxa de participação', tot.ir ? C.fmtPct(tot.pr / tot.ir, 0) : '—', tot.ir ? C.fmtInt(tot.pr) + ' presenças em ' + C.fmtInt(tot.ir) + ' inscrições já realizadas' : '', '') +
-      kpi('Empresas', C.fmtInt(nEmp), '', '', nEmp) +
-      kpi('Cursos por pessoa', tot.pessoas ? C.fmtDec(tot.i / tot.pessoas, 1) : '—', tot.h[3] + tot.h[4] ? C.fmtInt(tot.h[3] + tot.h[4]) + ' pessoas com 6 ou mais' : '', '') +
-      kpi('NPS do público', nps == null ? '—' : C.fmtDec(nps, 0) + '<small>de 100</small>', nt ? C.fmtInt(nt) + ' avaliações' : '', '');
+    var rows = linhasP(), rowsB = linhasP(anoRef(f.ano)), rot = rotRef(f.ano);
+    var tot = agrupaP(rows)[0] || VAZIO_P, totB = agrupaP(rowsB)[0] || null;
     // a afinidade compara sempre com o ano inteiro, para continuar valendo com qualquer filtro
-    var baseAno = agrupaP(PUB.cubo.filter(function (r) { return String(r[0]) === f.ano; }))[0] || tot;
-    if (f.vista === 'usuarios') usuariosP(rows, baseAno); else empresasP(rows, baseAno);
+    var baseAno = agrupaP(PUB.cubo.filter(function (r) { return r[0] === +f.ano; }))[0] || tot;
+    if (f.vista === 'usuarios') {
+      var mais = tot.h[1] + tot.h[2] + tot.h[3] + tot.h[4], maisB = totB ? totB.h[1] + totB.h[2] + totB.h[3] + totB.h[4] : null;
+      var tx = tot.nt ? tot.st / tot.nt : null, txB = totB && totB.nt ? totB.st / totB.nt : null, nps = npsV(tot), npsB = totB ? npsV(totB) : null;
+      $('#kpis-p').innerHTML =
+        kpi('Usuários únicos', C.fmtInt(tot.pessoas), C.fmtInt(tot.i) + ' inscrições no ano', dP(tot.pessoas, totB && totB.pessoas, 'pct', rot), tot.pessoas) +
+        kpi('Inscritos em mais de um curso', C.fmtInt(mais), tot.pessoas ? C.fmtPct(mais / tot.pessoas, 0) + ' dos usuários; ' + C.fmtInt(tot.h[3] + tot.h[4]) + ' com 6 ou mais' : '', dP(mais, maisB, 'pct', rot), mais) +
+        kpi('Participação média por usuário', tx == null ? '—' : C.fmtPct(tx, 0), 'média da presença de cada pessoa nos cursos já realizados', dP(tx, txB, 'pp', rot)) +
+        kpi('NPS do público', nps == null ? '—' : C.fmtDec(nps, 0) + '<small>de 100</small>', C.fmtInt(tot.n[0] + tot.n[1] + tot.n[2]) + ' avaliações', dP(nps, npsB, 'pts', rot));
+      usuariosP(rows, rowsB, baseAno);
+    } else {
+      var cad = PUB.empresas_cadastradas || { todas: Object.keys(PUB.dim.e).length, associadas: 0, nao_associadas: 0 };
+      var nCad = f.assoc === 'sim' ? cad.associadas : f.assoc === 'nao' ? cad.nao_associadas : cad.todas;
+      var empCom = function (rs) { return new Set(rs.filter(function (r) { return r[1] != null; }).map(function (r) { return r[1]; })); };
+      var cA = empCom(rows), cB = totB ? empCom(rowsB) : null;
+      var assA = Array.from(cA).filter(function (e) { return assocP(e) === true; }).length, assB = cB ? Array.from(cB).filter(function (e) { return assocP(e) === true; }).length : null;
+      $('#kpis-p').innerHTML =
+        kpi('Empresas cadastradas', C.fmtInt(nCad), f.assoc === 'todas' ? C.fmtInt(cad.associadas) + ' associadas, ' + C.fmtInt(cad.nao_associadas) + ' não associadas' : 'no sistema do PES', '') +
+        kpi('Empresas com inscrições', C.fmtInt(cA.size), 'pelo menos uma inscrição no ano', dP(cA.size, cB && cB.size, 'pct', rot), cA.size) +
+        kpi('Taxa de adesão', nCad ? C.fmtPct(cA.size / nCad, 0) : '—', 'empresas com inscrição ÷ cadastradas', dP(nCad ? cA.size / nCad : null, cB && nCad ? cB.size / nCad : null, 'pp', rot)) +
+        kpi('Associadas presentes no PES', cad.associadas ? C.fmtPct(assA / cad.associadas, 0) : '—', C.fmtInt(assA) + ' de ' + C.fmtInt(cad.associadas) + ' associadas com inscrição', dP(cad.associadas ? assA / cad.associadas : null, assB != null && cad.associadas ? assB / cad.associadas : null, 'pp', rot));
+      empresasP(rows, rowsB, baseAno);
+    }
     contar(); requestAnimationFrame(marcaRolagem);
   }
-  function tabelaGrupo(lista, tot, t) {
-    return '<thead><tr><th>' + (t === 'd' ? 'Departamento' : 'Cargo') + '</th><th class="n">Pessoas</th><th class="n">Inscrições</th><th class="n">Participação</th></tr></thead><tbody>' +
+  function evoCel(v, b) {
+    if (!estado.p.evo) return '';
+    if (b == null || !b) return '<td class="n"><span class="nota">novo</span></td>';
+    var d = (v - b) / b; return '<td class="n"><span class="delta ' + (Math.abs(d) < 0.0005 ? '' : d > 0 ? 'up' : 'down') + '">' + (d > 0 ? '+' : '−') + C.fmtDec(Math.abs(d) * 100, 0) + '%</span></td>';
+  }
+  function tabelaGrupo(lista, mapaB, base, t) {
+    var evo = estado.p.evo;
+    return '<thead><tr><th>' + (t === 'd' ? 'Departamento' : 'Cargo') + '</th><th class="n">Pessoas</th><th class="n">Inscrições</th>' + (evo ? '<th class="n">Variação</th>' : '') + '<th class="n">Participação</th></tr></thead><tbody>' +
       lista.map(function (x) {
-        var af = afinidadeP(x, tot);
-        return '<tr><td class="titulo"><b>' + esc(nomeP(t, x.k)) + '</b>' + (af.indexOf('afin') >= 0 ? '<span class="linha-sub">' + af + '</span>' : '') + '</td><td class="n">' + C.fmtInt(x.pessoas) + '</td><td class="n"><span class="num-g">' + C.fmtInt(x.i) + '</span></td>' +
-          '<td class="n">' + partP(x) + '</td></tr>';
+        var af = afinidadeP(x, base), b = mapaB.get(x.k);
+        return '<tr><td class="titulo"><b>' + esc(nomeP(t, x.k)) + '</b>' + (af ? '<span class="linha-sub">' + af + '</span>' : '') + '</td><td class="n">' + C.fmtInt(x.pessoas) + '</td><td class="n"><span class="num-g">' + C.fmtInt(x.i) + '</span></td>' +
+          evoCel(x.i, b && b.i) + '<td class="n">' + partP(x) + '</td></tr>';
       }).join('') + '</tbody>';
   }
-  function usuariosP(rows, tot) {
-    var porI = function (a, b) { return b.i - a.i; };
-    $('#t-p-dep').innerHTML = tabelaGrupo(agrupaP(rows, 2).sort(porI), tot, 'd');
-    $('#t-p-car').innerHTML = tabelaGrupo(agrupaP(rows, 3).sort(porI), tot, 'c');
-    var maxH = Math.max.apply(null, tot.h.concat([1]));
-    $('#p-eng').innerHTML = tot.h.map(function (n, i) {
-      return '<div class="p-faixa"><span class="n">' + FAIXAS_P[i] + '</span><span class="trilha"><i style="width:' + (n * 100 / maxH) + '%"></i></span><b>' + C.fmtInt(n) + '</b></div>';
-    }).join('');
+  function usuariosP(rows, rowsB, base) {
+    var porI = function (a, b) { return b.i - a.i; }, mapa = function (rs, idx) { return new Map(agrupaP(rs, idx).map(function (x) { return [x.k, x]; })); };
+    var dep = agrupaP(rows, 2).sort(porI), car = agrupaP(rows, 3).sort(porI);
+    $('#t-p-dep').innerHTML = tabelaGrupo(dep, mapa(rowsB, 2), base, 'd');
+    $('#t-p-car').innerHTML = tabelaGrupo(car, mapa(rowsB, 3), base, 'c');
+    $('#n-p-car').textContent = car.length + ' cargos';
   }
-  function empresasP(rows, tot) {
-    var busca = semAcento(estado.p.busca.trim()), s = estado.p.sortE;
+  function empresasP(rows, rowsB, base) {
+    var busca = semAcento(estado.p.busca.trim()), s = estado.p.sortE, evo = estado.p.evo;
+    var mapaB = new Map(agrupaP(rowsB.filter(function (r) { return r[1] != null; }), 1).map(function (x) { return [x.k, x]; }));
     var lista = agrupaP(rows.filter(function (r) { return r[1] != null; }), 1).filter(function (x) { return !busca || semAcento(nomeP('e', x.k)).indexOf(busca) >= 0; });
-    lista.forEach(function (x) { x.nome = nomeP('e', x.k); x.part = x.ir ? x.pr / x.ir : -1; x.cpp = x.pessoas ? x.i / x.pessoas : 0; var t = x.n[0] + x.n[1] + x.n[2]; x.nps = t ? (x.n[0] - x.n[2]) / t : -9; });
+    lista.forEach(function (x) { x.nome = nomeP('e', x.k); x.part = x.ir ? x.pr / x.ir : -1; x.cpp = x.pessoas ? x.i / x.pessoas : 0; var t = x.n[0] + x.n[1] + x.n[2]; x.nps = t ? (x.n[0] - x.n[2]) / t : -9;
+      var b = mapaB.get(x.k); x.var = b && b.i ? (x.i - b.i) / b.i : -1e9; });
     lista.sort(function (a, b) { var p = a[s.col], q = b[s.col]; return (p < q ? -1 : p > q ? 1 : 0) * s.dir; });
     $('#n-p-emp').textContent = lista.length + (lista.length === 1 ? ' empresa' : ' empresas');
-    var cols = [{ k: 'nome', t: 'Empresa' }, { k: 'pessoas', t: 'Pessoas', n: 1 }, { k: 'i', t: 'Inscrições', n: 1 }, { k: 'pr', t: 'Presenças', n: 1 }, { k: 'part', t: 'Participação', n: 1 }, { k: 'cpp', t: 'Cursos por pessoa', n: 1 }, { k: 'nps', t: 'NPS', n: 1 }, { k: 'af', t: 'Afinidade', fixo: 1 }];
+    var cols = [{ k: 'nome', t: 'Empresa' }, { k: 'pessoas', t: 'Pessoas', n: 1 }, { k: 'i', t: 'Inscrições', n: 1 }].concat(evo ? [{ k: 'var', t: 'Variação', n: 1 }] : [])
+      .concat([{ k: 'pr', t: 'Presenças', n: 1 }, { k: 'part', t: 'Participação', n: 1 }, { k: 'cpp', t: 'Cursos por pessoa', n: 1 }, { k: 'nps', t: 'NPS', n: 1 }, { k: 'af', t: 'Área de destaque', fixo: 1 }]);
     $('#t-p-emp').innerHTML = cabecalhoTabela(cols, s) + '<tbody>' + lista.slice(0, 300).map(function (x) {
-      var as = assocP(x.k);
+      var as = assocP(x.k), b = mapaB.get(x.k);
       return '<tr><td class="titulo"><b>' + esc(x.nome) + '</b>' + (as == null ? '' : '<span class="tag' + (as ? ' assoc' : '') + '">' + (as ? 'associada' : 'não associada') + '</span>') + '</td>' +
-        '<td class="n">' + C.fmtInt(x.pessoas) + '</td><td class="n"><span class="num-g">' + C.fmtInt(x.i) + '</span></td><td class="n">' + C.fmtInt(x.pr) + '</td>' +
-        '<td class="n">' + partP(x) + '</td><td class="n">' + C.fmtDec(x.cpp, 1) + '</td><td class="n">' + npsP(x) + '</td><td>' + afinidadeP(x, tot) + '</td></tr>';
+        '<td class="n">' + C.fmtInt(x.pessoas) + '</td><td class="n"><span class="num-g">' + C.fmtInt(x.i) + '</span></td>' + evoCel(x.i, b && b.i) + '<td class="n">' + C.fmtInt(x.pr) + '</td>' +
+        '<td class="n">' + partP(x) + '</td><td class="n">' + C.fmtDec(x.cpp, 1) + '</td><td class="n">' + npsP(x) + '</td><td>' + (afinidadeP(x, base) || '<span class="nota">—</span>') + '</td></tr>';
     }).join('') + '</tbody>';
+  }
+  function agenteHtml(ag, x) {
+    var cor = { 'faz sentido': 'var(--g-bom)', 'em parte': 'var(--g-medio)', 'não faz sentido': 'var(--g-ruim)' };
+    return '<div class="sug ia"><span class="rot-bloco">Análise do agente de público</span><p>' + esc(ag.resumo) + '</p></div>' +
+      '<section class="det-sec"><h3>Por que divulgar para cada empresa</h3><div class="ag-emp">' + ag.empresas.map(function (e) {
+        return '<article class="ag-card" style="--c:' + (cor[e.veredito] || 'var(--g-medio)') + '"><header><b>' + esc(e.empresa) + '</b><span class="ag-ver"><i></i>' + esc(e.veredito) + '</span></header>' +
+          '<p>' + esc(e.motivo) + '</p>' + (e.angulo ? '<p class="ag-ang"><span>Ângulo</span>' + esc(e.angulo) + '</p>' : '') + '</article>';
+      }).join('') + '</div></section>' +
+      (ag.mensagem ? '<section class="det-sec"><h3>Mensagem sugerida</h3><div class="ag-msg"><b>' + esc(ag.mensagem.assunto) + '</b><p>' + esc(ag.mensagem.texto) + '</p></div></section>' : '') +
+      (ag.passos && ag.passos.length ? '<section class="det-sec"><h3>Próximos passos</h3><ol class="ag-passos">' + ag.passos.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ol></section>' : '');
   }
   function potencialP() {
     var lista = (PUB.potencial || []).filter(function (x) { return IDX.porId.has(x.curso_id); });
@@ -3334,7 +3426,7 @@ window.iniciarPainel = function () {
     $('#lista-pot').innerHTML = lista.length ? lista.map(function (x) {
       var c = IDX.porId.get(x.curso_id), at = String(x.curso_id) === String(estado.p.sel);
       return '<button type="button" class="curso-com' + (at ? ' ativo' : '') + '" data-pot="' + x.curso_id + '" aria-pressed="' + at + '"><span class="t">' + esc(c.titulo) + '</span>' +
-        '<span class="m">' + dataCurtaAno(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos, ' + C.fmtInt(x.total.pessoas) + ' no perfil</span>' + (SUG_IA[x.curso_id] ? '<span class="cont" title="Sugestão da IA">IA</span>' : '') + '</button>';
+        '<span class="m">' + dataCurtaAno(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos, ' + C.fmtInt(x.total.pessoas) + ' no perfil</span>' + (AGENTE[x.curso_id] || SUG_IA[x.curso_id] ? '<span class="cont" title="Análise do agente de público">IA</span>' : '') + '</button>';
     }).join('') : '<p class="aviso-ia">Nenhuma atividade futura com dados do sistema.</p>';
     var x = lista.filter(function (y) { return String(y.curso_id) === String(estado.p.sel); })[0];
     if (!x) { $('#det-pot').innerHTML = ''; return; }
@@ -3346,7 +3438,8 @@ window.iniciarPainel = function () {
       (x.ranking.length ? '; as empresas com mais delas são ' + x.ranking.slice(0, 3).map(function (r) { return nomeP('e', r[0]) + ' (' + r[1] + ')'; }).join(', ') : '') + '.';
     $('#det-pot').innerHTML =
       '<header class="det-topo"><div><h2>' + esc(c.titulo) + '</h2><span class="linha-sub">' + chipArea(c.area) + '<span class="pal">Início ' + C.dataLonga(c.inicio) + ', ' + C.fmtInt(x.inscritos) + ' inscritos</span></span></div></header>' +
-      '<div class="sug ' + (ia ? 'ia' : '') + '"><span class="rot-bloco">' + (ia ? 'Sugestão da IA' : 'Sugestão automática') + '</span><p>' + esc(ia ? ia.texto : auto) + '</p></div>' +
+      (AGENTE[x.curso_id] ? agenteHtml(AGENTE[x.curso_id], x) : '<div class="sug ' + (ia ? 'ia' : '') + '"><span class="rot-bloco">' + (ia ? 'Sugestão da IA' : 'Sugestão automática') + '</span><p>' + esc(ia ? ia.texto : auto) + '</p>' +
+        (ia ? '' : '<p class="nota">A análise do agente de público aparece aqui depois da próxima execução do n8n.</p>') + '</div>') +
       '<div class="det-kpis p3">' +
         '<div><span class="k">Pessoas do perfil ainda não inscritas</span><b>' + C.fmtInt(x.total.pessoas) + '</b></div>' +
         '<div><span class="k">Empresas com pessoas do perfil</span><b>' + C.fmtInt(x.total.empresas) + '</b></div>' +
@@ -3474,7 +3567,7 @@ window.iniciarPainel = function () {
 
     // ---- público
     if (PUB) {
-      var pAnos = uniq(PUB.cubo.map(function (r) { return String(r[0]); })).sort().reverse();
+      var pAnos = uniq(PUB.cubo.filter(function (r) { return r[0] > 0; }).map(function (r) { return String(r[0]); })).sort().reverse();
       if (pAnos.indexOf(estado.p.ano) < 0) estado.p.ano = pAnos[0] || ANO_ATUAL;
       var opDim = function (t) { return Object.keys(PUB.dim[t]).map(function (id) { return { v: id, t: nomeP(t, id) }; }).sort(function (a, b) { return a.t.localeCompare(b.t, 'pt-BR'); }); };
       dd.pAno = new Dropdown($('#dd-p-ano'), { rotulo: 'Ano', valor: estado.p.ano, padrao: ANO_ATUAL, opcoes: pAnos.map(function (a) { return { v: a, t: a }; }), onChange: function (v) { estado.p.ano = v; renderPublico(); } });
@@ -3487,6 +3580,7 @@ window.iniciarPainel = function () {
       $('#lista-pot').addEventListener('click', function (e) { var b = e.target.closest('[data-pot]'); if (b) { estado.p.sel = b.getAttribute('data-pot'); renderPublico(); } });
     }
     $$('#pg-publico .vista').forEach(function (b) { b.onclick = function () { estado.p.vista = b.getAttribute('data-pvista'); renderPublico(); }; });
+    $('#sw-p-evo').onclick = function () { estado.p.evo = !estado.p.evo; renderPublico(); };
 
     // ---- página de qualidade
     if (QEV.length) {
