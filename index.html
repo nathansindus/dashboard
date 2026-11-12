@@ -1031,6 +1031,12 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .pot-sec .tabela td, .pot-sec .tabela th { padding: 8px 6px; }
 .pot-sec .tabela th:first-child, .pot-sec .tabela td.titulo { width: 46%; padding-left: 10px; min-width: 0; }
 .pot-sec .tabela td.titulo b { white-space: normal; overflow-wrap: anywhere; }
+.p-resp-w[hidden] { display: none; }
+.kpi .valor .kpi-txt { display: block; font: 600 19px/1.25 var(--f-display); white-space: normal; overflow-wrap: anywhere; }
+#kpis-p .kpi .ctx { white-space: normal; overflow-wrap: anywhere; }
+#t-p-rdep th, #t-p-rcar th { white-space: normal; line-height: 1.3; }
+#t-p-rdep td, #t-p-rdep th, #t-p-rcar td, #t-p-rcar th { padding-left: 10px; padding-right: 10px; }
+#t-p-rdep td.titulo, #t-p-rcar td.titulo, #t-p-rdep thead th:first-child, #t-p-rcar thead th:first-child { padding-left: 16px; }
 
 </style>
 </head>
@@ -1239,6 +1245,7 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           <div class="vistas" role="group" aria-label="Seção da página">
             <button type="button" class="vista" data-pvista="usuarios" title="Departamentos, cargos e engajamento"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg><span>Usuários</span></button>
             <button type="button" class="vista" data-pvista="empresas" title="Relação de empresas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l6-3v15M10 20V10l10-3v13M3 20h18"/><path d="M13.5 11.5h3M13.5 15h3"/></svg><span>Empresas</span></button>
+            <button type="button" class="vista" data-pvista="responsaveis" title="Quem faz inscrições por outras pessoas"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5 1.3 0 2.5.4 3.4 1.1"/><path d="M17.5 13v7M14 16.5h7"/></svg><span>Quem inscreve</span></button>
           </div>
         </div>
       </div>
@@ -1255,6 +1262,12 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         <div class="painel tabela-p"><header><h2>Empresas</h2><span class="nota" id="n-p-emp"></span></header><div class="corpo rolagem"><table class="tabela" id="t-p-emp"></table></div></div>
       </div>
 
+        </div>
+        </div>
+        <div class="p-vistas p-resp-w">
+        <div class="vista-q p-usu" id="p-responsaveis" hidden>
+          <div class="painel tabela-p"><header><h2>Departamentos de quem inscreve</h2><span class="nota">pessoas que inscreveram colegas sem estar inscritas no curso</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-rdep"></table></div></div>
+          <div class="painel tabela-p"><header><h2>Cargos de quem inscreve</h2></header><div class="corpo rolagem"><table class="tabela" id="t-p-rcar"></table></div></div>
         </div>
         <aside class="gaveta" id="gav-pub" aria-label="Leitura do público">
           <div class="painel">
@@ -2167,7 +2180,9 @@ function gerarPublicoDemo(P) {
       perfil_car: [[1, Math.round(ins * 0.4)], [2, Math.round(ins * 0.25)]], alvo_dep: alvo, cargos_alvo: [[1, 40], [2, 22]], ranking: ranking,
       total: { pessoas: ranking.reduce(function (s, r) { return s + r[1]; }, 0) + 120, empresas: 40, sem_inscritos: 31 } };
   });
-  return { cubo: cubo, potencial: potencial, dim: dim, empresas_cadastradas: { todas: E.length + 4, associadas: 9, nao_associadas: E.length - 5 } };
+  var resp = {}; resp[String(anos[1])] = { pessoas_que_inscreveram_outras: 64, inscricoes_feitas_por_outra_pessoa: 412, inscricoes_consultadas: 3900, atividades_com_inscricao_por_terceiros: 21,
+    por_departamento: [[4, 31, 58], [2, 12, 19], [1, 9, 11], [7, 6, 8]], por_cargo: [[2, 27, 49], [3, 18, 26], [1, 11, 14], [5, 8, 9]], por_empresa: [[1, 9, 17], [2, 7, 12], [3, 6, 9]] };
+  return { cubo: cubo, potencial: potencial, responsaveis: resp, dim: dim, empresas_cadastradas: { todas: E.length + 4, associadas: 9, nao_associadas: E.length - 5 } };
 }
 
 </script>
@@ -3376,7 +3391,9 @@ window.iniciarPainel = function () {
   function renderPublico() {
     var f = estado.p;
     $$('#pg-publico .vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pvista') === f.vista)); });
-    ['usuarios', 'empresas'].forEach(function (v) { $('#p-' + v).hidden = f.vista !== v; });
+    ['usuarios', 'empresas', 'responsaveis'].forEach(function (v) { $('#p-' + v).hidden = f.vista !== v; });
+    $('.p-resp-w').hidden = f.vista !== 'responsaveis'; $('#p-usuarios').parentNode.hidden = f.vista === 'responsaveis';
+    $('#p-filtros-perfil').hidden = f.vista === 'responsaveis'; $('#sw-p-evo').hidden = f.vista === 'responsaveis';
     var leitura = (INS.empresas || []).concat(INS.usuarios || []);
     $('#ins-pub').innerHTML = insightsHtml(leitura, [], leitura.length ? '' : 'A leitura do observador de empresas e usuários aparece aqui depois da execução do workflow de Público no n8n.');
     $('#cont-pub').textContent = leitura.length;
@@ -3384,6 +3401,7 @@ window.iniciarPainel = function () {
     if (!PUB) { $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Público</span></div><div class="valor">—</div><div class="ctx">Atualize o workflow do n8n para trazer os dados do público.</div></div>'; return; }
     $('#limpar-p').hidden = f.dep === 'todos' && f.car === 'todos' && f.assoc === 'todas' && !f.busca;
     $('#kpis-p').hidden = false;
+    if (f.vista === 'responsaveis') { responsaveisP(); contar(); requestAnimationFrame(marcaRolagem); return; }
     var rows = linhasP(), rowsB = linhasP(anoRef(f.ano)), rot = rotRef(f.ano);
     var tot = agrupaP(rows)[0] || VAZIO_P, totB = agrupaP(rowsB)[0] || null;
     // a afinidade compara sempre com o ano inteiro, para continuar valendo com qualquer filtro
@@ -3411,6 +3429,27 @@ window.iniciarPainel = function () {
       empresasP(rows, rowsB, baseAno);
     }
     contar(); requestAnimationFrame(marcaRolagem);
+  }
+  // quem faz inscrições por outras pessoas (responsáveis que não estão inscritos no curso)
+  function responsaveisP() {
+    var z = PUB.responsaveis && PUB.responsaveis[estado.p.ano];
+    if (!z) {
+      $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Quem inscreve</span></div><div class="valor">—</div><div class="ctx">Os dados de quem faz as inscrições chegam com o workflow de Público atualizado (filtro subscription_author_media_ids da API).</div></div>';
+      $('#t-p-rdep').innerHTML = ''; $('#t-p-rcar').innerHTML = ''; return;
+    }
+    var emp = z.por_empresa.slice(0, 3).map(function (x) { return nomeP('e', x[0]) + ' (' + x[1] + ')'; }).join(', ');
+    $('#kpis-p').innerHTML =
+      kpi('Pessoas que inscreveram outras', C.fmtInt(z.pessoas_que_inscreveram_outras), 'inscreveram colegas em atividades nas quais não estavam inscritas', '', z.pessoas_que_inscreveram_outras) +
+      kpi('Inscrições feitas por outra pessoa', C.fmtInt(z.inscricoes_feitas_por_outra_pessoa), z.inscricoes_consultadas ? C.fmtPct(z.inscricoes_feitas_por_outra_pessoa / z.inscricoes_consultadas, 0) + ' das inscrições do ano' : '', '', z.inscricoes_feitas_por_outra_pessoa) +
+      kpi('Atividades com inscrição por colegas', C.fmtInt(z.atividades_com_inscricao_por_terceiros), '', '', z.atividades_com_inscricao_por_terceiros) +
+      kpi('Empresa que mais inscreve colegas', z.por_empresa.length ? '<span class="kpi-txt">' + esc(nomeP('e', z.por_empresa[0][0])) + '</span>' : '—', emp ? 'Mais pessoas inscrevendo: ' + esc(emp) : '', '');
+    var tab = function (lista, t, rot) {
+      return '<thead><tr><th>' + rot + '</th><th class="n">Pessoas que inscreveram</th><th class="n">Atividades</th></tr></thead><tbody>' + lista.map(function (x) {
+        return '<tr><td class="titulo"><b>' + esc(nomeP(t, x[0])) + '</b></td><td class="n"><span class="num-g">' + C.fmtInt(x[1]) + '</span></td><td class="n">' + C.fmtInt(x[2]) + '</td></tr>';
+      }).join('') + '</tbody>';
+    };
+    $('#t-p-rdep').innerHTML = tab(z.por_departamento, 'd', 'Departamento');
+    $('#t-p-rcar').innerHTML = tab(z.por_cargo, 'c', 'Cargo');
   }
   function evoCel(v, b) {
     if (!estado.p.evo) return '';
