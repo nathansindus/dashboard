@@ -1037,6 +1037,9 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 #t-p-rdep th, #t-p-rcar th { white-space: normal; line-height: 1.3; }
 #t-p-rdep td, #t-p-rdep th, #t-p-rcar td, #t-p-rcar th { padding-left: 10px; padding-right: 10px; }
 #t-p-rdep td.titulo, #t-p-rcar td.titulo, #t-p-rdep thead th:first-child, #t-p-rcar thead th:first-child { padding-left: 16px; }
+.aviso-consulta { grid-column: 1 / -1; }
+.aviso-consulta .valor small { font-size: 14px; }
+.aviso-consulta .ctx { color: var(--down); font-size: 13px; }
 
 </style>
 </head>
@@ -3432,15 +3435,23 @@ window.iniciarPainel = function () {
   }
   // quem faz inscrições por outras pessoas (responsáveis que não estão inscritos no curso)
   function responsaveisP() {
-    var z = PUB.responsaveis && PUB.responsaveis[estado.p.ano];
+    var z = PUB.responsaveis && PUB.responsaveis[estado.p.ano], q = PUB.consulta_api;
+    // consulta incompleta: melhor avisar do que mostrar zeros que não são reais
+    if (q && q.com_erro && (!z || q.com_erro >= q.atividades * 0.1)) {
+      var ex = (q.exemplos || [])[0];
+      $('#kpis-p').innerHTML = '<div class="kpi aviso-consulta"><div class="rot"><span>Consulta à API incompleta</span></div><div class="valor">' + C.fmtInt(q.com_erro) + '<small>de ' + C.fmtInt(q.atividades) + ' atividades com erro</small></div>' +
+        '<div class="ctx">Os números de quem inscreve aparecem quando a consulta completar.' + (ex ? ' Primeiro erro (' + esc(ex.consulta) + ', atividade ' + ex.atividade + '): ' + esc(ex.mensagem) : '') + '</div></div>';
+      $('#t-p-rdep').innerHTML = ''; $('#t-p-rcar').innerHTML = ''; return;
+    }
     if (!z) {
       $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Quem inscreve</span></div><div class="valor">—</div><div class="ctx">Os dados de quem faz as inscrições chegam com o workflow de Público atualizado (filtro subscription_author_media_ids da API).</div></div>';
       $('#t-p-rdep').innerHTML = ''; $('#t-p-rcar').innerHTML = ''; return;
     }
+    var cob = z.cobertura, parcial = cob && cob.lidas < cob.total;
     var emp = z.por_empresa.slice(0, 3).map(function (x) { return nomeP('e', x[0]) + ' (' + x[1] + ')'; }).join(', ');
     $('#kpis-p').innerHTML =
-      kpi('Pessoas que inscreveram outras', C.fmtInt(z.pessoas_que_inscreveram_outras), 'inscreveram colegas em atividades nas quais não estavam inscritas', '', z.pessoas_que_inscreveram_outras) +
-      kpi('Inscrições feitas por outra pessoa', C.fmtInt(z.inscricoes_feitas_por_outra_pessoa), z.inscricoes_consultadas ? C.fmtPct(z.inscricoes_feitas_por_outra_pessoa / z.inscricoes_consultadas, 0) + ' das inscrições do ano' : '', '', z.inscricoes_feitas_por_outra_pessoa) +
+      kpi('Pessoas que inscreveram outras', C.fmtInt(z.pessoas_que_inscreveram_outras), parcial ? '<span class="alerta-txt">Carga em andamento: ' + cob.lidas + ' de ' + cob.total + ' atividades do ano lidas</span>' : 'inscreveram colegas em atividades nas quais não estavam inscritas', '', z.pessoas_que_inscreveram_outras) +
+      kpi('Inscrições feitas por outra pessoa', C.fmtInt(z.inscricoes_feitas_por_outra_pessoa), z.inscricoes_consultadas ? C.fmtPct(z.inscricoes_feitas_por_outra_pessoa / z.inscricoes_consultadas, 0) + ' das ' + C.fmtInt(z.inscricoes_consultadas) + ' inscrições ' + (parcial ? 'já lidas' : 'do ano') : '', '', z.inscricoes_feitas_por_outra_pessoa) +
       kpi('Atividades com inscrição por colegas', C.fmtInt(z.atividades_com_inscricao_por_terceiros), '', '', z.atividades_com_inscricao_por_terceiros) +
       kpi('Empresa que mais inscreve colegas', z.por_empresa.length ? '<span class="kpi-txt">' + esc(nomeP('e', z.por_empresa[0][0])) + '</span>' : '—', emp ? 'Mais pessoas inscrevendo: ' + esc(emp) : '', '');
     var tab = function (lista, t, rot) {
