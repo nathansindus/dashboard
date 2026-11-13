@@ -1041,6 +1041,38 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .aviso-consulta .valor small { font-size: 14px; }
 .aviso-consulta .ctx { color: var(--down); font-size: 13px; }
 
+/* ===== regra geral: dados de tabela centralizados (exceto nome de atividade/área) ===== */
+.tabela th.n, .tabela td.n, .tabela th:not(.titulo):not(:first-child), .tabela td:not(.titulo):not(:first-child) { text-align: center; }
+.tabela th.titulo, .tabela td.titulo, .tabela thead th:first-child, .tabela tbody td:first-child.titulo { text-align: left; }
+.tabela td.n .num-g, .tabela td.n .evo-cel { justify-content: center; }
+.tabela .n .evo { justify-content: center; }
+/* ===== Divulgações: aproveitar a margem; só os títulos das colunas, bem distribuídos ===== */
+#t-div { table-layout: auto; }
+#t-div .titulo { width: 38%; }
+#t-div th:not(.titulo), #t-div td:not(.titulo) { text-align: center; }
+#t-div th { padding-left: 8px; padding-right: 8px; }
+#t-div td { padding-left: 8px; padding-right: 8px; }
+#t-div .origem { justify-content: center; }
+#t-div td:last-child, #t-div th:last-child { padding-right: 20px; }
+#t-div .lt-pub, #t-div .lt-ang { text-align: left; }
+/* ===== barra de seções só com ícones, alinhada à esquerda (Qualidade e Público) ===== */
+.vistas.so-icones { display: flex; gap: 8px; margin: 0 0 14px; }
+.vistas.so-icones .vista { all: unset; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 38px; border-radius: 10px; color: var(--fg-2); background: var(--panel-sub); transition: all .18s var(--ease); }
+.vistas.so-icones .vista svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.vistas.so-icones .vista span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.vistas.so-icones .vista:hover { color: var(--fg); background: var(--accent-soft); }
+.vistas.so-icones .vista[aria-pressed="true"], .vistas.so-icones .vista[aria-selected="true"] { color: #042; background: var(--accent); }
+.vistas.so-icones .vista:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* chips de agrupar inscrições na Comparação */
+.chips-grupo { display: inline-flex; gap: 6px; }
+.chips-grupo .chip-filtro { all: unset; cursor: pointer; font: 500 12.5px var(--f-text); color: var(--fg-2); padding: 5px 12px; border-radius: 999px; background: var(--panel-sub); transition: all .16s var(--ease); }
+.chips-grupo .chip-filtro:hover { color: var(--fg); background: var(--accent-soft); }
+.chips-grupo .chip-filtro[aria-pressed="true"] { color: #042; background: var(--accent); }
+.chips-grupo .chip-filtro:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* a barra de ícones ocupa uma linha própria dentro de .filtros (não cria 4ª linha no grid da página) */
+.filtros .vistas.so-icones { flex-basis: 100%; margin: 2px 0 0; order: 99; }
+
 </style>
 </head>
 <body class="pes">
@@ -1187,12 +1219,10 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         <div class="dd" id="dd-q-mes"></div>
         <label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="q-busca" type="search" placeholder="Buscar curso" aria-label="Buscar curso"></label>
         <button class="limpar" type="button" id="limpar-q" hidden>Limpar filtros</button>
-        <div class="direita">
-          <div class="vistas" role="group" aria-label="Seção da página">
-            <button type="button" class="vista" data-vista="grafico" title="Desempenho e evolução"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg><span>Desempenho</span></button>
-            <button type="button" class="vista" data-vista="tabela" title="Acervo de avaliações"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M4 14.5h16M10 10v9"/></svg><span>Acervo</span></button>
-            <button type="button" class="vista" data-vista="comentarios" title="Comentários dos participantes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg><span>Comentários</span></button>
-          </div>
+        <div class="vistas so-icones" role="group" aria-label="Seção da página">
+          <button type="button" class="vista" data-vista="grafico" title="Desempenho e evolução" aria-label="Desempenho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg><span>Desempenho</span></button>
+          <button type="button" class="vista" data-vista="tabela" title="Acervo de avaliações" aria-label="Acervo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M4 14.5h16M10 10v9"/></svg><span>Acervo</span></button>
+          <button type="button" class="vista" data-vista="comentarios" title="Comentários dos participantes" aria-label="Comentários"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg><span>Comentários</span></button>
         </div>
       </div>
       <div class="painel cluster" id="kpis-q" aria-live="polite"></div>
@@ -1233,23 +1263,23 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
     <section class="pagina" id="pg-publico" data-pg="publico" aria-labelledby="titulo-pg" hidden>
       <div class="filtros">
         <div class="dd" id="dd-p-ano"></div>
-        <button class="switch" type="button" role="switch" aria-checked="false" id="sw-p-evo" title="Comparar com o ano anterior, até a mesma data"><span class="trilho" aria-hidden="true"></span>Evolução</button>
         <span id="p-filtros-perfil" class="filtros-inline">
           <span class="dd" id="dd-p-dep"></span>
           <span class="dd" id="dd-p-car"></span>
           <span class="dd" id="dd-p-assoc"></span>
           <label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="p-busca" type="search" placeholder="Buscar empresa" aria-label="Buscar empresa"></label>
+          <button class="switch" type="button" role="switch" aria-checked="false" id="sw-p-evo" title="Comparar com o ano anterior, até a mesma data"><span class="trilho" aria-hidden="true"></span>Evolução</button>
           <button class="limpar" type="button" id="limpar-p" hidden>Limpar filtros</button>
         </span>
         <div class="direita">
           <button class="btn-leitura" type="button" aria-expanded="false" aria-controls="gav-pub" data-gaveta="gav-pub">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Leitura do público<span class="cont" id="cont-pub">0</span>
           </button>
-          <div class="vistas" role="group" aria-label="Seção da página">
-            <button type="button" class="vista" data-pvista="usuarios" title="Departamentos, cargos e engajamento"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg><span>Usuários</span></button>
-            <button type="button" class="vista" data-pvista="empresas" title="Relação de empresas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l6-3v15M10 20V10l10-3v13M3 20h18"/><path d="M13.5 11.5h3M13.5 15h3"/></svg><span>Empresas</span></button>
-            <button type="button" class="vista" data-pvista="responsaveis" title="Quem faz inscrições por outras pessoas"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5 1.3 0 2.5.4 3.4 1.1"/><path d="M17.5 13v7M14 16.5h7"/></svg><span>Quem inscreve</span></button>
-          </div>
+        </div>
+        <div class="vistas so-icones" role="group" aria-label="Seção da página">
+          <button type="button" class="vista" data-pvista="usuarios" title="Departamentos, cargos e engajamento" aria-label="Usuários"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg><span>Usuários</span></button>
+          <button type="button" class="vista" data-pvista="empresas" title="Relação de empresas" aria-label="Empresas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l6-3v15M10 20V10l10-3v13M3 20h18"/><path d="M13.5 11.5h3M13.5 15h3"/></svg><span>Empresas</span></button>
+          <button type="button" class="vista" data-pvista="responsaveis" title="Quem faz inscrições por outras pessoas" aria-label="Quem inscreve"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5 1.3 0 2.5.4 3.4 1.1"/><path d="M17.5 13v7M14 16.5h7"/></svg><span>Quem inscreve</span></button>
         </div>
       </div>
       <div class="painel cluster" id="kpis-p" aria-live="polite"></div>
@@ -1318,11 +1348,17 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         </div>
         <div class="coluna">
           <div class="painel">
-            <header><h2>Por que mudou</h2><span class="nota">do maior para o menor impacto</span></header>
+            <header><h2>Leitura do período</h2><span class="nota">do maior para o menor impacto</span></header>
             <div class="corpo rolagem"><div class="insights" id="ins-comp"></div></div>
           </div>
           <div class="painel">
-            <header><h2>Composição das inscrições</h2><div class="dir"><div class="dd" id="dd-grupo"></div></div></header>
+            <header><h2>Inscrições por</h2>
+              <div class="chips-grupo" id="chips-grupo" role="group" aria-label="Agrupar as inscrições por">
+                <button type="button" class="chip-filtro" data-grupo="formato" aria-pressed="true">Formato</button>
+                <button type="button" class="chip-filtro" data-grupo="modelo" aria-pressed="false">Modelo</button>
+                <button type="button" class="chip-filtro" data-grupo="area" aria-pressed="false">Área</button>
+              </div>
+            </header>
             <div class="corpo rolagem"><div class="hbars" id="g-comp"></div></div>
           </div>
         </div>
@@ -2696,7 +2732,7 @@ window.iniciarPainel = function () {
 
   var COLS_D = [
     { k: 'titulo', t: 'Atividade' }, { k: 'acoes', t: 'Ações', n: 1 }, { k: 'ultima', t: 'Última ação' }, { k: 'proxima', t: 'Próxima ação' },
-    { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'em72h', t: 'Em até 72h', n: 1 }, { k: 'variacao', t: 'Variação', n: 1 }, { k: 'abrir', sr: 'Detalhes' }
+    { k: 'inscricoes', t: 'Inscrições', n: 1 }, { k: 'em72h', t: 'Em até 72h', n: 1 }, { k: 'variacao', t: 'Variação', n: 1 }
   ];
   function ritmoTxt(antes, depois, dias) {
     if (depois == null) return '<span class="nota">aguardando dados</span>';
@@ -2795,7 +2831,7 @@ window.iniciarPainel = function () {
     var nAb = linhas.filter(function (l) { return l.e.c.status === 'abertas'; }).length;
     $('#n-div').textContent = linhas.length + (linhas.length === 1 ? ' atividade' : ' atividades') + ', ' + nAb + ' com inscrições abertas' +
       (semAtiv && semAtiv.length ? ', mais ' + semAtiv.length + (semAtiv.length > 1 ? ' e-mails sem atividade' : ' e-mail sem atividade') : '');
-    var nd = '<span class="nota">—</span>', seta = '<td class="abrir" aria-hidden="true"><svg viewBox="0 0 8 12"><path d="M1.5 1 6.5 6l-5 5"/></svg></td>';
+    var nd = '<span class="nota">—</span>', seta = '';
     var tb = '<tbody>' + linhas.map(function (l) {
       var e = l.e, c = e.c, sel = String(estado.d.detalhe) === String(c.id);
       var nPerd = e.divs.filter(function (x) { return x.d.email_nao_encontrado; }).length;
@@ -2953,7 +2989,7 @@ window.iniciarPainel = function () {
     var el = $('#g-anual');
     var ultimoA = cur.length ? cur[cur.length - 1] : 0, totalB = prev.length ? prev[prev.length - 1] : 0;
     if (!ultimoA && !totalB) { el.innerHTML = '<div class="vazio">Sem inscrições registradas em ' + Yb + ' e ' + Y + '.</div>'; meses(Y); return; }
-    var T = tamanho(el), w = T.w, h = T.h, m = { l: 48, r: 92, t: 14, b: 26 };
+    var T = tamanho(el), w = T.w, h = T.h, m = { l: 48, r: 108, t: 14, b: 26 };
     var iw = w - m.l - m.r, ih = h - m.t - m.b;
     var tk = ticks(Math.max(ultimoA, totalB, 1), 5), top = tk[tk.length - 1];
     var x = function (i) { return m.l + i / (nDias - 1) * iw; }, y = function (v) { return m.t + ih - v / top * ih; };
@@ -2986,10 +3022,13 @@ window.iniciarPainel = function () {
       if (vbHoje != null) out += '<circle cx="' + x(iH) + '" cy="' + y(vbHoje) + '" r="4" fill="var(--muted)" stroke="var(--panel-solid)" stroke-width="1.5"/>';
     }
     var ateQuando = cur.length ? C.addDias(ini, iH) : null;
-    $('#nota-anual').innerHTML = esc(notaSerie) + (ateQuando ? 'Até ' + C.dataCurta(ateQuando) + ': <b style="color:var(--data)">' + C.fmtInt(ultimoA) + '</b> em ' + Y + ', <b>' + C.fmtInt(vbHoje) + '</b> em ' + Yb +
-      (vbHoje ? ' ' + chip((ultimoA - vbHoje) / vbHoje, 'pct', 1) : '') : '');
-    if (prev.length) out += '<text x="' + (m.l + iw + 8) + '" y="' + (y(totalB) + 4) + '" style="fill:var(--muted);font:500 12px var(--f-text)">' + C.fmtInt(totalB) + '</text>' +
-      '<text x="' + (m.l + iw + 8) + '" y="' + (y(totalB) + 19) + '" style="fill:var(--muted);font:400 11px var(--f-text)">total ' + Yb + '</text>';
+    // nota curta: só a comparação na data de hoje
+    $('#nota-anual').innerHTML = ateQuando ? '<b style="color:var(--data)">' + C.fmtInt(ultimoA) + '</b> em ' + Y + ' · <b>' + C.fmtInt(vbHoje) + '</b> em ' + Yb + ' até ' + C.dataCurta(ateQuando) +
+      (vbHoje ? ' ' + chip((ultimoA - vbHoje) / vbHoje, 'pct', 1) : '') : '';
+    // rótulo do valor atual de 2026, junto ao ponto
+    if (cur.length) out += '<text x="' + (m.l + iw + 8) + '" y="' + (y(ultimoA) + 4) + '" style="fill:var(--data);font:600 12px var(--f-display)">' + C.fmtInt(ultimoA) + '</text>';
+    // rótulo do total final de 2025 (só se não colar no de 2026)
+    if (prev.length && Math.abs(y(totalB) - y(ultimoA)) > 16) out += '<text x="' + (m.l + iw + 8) + '" y="' + (y(totalB) + 4) + '" style="fill:var(--muted);font:500 12px var(--f-text)">' + C.fmtInt(totalB) + '<tspan style="font:400 10.5px var(--f-text)"> (' + Yb + ')</tspan></text>';
     out += '<line id="cur-an" x1="0" x2="0" y1="' + m.t + '" y2="' + (m.t + ih) + '" stroke="var(--line-strong)" visibility="hidden"/>';
     out += '<rect x="' + m.l + '" y="' + m.t + '" width="' + iw + '" height="' + ih + '" fill="transparent" id="hit-an"/></svg>';
     el.innerHTML = out;
@@ -3378,8 +3417,9 @@ window.iniciarPainel = function () {
       var pg = q / x.i, pb = tot / base.i, dif = pg - pb;
       if (dif >= 0.10 && (!melhor || dif > melhor.dif)) melhor = { a: a, pg: pg, pb: pb, dif: dif, q: q };
     });
-    return melhor ? '<span class="afin" title="' + C.fmtInt(melhor.q) + ' inscrições nesta área">' + chipArea(nomeP('a', melhor.a)) +
-      '<span class="afin-n"><b>' + C.fmtPct(melhor.pg, 0) + '</b> das inscrições do grupo, contra ' + C.fmtPct(melhor.pb, 0) + ' no PES</span></span>' : '';
+    return melhor ? '<span class="afin" title="' + C.fmtInt(melhor.q) + ' inscrições deste grupo nesta área">' + chipArea(nomeP('a', melhor.a)) +
+      '<span class="afin-n">Este grupo busca <b>' + nomeP('a', melhor.a) + '</b> bem mais que a média: ' + C.fmtPct(melhor.pg, 0) +
+      ' das inscrições dele são nessa área, enquanto no PES inteiro são ' + C.fmtPct(melhor.pb, 0) + '.</span></span>' : '';
   }
   function npsP(x) { var t = x.n[0] + x.n[1] + x.n[2]; return t ? npsCel({ promotores: x.n[0], neutros: x.n[1], detratores: x.n[2] }) : '<span class="nota">—</span>'; }
   function npsV(x) { var t = x.n[0] + x.n[1] + x.n[2]; return t ? (x.n[0] - x.n[2]) * 100 / t : null; }
@@ -3400,6 +3440,8 @@ window.iniciarPainel = function () {
     var leitura = (INS.empresas || []).concat(INS.usuarios || []);
     $('#ins-pub').innerHTML = insightsHtml(leitura, [], leitura.length ? '' : 'A leitura do observador de empresas e usuários aparece aqui depois da execução do workflow de Público no n8n.');
     $('#cont-pub').textContent = leitura.length;
+    // o botão de leitura vale para as três seções (o observador cobre empresas e usuários); fecha a gaveta ao trocar de seção
+    var btnLe = $('[data-gaveta="gav-pub"]'); if (btnLe) btnLe.hidden = !leitura.length;
     $('#sw-p-evo').setAttribute('aria-checked', String(!!f.evo));
     if (!PUB) { $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Público</span></div><div class="valor">—</div><div class="ctx">Atualize o workflow do n8n para trazer os dados do público.</div></div>'; return; }
     $('#limpar-p').hidden = f.dep === 'todos' && f.car === 'todos' && f.assoc === 'todas' && !f.busca;
@@ -3663,9 +3705,11 @@ window.iniciarPainel = function () {
         if (v === 'custom' && !estado.c.a) { var p = PRESETS[estado.c.preset]; estado.c.a = p.a.slice(); estado.c.b = p.b.slice(); }
         estado.c.preset = v; renderComparacao();
       } });
-    dd.grupo = new Dropdown($('#dd-grupo'), { rotulo: 'Por', valor: 'formato', semDestaque: true,
-      opcoes: [{ v: 'formato', t: 'Formato' }, { v: 'modelo', t: 'Modelo' }, { v: 'area', t: 'Área' }],
-      onChange: function (v) { estado.c.grupo = v; renderComparacao(); } });
+$$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
+      estado.c.grupo = b.getAttribute('data-grupo');
+      $$('#chips-grupo .chip-filtro').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      renderComparacao();
+    }; });
     ['a-ini', 'a-fim', 'b-ini', 'b-fim'].forEach(function (id) {
       $('#' + id).onchange = function () {
         var a = [$('#a-ini').value, $('#a-fim').value], b = [$('#b-ini').value, $('#b-fim').value];
