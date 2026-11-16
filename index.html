@@ -1097,6 +1097,34 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
 
+/* ===== Público: tabelas com colunas proporcionais e margens respiráveis ===== */
+#t-p-dep, #t-p-car { table-layout: fixed; width: 100%; max-width: 100%; }
+#t-p-dep th, #t-p-dep td, #t-p-car th, #t-p-car td, #t-p-emp th, #t-p-emp td { box-sizing: border-box; overflow-wrap: anywhere; }
+#t-p-dep th:nth-child(1), #t-p-dep td:nth-child(1),
+#t-p-car th:nth-child(1), #t-p-car td:nth-child(1) { width: 46%; padding-left: 16px; }
+#t-p-dep th:not(:first-child), #t-p-dep td:not(:first-child),
+#t-p-car th:not(:first-child), #t-p-car td:not(:first-child) { width: 18%; text-align: center; padding-left: 6px; padding-right: 6px; }
+#t-p-dep th:last-child, #t-p-dep td:last-child,
+#t-p-car th:last-child, #t-p-car td:last-child { padding-right: 16px; }
+#t-p-dep th, #t-p-car th { white-space: normal; line-height: 1.3; }
+/* a frase da área de destaque ocupa a largura da coluna do nome, sem espremer os números */
+#t-p-dep .afin, #t-p-car .afin { width: 100%; }
+#t-p-dep .afin-n, #t-p-car .afin-n { line-height: 1.45; }
+/* tabela de empresas: mesma lógica */
+#t-p-emp { table-layout: auto; width: 100%; max-width: 100%; }
+#t-p-emp td:first-child, #t-p-emp th:first-child { padding-left: 14px; max-width: 230px; }
+#t-p-emp th:not(:first-child), #t-p-emp td:not(:first-child) { padding-left: 5px; padding-right: 5px; }
+#t-p-emp .afin { max-width: 210px; }
+#t-p-emp th:not(:first-child), #t-p-emp td:not(:first-child) { text-align: center; }
+#t-p-emp th:last-child, #t-p-emp td:last-child { padding-right: 16px; }
+/* espaço para a barra de rolagem não colar nos números */
+.painel.tabela-p .corpo.rolagem { padding-right: 2px; }
+
+/* ===== a linha de filtros não quebra: busca encolhe para os ícones caberem à direita ===== */
+.filtros .busca { flex: 1 1 180px; min-width: 150px; }
+.filtros .direita { flex: 0 0 auto; margin-left: auto; }
+@media (max-width: 1100px) { .filtros .busca { flex-basis: 140px; } }
+
 </style>
 </head>
 <body class="pes">
@@ -1359,6 +1387,11 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           <span>Atual</span><input type="date" id="a-ini" aria-label="Início do período atual"><input type="date" id="a-fim" aria-label="Fim do período atual">
           <span>Anterior</span><input type="date" id="b-ini" aria-label="Início do período anterior"><input type="date" id="b-fim" aria-label="Fim do período anterior">
         </div>
+        <div class="direita">
+          <button class="btn-leitura" type="button" aria-expanded="false" aria-controls="gav-comp" data-gaveta="gav-comp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Leitura do período<span class="cont" id="cont-comp">0</span>
+          </button>
+        </div>
       </div>
 
       <div class="painel cards-comp" id="cards-comp" aria-live="polite"></div>
@@ -1375,10 +1408,6 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         </div>
         <div class="coluna">
           <div class="painel">
-            <header><h2>Leitura do período</h2><span class="nota">do maior para o menor impacto</span></header>
-            <div class="corpo rolagem"><div class="insights" id="ins-comp"></div></div>
-          </div>
-          <div class="painel">
             <header><h2>Inscrições por</h2>
               <div class="chips-grupo" id="chips-grupo" role="group" aria-label="Agrupar as inscrições por">
                 <button type="button" class="chip-filtro" data-grupo="formato" aria-pressed="true">Formato</button>
@@ -1389,6 +1418,13 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
             <div class="corpo rolagem"><div class="hbars" id="g-comp"></div></div>
           </div>
         </div>
+        <aside class="gaveta" id="gav-comp" aria-label="Leitura do período">
+          <div class="painel">
+            <header><h2>Leitura do período</h2><span class="nota">do maior para o menor impacto</span>
+              <button class="fechar" type="button" data-fecha="gav-comp" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
+            <div class="corpo rolagem"><div class="insights" id="ins-comp"></div></div>
+          </div>
+        </aside>
       </div>
     </section>
   </main>
@@ -2991,7 +3027,9 @@ window.iniciarPainel = function () {
     var ia = estado.c.preset !== 'custom' && INS.comparacao ? INS.comparacao[estado.c.preset] || [] : [];
     var aviso = !ia.length && DEMO ? 'Na versão conectada, a IA escreve aqui a justificativa de cada movimento.' :
       (!ia.length && estado.c.preset === 'custom' && INS.comparacao ? 'Períodos personalizados mostram só a explicação automática.' : '');
-    $('#ins-comp').innerHTML = insightsHtml(ia, C.explicarComparacao(IDX, A, B), aviso);
+    var regrasC = C.explicarComparacao(IDX, A, B);
+    $('#ins-comp').innerHTML = insightsHtml(ia, regrasC, aviso);
+    contador('cont-comp', ia.concat(regrasC));
     contar(); requestAnimationFrame(marcaRolagem);
   }
 
@@ -3445,8 +3483,7 @@ window.iniciarPainel = function () {
       if (dif >= 0.10 && (!melhor || dif > melhor.dif)) melhor = { a: a, pg: pg, pb: pb, dif: dif, q: q };
     });
     return melhor ? '<span class="afin" title="' + C.fmtInt(melhor.q) + ' inscrições deste grupo nesta área">' + chipArea(nomeP('a', melhor.a)) +
-      '<span class="afin-n">Este grupo busca <b>' + nomeP('a', melhor.a) + '</b> bem mais que a média: ' + C.fmtPct(melhor.pg, 0) +
-      ' das inscrições dele são nessa área, enquanto no PES inteiro são ' + C.fmtPct(melhor.pb, 0) + '.</span></span>' : '';
+      '<span class="afin-n">' + C.fmtPct(melhor.pg, 0) + ' das inscrições deste grupo são nessa área. No PES inteiro, são ' + C.fmtPct(melhor.pb, 0) + '.</span></span>' : '';
   }
   function npsP(x) { var t = x.n[0] + x.n[1] + x.n[2]; return t ? npsCel({ promotores: x.n[0], neutros: x.n[1], detratores: x.n[2] }) : '<span class="nota">—</span>'; }
   function npsV(x) { var t = x.n[0] + x.n[1] + x.n[2]; return t ? (x.n[0] - x.n[2]) * 100 / t : null; }
