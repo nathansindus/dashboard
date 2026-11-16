@@ -1056,7 +1056,7 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 #t-div td:last-child, #t-div th:last-child { padding-right: 20px; }
 #t-div .lt-pub, #t-div .lt-ang { text-align: left; }
 /* ===== barra de seções só com ícones, alinhada à esquerda (Qualidade e Público) ===== */
-.vistas.so-icones { display: flex; gap: 8px; margin: 0 0 14px; }
+.vistas.so-icones { display: flex; gap: 6px; margin: 0; }
 .vistas.so-icones .vista { all: unset; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
   width: 42px; height: 38px; border-radius: 10px; color: var(--fg-2); background: var(--panel-sub); transition: all .18s var(--ease); }
 .vistas.so-icones .vista svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -1071,7 +1071,31 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .chips-grupo .chip-filtro[aria-pressed="true"] { color: #042; background: var(--accent); }
 .chips-grupo .chip-filtro:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 /* a barra de ícones ocupa uma linha própria dentro de .filtros (não cria 4ª linha no grid da página) */
-.filtros .vistas.so-icones { flex-basis: 100%; margin: 2px 0 0; order: 99; }
+.filtros .vistas.so-icones { margin: 0; }
+.filtros .direita .vistas.so-icones { margin-left: 2px; }
+/* aviso de dados novos (atualização automática) */
+.toast-novo { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: inline-flex; align-items: center; gap: 9px;
+  padding: 11px 16px; border-radius: 12px; background: var(--panel-solid); color: var(--fg); font: 500 13px var(--f-text);
+  box-shadow: 0 10px 34px rgba(0,0,0,.34); border: 1px solid var(--accent); animation: entra .3s var(--ease) both; }
+.toast-novo .pt { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulsa 1s infinite; }
+@keyframes pulsa { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .45; transform: scale(.75); } }
+/* ===== fluidez: transições mais suaves em todo o painel ===== */
+.pagina { animation: entra .34s var(--ease) both; }
+.vista-q, .p-vistas > div { animation: entra .26s var(--ease) both; }
+.kpi { transition: transform .22s var(--ease), background .22s var(--ease); }
+.painel { transition: box-shadow .25s var(--ease), border-color .25s var(--ease); }
+.tabela tbody tr > td { transition: background .2s var(--ease); }
+.chip-filtro, .chips-grupo .chip-filtro, .vistas.so-icones .vista, .btn-leitura, .switch, .dd-botao {
+  transition: color .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease), transform .18s var(--ease); }
+.vistas.so-icones .vista:active, .chips-grupo .chip-filtro:active { transform: scale(.94); }
+.rolagem { scroll-behavior: smooth; }
+.gaveta { transition: transform .3s var(--ease), opacity .3s var(--ease); }
+.hbar .trilha i { transition: width .45s var(--ease); }
+/* respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .pagina, .vista-q, .p-vistas > div { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
 
 </style>
 </head>
@@ -1219,10 +1243,12 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         <div class="dd" id="dd-q-mes"></div>
         <label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="q-busca" type="search" placeholder="Buscar curso" aria-label="Buscar curso"></label>
         <button class="limpar" type="button" id="limpar-q" hidden>Limpar filtros</button>
-        <div class="vistas so-icones" role="group" aria-label="Seção da página">
-          <button type="button" class="vista" data-vista="grafico" title="Desempenho e evolução" aria-label="Desempenho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg><span>Desempenho</span></button>
-          <button type="button" class="vista" data-vista="tabela" title="Acervo de avaliações" aria-label="Acervo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M4 14.5h16M10 10v9"/></svg><span>Acervo</span></button>
-          <button type="button" class="vista" data-vista="comentarios" title="Comentários dos participantes" aria-label="Comentários"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg><span>Comentários</span></button>
+        <div class="direita">
+          <div class="vistas so-icones" role="group" aria-label="Seção da página">
+            <button type="button" class="vista" data-vista="grafico" title="Desempenho e evolução" aria-label="Desempenho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg><span>Desempenho</span></button>
+            <button type="button" class="vista" data-vista="tabela" title="Acervo de avaliações" aria-label="Acervo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M4 14.5h16M10 10v9"/></svg><span>Acervo</span></button>
+            <button type="button" class="vista" data-vista="comentarios" title="Comentários dos participantes" aria-label="Comentários"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg><span>Comentários</span></button>
+          </div>
         </div>
       </div>
       <div class="painel cluster" id="kpis-q" aria-live="polite"></div>
@@ -1272,15 +1298,16 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           <button class="limpar" type="button" id="limpar-p" hidden>Limpar filtros</button>
         </span>
         <div class="direita">
-          <button class="btn-leitura" type="button" aria-expanded="false" aria-controls="gav-pub" data-gaveta="gav-pub">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Leitura do público<span class="cont" id="cont-pub">0</span>
-          </button>
-        </div>
-        <div class="vistas so-icones" role="group" aria-label="Seção da página">
+          <div class="vistas so-icones" role="group" aria-label="Seção da página">
           <button type="button" class="vista" data-pvista="usuarios" title="Departamentos, cargos e engajamento" aria-label="Usuários"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg><span>Usuários</span></button>
           <button type="button" class="vista" data-pvista="empresas" title="Relação de empresas" aria-label="Empresas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l6-3v15M10 20V10l10-3v13M3 20h18"/><path d="M13.5 11.5h3M13.5 15h3"/></svg><span>Empresas</span></button>
           <button type="button" class="vista" data-pvista="responsaveis" title="Quem faz inscrições por outras pessoas" aria-label="Quem inscreve"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5 1.3 0 2.5.4 3.4 1.1"/><path d="M17.5 13v7M14 16.5h7"/></svg><span>Quem inscreve</span></button>
         </div>
+          <button class="btn-leitura" type="button" aria-expanded="false" aria-controls="gav-pub" data-gaveta="gav-pub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Leitura do público<span class="cont" id="cont-pub">0</span>
+          </button>
+        </div>
+
       </div>
       <div class="painel cluster" id="kpis-p" aria-live="polite"></div>
 
@@ -3841,6 +3868,39 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
   carregar('indicadores.js');   // metas e valores informados dos indicadores GIBS
   carregar(QUALIDADE);
   setTimeout(seguir, 6000);
+
+  /* ---- atualização automática: procura dados novos sem precisar de F5 ----
+     Lê só o cabeçalho de cada arquivo (onde está o carimbo do n8n). Se algum mudou,
+     avisa e recarrega, mantendo a página aberta. Pausa quando a aba está em segundo plano. */
+  var ARQ = ['atividades.js', 'divulgacoes.js', 'publico.js', 'comparacao.js'], carimbos = {}, primeira = true;
+  function carimbo(url) {
+    return fetch(url + '?v=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (t) { return t.slice(0, 140); })
+      .catch(function () { return null; });
+  }
+  function aviso() {
+    var d = document.createElement('div');
+    d.className = 'toast-novo';
+    d.innerHTML = '<span class="pt"></span>Dados novos — atualizando…';
+    document.body.appendChild(d);
+    setTimeout(function () { location.reload(); }, 1400);
+  }
+  function checar() {
+    if (document.hidden) return;
+    Promise.all(ARQ.map(carimbo)).then(function (cs) {
+      var mudou = false;
+      cs.forEach(function (c, i) {
+        if (c == null) return;
+        if (primeira) carimbos[ARQ[i]] = c;
+        else if (carimbos[ARQ[i]] !== undefined && carimbos[ARQ[i]] !== c) mudou = true;
+      });
+      primeira = false;
+      if (mudou) aviso();
+    });
+  }
+  setTimeout(function () { checar(); setInterval(checar, 120000); }, 8000);   // confere a cada 2 minutos
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) checar(); });
 })();
 </script>
 </body>
