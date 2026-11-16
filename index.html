@@ -1125,6 +1125,20 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .filtros .direita { flex: 0 0 auto; margin-left: auto; }
 @media (max-width: 1100px) { .filtros .busca { flex-basis: 140px; } }
 
+/* ===== leitura do período: painel sobreposto, do topo ao rodapé da página (padrão da Comparação) ===== */
+.pagina { position: relative; }
+.gaveta.leitura { position: absolute; top: 0; right: 0; bottom: 0; z-index: 18; margin: 0 !important;
+  width: 0; opacity: 0; visibility: hidden; overflow: hidden; display: flex;
+  transition: width .26s var(--ease), opacity .2s var(--ease), visibility 0s .26s; }
+.gaveta.leitura.aberta { width: min(420px, 94%); opacity: 1; visibility: visible;
+  transition: width .26s var(--ease), opacity .2s var(--ease) .04s, visibility 0s; }
+.gaveta.leitura > .painel { width: min(420px, 94vw); flex: none; background: var(--panel-solid);
+  box-shadow: var(--menu-shadow); border-color: var(--line-strong); }
+@media (max-width: 860px) {
+  .gaveta.leitura.aberta { width: min(400px, 94%); }
+  .gaveta.leitura > .painel { width: 100%; }
+}
+
 </style>
 </head>
 <body class="pes">
@@ -1215,14 +1229,14 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         <div class="painel tabela-p compacta">
           <div class="corpo rolagem"><table class="tabela" id="t-atv"></table></div>
         </div>
-        <aside class="gaveta" id="gav-atv" aria-label="Leitura do período">
+      </div>
+    <aside class="gaveta leitura" id="gav-atv" aria-label="Leitura do período">
           <div class="painel">
             <header><h2>Leitura do período</h2><span class="nota">muda com os filtros</span>
               <button class="fechar" type="button" data-fecha="gav-atv" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
             <div class="corpo rolagem"><div class="insights" id="ins-atv"></div></div>
           </div>
         </aside>
-      </div>
     </section>
 
     <!-- ===================== Página 2 · Divulgações ===================== -->
@@ -1252,14 +1266,14 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         <aside class="gaveta sobre detalhe" id="gav-acao" aria-label="Detalhes da divulgação">
           <div class="painel"><div class="corpo rolagem" id="det-acao"></div></div>
         </aside>
-        <aside class="gaveta" id="gav-div" aria-label="Leitura das divulgações">
+      </div>
+    <aside class="gaveta leitura" id="gav-div" aria-label="Leitura das divulgações">
           <div class="painel">
             <header><h2>Leitura das divulgações</h2>
               <button class="fechar" type="button" data-fecha="gav-div" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
             <div class="corpo rolagem"><div class="insights" id="ins-div"></div></div>
           </div>
         </aside>
-      </div>
     </section>
 
     <!-- ===================== Página · Qualidade ===================== -->
@@ -1357,14 +1371,14 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           <div class="painel tabela-p"><header><h2>Departamentos de quem inscreve</h2><span class="nota">pessoas que inscreveram colegas sem estar inscritas no curso</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-rdep"></table></div></div>
           <div class="painel tabela-p"><header><h2>Cargos de quem inscreve</h2></header><div class="corpo rolagem"><table class="tabela" id="t-p-rcar"></table></div></div>
         </div>
-        <aside class="gaveta" id="gav-pub" aria-label="Leitura do público">
+      </div>
+    <aside class="gaveta leitura" id="gav-pub" aria-label="Leitura do público">
           <div class="painel">
             <header><h2>Leitura do público</h2><span class="nota">observador de empresas e usuários</span>
               <button class="fechar" type="button" data-fecha="gav-pub" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
             <div class="corpo rolagem"><div class="insights" id="ins-pub"></div></div>
           </div>
         </aside>
-      </div>
     </section>
 
     <!-- ===================== Página · Indicadores GIBS ===================== -->
@@ -1418,14 +1432,14 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
             <div class="corpo rolagem"><div class="hbars" id="g-comp"></div></div>
           </div>
         </div>
-        <aside class="gaveta" id="gav-comp" aria-label="Leitura do período">
+      </div>
+    <aside class="gaveta leitura" id="gav-comp" aria-label="Leitura do período">
           <div class="painel">
             <header><h2>Leitura do período</h2><span class="nota">do maior para o menor impacto</span>
               <button class="fechar" type="button" data-fecha="gav-comp" aria-label="Fechar leitura"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
             <div class="corpo rolagem"><div class="insights" id="ins-comp"></div></div>
           </div>
         </aside>
-      </div>
     </section>
   </main>
 </div>
@@ -3504,8 +3518,8 @@ window.iniciarPainel = function () {
     var leitura = (INS.empresas || []).concat(INS.usuarios || []);
     $('#ins-pub').innerHTML = insightsHtml(leitura, [], leitura.length ? '' : 'A leitura do observador de empresas e usuários aparece aqui depois da execução do workflow de Público no n8n.');
     $('#cont-pub').textContent = leitura.length;
-    // o botão de leitura vale para as três seções (o observador cobre empresas e usuários); fecha a gaveta ao trocar de seção
-    var btnLe = $('[data-gaveta="gav-pub"]'); if (btnLe) btnLe.hidden = !leitura.length;
+    // o botão de leitura vale para as três seções (Usuários, Empresas e Quem inscreve)
+    var btnLe = $('[data-gaveta="gav-pub"]'); if (btnLe) btnLe.hidden = false;
     $('#sw-p-evo').setAttribute('aria-checked', String(!!f.evo));
     if (!PUB) { $('#kpis-p').innerHTML = '<div class="kpi"><div class="rot"><span>Público</span></div><div class="valor">—</div><div class="ctx">Atualize o workflow do n8n para trazer os dados do público.</div></div>'; return; }
     $('#limpar-p').hidden = f.dep === 'todos' && f.car === 'todos' && f.assoc === 'todas' && !f.busca;
