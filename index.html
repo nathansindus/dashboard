@@ -222,7 +222,7 @@ main.palco { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 12px; 
 .tabela th { position: sticky; top: 0; z-index: 1; background: var(--panel-solid); text-align: left; font-weight: 500; color: var(--muted); font-size: 12px;
   padding: 8px 10px; border-bottom: 1px solid var(--line-strong); line-height: 1.25; vertical-align: bottom; }
 .tabela th.n { text-align: right; }
-.tabela th button { max-width: 96px; }
+.tabela th button { max-width: 130px; white-space: normal; overflow-wrap: normal; word-break: keep-all; }
 .tabela th button { all: unset; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; }
 .tabela th button:focus-visible { outline: 2px solid var(--azul2); border-radius: 3px; }
 .tabela th[aria-sort="ascending"] button::after { content: "▲"; font-size: 8px; color: var(--accent); }
@@ -1099,11 +1099,13 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 
 /* ===== Público: tabelas com colunas proporcionais e margens respiráveis ===== */
 #t-p-dep, #t-p-car { table-layout: fixed; width: 100%; max-width: 100%; }
-#t-p-dep th, #t-p-dep td, #t-p-car th, #t-p-car td, #t-p-emp th, #t-p-emp td { box-sizing: border-box; overflow-wrap: anywhere; }
+#t-p-dep th, #t-p-dep td, #t-p-car th, #t-p-car td, #t-p-emp th, #t-p-emp td { box-sizing: border-box; }
+#t-p-dep td.titulo, #t-p-car td.titulo, #t-p-emp td.titulo { overflow-wrap: anywhere; }
+#t-p-dep th, #t-p-car th, #t-p-emp th { overflow-wrap: normal; word-break: keep-all; }
 #t-p-dep th:nth-child(1), #t-p-dep td:nth-child(1),
-#t-p-car th:nth-child(1), #t-p-car td:nth-child(1) { width: 46%; padding-left: 16px; }
+#t-p-car th:nth-child(1), #t-p-car td:nth-child(1) { padding-left: 16px; }
 #t-p-dep th:not(:first-child), #t-p-dep td:not(:first-child),
-#t-p-car th:not(:first-child), #t-p-car td:not(:first-child) { width: 18%; text-align: center; padding-left: 6px; padding-right: 6px; }
+#t-p-car th:not(:first-child), #t-p-car td:not(:first-child) { text-align: center; padding-left: 6px; padding-right: 6px; }
 #t-p-dep th:last-child, #t-p-dep td:last-child,
 #t-p-car th:last-child, #t-p-car td:last-child { padding-right: 16px; }
 #t-p-dep th, #t-p-car th { white-space: normal; line-height: 1.3; }
@@ -1138,6 +1140,45 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
   .gaveta.leitura.aberta { width: min(400px, 94%); }
   .gaveta.leitura > .painel { width: 100%; }
 }
+
+/* ===== Divulgações e Público no mesmo acabamento da tabela de Atividades ===== */
+/* respiro vertical e tipografia iguais */
+#t-div tr.grupo > td, #t-p-dep td, #t-p-car td, #t-p-emp td { padding-top: 14px; padding-bottom: 14px; }
+#t-p-dep, #t-p-car, #t-p-emp { font-size: 14.5px; }
+#t-p-dep th, #t-p-car th, #t-p-emp th, #t-div th { font-size: 13px; letter-spacing: .01em; }
+#t-p-dep .titulo b, #t-p-car .titulo b, #t-p-emp .titulo b { font-size: 15.5px; line-height: 1.35; }
+#t-p-dep .chip-area, #t-p-car .chip-area, #t-p-emp .chip-area { font-size: 12.5px; padding: 3px 11px; }
+/* a barra de rolagem não encosta na última coluna (respiro na própria célula) */
+#t-div th:last-child, #t-div td:last-child,
+#t-p-dep th:last-child, #t-p-dep td:last-child,
+#t-p-car th:last-child, #t-p-car td:last-child,
+#t-p-emp th:last-child, #t-p-emp td:last-child { padding-right: 20px; }
+/* colunas numéricas com largura suficiente para o cabeçalho inteiro */
+#t-p-dep th:not(:first-child), #t-p-dep td:not(:first-child),
+#t-p-car th:not(:first-child), #t-p-car td:not(:first-child) { width: 17%; }
+#t-p-dep th:first-child, #t-p-dep td:first-child,
+#t-p-car th:first-child, #t-p-car td:first-child { width: 49%; }
+@media (max-width: 1399px) {
+  /* colunas fluidas: a tabela se ajusta ao painel, sem rolagem lateral */
+  #t-p-dep, #t-p-car { table-layout: auto; font-size: 13.5px; }
+  #t-p-dep th:first-child, #t-p-dep td:first-child,
+  #t-p-car th:first-child, #t-p-car td:first-child { width: auto; max-width: 240px; }
+  #t-p-dep th:not(:first-child), #t-p-dep td:not(:first-child),
+  #t-p-car th:not(:first-child), #t-p-car td:not(:first-child) { width: auto; padding-left: 3px; padding-right: 3px; }
+  #t-p-dep th:last-child, #t-p-dep td:last-child,
+  #t-p-car th:last-child, #t-p-car td:last-child { padding-right: 14px; }
+  #t-p-dep .afin-n, #t-p-car .afin-n { font-size: 12px; }
+}
+/* etiqueta da área numa linha só quando há espaço (evita rolagem lateral em telas menores) */
+@media (min-width: 1400px) { #t-p-dep .chip-area, #t-p-car .chip-area, #t-p-emp .chip-area { white-space: nowrap; } }
+@media (max-width: 1399px) { #t-p-dep .chip-area, #t-p-car .chip-area { white-space: normal; line-height: 1.3; } }
+/* a frase da área de destaque com o mesmo tom das notas do painel */
+.afin-n { font-size: 12.5px; color: var(--muted); }
+/* aviso de fonte de reserva (API falhou e os dados vieram da exportação do sistema) */
+.selo-reserva { display: inline-block; max-width: 420px; padding: 6px 12px; border-radius: 10px; font: 500 12px var(--f-text);
+  color: #3a2708; background: #f6c96b; border: 1px solid #e0ab3c; line-height: 1.4; }
+.fontes.alerta-fonte .pts i[data-st="reserva"] { background: #e0ab3c; }
+@media (max-width: 1100px) { .selo-reserva { max-width: 260px; } }
 
 </style>
 </head>
@@ -1200,6 +1241,7 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
       </div>
       <div class="status-dados">
         <span class="selo-demo" id="selo-demo" hidden>Dados de demonstração</span>
+        <span class="selo-reserva" id="aviso-fonte" hidden></span>
         <span class="fontes" id="fontes" tabindex="0"></span>
         <div class="atualizado"><b id="atualizado">—</b><span id="atualizado-ref">—</span></div>
       </div>
@@ -1356,20 +1398,20 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
       <div class="area">
         <div class="p-vistas">
         <div class="vista-q p-usu" id="p-usuarios">
-        <div class="painel tabela-p p-dep"><header><h2>Departamentos</h2><span class="nota">área de destaque: onde o grupo concentra mais inscrições do que o PES como um todo</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-dep"></table></div></div>
-        <div class="painel tabela-p p-car"><header><h2>Cargos</h2><span class="nota" id="n-p-car"></span></header><div class="corpo rolagem"><table class="tabela" id="t-p-car"></table></div></div>
+        <div class="painel tabela-p compacta p-dep"><div class="corpo rolagem"><table class="tabela" id="t-p-dep"></table></div></div>
+        <div class="painel tabela-p compacta"><div class="corpo rolagem"><table class="tabela" id="t-p-car"></table></div></div>
       </div>
 
         <div class="vista-q" id="p-empresas" hidden>
-        <div class="painel tabela-p"><header><h2>Empresas</h2><span class="nota" id="n-p-emp"></span></header><div class="corpo rolagem"><table class="tabela" id="t-p-emp"></table></div></div>
+        <div class="painel tabela-p compacta"><div class="corpo rolagem"><table class="tabela" id="t-p-emp"></table></div></div>
       </div>
 
         </div>
         </div>
         <div class="p-vistas p-resp-w">
         <div class="vista-q p-usu" id="p-responsaveis" hidden>
-          <div class="painel tabela-p"><header><h2>Departamentos de quem inscreve</h2><span class="nota">pessoas que inscreveram colegas sem estar inscritas no curso</span></header><div class="corpo rolagem"><table class="tabela" id="t-p-rdep"></table></div></div>
-          <div class="painel tabela-p"><header><h2>Cargos de quem inscreve</h2></header><div class="corpo rolagem"><table class="tabela" id="t-p-rcar"></table></div></div>
+          <div class="painel tabela-p compacta"><div class="corpo rolagem"><table class="tabela" id="t-p-rdep"></table></div></div>
+          <div class="painel tabela-p compacta"><div class="corpo rolagem"><table class="tabela" id="t-p-rcar"></table></div></div>
         </div>
       </div>
     <aside class="gaveta leitura" id="gav-pub" aria-label="Leitura do público">
@@ -2612,9 +2654,17 @@ window.iniciarPainel = function () {
     $('#atualizado').textContent = 'Atualizado em ' + C.dataLonga(C.iso(g)) + ', ' + hora(g.toISOString());
     $('#atualizado-ref').textContent = META.ref_ultima ? 'Atualização anterior: ' + C.dataCurta(diaLocal(META.ref_ultima)) + ', ' + hora(META.ref_ultima) : 'Primeira atualização';
     var nomes = { sistema: 'Sistema', trello: 'Trello', pesquisas: 'Pesquisas', ia: 'IA' }, f = META.fontes || {};
-    var desc = { ok: 'conectada', erro: 'falhou na última atualização', demo: 'em demonstração', off: 'desligada' };
+    var desc = { ok: 'conectada', erro: 'falhou na última atualização', demo: 'em demonstração', off: 'desligada',
+      api: 'conectada', reserva: 'API falhou: usando a exportação do sistema, que pode estar desatualizada' };
     var el = $('#fontes');
     el.innerHTML = 'Fontes<span class="pts">' + Object.keys(nomes).map(function (k) { return '<i data-st="' + esc(f[k] || 'off') + '"></i>'; }).join('') + '</span>';
+    el.classList.toggle('alerta-fonte', f.sistema === 'reserva' || f.sistema === 'erro');
+    var avisoF = $('#aviso-fonte');
+    if (avisoF) {
+      var reserva = f.sistema === 'reserva';
+      avisoF.hidden = !reserva;
+      if (reserva) avisoF.textContent = 'Atenção: a API de inscrições não respondeu nesta atualização. Os números de participação e satisfação vêm da última exportação do sistema e podem estar desatualizados.';
+    }
     var html = Object.keys(nomes).map(function (k) { return '<div class="l"><span>' + nomes[k] + '</span><b>' + (desc[f[k] || 'off'] || f[k]) + '</b></div>'; }).join('');
     el.setAttribute('aria-label', 'Fontes: ' + Object.keys(nomes).map(function (k) { return nomes[k] + ' ' + (desc[f[k] || 'off'] || f[k]); }).join(', '));
     el.onmouseenter = function (e) { mostraTip(html, e.clientX, e.clientY); };
@@ -3579,8 +3629,8 @@ window.iniciarPainel = function () {
         return '<tr><td class="titulo"><b>' + esc(nomeP(t, x[0])) + '</b></td><td class="n"><span class="num-g">' + C.fmtInt(x[1]) + '</span></td><td class="n">' + C.fmtInt(x[2]) + '</td></tr>';
       }).join('') + '</tbody>';
     };
-    $('#t-p-rdep').innerHTML = tab(z.por_departamento, 'd', 'Departamento');
-    $('#t-p-rcar').innerHTML = tab(z.por_cargo, 'c', 'Cargo');
+    $('#t-p-rdep').innerHTML = tab(z.por_departamento, 'd', 'Departamentos de quem inscreve <span class="th-n">' + z.por_departamento.length + '</span>');
+    $('#t-p-rcar').innerHTML = tab(z.por_cargo, 'c', 'Cargos de quem inscreve <span class="th-n">' + z.por_cargo.length + '</span>');
   }
   function evoCel(v, b) {
     if (!estado.p.evo) return '';
@@ -3589,7 +3639,8 @@ window.iniciarPainel = function () {
   }
   function tabelaGrupo(lista, mapaB, base, t) {
     var evo = estado.p.evo;
-    return '<thead><tr><th>' + (t === 'd' ? 'Departamento' : 'Cargo') + '</th><th class="n">Pessoas</th><th class="n">Inscrições</th>' + (evo ? '<th class="n">Variação</th>' : '') + '<th class="n">Participação</th></tr></thead><tbody>' +
+    var tit = (t === 'd' ? 'Departamentos' : 'Cargos') + ' <span class="th-n">' + lista.length + '</span>';
+    return '<thead><tr><th>' + tit + '</th><th class="n">Pessoas</th><th class="n">Inscrições</th>' + (evo ? '<th class="n">Variação</th>' : '') + '<th class="n">Participação</th></tr></thead><tbody>' +
       lista.map(function (x) {
         var af = afinidadeP(x, base), b = mapaB.get(x.k);
         return '<tr><td class="titulo"><b>' + esc(nomeP(t, x.k)) + '</b>' + (af ? '<span class="linha-sub">' + af + '</span>' : '') + '</td><td class="n">' + C.fmtInt(x.pessoas) + '</td><td class="n"><span class="num-g">' + C.fmtInt(x.i) + '</span></td>' +
@@ -3601,7 +3652,6 @@ window.iniciarPainel = function () {
     var dep = agrupaP(rows, 2).sort(porI), car = agrupaP(rows, 3).sort(porI);
     $('#t-p-dep').innerHTML = tabelaGrupo(dep, mapa(rowsB, 2), base, 'd');
     $('#t-p-car').innerHTML = tabelaGrupo(car, mapa(rowsB, 3), base, 'c');
-    $('#n-p-car').textContent = car.length + ' cargos';
   }
   function empresasP(rows, rowsB, base) {
     var busca = semAcento(estado.p.busca.trim()), s = estado.p.sortE, evo = estado.p.evo;
@@ -3610,8 +3660,7 @@ window.iniciarPainel = function () {
     lista.forEach(function (x) { x.nome = nomeP('e', x.k); x.part = x.ir ? x.pr / x.ir : -1; x.cpp = x.pessoas ? x.i / x.pessoas : 0; var t = x.n[0] + x.n[1] + x.n[2]; x.nps = t ? (x.n[0] - x.n[2]) / t : -9;
       var b = mapaB.get(x.k); x.var = b && b.i ? (x.i - b.i) / b.i : -1e9; });
     lista.sort(function (a, b) { var p = a[s.col], q = b[s.col]; return (p < q ? -1 : p > q ? 1 : 0) * s.dir; });
-    $('#n-p-emp').textContent = lista.length + (lista.length === 1 ? ' empresa' : ' empresas');
-    var cols = [{ k: 'nome', t: 'Empresa' }, { k: 'pessoas', t: 'Pessoas', n: 1 }, { k: 'i', t: 'Inscrições', n: 1 }].concat(evo ? [{ k: 'var', t: 'Variação', n: 1 }] : [])
+    var cols = [{ k: 'nome', t: 'Empresas <span class="th-n">' + lista.length + '</span>' }, { k: 'pessoas', t: 'Pessoas', n: 1 }, { k: 'i', t: 'Inscrições', n: 1 }].concat(evo ? [{ k: 'var', t: 'Variação', n: 1 }] : [])
       .concat([{ k: 'pr', t: 'Presenças', n: 1 }, { k: 'part', t: 'Participação', n: 1 }, { k: 'cpp', t: 'Cursos por pessoa', n: 1 }, { k: 'nps', t: 'NPS', n: 1 }, { k: 'af', t: 'Área de destaque', fixo: 1 }]);
     $('#t-p-emp').innerHTML = cabecalhoTabela(cols, s) + '<tbody>' + lista.slice(0, 300).map(function (x) {
       var as = assocP(x.k), b = mapaB.get(x.k);
