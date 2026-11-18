@@ -2357,7 +2357,10 @@ window.iniciarPainel = function () {
     var dim = { e: {}, d: {}, c: {}, a: {} };
     [P && P.publico && P.publico.dim, D && D.dim_potencial].forEach(function (x) { if (x) ['e', 'd', 'c', 'a'].forEach(function (t) { Object.assign(dim[t], x[t] || {}); }); });
     var ins = function (x, k) { return x && x.insights && x.insights[k] || null; };
-    window.PES_DATA = { meta: meta, cursos: A.cursos, inscricoes_diarias: A.inscricoes_diarias || [], divulgacoes: D ? D.divulgacoes || [] : [], proximas: D ? D.proximas : undefined,
+    // a série pela data real da inscrição (vem das Divulgações) tem preferência: é a que
+    // permite cruzar a inscrição com a data da divulgação. Sem ela, vale a série por diferença diária.
+    var serieDia = (D && D.inscricoes_diarias_reais && D.inscricoes_diarias_reais.length) ? D.inscricoes_diarias_reais : (A.inscricoes_diarias || []);
+    window.PES_DATA = { meta: meta, cursos: A.cursos, inscricoes_diarias: serieDia, divulgacoes: D ? D.divulgacoes || [] : [], proximas: D ? D.proximas : undefined,
       publico: P && P.publico ? Object.assign({}, P.publico, { dim: dim, potencial: D ? D.potencial || [] : [] }) : (D && D.potencial ? { cubo: [], dim: dim, potencial: D.potencial } : null),
       agente_publico: D ? D.agente_publico || [] : [],
       insights: { cursos: ins(A, 'cursos') || [], divulgacoes: ins(D, 'divulgacoes') || [], publico: ins(D, 'publico') || [], comparacao: ins(K, 'comparacao') || {},
