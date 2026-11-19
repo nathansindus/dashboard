@@ -1293,15 +1293,112 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .in-c.trivial p { color: var(--muted); font-style: italic; }
 .in-vazio { padding: 22px 6px; text-align: center; color: var(--muted); font-size: 13px; }
 
-/* enviar pesquisa: a organização aberta dentro do painel */
-.in-enviar { display: grid; grid-template-rows: minmax(0, 1fr); min-height: 0; animation: entra .45s var(--ease) both; }
-.in-frame { padding: 0; overflow: hidden; }
-.in-frame iframe { display: block; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; opacity: 0; transition: opacity .4s var(--ease); }
-.in-frame.pronto iframe { opacity: 1; }
-.in-carregando { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; color: var(--muted); font-size: 13px; }
-.in-frame.pronto .in-carregando { display: none; }
-.spin { width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--line-strong); border-top-color: var(--accent); animation: gira 1s linear infinite; }
-@keyframes gira { to { transform: rotate(360deg); } }
+/* enviar pesquisa: organização da campanha dentro do painel */
+.in-enviar { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: var(--gap); min-height: 0; animation: entra .45s var(--ease) both; }
+.ev-main { padding: 0; overflow: hidden; }
+.ev-modo { font-size: 11.5px; font-weight: 600; padding: 5px 12px; border-radius: 999px; color: var(--azul4); background: var(--amarelo); white-space: nowrap; }
+.ev-modo.prod { background: var(--accent); }
+.ev-passos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--line); }
+.ev-passos li + li { border-left: 1px solid var(--line); }
+.ev-passos button { width: 100%; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border: 0; background: transparent; color: var(--muted); text-align: left; cursor: pointer; transition: background .3s var(--ease), color .3s; }
+.ev-passos button:hover { background: var(--panel-sub); color: var(--fg-2); }
+.ev-passos .n { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--panel-sub); border: 1px solid var(--line-strong); font: 600 13px var(--f-display); color: var(--fg-2); }
+.ev-passos b { display: block; font: 600 13.5px var(--f-display); color: inherit; }
+.ev-passos small { display: block; font-size: 11.5px; color: var(--muted); }
+.ev-passos [aria-current="step"] { background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 16%, transparent), transparent); color: var(--fg); box-shadow: inset 0 -2px 0 var(--accent); }
+.ev-passos [aria-current="step"] .n { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.ev-passos .feito .n { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 50%, transparent); color: var(--accent); }
+.ev-aviso, .ev-erro, .ev-ok { margin: 12px 18px 0; padding: 10px 14px; border-radius: 12px; font-size: 12.5px; line-height: 1.5; }
+.ev-aviso { background: color-mix(in srgb, var(--amarelo) 12%, transparent); border: 1px solid color-mix(in srgb, var(--amarelo) 40%, transparent); color: var(--fg-2); }
+.ev-aviso b { color: var(--amarelo); }
+.ev-erro { background: rgba(255, 122, 133, .12); border: 1px solid rgba(255, 122, 133, .4); color: #FFD0D5; white-space: pre-line; }
+.ev-ok { background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); color: var(--fg); }
+.ev-ok h3 { margin: 0 0 4px; font: 600 15px var(--f-display); color: var(--accent); }
+.ev-ok p { margin: 0 0 10px; }
+.ev-corpo { padding: 16px 18px; }
+.ev-duas { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 14px; align-items: start; }
+.ev-bloco { padding: 16px; border-radius: 16px; background: var(--panel-sub); border: 1px solid var(--line); min-width: 0; }
+.ev-bloco h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font: 600 14.5px var(--f-display); }
+.ev-bloco h3 .limpar, .ev-bloco h3 .ev-pill { margin-left: auto; }
+.ev-pill { padding: 2px 10px; border-radius: 999px; font: 600 11.5px var(--f-text); background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.ev-campo { display: grid; gap: 6px; margin-bottom: 12px; min-width: 0; }
+.ev-campo > span { font-size: 12.5px; font-weight: 500; color: var(--fg-2); }
+.ev-campo small { font-size: 11.5px; color: var(--muted); }
+.ev-campo input, .ev-campo select, .ev-campo textarea, .ev-previa select { width: 100%; min-width: 0; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, .05); color: var(--fg); font: 400 13.5px var(--f-text); color-scheme: dark; transition: border-color .25s var(--ease), background .25s var(--ease); }
+.ev-campo textarea { resize: vertical; min-height: 190px; line-height: 1.6; }
+.ev-campo input:focus, .ev-campo select:focus, .ev-campo textarea:focus, .ev-previa select:focus { outline: none; border-color: var(--accent); background: rgba(255, 255, 255, .08); }
+.ev-campo select option, .ev-previa select option { background: var(--panel-solid); color: var(--fg); }
+.ev-lin2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ev-periodo { padding: 10px 12px; border-radius: 12px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); font-size: 12.5px; color: var(--fg-2); }
+.ev-periodo b { display: block; color: var(--fg); font: 600 14px var(--f-display); }
+.ev-barra { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.ev-barra .busca { flex: 1; min-width: 0; height: 36px; }
+.ev-areas { display: grid; gap: 7px; }
+.ev-area { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); cursor: pointer; transition: background .25s var(--ease), border-color .25s var(--ease); }
+.ev-area:hover { background: rgba(255, 255, 255, .04); }
+.ev-area:has(input:checked) { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.ev-area input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; flex: none; }
+.ev-area .ini { width: 34px; height: 34px; flex: none; display: grid; place-items: center; border-radius: 10px; background: color-mix(in srgb, var(--c) 18%, transparent); color: var(--fg); font: 600 12px var(--f-display); }
+.ev-area .tx { min-width: 0; flex: 1; }
+.ev-area b { display: block; font-size: 13.5px; font-weight: 600; }
+.ev-area small { display: block; font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+.ev-area small.pend { color: var(--amarelo); }
+.ev-tokens { display: flex; flex-wrap: wrap; gap: 6px; margin: -4px 0 14px; }
+.ev-tokens button { font: 12px/1.4 ui-monospace, Consolas, monospace; padding: 4px 8px; border-radius: 7px; border: 1px solid var(--line-strong); background: rgba(255, 255, 255, .05); color: #BFE9FF; cursor: pointer; }
+.ev-tokens button:hover { border-color: var(--accent); }
+.ev-previa-topo { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.ev-previa-topo h3 { margin: 0; }
+.ev-previa select { width: auto; max-width: 220px; margin-left: auto; padding: 6px 10px; }
+.ev-meta { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 3px 12px; font-size: 12.5px; margin-bottom: 10px; }
+.ev-meta span { color: var(--muted); } .ev-meta b { font-weight: 500; overflow-wrap: anywhere; }
+#ev-email { display: block; width: 100%; height: 400px; border: 0; border-radius: 12px; background: #F2F6FB; }
+.ev-previa-pe { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+.ev-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.ev-stats div { padding: 12px 14px; border-radius: 14px; background: var(--panel-sub); border: 1px solid var(--line); }
+.ev-stats span { display: block; font-size: 12px; color: var(--muted); } .ev-stats b { font: 600 16px var(--f-display); }
+.ev-dest { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.ev-dest:last-of-type { border-bottom: 0; }
+.ev-dest div { flex: 1; min-width: 0; } .ev-dest b { display: block; font-size: 13.5px; } .ev-dest small { display: block; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.ev-dest a { font-size: 12px; color: var(--accent); white-space: nowrap; }
+.ev-r-assunto { margin: 0 0 8px; font: 600 14px var(--f-display); }
+.ev-r-corpo { margin: 0 0 12px; font-size: 12.5px; color: var(--fg-2); white-space: pre-line; max-height: 220px; overflow: auto; }
+.ev-aprova { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; cursor: pointer; font-size: 12.5px; color: var(--fg-2);
+  background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+.ev-aprova input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--accent); flex: none; }
+.ev-aprova b { display: block; color: var(--fg); font-size: 13.5px; }
+.ev-acoes { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-top: 1px solid var(--line); }
+.ev-salvo { margin-right: auto; font-size: 12px; color: var(--muted); display: inline-flex; align-items: center; gap: 7px; }
+.ev-salvo::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.ev-btn { height: 38px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--fg); font: 600 13px var(--f-text); cursor: pointer;
+  transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease); }
+.ev-btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+.ev-btn.prim { background: var(--fg); color: var(--azul1); border-color: var(--fg); }
+.ev-btn.envia { background: linear-gradient(120deg, var(--verde1), var(--azul2)); color: var(--azul1); border: 0; box-shadow: 0 10px 26px -12px rgba(0, 240, 180, .8); }
+.ev-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.ev-lado { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: var(--gap); min-height: 0; }
+.ev-res { display: grid; gap: 10px; }
+.ev-res div { display: grid; gap: 1px; }
+.ev-res span { font-size: 11.5px; color: var(--muted); } .ev-res b { font: 600 14px/1.35 var(--f-display); }
+.ev-res .falta { color: var(--amarelo); }
+.ev-h { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+.ev-h:last-child { border-bottom: 0; }
+.ev-h b { display: block; font-weight: 500; } .ev-h small { color: var(--muted); }
+.ev-h .tg { float: right; font-size: 11px; color: var(--accent); }
+.ev-dlg { width: min(720px, calc(100% - 32px)); padding: 0; border: 1px solid var(--line-strong); border-radius: 22px; background: var(--panel-solid); color: var(--fg); box-shadow: var(--menu-shadow); }
+.ev-dlg::backdrop { background: rgba(0, 10, 40, .6); backdrop-filter: blur(4px); }
+.ev-dlg > header { display: flex; align-items: flex-start; gap: 12px; padding: 20px 22px 14px; border-bottom: 1px solid var(--line); }
+.ev-dlg > header h2 { margin: 0 0 3px; font: 600 18px var(--f-display); } .ev-dlg > header p { margin: 0; font-size: 12.5px; color: var(--muted); }
+.ev-dlg-corpo { padding: 18px 22px; max-height: 62vh; overflow: auto; }
+.ev-dlg-corpo .ev-erro { margin: 0 0 12px; }
+.ev-dlg > footer { display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 14px 22px; border-top: 1px solid var(--line); }
+.ev-dlg > footer .nota { margin-right: auto; }
+.ev-ger { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) auto; gap: 10px; align-items: end; margin-bottom: 4px; }
+.ev-ger .ev-campo { margin-bottom: 8px; }
+.ev-ger .ev-btn { margin-bottom: 8px; color: #FFB3BB; }
+.ev-dlg-linha { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 8px 0; }
+.ev-toast { position: fixed; z-index: 80; left: 50%; bottom: 26px; transform: translateX(-50%); padding: 10px 18px; border-radius: 999px; background: var(--accent); color: var(--azul1); font-weight: 600; font-size: 13px; box-shadow: var(--menu-shadow); }
+@media (max-width: 1365px) { .in-enviar { grid-template-columns: minmax(0, 1fr) 260px; } .ev-duas { grid-template-columns: minmax(0, 1fr); } }
 a.btn-leitura { text-decoration: none; color: var(--fg); }
 
 @media (max-width: 1180px) {
@@ -1310,9 +1407,11 @@ a.btn-leitura { text-decoration: none; color: var(--fg); }
   .in-tend { min-height: 320px; }
   .in-duo > .painel { min-height: 280px; }
   .in-com { max-height: 640px; min-height: 320px; }
-  .in-enviar { min-height: 80vh; }
+  .in-enviar { grid-template-columns: minmax(0, 1fr); }
+  .ev-main { min-height: 70vh; }
+  .ev-corpo { max-height: none; }
 }
-@media (max-width: 760px) { .in-duo { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) { .in-duo { grid-template-columns: minmax(0, 1fr); } .ev-passos { grid-template-columns: minmax(0, 1fr); } .ev-passos li + li { border-left: 0; border-top: 1px solid var(--line); } .ev-stats, .ev-ger { grid-template-columns: minmax(0, 1fr); } .so-enviar { flex-wrap: wrap; } }
 
 </style>
 </head>
@@ -1525,9 +1624,9 @@ a.btn-leitura { text-decoration: none; color: var(--fg); }
           <button class="limpar" type="button" id="limpar-in" hidden>Limpar filtros</button>
         </span>
         <div class="direita so-enviar" hidden>
-          <a class="btn-leitura" id="in-abrir" href="organizacao.html" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Abrir em nova aba
-          </a>
+          <span class="ev-modo" id="ev-modo">Demonstração</span>
+          <button class="btn-leitura" type="button" id="ev-btn-areas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9.5L12 4l8 5.5V20"/><path d="M9.5 20v-5.5h5V20"/></svg>Cadastro de áreas</button>
+          <button class="btn-leitura" type="button" id="ev-btn-config"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg>Configurações</button>
         </div>
       </div>
 
@@ -1559,11 +1658,94 @@ a.btn-leitura { text-decoration: none; color: var(--fg); }
       </div>
 
       <div class="in-enviar" id="in-enviar" hidden>
-        <div class="painel in-frame">
-          <div class="in-carregando" id="in-carregando"><span class="spin" aria-hidden="true"></span>Abrindo a organização das pesquisas…</div>
-          <iframe id="in-iframe" title="Enviar pesquisa interna" loading="lazy"></iframe>
+        <div class="painel ev-main">
+          <ol class="ev-passos" aria-label="Etapas da campanha">
+            <li><button type="button" data-ev-passo="1" aria-current="step"><span class="n">1</span><span><b>Período e áreas</b><small>Quem vamos ouvir</small></span></button></li>
+            <li><button type="button" data-ev-passo="2"><span class="n">2</span><span><b>Preparar convite</b><small>Mensagem e personalização</small></span></button></li>
+            <li><button type="button" data-ev-passo="3"><span class="n">3</span><span><b>Revisar e enviar</b><small>Validação da equipe PES</small></span></button></li>
+          </ol>
+          <div class="ev-aviso" id="ev-demo"><b>Modo demonstração.</b> Teste todas as etapas e veja a pesquisa; nenhum e-mail sai daqui. Para enviar de verdade, ative a produção em Configurações.</div>
+          <div class="ev-erro" id="ev-erro" role="alert" tabindex="-1" hidden></div>
+          <div class="ev-ok" id="ev-ok" role="status" hidden></div>
+          <div class="corpo rolagem ev-corpo">
+            <section id="ev-p1" aria-label="Período e áreas">
+              <div class="ev-duas">
+                <div class="ev-bloco">
+                  <h3>Dados da pesquisa <span class="ev-pill">Trimestral</span></h3>
+                  <label class="ev-campo"><span>Nome da campanha</span><input id="ev-titulo" maxlength="160"></label>
+                  <div class="ev-lin2"><label class="ev-campo"><span>Período</span><select id="ev-tri"><option value="1">1º trimestre</option><option value="2">2º trimestre</option><option value="3">3º trimestre</option><option value="4">4º trimestre</option><option value="custom">Personalizado</option></select></label>
+                    <label class="ev-campo"><span>Ano</span><input id="ev-ano" type="number" min="2020" max="2100"></label></div>
+                  <div class="ev-lin2"><label class="ev-campo"><span>Data inicial</span><input id="ev-ini" type="date"></label><label class="ev-campo"><span>Data final</span><input id="ev-fim" type="date"></label></div>
+                  <label class="ev-campo"><span>Nome do período na pesquisa</span><input id="ev-rot" maxlength="160" placeholder="Ex.: outubro, novembro e dezembro de 2026"><small>Aparece no convite e na pergunta de satisfação.</small></label>
+                  <label class="ev-campo"><span>Receber respostas até</span><input id="ev-prazo" type="date"></label>
+                  <div class="ev-periodo" id="ev-periodo"></div>
+                </div>
+                <div class="ev-bloco">
+                  <h3>Áreas participantes <span class="ev-pill" id="ev-n-sel">0 selecionadas</span></h3>
+                  <div class="ev-barra"><label class="busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="ev-busca" type="search" placeholder="Buscar área" aria-label="Buscar área"></label><button type="button" class="limpar" id="ev-todas">Selecionar todas</button></div>
+                  <div class="ev-areas" id="ev-areas"></div>
+                </div>
+              </div>
+            </section>
+            <section id="ev-p2" aria-label="Preparar convite" hidden>
+              <div class="ev-duas">
+                <div class="ev-bloco">
+                  <h3>Convite</h3>
+                  <label class="ev-campo"><span>Assunto do e-mail</span><input id="ev-assunto" maxlength="200"></label>
+                  <label class="ev-campo"><span>Mensagem</span><textarea id="ev-corpo" rows="11" maxlength="6000"></textarea><small>Clique numa variável para inserir no texto. Cada área recebe o próprio convite.</small></label>
+                  <div class="ev-tokens"><button type="button" data-ev-token="area">{{tracker.area}}</button><button type="button" data-ev-token="data">{{tracker.data}}</button><button type="button" data-ev-token="prazo">{{tracker.prazo}}</button><button type="button" data-ev-token="link">{{tracker.link}}</button></div>
+                  <label class="ev-campo"><span>Texto do botão</span><input id="ev-botao" maxlength="60"></label>
+                  <button type="button" class="limpar" id="ev-restaura">Restaurar mensagem sugerida</button>
+                </div>
+                <div class="ev-bloco ev-previa">
+                  <div class="ev-previa-topo"><h3>Prévia</h3><select id="ev-previa-area" aria-label="Prévia para a área"></select></div>
+                  <div class="ev-meta"><span>Para</span><b id="ev-para"></b><span>Assunto</span><b id="ev-assunto-prev"></b></div>
+                  <iframe id="ev-email" title="Prévia do e-mail" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>
+                  <div class="ev-previa-pe"><span class="nota">Prévia · nenhum e-mail enviado</span><a class="btn-leitura" id="ev-ver-pesquisa" target="_blank" rel="noopener noreferrer" href="pesquisa.html?preview=1">Ver a pesquisa</a></div>
+                </div>
+              </div>
+            </section>
+            <section id="ev-p3" aria-label="Revisar e enviar" hidden>
+              <div class="ev-stats"><div><span>Período avaliado</span><b id="ev-r-periodo"></b></div><div><span>Áreas</span><b id="ev-r-n"></b></div><div><span>Prazo de resposta</span><b id="ev-r-prazo"></b></div></div>
+              <div class="ev-duas">
+                <div class="ev-bloco"><h3>Destinatários <button type="button" class="limpar" data-ev-passo="1">Editar seleção</button></h3><div id="ev-dest"></div><p class="nota">Os links desta tela são prévias. No envio real, o n8n cria um link individual e assinado para cada área.</p></div>
+                <div class="ev-bloco"><h3>Convite <button type="button" class="limpar" data-ev-passo="2">Editar mensagem</button></h3><p class="ev-r-assunto" id="ev-r-assunto"></p><p class="ev-r-corpo" id="ev-r-corpo"></p>
+                  <label class="ev-aprova"><input type="checkbox" id="ev-aprovo"><span><b>Revisei e aprovo esta campanha.</b>Conferi as áreas, os e-mails, o período e o conteúdo do convite.</span></label>
+                  <p class="nota" id="ev-ajuda"></p><button type="button" class="limpar" id="ev-baixar">Baixar dados da campanha (JSON)</button></div>
+              </div>
+            </section>
+          </div>
+          <footer class="ev-acoes">
+            <span class="ev-salvo" id="ev-salvo">Rascunho salvo neste navegador</span>
+            <button type="button" class="ev-btn" id="ev-voltar" hidden>Voltar</button>
+            <button type="button" class="ev-btn prim" id="ev-avancar">Preparar convite</button>
+            <button type="button" class="ev-btn envia" id="ev-enviar" hidden>Simular envio</button>
+          </footer>
         </div>
+        <aside class="ev-lado">
+          <div class="painel ev-resumo"><header><h2>Campanha</h2></header><div id="ev-resumo"></div></div>
+          <div class="painel ev-hist"><header><h2>Enviadas deste navegador</h2></header><div class="corpo rolagem"><div id="ev-hist"></div></div></div>
+        </aside>
       </div>
+
+      <dialog class="ev-dlg" id="ev-dlg-areas" aria-labelledby="ev-t-areas">
+        <header><div><h2 id="ev-t-areas">Cadastro de áreas</h2><p>Nome da área e e-mail que recebe a pesquisa.</p></div><button type="button" class="fechar" data-ev-fecha aria-label="Fechar"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
+        <div class="ev-dlg-corpo"><div class="ev-erro" id="ev-erro-areas" role="alert" hidden></div><div id="ev-gerente"></div>
+          <div class="ev-dlg-linha"><button type="button" class="ev-btn" id="ev-add-area">Adicionar área</button><button type="button" class="limpar" id="ev-areas-padrao">Carregar cadastro inicial</button></div>
+          <p class="nota">O cadastro fica neste navegador. Exporte um backup para usar em outro computador.</p>
+          <div class="ev-dlg-linha"><button type="button" class="limpar" id="ev-exportar">Exportar cadastro e rascunho</button><button type="button" class="limpar" id="ev-importar">Importar backup</button><input id="ev-arquivo" type="file" accept="application/json,.json" hidden></div></div>
+        <footer><button type="button" class="ev-btn" data-ev-fecha>Cancelar</button><button type="button" class="ev-btn prim" id="ev-salvar-areas">Salvar cadastro</button></footer>
+      </dialog>
+      <dialog class="ev-dlg" id="ev-dlg-config" aria-labelledby="ev-t-config">
+        <header><div><h2 id="ev-t-config">Conexão com o n8n</h2><p>Endereços usados para enviar os convites e montar os links.</p></div><button type="button" class="fechar" data-ev-fecha aria-label="Fechar"><svg viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11"/></svg></button></header>
+        <div class="ev-dlg-corpo"><div class="ev-erro" id="ev-erro-config" role="alert" hidden></div>
+          <label class="ev-campo"><span>Modo</span><select id="ev-c-modo"><option value="demo">Demonstração · nenhum envio real</option><option value="production">Produção · enviar pelo n8n</option></select></label>
+          <label class="ev-campo"><span>Webhook de envio</span><input id="ev-c-webhook" type="url" placeholder="https://SEU-N8N/webhook/pes-pesquisa-interna/envio"><small>URL de produção do webhook “Envio · campanha” do workflow.</small></label>
+          <label class="ev-campo"><span>Endereço da pesquisa</span><input id="ev-c-url" type="url"><small>O pesquisa.html publicado junto com o painel.</small></label>
+          <label class="ev-campo"><span>Token do painel</span><input id="ev-c-token" type="password" autocomplete="off" spellcheck="false" placeholder="Só para enviar em produção"><small>Vai como “Authorization: Bearer”. Não fica salvo no navegador nem no backup.</small></label></div>
+        <footer><span class="nota">As credenciais de e-mail e do GitHub ficam no n8n.</span><button type="button" class="ev-btn prim" id="ev-salvar-config">Salvar</button></footer>
+      </dialog>
+      <div class="ev-toast" id="ev-toast" role="status" aria-live="polite" hidden></div>
     </section>
 
     <!-- ===================== Página · Público ===================== -->
@@ -3697,7 +3879,7 @@ window.iniciarPainel = function () {
     $$('#pg-interna .so-analytics').forEach(function (el) { el.hidden = enviar; });
     $$('#pg-interna .so-enviar').forEach(function (el) { el.hidden = !enviar; });
     $('#in-enviar').hidden = !enviar;
-    if (enviar) { abreFrameIn(); return; }
+    if (enviar) { if (window.PES_ENVIO) window.PES_ENVIO.abrir(); return; }
     if (!INT_R.length) {
       $('#kpis-in').innerHTML = kpi('Pesquisas internas', '—', 'Nenhuma resposta carregada. Confira o arquivo pesquisas_internas.js.');
       $('#g-in-tend').innerHTML = '<div class="vazio">Sem respostas para mostrar.</div>';
@@ -3835,53 +4017,6 @@ window.iniciarPainel = function () {
         '<p>' + esc(r.com) + '</p></article>';
     }).join('') : '<p class="in-vazio">' + (todos.length ? 'Nenhuma sugestão escrita nesta seleção. Ative “Todos” para ver as demais respostas.' : 'Nenhum comentário nesta seleção.') + '</p>';
     var sc = $('#in-lista-com').closest('.rolagem'); if (sc) sc.scrollTop = 0;
-  }
-
-  // a organização (organizacao.html) abre dentro do painel com o visual azul do PES 2.0;
-  // o arquivo original continua igual e funciona sozinho em outra aba
-  var CSS_FRAME = [
-    'html{color-scheme:dark}html,body{background:transparent!important}body{color:#F5F9FF;font-family:"Work Sans",Arial,sans-serif;font-size:14.5px}',
-    'h1,h2,h3{font-family:Cabin,"Work Sans",sans-serif;color:#F5F9FF}.muted,.small.muted,.sectionhead p,.summaryline,.field small,.footer{color:#A6BDE8!important}',
-    '.hero,.brand,.footer,.skip{display:none!important}header{background:transparent;border:0}.topbar{min-height:0;padding-top:18px;justify-content:flex-end}',
-    '.shell{max-width:none;padding-left:24px;padding-right:24px}.main{padding-top:14px;padding-bottom:24px}',
-    '.topnav button{border-color:rgba(255,255,255,.22);border-radius:999px;color:#F5F9FF}.topnav button:hover{background:rgba(0,240,180,.14);border-color:#00F0B4}',
-    '.topnav .mode{border-color:rgba(0,240,180,.45);color:#00F0B4;background:rgba(0,240,180,.10)}',
-    '.card,.stat{background:rgba(255,255,255,.065)!important;border-color:rgba(255,255,255,.12)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);border-radius:22px;backdrop-filter:blur(20px)}',
-    '.process{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);border-radius:18px}.process li+li{border-color:rgba(255,255,255,.12)}',
-    '.process button{color:#A6BDE8}.process [aria-current=step]{background:rgba(0,240,180,.14);color:#F5F9FF}.process .num{background:rgba(255,255,255,.10);color:#D5E3FF}',
-    '.process [aria-current=step] .num{background:#00F0B4;color:#002D78}.process .done .num{background:rgba(0,240,180,.22);color:#00F0B4}.process .stepcopy small{color:#A6BDE8}',
-    'input,select,textarea{background:rgba(255,255,255,.06)!important;color:#F5F9FF!important;border-color:rgba(255,255,255,.18)!important;border-radius:12px}',
-    'input:focus,select:focus,textarea:focus{border-color:#00F0B4!important}option{color:#000F32;background:#fff}input[type=date]{color-scheme:dark}input::placeholder,textarea::placeholder{color:#8EA6D6}',
-    'label,.fieldlabel{color:#D5E3FF}.pill{background:rgba(0,240,180,.14);color:#00F0B4}',
-    '.btn{background:rgba(255,255,255,.04);color:#F5F9FF;border-color:rgba(255,255,255,.22);border-radius:999px}.btn:hover{background:rgba(0,240,180,.12);border-color:#00F0B4}',
-    '.btn.primary,.btn.mint{background:#00F0B4;border-color:#00F0B4;color:#002D78;box-shadow:0 10px 26px -12px rgba(0,240,180,.7)}.btn.primary:hover,.btn.mint:hover{background:#3FF5C8}',
-    '.btn.danger{color:#FF9AA3;border-color:rgba(255,122,133,.4)}.btn.quiet{background:transparent}.linkbtn,a{color:#00F0B4}',
-    '.area{border-color:rgba(255,255,255,.12);border-radius:14px}.area:hover{background:rgba(255,255,255,.04)}.area:has(input:checked){background:rgba(0,240,180,.12);border-color:rgba(0,240,180,.6)}',
-    '.area .initial{background:rgba(255,255,255,.08);color:#F5F9FF}.area small{color:#A6BDE8}.area small.pending{color:#FFC56E}.area .checklabel{color:#00F0B4}.area input{accent-color:#00F0B4}',
-    '.note{background:rgba(0,185,242,.10);border-left-color:#00B9F2;color:#D5E3FF}.notice{background:rgba(255,197,110,.10);border-color:rgba(255,197,110,.35);color:#FFE2B0}.notice strong{color:#FFC56E}',
-    '.periodbox{background:rgba(0,240,180,.08);border-color:rgba(0,240,180,.3);color:#B9FBE9}.approval{background:rgba(0,240,180,.08);border-color:rgba(0,240,180,.3)}.approval input{accent-color:#00F0B4}',
-    '.error{background:rgba(255,122,133,.12);border-color:rgba(255,122,133,.4);color:#FFC2C8}.success{background:rgba(0,240,180,.10);border-color:rgba(0,240,180,.4)}.success h2{color:#00F0B4}',
-    '.tokens button{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:#BFE9FF}.emailpreview{border-color:rgba(255,255,255,.12);border-radius:14px}',
-    '.reviewitem{border-color:rgba(255,255,255,.10)}.reviewitem small,.stat span,.mailmeta span{color:#A6BDE8}.actions,.history,.backupbar,.historyrow{border-color:rgba(255,255,255,.12)}',
-    '.savestatus,.history summary{color:#A6BDE8}.savestatus svg,.historyrow .tag{color:#00F0B4}.toolbar input{background:rgba(255,255,255,.06)!important}',
-    'dialog{background:#0C3C8E;color:#F5F9FF;border-color:rgba(255,255,255,.2);border-radius:22px}.dialoghead,.dialogfoot{border-color:rgba(255,255,255,.12)}.dialoghead p{color:#A6BDE8}',
-    '.close{background:rgba(255,255,255,.10);color:#F5F9FF}.toast{background:#00F0B4;color:#002D78}::selection{background:#00F0B4;color:#002D78}',
-    '*{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}'
-  ].join('');
-  function vesteFrameIn(fr) {
-    try {
-      var d = fr.contentDocument; if (!d || !d.head || d.getElementById('pes-embed')) return;
-      var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=Cabin:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap';
-      var st = d.createElement('style'); st.id = 'pes-embed'; st.textContent = CSS_FRAME;
-      d.head.appendChild(l); d.head.appendChild(st); d.documentElement.classList.add('embed');
-    } catch (e) { /* outra origem: abre com o visual próprio da organização */ }
-  }
-  function abreFrameIn() {
-    if (estadoIn.frame) return;
-    estadoIn.frame = true;
-    var fr = $('#in-iframe'), box = fr.closest('.in-frame');
-    fr.onload = function () { vesteFrameIn(fr); box.classList.add('pronto'); };
-    fr.src = 'organizacao.html?embed=1';
   }
 
   /* =================================================================
@@ -4618,6 +4753,430 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
   iniciar();
 };
 
+</script>
+<script>
+/* =====================================================================
+   Qualidade › Interno › Enviar pesquisa
+   Organiza a campanha (período, áreas, convite, revisão) e entrega ao n8n,
+   que assina um link por área, envia os e-mails e grava as respostas em
+   pesquisas_internas.js. Rascunho e cadastro ficam neste navegador.
+   ===================================================================== */
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var STORAGE = 'pes-surveys-admin-v1';   // o mesmo do organizacao.html: o cadastro já feito lá continua valendo
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var uid = function () { return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : 'pes-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2); };
+  var AREAS_INICIAIS = [
+    { id: 'ditri', name: 'DITRI', email: 'grupoditri@sindusfarma.org.br' },
+    { id: 'rh', name: 'RH', email: 'rh@sindusfarma.org.br' },
+    { id: 'gaj', name: 'GAJ', email: 'juridico@sindusfarma.org.br' },
+    { id: 'dimap', name: 'DIMAP', email: 'acesso@sindusfarma.org.br' },
+    { id: 'drig', name: 'DRIG', email: 'relacoesinstitucionais@sindusfarma.org.br' }
+  ];
+  var EMAIL_PADRAO = { subject: 'Sua opinião importa para o PES | {{tracker.data}}',
+    body: 'Olá, equipe de {{tracker.area}}!\n\nQueremos saber como foi a experiência da sua área com os serviços prestados pelo Programa Educacional no período de {{tracker.data}}.\n\nA pesquisa é breve: uma avaliação de 0 a 10 e um espaço para compartilhar comentários e sugestões.\n\nPedimos sua participação até {{tracker.prazo}}. Sua opinião nos ajuda a aprimorar o atendimento e planejar os próximos passos.\n\nObrigado pela parceria!\nEquipe do Programa Educacional · Sindusfarma',
+    button_label: 'Responder à pesquisa' };
+  var MESES_TRI = ['janeiro, fevereiro e março', 'abril, maio e junho', 'julho, agosto e setembro', 'outubro, novembro e dezembro'];
+  var CORES = ['#00F0B4', '#00B9F2', '#AD96DC', '#FFC56E', '#FF8F1C', '#7FD8FF', '#9BF5D6', '#C9B8F0'];
+
+  function trimestreAtual() {
+    // por padrão, o trimestre que acabou de fechar (é ele que as áreas avaliam)
+    var d = new Date(), q = Math.floor(d.getMonth() / 3), y = d.getFullYear();
+    if (q === 0) { q = 4; y--; }
+    return { q: String(q), y: y };
+  }
+  function dt(y, m, d) { return new Date(Date.UTC(y, m, d)).toISOString().slice(0, 10); }
+  function campanhaNova() {
+    var t = trimestreAtual(), m = (+t.q - 1) * 3;
+    return { id: uid(), title: 'Pesquisa de satisfação · Serviços internos', quarter: t.q, year: t.y,
+      period_start: dt(t.y, m, 1), period_end: dt(t.y, m + 3, 0), period_label: MESES_TRI[+t.q - 1] + ' de ' + t.y,
+      deadline: dt(t.y, m + 3, 15) < hoje() ? dt(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 15) : dt(t.y, m + 3, 15), approved_at: null };
+  }
+  function hoje() { var d = new Date(); return dt(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function urlPesquisa() { return new URL('pesquisa.html', location.href).href; }
+
+  var state = { version: 1, areas: AREAS_INICIAIS.map(function (a) { return Object.assign({}, a); }), selectedIds: [], campaign: campanhaNova(),
+    email: Object.assign({}, EMAIL_PADRAO), settings: { mode: 'demo', dispatchWebhook: '', surveyBaseUrl: urlPesquisa() }, history: [], catalogEdited: false, catalogRevision: 1 };
+  var passo = 1, token = '', rascunho = [], padraoCarregado = false, enviando = false, pendente = null, revisao = 0, concluido = false, previaId = '', iniciado = false, tmToast;
+
+  /* ---------- utilidades ---------- */
+  function dataOk(s) { if (!/^\d{4}-\d{2}-\d{2}$/.test(s || '')) return false; var d = new Date(s + 'T12:00:00Z'); return !isNaN(d) && d.toISOString().slice(0, 10) === s; }
+  function dataBR(s) { return dataOk(s) ? s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4) : 'não definido'; }
+  function emailOk(s) { return /^[^\s@<>;,]+@[^\s@<>;,]+\.[^\s@<>;,]+$/.test(s) && s.length <= 254; }
+  function httpsOk(s) { try { var u = new URL(s); return u.protocol === 'https:' && !u.username && !u.password && !u.hash; } catch (e) { return false; } }
+  function corDe(a) { var h = 0; String(a || '').split('').forEach(function (ch) { h = (h * 31 + ch.charCodeAt(0)) >>> 0; }); return CORES[h % CORES.length]; }
+  function iniciais(n) { return String(n || '').split(/\s+/).filter(Boolean).map(function (w) { return w[0]; }).slice(0, 2).join('').toUpperCase(); }
+  function selecionadas() { return state.areas.filter(function (a) { return state.selectedIds.indexOf(a.id) >= 0; }); }
+  function tituloPeriodo() {
+    var c = state.campaign;
+    if (['1', '2', '3', '4'].indexOf(String(c.quarter)) >= 0) return c.quarter + 'º trimestre de ' + c.year;
+    var t = String(c.period_label || '').trim(); return t ? t.charAt(0).toUpperCase() + t.slice(1) : 'Período personalizado';
+  }
+  function toast(msg) { clearTimeout(tmToast); $('ev-toast').textContent = msg; $('ev-toast').hidden = false; tmToast = setTimeout(function () { $('ev-toast').hidden = true; }, 3800); }
+  function erro(msg) { $('ev-erro').textContent = msg; $('ev-erro').hidden = false; $('ev-erro').focus(); }
+  function semErro() { $('ev-erro').hidden = true; }
+
+  /* ---------- armazenamento (mesmo formato do organizacao.html) ---------- */
+  function normaliza(s) {
+    if (!s || s.version !== 1 || !Array.isArray(s.areas) || s.areas.length > 200 || !s.campaign || !s.email || !s.settings) throw Error('Backup incompatível.');
+    var areas = s.areas.map(function (a) {
+      if (typeof a.id !== 'string' || !a.id || a.id.length > 100 || typeof a.name !== 'string' || !a.name.trim() || a.name.length > 120 || typeof a.email !== 'string' || (a.email && !emailOk(a.email))) throw Error('Cadastro inválido no backup.');
+      return { id: a.id, name: a.name.trim(), email: a.email.trim() };
+    });
+    var ids = areas.map(function (a) { return a.id; });
+    if (ids.some(function (id, i) { return ids.indexOf(id) !== i; })) throw Error('Áreas duplicadas no backup.');
+    var c = s.campaign;
+    if (!dataOk(c.period_start) || !dataOk(c.period_end) || !dataOk(c.deadline) || c.period_end < c.period_start || ['1', '2', '3', '4', 'custom'].indexOf(String(c.quarter)) < 0 || !(+c.year >= 2020 && +c.year <= 2100)) throw Error('Período inválido no backup.');
+    var txt = function (v, max) { if (typeof v !== 'string' || v.length > max) throw Error('Texto inválido no backup.'); return v; };
+    return { version: 1, areas: areas, selectedIds: Array.isArray(s.selectedIds) ? s.selectedIds.filter(function (id) { return ids.indexOf(id) >= 0; }) : [],
+      campaign: { id: txt(c.id, 120), title: txt(c.title, 160), quarter: String(c.quarter), year: +c.year, period_start: c.period_start, period_end: c.period_end, period_label: txt(c.period_label, 160), deadline: c.deadline,
+        approved_at: typeof c.approved_at === 'string' && !isNaN(Date.parse(c.approved_at)) ? c.approved_at : null },
+      email: { subject: txt(s.email.subject, 200), body: txt(s.email.body, 6000), button_label: txt(s.email.button_label, 60) },
+      settings: { mode: s.settings.mode === 'production' ? 'production' : 'demo', dispatchWebhook: txt(s.settings.dispatchWebhook || '', 2048), surveyBaseUrl: txt(s.settings.surveyBaseUrl || '', 2048) || urlPesquisa() },
+      history: Array.isArray(s.history) ? s.history.slice(0, 30).filter(function (x) { return x && typeof x.title === 'string' && typeof x.at === 'string' && Number.isInteger(x.count); })
+        .map(function (x) { return { title: x.title.slice(0, 160), at: x.at, count: x.count, status: x.status === 'queued' ? 'queued' : 'simulated' }; }) : [],
+      catalogEdited: !!s.catalogEdited, catalogRevision: s.catalogRevision === 1 ? 1 : 0 };
+  }
+  function ler() {
+    try {
+      var s = JSON.parse(localStorage.getItem(STORAGE) || 'null'); if (!s) return;
+      var r = normaliza(s);
+      // o endereço salvo pelo organizacao.html apontava para a página dele; aqui a pesquisa fica ao lado do painel
+      if (/organizacao\.html/i.test(r.settings.surveyBaseUrl)) r.settings.surveyBaseUrl = urlPesquisa();
+      state = r;
+    } catch (e) { $('ev-salvo').textContent = 'Rascunho local indisponível · exporte um backup'; }
+  }
+  function salva() { try { localStorage.setItem(STORAGE, JSON.stringify(state)); $('ev-salvo').textContent = 'Rascunho salvo neste navegador'; } catch (e) { $('ev-salvo').textContent = 'Rascunho local indisponível · exporte um backup'; } }
+  function mudou() {
+    state.campaign.id = uid(); state.campaign.approved_at = null; pendente = null; revisao++; concluido = false;
+    if (!enviando) $('ev-enviar').disabled = false;
+    $('ev-ok').hidden = true; $('ev-aprovo').checked = false; semErro(); salva(); resumo();
+  }
+
+  /* ---------- convite ---------- */
+  function linkPrevia(a) {
+    var u; try { u = new URL(state.settings.surveyBaseUrl || 'pesquisa.html', location.href); } catch (e) { u = new URL('pesquisa.html', location.href); }
+    u.search = ''; u.hash = '';
+    var c = state.campaign, d = { preview: '1', area: a ? a.name : 'Área participante', data: c.period_label, period_start: c.period_start, period_end: c.period_end, deadline: c.deadline };
+    Object.keys(d).forEach(function (k) { u.searchParams.set(k, d[k]); });
+    return u.href;
+  }
+  function preenche(texto, a, link) {
+    var d = { area: a ? a.name : 'Área participante', data: state.campaign.period_label, prazo: dataBR(state.campaign.deadline), link: link == null ? linkPrevia(a) : link };
+    return texto.replace(/\{\{\s*tracker\.(area|data|prazo|link)\s*\}\}/g, function (_, k) { return d[k]; });
+  }
+  function emailHtml(a, link) {
+    link = link == null ? linkPrevia(a) : link;
+    var corpo = esc(preenche(state.email.body, a, link)).replace(/\n/g, '<br>'), url = esc(link);
+    return '<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="margin:0;background:#f2f6fb;color:#142b4d;font-family:Arial,sans-serif;padding:20px 12px">' +
+      '<table role="presentation" style="max-width:560px;width:100%;margin:auto;border-collapse:collapse;background:white"><tr><td style="background:#002d78;padding:22px 26px;color:white"><b style="color:#00f0b4;font-size:27px">PES</b><span style="font-size:14px;margin-left:15px">Programa Educacional</span></td></tr>' +
+      '<tr><td style="padding:25px 26px"><p style="color:#52657e;font-size:12px;letter-spacing:1px;margin:0 0 10px">PESQUISA DE SATISFAÇÃO · SERVIÇOS INTERNOS</p><h1 style="font-size:25px;line-height:1.2;color:#002d78;margin:0 0 22px">Sua experiência nos ajuda a evoluir.</h1>' +
+      '<p style="font-size:15px;line-height:1.7;margin:0 0 25px">' + corpo + '</p><a href="' + url + '" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#002d78;border-radius:7px;color:#fff;text-decoration:none;font-weight:bold;font-size:15px;padding:14px 23px">' + esc(state.email.button_label) + '</a>' +
+      '<p style="font-size:12px;color:#52657e;margin-top:23px">Área: ' + esc(a ? a.name : 'Área participante') + '<br>Período: ' + esc(state.campaign.period_label) + '</p></td></tr>' +
+      '<tr><td style="border-top:1px solid #dce5ef;padding:17px 26px;color:#52657e;font-size:12px">Programa Educacional · Sindusfarma</td></tr></table></body></html>';
+  }
+
+  /* ---------- telas ---------- */
+  function renderAreas() {
+    var q = $('ev-busca').value.trim().toLocaleLowerCase('pt-BR'), lista = $('ev-areas');
+    var vis = state.areas.filter(function (a) { return a.name.toLocaleLowerCase('pt-BR').indexOf(q) >= 0; });
+    lista.innerHTML = vis.length ? '' : '<p class="nota">Nenhuma área encontrada. Inclua no cadastro de áreas.</p>';
+    vis.forEach(function (a) {
+      var l = document.createElement('label'); l.className = 'ev-area'; l.style.setProperty('--c', corDe(a.name));
+      l.innerHTML = '<input type="checkbox"' + (state.selectedIds.indexOf(a.id) >= 0 ? ' checked' : '') + '><span class="ini" aria-hidden="true">' + esc(iniciais(a.name)) + '</span>' +
+        '<span class="tx"><b>' + esc(a.name) + '</b><small class="' + (a.email ? '' : 'pend') + '">' + esc(a.email || 'E-mail ainda não cadastrado') + '</small></span>';
+      l.querySelector('input').addEventListener('change', function (e) {
+        state.selectedIds = e.target.checked ? state.selectedIds.concat(state.selectedIds.indexOf(a.id) < 0 ? [a.id] : []) : state.selectedIds.filter(function (id) { return id !== a.id; });
+        mudou(); contagem();
+      });
+      lista.appendChild(l);
+    });
+    contagem();
+  }
+  function contagem() {
+    var n = selecionadas().length;
+    $('ev-n-sel').textContent = n + (n === 1 ? ' selecionada' : ' selecionadas');
+    $('ev-todas').textContent = n === state.areas.length && n > 0 ? 'Limpar seleção' : 'Selecionar todas';
+    $('ev-periodo').innerHTML = '<b>' + esc(state.campaign.period_label || 'Defina o período') + '</b>' + dataBR(state.campaign.period_start) + ' a ' + dataBR(state.campaign.period_end) + ' · respostas até ' + dataBR(state.campaign.deadline);
+  }
+  function resumo() {
+    var c = state.campaign, sel = selecionadas(), semEmail = sel.filter(function (a) { return !emailOk(a.email); }).length, prod = state.settings.mode === 'production';
+    $('ev-resumo').innerHTML = '<div class="ev-res">' +
+      '<div><span>Campanha</span><b>' + esc(tituloPeriodo()) + '</b></div>' +
+      '<div><span>Período avaliado</span><b>' + dataBR(c.period_start) + ' a ' + dataBR(c.period_end) + '</b></div>' +
+      '<div><span>Prazo de resposta</span><b>' + dataBR(c.deadline) + '</b></div>' +
+      '<div><span>Áreas</span><b>' + sel.length + (sel.length === 1 ? ' área' : ' áreas') + (semEmail ? ' <span class="falta">· ' + semEmail + ' sem e-mail</span>' : '') + '</b></div>' +
+      '<div><span>Envio</span><b class="' + (prod && (!httpsOk(state.settings.dispatchWebhook) || !token) ? 'falta' : '') + '">' + (prod ? (httpsOk(state.settings.dispatchWebhook) ? (token ? 'Produção · pronto para enviar' : 'Produção · falta o token') : 'Produção · falta o webhook') : 'Demonstração') + '</b></div></div>';
+  }
+  function renderPrevia() {
+    var sel = selecionadas();
+    if (!sel.some(function (a) { return a.id === previaId; })) previaId = sel[0] ? sel[0].id : '';
+    var s = $('ev-previa-area'); s.innerHTML = sel.map(function (a) { return '<option value="' + esc(a.id) + '">' + esc(a.name) + '</option>'; }).join(''); s.value = previaId;
+    var a = sel.filter(function (x) { return x.id === previaId; })[0];
+    $('ev-para').textContent = a ? (a.email || 'E-mail pendente de cadastro') : '—';
+    $('ev-assunto-prev').textContent = preenche(state.email.subject, a);
+    $('ev-email').srcdoc = emailHtml(a);
+    $('ev-ver-pesquisa').href = linkPrevia(a);
+  }
+  function renderRevisao() {
+    var sel = selecionadas(), a = sel[0];
+    $('ev-r-periodo').textContent = state.campaign.period_label;
+    $('ev-r-n').textContent = sel.length + (sel.length === 1 ? ' área' : ' áreas');
+    $('ev-r-prazo').textContent = dataBR(state.campaign.deadline);
+    $('ev-r-assunto').textContent = preenche(state.email.subject, a);
+    $('ev-r-corpo').textContent = preenche(state.email.body, a);
+    $('ev-dest').innerHTML = sel.map(function (x) {
+      return '<div class="ev-dest"><div><b>' + esc(x.name) + '</b><small>' + esc(x.email || 'E-mail pendente · só demonstração') + '</small></div><a href="' + esc(linkPrevia(x)) + '" target="_blank" rel="noopener noreferrer">Ver pesquisa</a></div>';
+    }).join('');
+    $('ev-ajuda').textContent = state.settings.mode === 'demo' ? 'Simulação: nenhum convite será enviado. Para enviar, ative a produção em Configurações.' :
+      'Ao aprovar, a campanha vai para o n8n, que cria um link por área, envia os e-mails e registra a campanha no painel.';
+  }
+  function renderModo() {
+    var demo = state.settings.mode === 'demo';
+    $('ev-demo').hidden = !demo;
+    $('ev-modo').textContent = demo ? 'Demonstração' : 'Produção'; $('ev-modo').classList.toggle('prod', !demo);
+    $('ev-enviar').textContent = demo ? 'Simular envio' : 'Enviar convites';
+  }
+  function renderHist() {
+    $('ev-hist').innerHTML = state.history.length ? state.history.map(function (h) {
+      var d = new Date(h.at);
+      return '<div class="ev-h"><span class="tg">' + (h.status === 'queued' ? 'Enviada' : 'Simulação') + '</span><b>' + esc(h.title) + '</b><small>' + (isNaN(d) ? '' : d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })) + ' · ' + h.count + (h.count === 1 ? ' área' : ' áreas') + '</small></div>';
+    }).join('') : '<p class="nota">Nenhuma campanha registrada ainda.</p>';
+  }
+  function sincroniza() {
+    var c = state.campaign;
+    var v = { 'ev-titulo': c.title, 'ev-tri': c.quarter, 'ev-ano': c.year, 'ev-ini': c.period_start, 'ev-fim': c.period_end, 'ev-rot': c.period_label, 'ev-prazo': c.deadline,
+      'ev-assunto': state.email.subject, 'ev-corpo': state.email.body, 'ev-botao': state.email.button_label };
+    Object.keys(v).forEach(function (id) { $(id).value = v[id]; });
+    renderModo(); renderAreas(); renderHist(); resumo();
+  }
+
+  /* ---------- validação e navegação ---------- */
+  function valida1() {
+    var c = state.campaign, e = [];
+    if (!c.title.trim()) e.push('Informe o nome da campanha.');
+    if (!dataOk(c.period_start) || !dataOk(c.period_end)) e.push('Informe datas válidas para o período.');
+    else if (c.period_end < c.period_start) e.push('A data final deve ser igual ou posterior à inicial.');
+    if (!c.period_label.trim()) e.push('Informe o nome do período que aparece na pesquisa.');
+    if (!dataOk(c.deadline)) e.push('Informe o prazo de resposta.');
+    else if (c.deadline < c.period_end) e.push('O prazo de resposta deve ser igual ou posterior ao fim do período avaliado.');
+    if (!selecionadas().length) e.push('Selecione pelo menos uma área.');
+    if (state.settings.mode === 'production') {
+      var sem = selecionadas().filter(function (a) { return !emailOk(a.email); });
+      if (sem.length) e.push('Cadastre um e-mail válido para: ' + sem.map(function (a) { return a.name; }).join(', ') + '.');
+    }
+    return e;
+  }
+  function valida2() {
+    var e = [];
+    if (!state.email.subject.trim()) e.push('Informe o assunto do e-mail.');
+    if (!state.email.body.trim()) e.push('Escreva a mensagem do convite.');
+    if (!state.email.button_label.trim()) e.push('Informe o texto do botão.');
+    var sobra = preenche(state.email.subject + '\n' + state.email.body, selecionadas()[0]).match(/\{\{[^}]*\}\}/g);
+    if (sobra) e.push('Variável não reconhecida: ' + sobra.filter(function (x, i) { return sobra.indexOf(x) === i; }).join(', ') + '.');
+    return e;
+  }
+  function ir(n) {
+    if (enviando) return;
+    var e = n > 1 ? valida1() : [];
+    if (n > 2) e = e.concat(valida2());
+    if (e.length) { erro(e.join('\n')); return; }
+    passo = n; semErro();
+    [1, 2, 3].forEach(function (k) { $('ev-p' + k).hidden = k !== n; });
+    document.querySelectorAll('[data-ev-passo]').forEach(function (b) {
+      if (!b.closest('.ev-passos')) return;
+      var k = +b.getAttribute('data-ev-passo');
+      if (k === n) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+      b.classList.toggle('feito', k < n);
+    });
+    $('ev-voltar').hidden = n === 1; $('ev-avancar').hidden = n === 3; $('ev-enviar').hidden = n !== 3;
+    $('ev-avancar').textContent = n === 1 ? 'Preparar convite' : 'Revisar campanha';
+    if (n === 2) renderPrevia();
+    if (n === 3) renderRevisao();
+    var sc = document.querySelector('.ev-corpo'); if (sc) sc.scrollTop = 0;
+  }
+  function aplicaTrimestre() {
+    var q = $('ev-tri').value, y = +$('ev-ano').value, c = state.campaign;
+    c.quarter = q; c.year = y;
+    if (q !== 'custom' && Number.isInteger(y) && y >= 2020 && y <= 2100) {
+      var m = (+q - 1) * 3;
+      c.period_start = dt(y, m, 1); c.period_end = dt(y, m + 3, 0); c.deadline = dt(y, m + 3, 15); c.period_label = MESES_TRI[+q - 1] + ' de ' + y;
+      $('ev-ini').value = c.period_start; $('ev-fim').value = c.period_end; $('ev-prazo').value = c.deadline; $('ev-rot').value = c.period_label;
+    }
+    mudou(); contagem();
+  }
+
+  /* ---------- cadastro de áreas ---------- */
+  function abreAreas() { padraoCarregado = false; rascunho = state.areas.map(function (a) { return Object.assign({}, a); }); renderGerente(); $('ev-erro-areas').hidden = true; $('ev-dlg-areas').showModal(); }
+  function renderGerente() {
+    var box = $('ev-gerente'); box.innerHTML = '';
+    rascunho.forEach(function (a, i) {
+      var r = document.createElement('div'); r.className = 'ev-ger';
+      r.innerHTML = '<label class="ev-campo"><span>Área</span><input value="' + esc(a.name) + '" maxlength="120" placeholder="Ex.: Assuntos Regulatórios"></label>' +
+        '<label class="ev-campo"><span>E-mail</span><input value="' + esc(a.email) + '" type="email" maxlength="254" placeholder="e-mail oficial da área"></label>' +
+        '<button type="button" class="ev-btn" aria-label="Remover ' + esc(a.name || 'área') + '">Remover</button>';
+      var ins = r.querySelectorAll('input');
+      ins[0].addEventListener('input', function () { rascunho[i].name = ins[0].value; });
+      ins[1].addEventListener('input', function () { rascunho[i].email = ins[1].value; });
+      r.querySelector('button').addEventListener('click', function () { rascunho.splice(i, 1); renderGerente(); });
+      box.appendChild(r);
+    });
+    if (!rascunho.length) box.innerHTML = '<p class="nota">Nenhuma área cadastrada.</p>';
+  }
+  function salvaAreas() {
+    var areas = rascunho.map(function (a) { return { id: a.id, name: String(a.name).trim(), email: String(a.email).trim() }; });
+    var falha = function (m) { $('ev-erro-areas').textContent = m; $('ev-erro-areas').hidden = false; };
+    if (areas.some(function (a) { return !a.name || (a.email && !emailOk(a.email)); })) return falha('Informe o nome de cada área e corrija os e-mails preenchidos. O e-mail pode ficar vazio durante a preparação.');
+    var nomes = areas.map(function (a) { return a.name.toLocaleLowerCase('pt-BR'); });
+    if (nomes.some(function (n, i) { return nomes.indexOf(n) !== i; })) return falha('Há nomes de áreas repetidos.');
+    state.areas = areas; if (padraoCarregado) state.catalogRevision = 1;
+    state.selectedIds = state.selectedIds.filter(function (id) { return areas.some(function (a) { return a.id === id; }); });
+    state.catalogEdited = true; mudou(); renderAreas();
+    if (passo === 2) renderPrevia(); if (passo === 3) renderRevisao();
+    $('ev-dlg-areas').close(); toast('Cadastro atualizado.');
+  }
+  function baixa(nome, dados) {
+    var blob = new Blob([dados], { type: 'application/json' }), url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = nome; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  /* ---------- envio ---------- */
+  function payload() {
+    var c = state.campaign;
+    return { event: 'pes.survey.dispatch', schema_version: '1.1',
+      campaign: { id: c.id, title: c.title.trim(), period_title: tituloPeriodo(), quarter: c.quarter, year: c.year, period_start: c.period_start, period_end: c.period_end, period_label: c.period_label.trim(), deadline: c.deadline },
+      recipients: selecionadas().map(function (a) { return { invitation_id: c.id + ':' + a.id, area_id: a.id, area: a.name, email: a.email.trim() }; }),
+      email_template: { subject: state.email.subject, body: state.email.body, button_label: state.email.button_label, html: emailHtml({ name: '{{tracker.area}}' }, '{{tracker.link}}') },
+      survey_base_url: state.settings.surveyBaseUrl, approved_at: c.approved_at || new Date().toISOString(), mode: 'production' };
+  }
+  function ocupado(sim) {
+    enviando = sim;
+    document.querySelectorAll('#in-enviar button, .so-enviar button').forEach(function (b) { b.disabled = sim; });
+    $('ev-aprovo').disabled = sim;
+    if (sim) $('ev-enviar').textContent = 'Encaminhando ao n8n…'; else renderModo();
+  }
+  function historico(status, n) { state.history.unshift({ title: tituloPeriodo(), at: new Date().toISOString(), count: n, status: status }); state.history = state.history.slice(0, 30); salva(); renderHist(); }
+  function sucesso(demo) {
+    concluido = true; $('ev-enviar').disabled = true;
+    var sc = document.querySelector('.ev-corpo'); if (sc) sc.scrollTop = 0;
+    var ok = $('ev-ok'); ok.hidden = false;
+    ok.innerHTML = '<h3>' + (demo ? 'Simulação concluída.' : 'Campanha recebida pelo n8n.') + '</h3><p>' + (demo ? 'O fluxo foi validado nesta tela. Nenhum e-mail foi enviado.' :
+      'Os convites foram aceitos e estão saindo agora. A campanha aparece no Analytics na próxima atualização do painel, e cada resposta entra assim que for enviada.') + '</p>' +
+      '<button type="button" class="ev-btn prim" id="ev-nova">Preparar nova campanha</button>';
+    $('ev-nova').onclick = function () { state.campaign = campanhaNova(); state.selectedIds = []; mudou(); sincroniza(); $('ev-enviar').disabled = false; ir(1); };
+  }
+  function dispara() {
+    if (enviando || concluido) return;
+    var e = valida1().concat(valida2()), s = state.settings;
+    if (!$('ev-aprovo').checked) e.push('Marque a confirmação de revisão para continuar.');
+    if (s.mode === 'production') {
+      if (!httpsOk(s.dispatchWebhook)) e.push('Configure a URL HTTPS do webhook de envio (Configurações).');
+      if (!httpsOk(s.surveyBaseUrl)) e.push('Configure a URL HTTPS pública da pesquisa (Configurações).');
+      if (!token.trim()) e.push('Informe o token do painel em Configurações.');
+      if (dataOk(state.campaign.deadline) && Date.now() > new Date(state.campaign.deadline + 'T23:59:59-03:00').getTime()) e.push('O prazo de resposta desta campanha já terminou.');
+    }
+    if (e.length) { erro(e.join('\n')); return; }
+    semErro();
+    if (s.mode === 'demo') { historico('simulated', selecionadas().length); sucesso(true); return; }
+    if (!pendente) { state.campaign.approved_at = state.campaign.approved_at || new Date().toISOString(); salva(); pendente = payload(); }
+    var p = pendente, rev = revisao, ctrl = new AbortController(), tm = setTimeout(function () { ctrl.abort(); }, 25000);
+    ocupado(true);
+    fetch(s.dispatchWebhook, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token.trim() },
+      body: JSON.stringify(p), signal: ctrl.signal, credentials: 'omit', cache: 'no-store', redirect: 'error' })
+      .then(function (r) {
+        return r.json().catch(function () { throw Error('O n8n não devolveu uma confirmação válida. Confira a execução antes de tentar de novo.'); })
+          .then(function (j) {
+            if (!r.ok) throw Error(r.status === 401 || r.status === 403 ? 'O token do painel não foi aceito. Confira em Configurações.' :
+              r.status === 409 ? 'Esta campanha já foi registrada no n8n (os convites já saíram). Confira a execução antes de reenviar.' :
+              (j && j.erro ? j.erro : 'O n8n recusou a campanha (HTTP ' + r.status + ').'));
+            if (!j || j.ok !== true || j.campaign_id !== p.campaign.id || j.status !== 'queued' || j.accepted !== p.recipients.length)
+              throw Error('A confirmação não corresponde a todos os destinatários. Confira o n8n; esta tela não confirmou a entrega.');
+            if (rev !== revisao) throw Error('O rascunho mudou durante o envio. Confira a campanha no n8n.');
+            historico('queued', j.accepted); sucesso(false);
+          });
+      })
+      .catch(function (err) {
+        erro(err.name === 'AbortError' ? 'A confirmação demorou demais. A campanha pode ter chegado ao n8n: confira a execução ou tente de novo (a mesma identificação evita envio duplicado).' :
+          err instanceof TypeError ? 'Não foi possível falar com o n8n. Confira a rede, a URL e o CORS do webhook. A identificação da campanha é mantida na nova tentativa.' : err.message);
+      })
+      .then(function () { clearTimeout(tm); ocupado(false); if (concluido) $('ev-enviar').disabled = true; });
+  }
+
+  /* ---------- ligações (uma vez, na primeira abertura) ---------- */
+  function liga() {
+    ler(); sincroniza(); salva();
+    $('ev-busca').addEventListener('input', renderAreas);
+    $('ev-todas').addEventListener('click', function () { state.selectedIds = selecionadas().length === state.areas.length ? [] : state.areas.map(function (a) { return a.id; }); mudou(); renderAreas(); });
+    $('ev-btn-areas').addEventListener('click', abreAreas);
+    $('ev-btn-config').addEventListener('click', function () {
+      $('ev-c-modo').value = state.settings.mode; $('ev-c-webhook').value = state.settings.dispatchWebhook; $('ev-c-url').value = state.settings.surveyBaseUrl; $('ev-c-token').value = token;
+      $('ev-erro-config').hidden = true; $('ev-dlg-config').showModal();
+    });
+    document.querySelectorAll('[data-ev-fecha]').forEach(function (b) { b.addEventListener('click', function () { b.closest('dialog').close(); }); });
+    $('ev-add-area').addEventListener('click', function () {
+      if (rascunho.length >= 200) return toast('Limite de 200 áreas.');
+      rascunho.push({ id: uid(), name: '', email: '' }); renderGerente();
+      var ins = $('ev-gerente').querySelectorAll('.ev-ger input'); if (ins.length) ins[ins.length - 2].focus();
+    });
+    $('ev-areas-padrao').addEventListener('click', function () { rascunho = AREAS_INICIAIS.map(function (a) { return Object.assign({}, a); }); padraoCarregado = true; renderGerente(); toast('Cadastro inicial carregado. Salve para aplicar.'); });
+    $('ev-salvar-areas').addEventListener('click', salvaAreas);
+    $('ev-exportar').addEventListener('click', function () { baixa('pes-backup-' + hoje() + '.json', JSON.stringify(state, null, 2)); toast('Backup exportado (sem o token).'); });
+    $('ev-importar').addEventListener('click', function () { $('ev-arquivo').click(); });
+    $('ev-arquivo').addEventListener('change', function () {
+      var f = $('ev-arquivo').files && $('ev-arquivo').files[0]; if (!f) return;
+      if (f.size > 1000000) { $('ev-erro-areas').textContent = 'O arquivo passa de 1 MB.'; $('ev-erro-areas').hidden = false; return; }
+      f.text().then(function (t) {
+        var r = normaliza(JSON.parse(t)); r.settings.mode = 'demo'; state = r; token = '';
+        mudou(); sincroniza(); $('ev-dlg-areas').close(); $('ev-enviar').disabled = false; ir(1); toast('Backup importado. Revise antes de ativar a produção.');
+      }).catch(function (e) { $('ev-erro-areas').textContent = 'Não foi possível importar: ' + e.message; $('ev-erro-areas').hidden = false; })
+        .then(function () { $('ev-arquivo').value = ''; });
+    });
+    $('ev-salvar-config').addEventListener('click', function () {
+      var modo = $('ev-c-modo').value, url = $('ev-c-url').value.trim() || urlPesquisa(), wh = $('ev-c-webhook').value.trim();
+      if (modo === 'production' && (!httpsOk(url) || !httpsOk(wh))) { $('ev-erro-config').textContent = 'Em produção, use endereços HTTPS para o webhook e para a pesquisa.'; $('ev-erro-config').hidden = false; return; }
+      var novo = { mode: modo, dispatchWebhook: wh, surveyBaseUrl: url }, diferente = JSON.stringify(novo) !== JSON.stringify(state.settings);
+      state.settings = novo; token = $('ev-c-token').value.trim(); $('ev-c-token').value = '';
+      if (diferente) mudou(); else { salva(); resumo(); }
+      renderModo(); $('ev-dlg-config').close(); toast('Configurações salvas.');
+      if (passo === 2) renderPrevia(); if (passo === 3) renderRevisao();
+    });
+    $('ev-tri').addEventListener('change', aplicaTrimestre); $('ev-ano').addEventListener('change', aplicaTrimestre);
+    var campos = { 'ev-titulo': 'title', 'ev-ini': 'period_start', 'ev-fim': 'period_end', 'ev-rot': 'period_label', 'ev-prazo': 'deadline' };
+    Object.keys(campos).forEach(function (id) {
+      $(id).addEventListener('input', function () {
+        state.campaign[campos[id]] = $(id).value;
+        if (id === 'ev-ini' || id === 'ev-fim') { state.campaign.quarter = 'custom'; $('ev-tri').value = 'custom'; }
+        mudou(); contagem();
+      });
+    });
+    var mail = { 'ev-assunto': 'subject', 'ev-corpo': 'body', 'ev-botao': 'button_label' };
+    Object.keys(mail).forEach(function (id) { $(id).addEventListener('input', function () { state.email[mail[id]] = $(id).value; mudou(); renderPrevia(); }); });
+    $('ev-restaura').addEventListener('click', function () {
+      state.email = Object.assign({}, EMAIL_PADRAO); mudou();
+      $('ev-assunto').value = state.email.subject; $('ev-corpo').value = state.email.body; $('ev-botao').value = state.email.button_label; renderPrevia(); toast('Mensagem sugerida restaurada.');
+    });
+    document.querySelectorAll('[data-ev-token]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = $('ev-corpo'), tk = '{{tracker.' + b.getAttribute('data-ev-token') + '}}', i = t.selectionStart, f = t.selectionEnd;
+        t.value = t.value.slice(0, i) + tk + t.value.slice(f); state.email.body = t.value; mudou(); renderPrevia(); t.focus(); t.setSelectionRange(i + tk.length, i + tk.length);
+      });
+    });
+    $('ev-previa-area').addEventListener('change', function () { previaId = $('ev-previa-area').value; renderPrevia(); });
+    document.querySelectorAll('[data-ev-passo]').forEach(function (b) { b.addEventListener('click', function () { ir(+b.getAttribute('data-ev-passo')); }); });
+    $('ev-avancar').addEventListener('click', function () { ir(passo + 1); });
+    $('ev-voltar').addEventListener('click', function () { ir(passo - 1); });
+    $('ev-enviar').addEventListener('click', dispara);
+    $('ev-baixar').addEventListener('click', function () {
+      var p = JSON.parse(JSON.stringify(pendente || payload()));
+      if (state.settings.mode === 'demo') { p.mode = 'demo'; p.approved_at = null; } else if (!$('ev-aprovo').checked) p.approved_at = null;
+      baixa('pes-campanha-' + state.campaign.id + '.json', JSON.stringify(p, null, 2)); toast('Dados da campanha exportados. Nada foi enviado.');
+    });
+  }
+
+  window.PES_ENVIO = { abrir: function () { if (!iniciado) { iniciado = true; liga(); } resumo(); if (passo === 2) renderPrevia(); } };
+  // Os webhooks validam o token e a assinatura no servidor; esta tela não é barreira de acesso.
+})();
 </script>
 <script>
 /* Carrega, em paralelo, os dados do painel (data_dash.js, publicado pelo n8n) e as pesquisas de
