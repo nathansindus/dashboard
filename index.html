@@ -1200,6 +1200,120 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .fontes.alerta-fonte .pts i[data-st="reserva"] { background: #e0ab3c; }
 @media (max-width: 1100px) { .selo-reserva { max-width: 260px; } }
 
+/* =====================================================================
+   Qualidade › Interno: avaliação das áreas do Sindusfarma sobre o PES
+   ===================================================================== */
+/* item filho no menu, ligado à Qualidade por um traço */
+.navbtn.nav-sub { font-size: 11px; }
+.navbtn.pai-ativo { color: var(--fg); }
+@media (min-width: 761px) {
+  .rail .navbtn.nav-sub { width: calc(100% - 20px); margin: -2px 0 2px 20px; padding: 8px 12px; font-size: 13px; gap: 10px; border-radius: 12px; }
+  .rail .navbtn.nav-sub svg { width: 17px; height: 17px; }
+  .rail .navbtn.nav-sub::after { content: ""; position: absolute; left: -9px; top: -6px; height: calc(50% + 6px); width: 8px; pointer-events: none;
+    border-left: 1.5px solid var(--line-strong); border-bottom: 1.5px solid var(--line-strong); border-bottom-left-radius: 8px; }
+  .rail .navbtn.nav-sub[aria-current="page"]::before { left: -32px; }
+  :root[data-menu="recolhido"] .rail .navbtn.nav-sub { width: 40px; margin: -2px auto 2px; padding: 9px 0; }
+  :root[data-menu="recolhido"] .rail .navbtn.nav-sub::after { display: none; }
+  :root[data-menu="recolhido"] .rail .navbtn.nav-sub[aria-current="page"]::before { left: -16px; }
+}
+@media (max-width: 760px) { .navbtn.nav-sub { display: none; } }   /* barra inferior do celular já está cheia: Interno abre por #interna */
+
+.pg-interna { grid-template-rows: auto auto minmax(0, 1fr); }
+.pg-interna.modo-enviar { grid-template-rows: auto minmax(0, 1fr); }
+.vistas-in .vista span { font-weight: inherit; }
+.vistas-in { margin-right: 6px; }
+.in-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(340px, 1fr); grid-template-rows: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: var(--gap); min-height: 0; min-width: 0; animation: entra .45s var(--ease) both; }
+.in-tend { grid-column: 1; grid-row: 1; }
+.in-duo { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--gap); min-height: 0; }
+.in-com { grid-column: 2; grid-row: 1 / 3; }
+
+/* controle segmentado da métrica */
+.seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--panel-sub); border: 1px solid var(--line); }
+.seg button { border: 0; background: transparent; color: var(--fg-2); height: 28px; padding: 0 12px; border-radius: 999px; font-size: 12px; cursor: pointer;
+  transition: background .25s var(--ease), color .25s var(--ease); }
+.seg button:hover { color: var(--fg); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--bg); font-weight: 600; }
+
+/* gráfico de linha */
+.in-ponto { transition: r .2s var(--ease); }
+.marca-hover:hover .in-ponto { r: 6.5; }
+.in-linha { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: traça 1.1s var(--ease) .1s forwards; }
+@keyframes traça { to { stroke-dashoffset: 0; } }
+.in-camp-faixa { fill: color-mix(in srgb, var(--accent) 5%, transparent); }
+.in-camp-rot { fill: var(--muted); font: 500 10.5px var(--f-text); letter-spacing: .02em; }
+
+/* por área */
+.in-area { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 5px 12px; align-items: center; width: 100%; padding: 9px 10px; margin-bottom: 4px;
+  border: 1px solid transparent; border-radius: 12px; background: transparent; color: var(--fg); text-align: left; cursor: pointer; font: inherit;
+  transition: background .25s var(--ease), border-color .25s var(--ease); }
+.in-area:hover { background: var(--panel-sub); }
+.in-area.ativo { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.in-area .nm { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 13px; font-weight: 500; }
+.in-area .nm i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; box-shadow: 0 0 8px var(--c); }
+.in-area .nm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.in-area .vl { display: inline-flex; align-items: baseline; gap: 8px; font: 600 15px var(--f-display); white-space: nowrap; }
+.in-area .vl small { font: 400 11.5px var(--f-text); color: var(--muted); }
+.in-area .tr { grid-column: 1 / -1; height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.in-area .tr i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--data-2), var(--c)); animation: cresce .9s var(--ease) both; transform-origin: left; }
+@keyframes cresce { from { transform: scaleX(0); } }
+
+/* composição das notas */
+.in-nps { display: grid; grid-template-rows: auto auto minmax(46px, 1fr); gap: 10px; height: 100%; }
+#in-dist { height: 100%; }
+.in-notas .corpo { overflow: hidden; }
+.in-nps-leg em { font-style: normal; opacity: .75; }
+.in-nps-barra { display: flex; height: 12px; border-radius: 999px; overflow: hidden; background: var(--line); }
+.in-nps-barra i { height: 100%; transition: width .6s var(--ease); }
+.in-nps-barra .p { background: var(--verde1); } .in-nps-barra .n { background: var(--organico); } .in-nps-barra .d { background: var(--laranja); }
+.in-nps-leg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.in-nps-leg div { display: grid; gap: 1px; padding: 7px 10px; min-width: 0; border-radius: 12px; background: var(--panel-sub); border: 1px solid var(--line); }
+.in-nps-leg span { font-size: 11.5px; color: var(--muted); display: flex; align-items: center; gap: 5px; white-space: nowrap; overflow: hidden; }
+.in-nps-leg span::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.in-nps-leg b { font: 600 18px/1.15 var(--f-display); }
+.in-nps-leg b small { font: 500 11px var(--f-text); color: var(--muted); }
+.in-hist { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 4px; align-items: end; height: 100%; min-height: 0; }
+.in-hist div { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 100%; min-height: 0; justify-items: center; gap: 2px; }
+.in-hist .bw { width: 100%; height: 100%; display: flex; align-items: flex-end; min-height: 0; }
+.in-hist .q { font: 600 10.5px var(--f-display); color: var(--fg-2); min-height: 13px; }
+.in-hist .b { width: 100%; align-self: end; border-radius: 5px 5px 2px 2px; background: var(--c); min-height: 2px; opacity: .9; animation: sobe .8s var(--ease) both; transform-origin: bottom; }
+.in-hist .b.zero { background: var(--line); opacity: 1; }
+@keyframes sobe { from { transform: scaleY(0); } }
+.in-hist .x { font-size: 10.5px; color: var(--muted); }
+
+/* comentários */
+.in-c { position: relative; padding: 13px 14px 13px 58px; margin-bottom: 8px; border-radius: 16px; background: var(--panel-sub); border: 1px solid var(--line);
+  animation: entra .45s var(--ease) both; }
+.in-c .nt { position: absolute; left: 13px; top: 13px; width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center;
+  font: 700 15px var(--f-display); color: #001A44; background: var(--c); box-shadow: 0 6px 18px -8px var(--c); }
+.in-c .cab { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 8px; margin-bottom: 6px; }
+.in-c .cab .chip-area { font-size: 11px; padding: 1px 9px; }
+.in-c .meta { font-size: 11.5px; color: var(--muted); }
+.in-c p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--fg); }
+.in-c.trivial p { color: var(--muted); font-style: italic; }
+.in-vazio { padding: 22px 6px; text-align: center; color: var(--muted); font-size: 13px; }
+
+/* enviar pesquisa: a organização aberta dentro do painel */
+.in-enviar { display: grid; grid-template-rows: minmax(0, 1fr); min-height: 0; animation: entra .45s var(--ease) both; }
+.in-frame { padding: 0; overflow: hidden; }
+.in-frame iframe { display: block; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; opacity: 0; transition: opacity .4s var(--ease); }
+.in-frame.pronto iframe { opacity: 1; }
+.in-carregando { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; color: var(--muted); font-size: 13px; }
+.in-frame.pronto .in-carregando { display: none; }
+.spin { width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--line-strong); border-top-color: var(--accent); animation: gira 1s linear infinite; }
+@keyframes gira { to { transform: rotate(360deg); } }
+a.btn-leitura { text-decoration: none; color: var(--fg); }
+
+@media (max-width: 1180px) {
+  .in-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+  .in-tend, .in-duo, .in-com { grid-column: auto; grid-row: auto; }
+  .in-tend { min-height: 320px; }
+  .in-duo > .painel { min-height: 280px; }
+  .in-com { max-height: 640px; min-height: 320px; }
+  .in-enviar { min-height: 80vh; }
+}
+@media (max-width: 760px) { .in-duo { grid-template-columns: minmax(0, 1fr); } }
+
 </style>
 </head>
 <body class="pes">
@@ -1234,6 +1348,10 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
     <button class="navbtn" data-pg="qualidade" type="button" title="Qualidade">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
       <span class="rot-nav">Qualidade</span>
+    </button>
+    <button class="navbtn nav-sub" data-pg="interna" type="button" title="Qualidade · Interno">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9.5L12 4l8 5.5V20"/><path d="M9.5 20v-5.5h5V20"/><path d="M3 20h18"/></svg>
+      <span class="rot-nav">Interno</span>
     </button>
     <button class="navbtn" data-pg="publico" type="button" title="Público">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M15.2 14.2c2.6-.4 4.7 1.2 5.3 4.3"/></svg>
@@ -1389,6 +1507,61 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
         <div class="painel">
           <header><div class="tit-com"><h2 id="tit-coment">Comentários</h2><span class="nota" id="sub-coment"></span></div></header>
           <div class="corpo rolagem"><div id="lista-coment"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Página · Qualidade › Interno ===================== -->
+    <section class="pagina pg-interna" id="pg-interna" data-pg="interna" aria-labelledby="titulo-pg" hidden>
+      <div class="filtros">
+        <div class="vistas vistas-in" role="group" aria-label="Seção da página">
+          <button type="button" class="vista" data-ivista="analytics" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg><span>Analytics</span></button>
+          <button type="button" class="vista" data-ivista="enviar" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3 14.5 21l-4-7.5L3 9.5z"/></svg><span>Enviar pesquisa</span></button>
+        </div>
+        <span class="filtros-inline so-analytics" id="in-filtros">
+          <span class="dd" id="dd-in-area"></span>
+          <span class="dd" id="dd-in-ano"></span>
+          <span class="dd" id="dd-in-camp"></span>
+          <button class="limpar" type="button" id="limpar-in" hidden>Limpar filtros</button>
+        </span>
+        <div class="direita so-enviar" hidden>
+          <a class="btn-leitura" id="in-abrir" href="organizacao.html" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Abrir em nova aba
+          </a>
+        </div>
+      </div>
+
+      <div class="painel cluster so-analytics" id="kpis-in" aria-live="polite"></div>
+
+      <div class="in-grid so-analytics" id="in-analytics">
+        <div class="painel in-tend">
+          <header><h2 id="tit-in-tend">Acompanhamento mensal</h2>
+            <div class="dir"><div class="seg" role="group" aria-label="Métrica do gráfico" id="in-metrica">
+              <button type="button" data-met="nps" aria-pressed="true">NPS</button><button type="button" data-met="nota" aria-pressed="false">Nota média</button><button type="button" data-met="n" aria-pressed="false">Avaliações</button>
+            </div></div></header>
+          <div class="corpo"><div class="grafico" id="g-in-tend"></div></div>
+        </div>
+        <div class="in-duo">
+          <div class="painel in-areas">
+            <header><h2>Por área</h2><span class="nota">clique para filtrar</span></header>
+            <div class="corpo rolagem"><div id="in-lista-areas"></div></div>
+          </div>
+          <div class="painel in-notas">
+            <header><h2>Composição das notas</h2></header>
+            <div class="corpo"><div id="in-dist"></div></div>
+          </div>
+        </div>
+        <div class="painel in-com">
+          <header><h2>Comentários</h2><span class="cont" id="n-in-com">0</span>
+            <div class="dir"><button class="switch" type="button" role="switch" aria-checked="false" id="sw-in-todos" title="Inclui respostas como “sem sugestões”"><span class="trilho" aria-hidden="true"></span>Todos</button></div></header>
+          <div class="corpo rolagem"><div id="in-lista-com"></div></div>
+        </div>
+      </div>
+
+      <div class="in-enviar" id="in-enviar" hidden>
+        <div class="painel in-frame">
+          <div class="in-carregando" id="in-carregando"><span class="spin" aria-hidden="true"></span>Abrindo a organização das pesquisas…</div>
+          <iframe id="in-iframe" title="Enviar pesquisa interna" loading="lazy"></iframe>
         </div>
       </div>
     </section>
@@ -2102,7 +2275,7 @@ var GIBS_PADRAO = {
       faixas: [890, 900, 910, 920, 930, 940, 950, 960, 970, 980, 990, 1000] },
     { id: 'margem', nome: '% da Margem (Receita/Despesas)', peso: 10, tipo: 'pct', fonte: 'informado',
       faixas: [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83] },
-    { id: 'satisfacao_areas', nome: 'Pesquisa de Satisfação das Áreas Técnicas com a Área', peso: 5, tipo: 'nps', fonte: 'informado',
+    { id: 'satisfacao_areas', nome: 'Pesquisa de Satisfação das Áreas Técnicas com a Área', peso: 5, tipo: 'nps', fonte: 'auto',
       faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85] },
     { id: 'satisfacao_cursos', nome: 'Pesquisa de Satisfação dos Cursos', peso: 25, tipo: 'nps', fonte: 'auto',
       faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85] },
@@ -2720,6 +2893,7 @@ window.iniciarPainel = function () {
     receita: ['Receita', 'Pagamentos das inscrições: total, evolução mensal e composição'],
     comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê'],
     qualidade: ['Pesquisas de qualidade', 'Desempenho, acervo de avaliações e comentários dos participantes'],
+    interna: ['Pesquisas de qualidade · Interno', 'Como as áreas do Sindusfarma avaliam os serviços do Programa Educacional'],
     publico: ['Público', 'Quem se inscreve e participa: departamentos, cargos, empresas e público em potencial'],
     indicadores: ['Indicadores – Programa Educacional', 'Matriz anual de metas, atualizada com os dados que chegam']
   };
@@ -3483,6 +3657,234 @@ window.iniciarPainel = function () {
   function abrirComentarios(id) { estado.q.vista = 'comentarios'; estado.q.sel = id; renderQualidade(); }
 
   /* =================================================================
+     Qualidade › Interno: as áreas do Sindusfarma avaliam o PES
+     (pesquisas_internas.js, publicado pelo n8n a cada resposta)
+     ================================================================= */
+  var INT = window.PES_INTERNAS && Array.isArray(window.PES_INTERNAS.respostas) ? window.PES_INTERNAS : null;
+  var INT_CAMP = {}, INT_CAMPS = [];
+  ((INT && INT.campanhas) || []).forEach(function (c) { if (c && c.id) { INT_CAMP[c.id] = c; INT_CAMPS.push(c); } });
+  INT_CAMPS.sort(function (a, b) { return String(a.period_start || '') < String(b.period_start || '') ? 1 : -1; });
+  var INT_R = (INT ? INT.respostas : []).filter(function (r) { return r && r.nota !== '' && r.nota != null && !isNaN(+r.nota) && r.data; }).map(function (r) {
+    var c = INT_CAMP[r.campanha] || {};
+    return { id: r.id, camp: r.campanha || '—', campT: c.titulo || r.campanha || 'Sem campanha', ano: String(c.ano || String(c.period_start || r.data).slice(0, 4)),
+      dia: String(r.data).slice(0, 10), area: String(r.area || '').trim() || 'Não informada', nome: String(r.nome || '').trim(),
+      nota: Math.max(0, Math.min(10, Math.round(+r.nota))), com: String(r.comentario || '').trim() };
+  });
+  var estadoIn = { vista: 'analytics', area: 'todas', ano: 'todos', camp: 'todas', met: 'nps', todos: false, frame: false };
+  var COR_NOTA = { p: 'var(--verde1)', n: 'var(--organico)', d: 'var(--laranja)' };
+  function classeNota(v) { return v >= 9 ? 'p' : v >= 7 ? 'n' : 'd'; }
+  function resumoIn(rs) {
+    var p = 0, n = 0, d = 0, s = 0;
+    rs.forEach(function (r) { var k = classeNota(r.nota); if (k === 'p') p++; else if (k === 'n') n++; else d++; s += r.nota; });
+    var t = rs.length;
+    return { t: t, p: p, n: n, d: d, nps: t ? (p - d) * 100 / t : null, media: t ? s / t : null };
+  }
+  function trivialIn(c) {
+    var t = semAcento(c).replace(/[\s.!,;:]+$/g, '').trim();
+    return !t || t.length < 3 || /^(na|n\/a|nao|nada|nenhum|nenhuma|sem sugest|sem coment|sem observ|nada a declarar)/.test(t);
+  }
+  function respostasIn(ignorarArea) {
+    var f = estadoIn;
+    return INT_R.filter(function (r) {
+      return (ignorarArea || f.area === 'todas' || r.area === f.area) && (f.ano === 'todos' || r.ano === f.ano) && (f.camp === 'todas' || r.camp === f.camp);
+    });
+  }
+
+  function renderInterna() {
+    var f = estadoIn, enviar = f.vista === 'enviar', pg = $('#pg-interna');
+    pg.classList.toggle('modo-enviar', enviar);
+    $$('#pg-interna [data-ivista]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-ivista') === f.vista)); });
+    $$('#pg-interna .so-analytics').forEach(function (el) { el.hidden = enviar; });
+    $$('#pg-interna .so-enviar').forEach(function (el) { el.hidden = !enviar; });
+    $('#in-enviar').hidden = !enviar;
+    if (enviar) { abreFrameIn(); return; }
+    if (!INT_R.length) {
+      $('#kpis-in').innerHTML = kpi('Pesquisas internas', '—', 'Nenhuma resposta carregada. Confira o arquivo pesquisas_internas.js.');
+      $('#g-in-tend').innerHTML = '<div class="vazio">Sem respostas para mostrar.</div>';
+      $('#in-lista-areas').innerHTML = ''; $('#in-dist').innerHTML = ''; $('#in-lista-com').innerHTML = '';
+      return;
+    }
+    var rs = respostasIn(false), R = resumoIn(rs);
+    $('#limpar-in').hidden = f.area === 'todas' && f.ano === 'todos' && f.camp === 'todas';
+    kpisIn(rs, R); graficoIn(rs); areasIn(); distIn(R); comentariosIn(rs);
+    contar(); requestAnimationFrame(marcaRolagem);
+  }
+
+  function kpisIn(rs, R) {
+    var camps = uniq(rs.map(function (r) { return r.camp; }));
+    var areas = {}; rs.forEach(function (r) { if (r.area !== 'Não informada') areas[r.area] = (areas[r.area] || 0) + 1; });
+    var nAreas = Object.keys(areas).length, top = Object.keys(areas).sort(function (a, b) { return areas[b] - areas[a]; })[0];
+    // NPS da campanha mais recente contra a anterior (dentro do filtro)
+    var ord = camps.map(function (id) { return INT_CAMP[id] || { id: id, period_start: '' }; }).sort(function (a, b) { return String(a.period_start) < String(b.period_start) ? -1 : 1; });
+    var delta = '', ctxNps = '';
+    if (ord.length > 1) {
+      var ult = resumoIn(rs.filter(function (r) { return r.camp === ord[ord.length - 1].id; })), ant = resumoIn(rs.filter(function (r) { return r.camp === ord[ord.length - 2].id; }));
+      if (ult.nps != null && ant.nps != null) { delta = chip(ult.nps - ant.nps, 'pts', 0); ctxNps = 'última campanha vs. anterior'; }
+    }
+    var z = R.nps == null ? null : C.zonaNps(R.nps);
+    var conv = 0, respConv = 0;
+    camps.forEach(function (id) { var c = INT_CAMP[id]; if (c && c.convites > 0) { conv += c.convites; respConv += rs.filter(function (r) { return r.camp === id; }).length; } });
+    var ultima = rs.slice().sort(function (a, b) { return a.dia < b.dia ? 1 : -1; })[0];
+    $('#kpis-in').innerHTML =
+      kpi('Avaliações', C.fmtInt(R.t), 'em ' + camps.length + (camps.length === 1 ? ' campanha' : ' campanhas'), '', R.t) +
+      kpi('NPS interno', R.nps == null ? '—' : C.fmtDec(R.nps, 0), (z ? '<span class="zona z-txt-' + z + '">' + ZONA_TXT[z] + '</span>' : '') + (ctxNps ? '<span>' + ctxNps + '</span>' : ''), delta) +
+      kpi('Nota média', R.media == null ? '—' : C.fmtDec(R.media, 1) + '<small>/ 10</small>', R.t ? C.fmtPct(R.p / R.t, 0) + ' deram 9 ou 10' : '') +
+      kpi('Áreas participantes', C.fmtInt(nAreas), top ? 'mais presente: ' + esc(top) + ' (' + areas[top] + ')' : '', '', nAreas) +
+      kpi('Taxa de resposta', conv ? C.fmtPct(respConv / conv, 0) : '—', conv ? respConv + ' de ' + conv + ' convites' : 'calculada nas campanhas enviadas pelo painel') +
+      kpi('Última avaliação', ultima ? dataCurtaAno(ultima.dia) : '—', ultima ? esc(ultima.campT) : '');
+  }
+
+  function graficoIn(rs) {
+    var el = $('#g-in-tend'), met = estadoIn.met;
+    $$('#in-metrica button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-met') === met)); });
+    $('#tit-in-tend').textContent = 'Acompanhamento mensal' + (estadoIn.area !== 'todas' ? ': ' + estadoIn.area : '');
+    if (!rs.length) { el.innerHTML = '<div class="vazio">Sem avaliações nesta seleção.</div>'; return; }
+    var por = {}; rs.forEach(function (r) { var k = r.dia.slice(0, 7); (por[k] = por[k] || []).push(r); });
+    var ks = Object.keys(por).sort(), meses = [], y0 = +ks[0].slice(0, 4), m0 = +ks[0].slice(5, 7) - 1, y1 = +ks[ks.length - 1].slice(0, 4), m1 = +ks[ks.length - 1].slice(5, 7) - 1;
+    for (var y = y0, m = m0; y < y1 || (y === y1 && m <= m1); m++) { if (m > 11) { m = 0; y++; if (y > y1) break; } meses.push(y + '-' + String(m + 1).padStart(2, '0')); }
+    var pts = meses.map(function (k) {
+      var lista = por[k] || [], R = resumoIn(lista);
+      return { k: k, R: R, camps: uniq(lista.map(function (r) { return r.campT; })), v: met === 'n' ? R.t : met === 'nota' ? R.media : R.nps };
+    });
+    var vals = pts.map(function (p) { return p.v; }).filter(function (v) { return v != null; });
+    var lo, hi, grade;
+    if (met === 'nps') { lo = Math.min(0, Math.floor(Math.min.apply(null, vals) / 25) * 25); hi = 100; grade = [lo, 50, 75, 100].filter(function (v, i, a) { return a.indexOf(v) === i && v >= lo; }); }
+    else if (met === 'nota') { lo = Math.min(6, Math.floor(Math.min.apply(null, vals)) - 1); hi = 10; grade = []; for (var g = lo; g <= 10; g++) grade.push(g); }
+    else { hi = Math.max(2, Math.max.apply(null, vals)); var st = Math.max(1, Math.ceil(hi / 4)); hi = Math.ceil(hi / st) * st; lo = 0; grade = []; for (var g2 = 0; g2 <= hi; g2 += st) grade.push(g2); }
+    var T = tamanho(el, 150), w = T.w, h = T.h, mg = { l: 38, r: 18, t: 26, b: 26 }, iw = w - mg.l - mg.r, ih = h - mg.t - mg.b;
+    var X = function (i) { return pts.length === 1 ? mg.l + iw / 2 : mg.l + i * iw / (pts.length - 1); };
+    var Y = function (v) { return mg.t + ih - (v - lo) / (hi - lo) * ih; };
+    var fmtV = function (v) { return v == null ? '—' : met === 'nota' ? C.fmtDec(v, 1) : C.fmtDec(v, 0); };
+    var out = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="' + (met === 'nps' ? 'NPS' : met === 'nota' ? 'Nota média' : 'Avaliações') + ' por mês">' +
+      '<defs><linearGradient id="gin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".18"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient>' +
+      '<linearGradient id="gin-l" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--data-2)"/><stop offset="1" stop-color="var(--accent)"/></linearGradient></defs>';
+    grade.forEach(function (v) { out += '<g class="grade eixo"><line x1="' + mg.l + '" x2="' + (w - mg.r) + '" y1="' + Y(v) + '" y2="' + Y(v) + '"/><text x="' + (mg.l - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + v + '</text></g>'; });
+    if (met === 'nps') out += '<line x1="' + mg.l + '" x2="' + (w - mg.r) + '" y1="' + Y(META_NPS) + '" y2="' + Y(META_NPS) + '" stroke="var(--amarelo)" stroke-dasharray="5 5" opacity=".75"/>' +
+      '<text x="' + (w - mg.r) + '" y="' + (Y(META_NPS) - 6) + '" text-anchor="end" class="in-camp-rot" style="fill:var(--amarelo)">meta ' + META_NPS + '</text>';
+    // linha: contínua entre meses seguidos com resposta; tracejada quando atravessa meses sem pesquisa
+    var com = pts.map(function (p, i) { return p.v == null ? null : { i: i, x: X(i), y: Y(p.v) }; }).filter(Boolean);
+    if (com.length > 1) {
+      var d = com.map(function (q, j) { return (j ? 'L' : 'M') + q.x.toFixed(1) + ' ' + q.y.toFixed(1); }).join('');
+      out += '<path d="' + d + 'L' + com[com.length - 1].x.toFixed(1) + ' ' + (mg.t + ih) + 'L' + com[0].x.toFixed(1) + ' ' + (mg.t + ih) + 'Z" fill="url(#gin)"/>';
+      for (var j = 1; j < com.length; j++) {
+        var a = com[j - 1], b = com[j], salto = b.i - a.i > 1, len = Math.hypot(b.x - a.x, b.y - a.y).toFixed(0);
+        out += '<path d="M' + a.x.toFixed(1) + ' ' + a.y.toFixed(1) + 'L' + b.x.toFixed(1) + ' ' + b.y.toFixed(1) + '" fill="none" stroke="url(#gin-l)" stroke-width="' + (salto ? 1.8 : 2.8) + '" stroke-linecap="round"' +
+          (salto ? ' stroke-dasharray="3 6" opacity=".7"' : ' class="in-linha" style="--len:' + len + '"') + '/>';
+      }
+    }
+    var passo = Math.max(1, Math.ceil(pts.length / Math.max(1, Math.floor(iw / 52)))), rotular = pts.length === 1 || iw / (pts.length - 1) >= 34;
+    pts.forEach(function (p, i) {
+      var mes = C.MESES[+p.k.slice(5, 7) - 1], rot = (i === 0 || p.k.slice(5, 7) === '01') ? mes + '/' + p.k.slice(2, 4) : mes;
+      var bw = pts.length === 1 ? iw : iw / (pts.length - 1);
+      out += '<g data-tip="' + i + '" class="marca-hover"><rect x="' + (X(i) - bw / 2) + '" y="' + mg.t + '" width="' + bw + '" height="' + ih + '" fill="transparent"/>';
+      if (p.v != null) out += '<circle class="in-ponto" cx="' + X(i) + '" cy="' + Y(p.v) + '" r="5" fill="var(--panel-solid)" stroke="var(--accent)" stroke-width="2.6"/>' +
+        (rotular ? '<text x="' + X(i) + '" y="' + (Y(p.v) - 12) + '" text-anchor="middle" style="fill:var(--fg);font:600 12px var(--f-display)">' + fmtV(p.v) + '</text>' : '');
+      if (i % passo === 0 || i === pts.length - 1) out += '<text x="' + X(i) + '" y="' + (h - 7) + '" text-anchor="middle" class="rotulo-mes"' + (p.R.t ? ' style="fill:var(--fg-2)"' : '') + '>' + rot + '</text>';
+      out += '</g>';
+    });
+    el.innerHTML = out + '</svg>';
+    ligaTips(el, function (k) {
+      var p = pts[+k];
+      if (!p.R.t) return '<span class="t">' + C.MESES[+p.k.slice(5, 7) - 1] + '/' + p.k.slice(0, 4) + '</span>Sem respostas neste mês.';
+      return '<span class="t">' + C.MESES[+p.k.slice(5, 7) - 1] + '/' + p.k.slice(0, 4) + '</span>' +
+        '<div class="l"><span>NPS</span><b>' + C.fmtDec(p.R.nps, 0) + '</b></div><div class="l"><span>Nota média</span><b>' + C.fmtDec(p.R.media, 1) + '</b></div>' +
+        '<div class="l"><span>Avaliações</span><b>' + p.R.t + '</b></div><div class="l"><span>Campanha</span><b>' + esc(p.camps.join(', ')) + '</b></div>';
+    });
+  }
+
+  function areasIn() {
+    var rs = respostasIn(true), por = {};
+    rs.forEach(function (r) { (por[r.area] = por[r.area] || []).push(r); });
+    var lista = Object.keys(por).map(function (a) { return { a: a, R: resumoIn(por[a]) }; })
+      .sort(function (x, y) { return y.R.t - x.R.t || y.R.media - x.R.media || x.a.localeCompare(y.a, 'pt-BR'); });
+    var atual = estadoIn.area, T = resumoIn(rs);
+    function item(v, rot, R, cor) {
+      var ativo = atual === v;
+      return '<button type="button" class="in-area' + (ativo ? ' ativo' : '') + '" data-in-area="' + esc(v) + '" aria-pressed="' + ativo + '" style="--c:' + cor + '">' +
+        '<span class="nm"><i></i><span>' + esc(rot) + '</span></span><span class="vl">' + C.fmtDec(R.media, 1) + '<small>' + R.t + (R.t === 1 ? ' aval.' : ' aval.') + ' · NPS ' + C.fmtDec(R.nps, 0) + '</small></span>' +
+        '<span class="tr"><i style="width:' + (R.media * 10) + '%"></i></span></button>';
+    }
+    $('#in-lista-areas').innerHTML = rs.length ? item('todas', 'Todas as áreas', T, 'var(--accent)') + lista.map(function (x) { return item(x.a, x.a, x.R, corArea(x.a)); }).join('')
+      : '<p class="in-vazio">Sem avaliações nesta seleção.</p>';
+  }
+
+  function distIn(R) {
+    if (!R.t) { $('#in-dist').innerHTML = '<p class="in-vazio">Sem avaliações nesta seleção.</p>'; return; }
+    var hist = []; for (var i = 0; i <= 10; i++) hist.push(0);
+    respostasIn(false).forEach(function (r) { hist[r.nota]++; });
+    var mx = Math.max.apply(null, hist);
+    function leg(rot, fx, n, cor) { return '<div style="--c:' + cor + '" title="Notas ' + fx + ': ' + n + (n === 1 ? ' resposta' : ' respostas') + '"><span>' + rot + '</span><b>' + C.fmtPct(n / R.t, 0) + ' <small>' + n + '</small></b></div>'; }
+    $('#in-dist').innerHTML = '<div class="in-nps"><div class="in-nps-barra" title="Detratores, neutros e promotores">' +
+      '<i class="d" style="width:' + (R.d * 100 / R.t) + '%"></i><i class="n" style="width:' + (R.n * 100 / R.t) + '%"></i><i class="p" style="width:' + (R.p * 100 / R.t) + '%"></i></div>' +
+      '<div class="in-nps-leg">' + leg('Promotores', '9–10', R.p, COR_NOTA.p) + leg('Neutros', '7–8', R.n, COR_NOTA.n) + leg('Detratores', '0–6', R.d, COR_NOTA.d) + '</div>' +
+      '<div class="in-hist" aria-label="Quantidade de respostas por nota">' + hist.map(function (q, n) {
+        return '<div style="--c:' + COR_NOTA[classeNota(n)] + '"><span class="q">' + (q || '') + '</span><span class="bw"><span class="b' + (q ? '' : ' zero') + '" style="height:' + (q ? Math.max(6, q / mx * 100) : 3) + '%"></span></span><span class="x">' + n + '</span></div>';
+      }).join('') + '</div></div>';
+  }
+
+  function comentariosIn(rs) {
+    var todos = rs.filter(function (r) { return r.com; }).sort(function (a, b) { return a.dia < b.dia ? 1 : -1; });
+    var uteis = todos.filter(function (r) { return !trivialIn(r.com); }), lista = estadoIn.todos ? todos : uteis;
+    $('#sw-in-todos').setAttribute('aria-checked', String(estadoIn.todos));
+    $('#sw-in-todos').title = (todos.length - uteis.length) + ' respostas sem sugestão (ex.: “sem sugestões”, “NA”)';
+    $('#n-in-com').textContent = lista.length;
+    $('#in-lista-com').innerHTML = lista.length ? lista.map(function (r, i) {
+      return '<article class="in-c' + (trivialIn(r.com) ? ' trivial' : '') + '" style="animation-delay:' + Math.min(i, 10) * 35 + 'ms">' +
+        '<span class="nt" style="--c:' + COR_NOTA[classeNota(r.nota)] + '" title="Nota ' + r.nota + ' de 10">' + r.nota + '</span>' +
+        '<div class="cab">' + chipArea(r.area) + '<span class="meta">' + esc(r.nome || 'Anônimo') + ' · ' + C.dataLonga(r.dia) + ' · ' + esc(r.campT) + '</span></div>' +
+        '<p>' + esc(r.com) + '</p></article>';
+    }).join('') : '<p class="in-vazio">' + (todos.length ? 'Nenhuma sugestão escrita nesta seleção. Ative “Todos” para ver as demais respostas.' : 'Nenhum comentário nesta seleção.') + '</p>';
+    var sc = $('#in-lista-com').closest('.rolagem'); if (sc) sc.scrollTop = 0;
+  }
+
+  // a organização (organizacao.html) abre dentro do painel com o visual azul do PES 2.0;
+  // o arquivo original continua igual e funciona sozinho em outra aba
+  var CSS_FRAME = [
+    'html{color-scheme:dark}html,body{background:transparent!important}body{color:#F5F9FF;font-family:"Work Sans",Arial,sans-serif;font-size:14.5px}',
+    'h1,h2,h3{font-family:Cabin,"Work Sans",sans-serif;color:#F5F9FF}.muted,.small.muted,.sectionhead p,.summaryline,.field small,.footer{color:#A6BDE8!important}',
+    '.hero,.brand,.footer,.skip{display:none!important}header{background:transparent;border:0}.topbar{min-height:0;padding-top:18px;justify-content:flex-end}',
+    '.shell{max-width:none;padding-left:24px;padding-right:24px}.main{padding-top:14px;padding-bottom:24px}',
+    '.topnav button{border-color:rgba(255,255,255,.22);border-radius:999px;color:#F5F9FF}.topnav button:hover{background:rgba(0,240,180,.14);border-color:#00F0B4}',
+    '.topnav .mode{border-color:rgba(0,240,180,.45);color:#00F0B4;background:rgba(0,240,180,.10)}',
+    '.card,.stat{background:rgba(255,255,255,.065)!important;border-color:rgba(255,255,255,.12)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);border-radius:22px;backdrop-filter:blur(20px)}',
+    '.process{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);border-radius:18px}.process li+li{border-color:rgba(255,255,255,.12)}',
+    '.process button{color:#A6BDE8}.process [aria-current=step]{background:rgba(0,240,180,.14);color:#F5F9FF}.process .num{background:rgba(255,255,255,.10);color:#D5E3FF}',
+    '.process [aria-current=step] .num{background:#00F0B4;color:#002D78}.process .done .num{background:rgba(0,240,180,.22);color:#00F0B4}.process .stepcopy small{color:#A6BDE8}',
+    'input,select,textarea{background:rgba(255,255,255,.06)!important;color:#F5F9FF!important;border-color:rgba(255,255,255,.18)!important;border-radius:12px}',
+    'input:focus,select:focus,textarea:focus{border-color:#00F0B4!important}option{color:#000F32;background:#fff}input[type=date]{color-scheme:dark}input::placeholder,textarea::placeholder{color:#8EA6D6}',
+    'label,.fieldlabel{color:#D5E3FF}.pill{background:rgba(0,240,180,.14);color:#00F0B4}',
+    '.btn{background:rgba(255,255,255,.04);color:#F5F9FF;border-color:rgba(255,255,255,.22);border-radius:999px}.btn:hover{background:rgba(0,240,180,.12);border-color:#00F0B4}',
+    '.btn.primary,.btn.mint{background:#00F0B4;border-color:#00F0B4;color:#002D78;box-shadow:0 10px 26px -12px rgba(0,240,180,.7)}.btn.primary:hover,.btn.mint:hover{background:#3FF5C8}',
+    '.btn.danger{color:#FF9AA3;border-color:rgba(255,122,133,.4)}.btn.quiet{background:transparent}.linkbtn,a{color:#00F0B4}',
+    '.area{border-color:rgba(255,255,255,.12);border-radius:14px}.area:hover{background:rgba(255,255,255,.04)}.area:has(input:checked){background:rgba(0,240,180,.12);border-color:rgba(0,240,180,.6)}',
+    '.area .initial{background:rgba(255,255,255,.08);color:#F5F9FF}.area small{color:#A6BDE8}.area small.pending{color:#FFC56E}.area .checklabel{color:#00F0B4}.area input{accent-color:#00F0B4}',
+    '.note{background:rgba(0,185,242,.10);border-left-color:#00B9F2;color:#D5E3FF}.notice{background:rgba(255,197,110,.10);border-color:rgba(255,197,110,.35);color:#FFE2B0}.notice strong{color:#FFC56E}',
+    '.periodbox{background:rgba(0,240,180,.08);border-color:rgba(0,240,180,.3);color:#B9FBE9}.approval{background:rgba(0,240,180,.08);border-color:rgba(0,240,180,.3)}.approval input{accent-color:#00F0B4}',
+    '.error{background:rgba(255,122,133,.12);border-color:rgba(255,122,133,.4);color:#FFC2C8}.success{background:rgba(0,240,180,.10);border-color:rgba(0,240,180,.4)}.success h2{color:#00F0B4}',
+    '.tokens button{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:#BFE9FF}.emailpreview{border-color:rgba(255,255,255,.12);border-radius:14px}',
+    '.reviewitem{border-color:rgba(255,255,255,.10)}.reviewitem small,.stat span,.mailmeta span{color:#A6BDE8}.actions,.history,.backupbar,.historyrow{border-color:rgba(255,255,255,.12)}',
+    '.savestatus,.history summary{color:#A6BDE8}.savestatus svg,.historyrow .tag{color:#00F0B4}.toolbar input{background:rgba(255,255,255,.06)!important}',
+    'dialog{background:#0C3C8E;color:#F5F9FF;border-color:rgba(255,255,255,.2);border-radius:22px}.dialoghead,.dialogfoot{border-color:rgba(255,255,255,.12)}.dialoghead p{color:#A6BDE8}',
+    '.close{background:rgba(255,255,255,.10);color:#F5F9FF}.toast{background:#00F0B4;color:#002D78}::selection{background:#00F0B4;color:#002D78}',
+    '*{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}'
+  ].join('');
+  function vesteFrameIn(fr) {
+    try {
+      var d = fr.contentDocument; if (!d || !d.head || d.getElementById('pes-embed')) return;
+      var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=Cabin:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap';
+      var st = d.createElement('style'); st.id = 'pes-embed'; st.textContent = CSS_FRAME;
+      d.head.appendChild(l); d.head.appendChild(st); d.documentElement.classList.add('embed');
+    } catch (e) { /* outra origem: abre com o visual próprio da organização */ }
+  }
+  function abreFrameIn() {
+    if (estadoIn.frame) return;
+    estadoIn.frame = true;
+    var fr = $('#in-iframe'), box = fr.closest('.in-frame');
+    fr.onload = function () { vesteFrameIn(fr); box.classList.add('pronto'); };
+    fr.src = 'organizacao.html?embed=1';
+  }
+
+  /* =================================================================
      Indicadores GIBS: matriz anual de metas do PES
      ================================================================= */
   var METAS = window.PES_METAS || {};
@@ -3515,7 +3917,9 @@ window.iniciarPainel = function () {
     var acc = C.npsVazio(), nCur = 0;
     cs.forEach(function (c) { if (c.nps_curso && C.respostas(c.nps_curso)) { C.somaNps(acc, c.nps_curso); nCur++; } });
     var nps = C.nps(acc);
-    var auto = { participacao_pagos: part('pagas', 'pago'), participacao_gratuitos: part('gratuitas', 'gratuito'),
+    var rInt = INT_R.filter(function (r) { return r.ano === String(ano); }), RI = resumoIn(rInt);
+    var auto = { satisfacao_areas: RI.nps == null ? null : { v: RI.nps, det: 'NPS das pesquisas internas: ' + RI.t + (RI.t > 1 ? ' avaliações de ' : ' avaliação de ') + uniq(rInt.map(function (r) { return r.area; })).length + ' áreas, em ' + uniq(rInt.map(function (r) { return r.camp; })).length + ' campanhas' },
+      participacao_pagos: part('pagas', 'pago'), participacao_gratuitos: part('gratuitas', 'gratuito'),
       satisfacao_cursos: nps == null ? null : { v: nps, det: 'NPS ponderado de ' + nCur + (nCur > 1 ? ' cursos, ' : ' curso, ') + C.fmtInt(C.respostas(acc)) + ' avaliações' } };
     var inf = ((METAS.anos || {})[ano] || {}).informados || {}, out = {};
     GIBS_PADRAO.indicadores.forEach(function (i) {
@@ -3968,7 +4372,7 @@ window.iniciarPainel = function () {
       }).join('') : '<tr><td colspan="4" class="nota">Sem cursos com receita em ' + estadoR.ano + '.</td></tr>') + '</tbody>';
   }
 
-  var renders = { receita: renderReceita, atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, publico: renderPublico, indicadores: renderIndicadores, comparacao: renderComparacao };
+  var renders = { receita: renderReceita, atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, interna: renderInterna, publico: renderPublico, indicadores: renderIndicadores, comparacao: renderComparacao };
   function irPara(pg, semHash) {
     if (pg === 'cursos') pg = 'atividades';
     if (!renders[pg]) pg = 'atividades';
@@ -3976,6 +4380,7 @@ window.iniciarPainel = function () {
     if (ddAberto) ddAberto.fechar();
     $$('.pagina').forEach(function (s) { s.hidden = s.getAttribute('data-pg') !== pg; });
     $$('.navbtn').forEach(function (b) { if (b.getAttribute('data-pg') === pg) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+    var pai = $('.navbtn[data-pg="qualidade"]'); if (pai) pai.classList.toggle('pai-ativo', pg === 'interna');
     $('#titulo-pg').textContent = PAGINAS[pg][0]; $('#sub-pg').textContent = PAGINAS[pg][1];
     document.title = PAGINAS[pg][0] + ' | PES 2.0';
     if (!semHash && location.hash.slice(1) !== pg) history.replaceState(null, '', '#' + pg);
@@ -4143,6 +4548,29 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
     }
     $$('#pg-qualidade .vista').forEach(function (b) { b.onclick = function () { estado.q.vista = b.getAttribute('data-vista'); renderQualidade(); }; });
 
+    // ---- qualidade › interno
+    var inAreas = uniq(INT_R.map(function (r) { return r.area; })).sort(function (a, b) { return a === 'Não informada' ? 1 : b === 'Não informada' ? -1 : a.localeCompare(b, 'pt-BR'); });
+    var inAnos = uniq(INT_R.map(function (r) { return r.ano; })).sort().reverse();
+    function opCamps() {
+      return [{ v: 'todas', t: 'Todas as campanhas', curto: 'Todas' }].concat(INT_CAMPS.filter(function (c) { return estadoIn.ano === 'todos' || String(c.ano) === estadoIn.ano; })
+        .map(function (c) { return { v: c.id, t: c.titulo || c.id, sub: c.period_label || '' }; }));
+    }
+    dd.inArea = new Dropdown($('#dd-in-area'), { rotulo: 'Área', valor: 'todas', padrao: 'todas', busca: inAreas.length > 8 ? 'Buscar área' : null,
+      opcoes: [{ v: 'todas', t: 'Todas as áreas', curto: 'Todas' }].concat(inAreas.map(function (a) { return { v: a, t: a, cor: corArea(a) }; })),
+      onChange: function (v) { estadoIn.area = v; renderInterna(); } });
+    dd.inAno = new Dropdown($('#dd-in-ano'), { rotulo: 'Ano', valor: 'todos', padrao: 'todos', opcoes: [{ v: 'todos', t: 'Todos os anos', curto: 'Todos' }].concat(inAnos.map(function (a) { return { v: a, t: a }; })),
+      onChange: function (v) { estadoIn.ano = v; estadoIn.camp = 'todas'; dd.inCamp.cfg.opcoes = opCamps(); dd.inCamp.definir('todas'); renderInterna(); } });
+    dd.inCamp = new Dropdown($('#dd-in-camp'), { rotulo: 'Campanha', valor: 'todas', padrao: 'todas', opcoes: opCamps(),
+      onChange: function (v) { estadoIn.camp = v; renderInterna(); } });
+    $('#limpar-in').onclick = function () { estadoIn.area = 'todas'; estadoIn.ano = 'todos'; estadoIn.camp = 'todas'; dd.inArea.definir('todas'); dd.inAno.definir('todos'); dd.inCamp.cfg.opcoes = opCamps(); dd.inCamp.definir('todas'); renderInterna(); };
+    $$('#pg-interna [data-ivista]').forEach(function (b) { b.onclick = function () { estadoIn.vista = b.getAttribute('data-ivista'); renderInterna(); }; });
+    $$('#in-metrica button').forEach(function (b) { b.onclick = function () { estadoIn.met = b.getAttribute('data-met'); graficoIn(respostasIn(false)); }; });
+    $('#sw-in-todos').onclick = function () { estadoIn.todos = !estadoIn.todos; comentariosIn(respostasIn(false)); requestAnimationFrame(marcaRolagem); };
+    $('#in-lista-areas').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-in-area]'); if (!b) return;
+      var v = b.getAttribute('data-in-area'); estadoIn.area = estadoIn.area === v ? 'todas' : v; dd.inArea.definir(estadoIn.area); renderInterna();
+    });
+
     // ---- tabelas, leitura e navegação
     $('#t-atv').addEventListener('click', function (e) {
       var b = e.target.closest('button[data-sort]'); if (!b) return;
@@ -4184,7 +4612,7 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
 
 
     var tm;
-    window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(function () { if (estado.pg === 'comparacao') renderComparacao(); if (estado.pg === 'qualidade') renderQualidade(); }, 160); });
+    window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(function () { if (estado.pg === 'comparacao') renderComparacao(); if (estado.pg === 'qualidade') renderQualidade(); if (estado.pg === 'interna' && estadoIn.vista === 'analytics') renderInterna(); }, 160); });
     irPara(location.hash.slice(1) || 'atividades', true);
   }
   iniciar();
@@ -4196,7 +4624,7 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
    qualidade (acervo_pesquisas_qualidade). Sem os dados do painel, abre em demonstração. */
 (function () {
   var QUALIDADE = 'https://programaeducacional.github.io/acervo_pesquisas_qualidade/data_dash.js';
-  var faltam = 8, feito = false;   // atividades, divulgacoes, publico, comparacao, data_dash, receita, indicadores, qualidade
+  var faltam = 9, feito = false;   // atividades, divulgacoes, publico, comparacao, data_dash, receita, indicadores, qualidade, pesquisas internas
   function seguir() {
     if (feito) return; feito = true;
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.iniciarPainel);
@@ -4214,12 +4642,13 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
   carregar('receita.js');
   carregar('indicadores.js');   // metas e valores informados dos indicadores GIBS
   carregar(QUALIDADE);
+  carregar('pesquisas_internas.js');   // pesquisas internas: as áreas do Sindusfarma avaliam o PES
   setTimeout(seguir, 6000);
 
   /* ---- atualização automática: procura dados novos sem precisar de F5 ----
      Lê só o cabeçalho de cada arquivo (onde está o carimbo do n8n). Se algum mudou,
      avisa e recarrega, mantendo a página aberta. Pausa quando a aba está em segundo plano. */
-  var ARQ = ['atividades.js', 'divulgacoes.js', 'publico.js', 'comparacao.js', 'receita.js'], carimbos = {}, primeira = true;
+  var ARQ = ['atividades.js', 'divulgacoes.js', 'publico.js', 'comparacao.js', 'receita.js', 'pesquisas_internas.js'], carimbos = {}, primeira = true;
   function carimbo(url) {
     return fetch(url + '?v=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.text() : ''; })
