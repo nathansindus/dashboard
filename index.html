@@ -1064,6 +1064,7 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .vistas.so-icones .vista:hover { color: var(--fg); background: var(--accent-soft); }
 .vistas.so-icones .vista[aria-pressed="true"], .vistas.so-icones .vista[aria-selected="true"] { color: #042; background: var(--accent); }
 .vistas.so-icones .vista:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* mês sem receita: linha discreta, para não competir com os meses que têm valor */
 /* chips de agrupar inscrições na Comparação */
 .chips-grupo { display: inline-flex; gap: 6px; }
 .chips-grupo .chip-filtro { all: unset; cursor: pointer; font: 500 12.5px var(--f-text); color: var(--fg-2); padding: 5px 12px; border-radius: 999px; background: var(--panel-sub); transition: all .16s var(--ease); }
@@ -1225,7 +1226,7 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
     </button>
     <div class="fim">
       <button class="navbtn" data-pg="receita" type="button" title="Receita">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20V9m5 11V5m5 15v-8m5 8V7"/><path d="M3 20h18"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg>
         <span class="rot-nav">Receita</span>
       </button>
       <button class="navbtn" data-pg="indicadores" type="button" title="Indicadores">
@@ -1432,22 +1433,34 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
     <section class="pagina pg-receita" id="pg-receita" data-pg="receita" aria-labelledby="titulo-pg" hidden>
       <div class="filtros">
         <div class="dd" id="dd-r-ano"></div>
-        <div class="chips-grupo" id="chips-r-base" role="group" aria-label="Base da série mensal">
-          <button type="button" class="chip-filtro" data-base="atividade" aria-pressed="true">Mês da atividade</button>
-          <button type="button" class="chip-filtro" data-base="inscricao" aria-pressed="false">Mês da inscrição</button>
+        <span id="r-filtros-serie" class="filtros-inline">
+          <div class="chips-grupo" id="chips-r-base" role="group" aria-label="Base da série mensal">
+            <button type="button" class="chip-filtro" data-base="atividade" aria-pressed="true">Mês da atividade</button>
+            <button type="button" class="chip-filtro" data-base="inscricao" aria-pressed="false">Mês da inscrição</button>
+          </div>
+        </span>
+        <div class="direita">
+          <div class="vistas so-icones" role="group" aria-label="Seção da página">
+            <button type="button" class="vista" data-rvista="evolucao" title="Evolução mensal" aria-label="Evolução"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-5 3 3 5-7"/></svg><span>Evolução</span></button>
+            <button type="button" class="vista" data-rvista="cursos" title="Receita por curso" aria-label="Cursos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M4 14.5h16M10 10v9"/></svg><span>Cursos</span></button>
+            <button type="button" class="vista" data-rvista="composicao" title="Composição da receita" aria-label="Composição"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v8l6 3.5"/></svg><span>Composição</span></button>
+          </div>
         </div>
-        <span class="nota" id="r-nota"></span>
       </div>
       <div class="painel cluster" id="kpis-r" aria-live="polite"></div>
       <div class="area">
-        <div class="painel">
-          <header><h2 id="r-tit-serie">Receita mês a mês</h2><span class="nota" id="r-sub-serie"></span></header>
-          <div class="corpo"><div id="g-receita"></div></div>
-        </div>
-        <div class="coluna">
-          <div class="painel tabela-p compacta"><div class="corpo rolagem"><table class="tabela" id="t-r-cursos"></table></div></div>
+        <div class="vista-q r-evo" id="r-evolucao">
           <div class="painel">
-            <header><h2>Composição</h2>
+            <header><h2 id="r-tit-serie">Receita mês a mês</h2><span class="nota" id="r-sub-serie"></span></header>
+            <div class="corpo rolagem"><div class="hbars" id="g-receita"></div></div>
+          </div>
+        </div>
+        <div class="vista-q r-cur" id="r-cursos" hidden>
+          <div class="painel tabela-p compacta"><div class="corpo rolagem"><table class="tabela" id="t-r-cursos"></table></div></div>
+        </div>
+        <div class="vista-q r-comp" id="r-composicao" hidden>
+          <div class="painel">
+            <header><h2>Composição da receita</h2>
               <div class="chips-grupo" id="chips-r-comp" role="group" aria-label="Agrupar a receita por">
                 <button type="button" class="chip-filtro" data-comp="area" aria-pressed="true">Área</button>
                 <button type="button" class="chip-filtro" data-comp="formato" aria-pressed="false">Formato</button>
@@ -1458,6 +1471,7 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
           </div>
         </div>
       </div>
+      <p class="nota" id="r-nota"></p>
     </section>
 
     <section class="pagina pg-gibs" id="pg-indicadores" data-pg="indicadores" aria-labelledby="titulo-pg" hidden>
@@ -2057,22 +2071,24 @@ if (typeof module !== 'undefined') module.exports = PESCore;
 <script>
 /* Indicadores GIBS do PES: faixas padrão (Matriz de Indicadores de Performance, simulação 2025).
    O arquivo indicadores.js do repositório pode trocar faixas e informar valores por ano. */
-var GIBS_NIVEIS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
+var GIBS_NIVEIS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110];
 var GIBS_PADRAO = {
   unidadeReceita: 'R$ mil',
   indicadores: [
-    { id: 'participacao_pagos', nome: '% Participação dos Inscritos para cursos pagos', peso: 15, tipo: 'pct', fonte: 'auto',
-      faixas: [83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96] },
-    { id: 'participacao_gratuitos', nome: '% Participação dos Inscritos para cursos gratuitos', peso: 15, tipo: 'pct', fonte: 'auto',
-      faixas: [56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69] },
-    { id: 'receita', nome: 'Receita', peso: 25, tipo: 'num', fonte: 'informado',
-      faixas: [945, 955, 965, 974, 984, 994, 1004, 1014, 1025, 1035, 1045, 1056, 1066, 1077] },
-    { id: 'margem', nome: '% Margem (Receita/Despesas)', peso: 10, tipo: 'pct', fonte: 'informado',
-      faixas: [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85] },
+    { id: 'participacao_pagos', nome: '% de Participação dos Inscritos para cursos pagos', peso: 15, tipo: 'pct', fonte: 'auto',
+      faixas: [83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94] },
+    { id: 'participacao_gratuitos', nome: '% de Participação dos Inscritos para cursos gratuitos', peso: 15, tipo: 'pct', fonte: 'auto',
+      faixas: [56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67] },
+    { id: 'receita', nome: 'Receita mil', peso: 20, tipo: 'num', fonte: 'auto',
+      faixas: [890, 900, 910, 920, 930, 940, 950, 960, 970, 980, 990, 1000] },
+    { id: 'margem', nome: '% da Margem (Receita/Despesas)', peso: 10, tipo: 'pct', fonte: 'informado',
+      faixas: [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83] },
     { id: 'satisfacao_areas', nome: 'Pesquisa de Satisfação das Áreas Técnicas com a Área', peso: 5, tipo: 'nps', fonte: 'informado',
-      faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85, 90, 100] },
-    { id: 'satisfacao_cursos', nome: 'Pesquisa de Satisfação dos Cursos', peso: 30, tipo: 'nps', fonte: 'auto',
-      faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85, 90, 100] }
+      faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85] },
+    { id: 'satisfacao_cursos', nome: 'Pesquisa de Satisfação dos Cursos', peso: 25, tipo: 'nps', fonte: 'auto',
+      faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85] },
+    { id: 'satisfacao_associados', nome: 'Pesquisa de Satisfação dos Associados', peso: 10, tipo: 'nps', fonte: 'informado',
+      faixas: [0, 10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85] }
   ]
 };
 // nível atingido: a maior faixa que o valor alcança (abaixo da primeira faixa, 0 ponto)
@@ -3452,7 +3468,7 @@ window.iniciarPainel = function () {
      ================================================================= */
   var METAS = window.PES_METAS || {};
   var CURTO_G = { participacao_pagos: 'Participação nos pagos', participacao_gratuitos: 'Participação nos gratuitos', receita: 'Receita',
-    margem: 'Margem', satisfacao_areas: 'Satisfação das áreas técnicas', satisfacao_cursos: 'Satisfação dos cursos' };
+    margem: 'Margem', satisfacao_areas: 'Satisfação das áreas técnicas', satisfacao_cursos: 'Satisfação dos cursos', satisfacao_associados: 'Satisfação dos associados' };
   function faixaCor(idx) { return idx == null ? 'var(--muted)' : idx < 0 || GIBS_NIVEIS[idx] <= 40 ? 'var(--g-ruim)' : GIBS_NIVEIS[idx] <= 90 ? 'var(--g-medio)' : GIBS_NIVEIS[idx] <= 120 ? 'var(--g-bom)' : 'var(--g-otimo)'; }
   function fmtG(tipo, v, dec) { if (v == null) return '—'; return tipo === 'pct' ? C.fmtDec(v, dec == null ? 1 : dec) + '%' : tipo === 'num' ? C.fmtInt(v) : C.fmtDec(v, 0); }
   function gibsConfig(ano) {
@@ -3789,7 +3805,7 @@ window.iniciarPainel = function () {
      Página · Receita
      ============================== */
   var REC = window.PES_RECEITA || null;
-  var estadoR = { ano: null, base: 'atividade', comp: 'area' };
+  var estadoR = { ano: null, base: 'atividade', comp: 'area', vista: 'evolucao' };
   function moeda(v, curto) {
     if (v == null) return '—';
     if (curto && Math.abs(v) >= 1000000) return 'R$ ' + (v / 1000000).toFixed(1).replace('.', ',') + ' mi';
@@ -3801,10 +3817,11 @@ window.iniciarPainel = function () {
     return M[+m.slice(5, 7) - 1] + '/' + m.slice(2, 4);
   }
   function renderReceita() {
+    REC = window.PES_RECEITA || REC;   // o arquivo pode chegar depois do script
     if (!REC) {
       $('#kpis-r').innerHTML = kpi('Receita', '—', 'O arquivo receita.js ainda não foi publicado. Rode o workflow "Painel PES · 6 · Receita e indicadores".');
       $('#g-receita').innerHTML = ''; $('#t-r-cursos').innerHTML = ''; $('#g-r-comp').innerHTML = '';
-      $('#r-nota').textContent = ''; return;
+      $('#r-nota').textContent = ''; $('#r-filtros-serie').hidden = true; return;
     }
     var anos = Object.keys(REC.por_ano || {}).sort().reverse();
     if (!estadoR.ano) estadoR.ano = anos[0] || String(new Date().getFullYear());
@@ -3823,27 +3840,30 @@ window.iniciarPainel = function () {
       kpi('Ticket por inscrito', moeda((REC.ticket || {}).por_inscrito), C.fmtInt((REC.volumes || {}).inscritos_pagantes || 0) + ' inscritos pagantes') +
       kpi('Cursos com receita', C.fmtInt((REC.volumes || {}).cursos_com_receita || 0), C.fmtInt((REC.volumes || {}).inscricoes_pagas || 0) + ' inscrições pagas');
 
+    // só a seção escolhida fica visível
+    $('#r-evolucao').hidden = estadoR.vista !== 'evolucao';
+    $('#r-cursos').hidden = estadoR.vista !== 'cursos';
+    $('#r-composicao').hidden = estadoR.vista !== 'composicao';
+    $('#r-filtros-serie').hidden = estadoR.vista !== 'evolucao';
+    $$('#pg-receita .vista').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-rvista') === estadoR.vista)); });
+    $('#r-nota').textContent = estadoR.vista === 'evolucao' ? (REC.nota || '') : '';
+
     $('#r-tit-serie').textContent = 'Receita mês a mês · ' + estadoR.ano;
     $('#r-sub-serie').textContent = estadoR.base === 'inscricao' ? 'pela data em que a inscrição foi feita' : 'pela data em que a atividade aconteceu';
-    $('#r-nota').textContent = REC.nota || '';
 
-    // completa os meses sem receita, para dar leitura de sazonalidade
-    var porMes = {}; doAno.forEach(function (x) { porMes[x.mes.slice(5, 7)] = x; });
     var ultimo = estadoR.ano === String(new Date().getFullYear()) ? (new Date().getMonth() + 1) : 12;
-    doAno = [];
-    for (var mm = 1; mm <= ultimo; mm++) {
-      var ch = (mm < 10 ? '0' : '') + mm;
-      doAno.push(porMes[ch] || { mes: estadoR.ano + '-' + ch, receita: 0, grupos: 0, inscritos: 0 });
-    }
+    var semReceita = ultimo - doAno.length;      // meses do ano que não tiveram receita
+    if (semReceita > 0) $('#r-sub-serie').textContent += ' · ' + semReceita + (semReceita === 1 ? ' mês sem receita' : ' meses sem receita');
     var max = Math.max.apply(null, doAno.map(function (x) { return x.receita; }).concat([1]));
     var antPorMes = {}; serieAnt.forEach(function (x) { antPorMes[x.mes.slice(5, 7)] = x.receita; });
-    $('#g-receita').innerHTML = doAno.length ? '<div class="hbars">' + doAno.map(function (x) {
+    $('#g-receita').innerHTML = doAno.length ? doAno.map(function (x) {
       var b = antPorMes[x.mes.slice(5, 7)] || 0;
-      return '<div class="hbar"><span class="nome">' + mesRotulo(x.mes) + '</span><span class="num">' + moeda(x.receita, 1) +
-        ' ' + chip(b ? (x.receita - b) / b : null, 'pct', 0) + '</span>' +
+      return '<div class="hbar"><span class="nome">' + mesRotulo(x.mes) + '</span>' +
+        '<span class="num">' + moeda(x.receita, 1) + ' ' + chip(b ? (x.receita - b) / b : null, 'pct', 0) + '</span>' +
         '<span class="trilha"><i style="width:' + (x.receita * 100 / max) + '%;background:var(--data)"></i></span>' +
-        '<span class="det">' + C.fmtInt(x.inscritos || 0) + (x.inscritos === 1 ? ' inscrito' : ' inscritos') + ' em ' + C.fmtInt(x.grupos || 0) + (x.grupos === 1 ? ' inscrição' : ' inscrições') + '</span></div>';
-    }).join('') + '</div>' : '<p class="aviso-ia">Sem receita registrada em ' + estadoR.ano + '.</p>';
+        '<span class="det">' + C.fmtInt(x.inscritos || 0) + (x.inscritos === 1 ? ' inscrito' : ' inscritos') + ' em ' +
+        C.fmtInt(x.grupos || 0) + (x.grupos === 1 ? ' inscrição' : ' inscrições') + '</span></div>';
+    }).join('') : '<p class="aviso-ia">Sem receita registrada em ' + estadoR.ano + '.</p>';
 
     var MEIO = { billet: 'Boleto', creditCard: 'Cartão de crédito', debitCard: 'Cartão de débito', pix: 'Pix', free: 'Gratuito', 'não informado': 'Não informado' };
     var comp = (REC[estadoR.comp === 'formato' ? 'por_formato' : estadoR.comp === 'meio' ? 'por_meio' : 'por_area'] || [])
@@ -3979,6 +3999,9 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
       if (rAnos.indexOf(estadoR.ano) < 0) estadoR.ano = rAnos[0];
       dd.rAno = new Dropdown($('#dd-r-ano'), { rotulo: 'Ano', valor: estadoR.ano, padrao: ANO_ATUAL, opcoes: rAnos.map(function (a) { return { v: a, t: a }; }),
         onChange: function (v) { estadoR.ano = v; renderReceita(); } });
+      $$('#pg-receita .vista').forEach(function (b) {
+        b.onclick = function () { estadoR.vista = b.getAttribute('data-rvista'); renderReceita(); };
+      });
       $$('#chips-r-base .chip-filtro').forEach(function (b) {
         b.onclick = function () { estadoR.base = b.getAttribute('data-base');
           $$('#chips-r-base .chip-filtro').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
@@ -4090,7 +4113,7 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
    qualidade (acervo_pesquisas_qualidade). Sem os dados do painel, abre em demonstração. */
 (function () {
   var QUALIDADE = 'https://programaeducacional.github.io/acervo_pesquisas_qualidade/data_dash.js';
-  var faltam = 7, feito = false;
+  var faltam = 8, feito = false;   // atividades, divulgacoes, publico, comparacao, data_dash, receita, indicadores, qualidade
   function seguir() {
     if (feito) return; feito = true;
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.iniciarPainel);
@@ -4113,7 +4136,7 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
   /* ---- atualização automática: procura dados novos sem precisar de F5 ----
      Lê só o cabeçalho de cada arquivo (onde está o carimbo do n8n). Se algum mudou,
      avisa e recarrega, mantendo a página aberta. Pausa quando a aba está em segundo plano. */
-  var ARQ = ['atividades.js', 'divulgacoes.js', 'publico.js', 'comparacao.js'], carimbos = {}, primeira = true;
+  var ARQ = ['atividades.js', 'divulgacoes.js', 'publico.js', 'comparacao.js', 'receita.js'], carimbos = {}, primeira = true;
   function carimbo(url) {
     return fetch(url + '?v=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.text() : ''; })
