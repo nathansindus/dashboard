@@ -1065,6 +1065,25 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
 .vistas.so-icones .vista[aria-pressed="true"], .vistas.so-icones .vista[aria-selected="true"] { color: #042; background: var(--accent); }
 .vistas.so-icones .vista:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 /* mês sem receita: linha discreta, para não competir com os meses que têm valor */
+.graf-linha { margin-bottom: 14px; }
+.graf-linha svg { width: 100%; height: 240px; display: block; }
+.leg-linha { display: flex; align-items: center; gap: 7px; margin: 2px 0 0; font-size: 12px; color: var(--muted); }
+.leg-linha .l-at, .leg-linha .l-an { width: 16px; height: 0; border-top: 2.4px solid var(--data); display: inline-block; }
+.leg-linha .l-an { border-top: 2px dashed var(--muted); margin-left: 12px; }
+.rosca-wrap { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 18px; align-items: center; }
+.rosca { width: 170px; height: 170px; }
+.legenda-rosca { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.legenda-rosca li { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto auto; gap: 9px; align-items: center; font-size: 12.5px; }
+.legenda-rosca i { width: 10px; height: 10px; border-radius: 3px; }
+.legenda-rosca .nm { color: var(--fg-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.legenda-rosca b { font: 600 13px var(--f-display); }
+.legenda-rosca .pc { color: var(--muted); min-width: 38px; text-align: right; }
+@media (max-width: 1100px) { .rosca-wrap { grid-template-columns: 1fr; justify-items: center; } }
+/* Receita: cada seção ocupa a área toda e o conteúdo rola dentro do painel */
+.pg-receita .area { min-height: 0; }
+.pg-receita .vista-q { display: grid; min-height: 0; height: 100%; }
+.pg-receita .vista-q > .painel { min-height: 0; }
+.pg-receita .painel > .corpo.rolagem { overflow-y: auto; min-height: 0; }
 /* chips de agrupar inscrições na Comparação */
 .chips-grupo { display: inline-flex; gap: 6px; }
 .chips-grupo .chip-filtro { all: unset; cursor: pointer; font: 500 12.5px var(--f-text); color: var(--fg-2); padding: 5px 12px; border-radius: 999px; background: var(--panel-sub); transition: all .16s var(--ease); }
@@ -3816,6 +3835,64 @@ window.iniciarPainel = function () {
     var M = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
     return M[+m.slice(5, 7) - 1] + '/' + m.slice(2, 4);
   }
+  /* gráfico de linha: receita acumulada do ano, comparada ao ano anterior */
+  function linhaReceita(serieAtual, serieAnterior, ano, anoAnt) {
+    var w = 700, h = 230, m = { l: 56, r: 16, t: 14, b: 26 };
+    var iw = w - m.l - m.r, ih = h - m.t - m.b;
+    function acumula(lista) {
+      var out = [], t = 0;
+      for (var k = 1; k <= 12; k++) {
+        var ch = (k < 10 ? '0' : '') + k;
+        var x = lista.filter(function (y) { return y.mes.slice(5, 7) === ch; })[0];
+        t += x ? x.receita : 0;
+        out.push({ m: k, v: t, teve: !!x });
+      }
+      return out;
+    }
+    var A = acumula(serieAtual), B = acumula(serieAnterior);
+    var ultimoA = 0; A.forEach(function (p, i) { if (p.teve) ultimoA = i; });
+    var max = Math.max.apply(null, A.concat(B).map(function (p) { return p.v; }).concat([1]));
+    var px = function (i) { return m.l + (i / 11) * iw; };
+    var py = function (v) { return m.t + ih - (v / max) * ih; };
+    var cam = function (pts) { return pts.map(function (p, i) { return (i ? 'L' : 'M') + px(i).toFixed(1) + ' ' + py(p.v).toFixed(1); }).join(' '); };
+    var out = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Receita acumulada de ' + ano + ' comparada a ' + anoAnt + '">';
+    [0, 0.5, 1].forEach(function (f) {
+      var y = m.t + ih * (1 - f);
+      out += '<line x1="' + m.l + '" y1="' + y + '" x2="' + (m.l + iw) + '" y2="' + y + '" style="stroke:var(--line)"/>' +
+        '<text x="' + (m.l - 8) + '" y="' + (y + 4) + '" text-anchor="end" style="fill:var(--muted);font:400 10.5px var(--f-text)">' + moeda(max * f, 1) + '</text>';
+    });
+    var M = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+    M.forEach(function (r, i) { out += '<text x="' + px(i) + '" y="' + (h - 8) + '" text-anchor="middle" style="fill:var(--muted);font:400 10.5px var(--f-text)">' + r + '</text>'; });
+    if (serieAnterior.length) out += '<path d="' + cam(B) + '" fill="none" style="stroke:var(--muted);stroke-width:1.8;stroke-dasharray:5 4"/>';
+    out += '<path d="' + cam(A.slice(0, ultimoA + 1)) + '" fill="none" style="stroke:var(--data);stroke-width:2.4;stroke-linecap:round"/>';
+    out += '<circle cx="' + px(ultimoA) + '" cy="' + py(A[ultimoA].v) + '" r="4" style="fill:var(--data)"/>';
+    var yr = Math.max(m.t + 12, py(A[ultimoA].v) - 10);
+    var xr = px(ultimoA), ancora = xr > m.l + iw - 70 ? 'end' : 'start';
+    out += '<text x="' + (ancora === 'end' ? xr - 8 : xr + 8) + '" y="' + yr + '" text-anchor="' + ancora + '" style="fill:var(--data);font:600 12px var(--f-display)">' + moeda(A[ultimoA].v, 1) + '</text>';
+    return out + '</svg>';
+  }
+  /* gráfico de rosca: participação de cada parte na receita */
+  function roscaReceita(itens) {
+    var tot = itens.reduce(function (a, x) { return a + x.receita; }, 0);
+    if (!tot) return '';
+    var CORES = ['var(--data)', 'var(--data-2)', 'var(--roxo1)', 'var(--organico)', 'var(--roxo2)', 'var(--muted)'];
+    var r = 54, c = 2 * Math.PI * r, off = 0, i = 0;
+    var top = itens.slice(0, 5), resto = itens.slice(5);
+    if (resto.length) top.push({ chave: 'Outros', receita: resto.reduce(function (a, x) { return a + x.receita; }, 0), grupos: resto.reduce(function (a, x) { return a + (x.grupos || 0); }, 0) });
+    var svg = '<svg viewBox="0 0 150 150" class="rosca" role="img" aria-label="Composição da receita"><g transform="translate(75,75) rotate(-90)">';
+    top.forEach(function (x) {
+      var frac = x.receita / tot, cor = CORES[i % CORES.length];
+      svg += '<circle r="' + r + '" fill="none" stroke="' + cor + '" stroke-width="22" stroke-dasharray="' + (frac * c).toFixed(2) + ' ' + c.toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>';
+      off += frac * c; i++;
+    });
+    svg += '</g><text x="75" y="72" text-anchor="middle" style="fill:var(--fg);font:600 15px var(--f-display)">' + moeda(tot, 1) + '</text>' +
+      '<text x="75" y="88" text-anchor="middle" style="fill:var(--muted);font:400 10.5px var(--f-text)">no total</text></svg>';
+    var leg = '<ul class="legenda-rosca">' + top.map(function (x, k) {
+      return '<li><i style="background:' + CORES[k % CORES.length] + '"></i><span class="nm">' + esc(x.chave) + '</span>' +
+        '<b>' + moeda(x.receita, 1) + '</b><span class="pc">' + C.fmtPct(x.receita / tot, 0) + '</span></li>';
+    }).join('') + '</ul>';
+    return '<div class="rosca-wrap">' + svg + leg + '</div>';
+  }
   function renderReceita() {
     REC = window.PES_RECEITA || REC;   // o arquivo pode chegar depois do script
     if (!REC) {
@@ -3830,15 +3907,19 @@ window.iniciarPainel = function () {
     var totalAno = doAno.reduce(function (a, x) { return a + x.receita; }, 0);
     var anoAnt = String(+estadoR.ano - 1), serieAnt = serie.filter(function (x) { return x.mes.slice(0, 4) === anoAnt; });
     var totalAnt = serieAnt.reduce(function (a, x) { return a + x.receita; }, 0);
-    var t = REC.total || {};
+
+    // tudo calculado sobre o ANO escolhido (os totais do arquivo somam os dois anos)
+    var cursosAno = (REC.cursos || []).filter(function (c) { return String(c.inicio).slice(0, 4) === estadoR.ano; });
+    var inscritosAno = cursosAno.reduce(function (a, c) { return a + (c.inscritos || 0); }, 0);
+    var inscricoesAno = cursosAno.reduce(function (a, c) { return a + (c.grupos || 0); }, 0);
+    var receitaCursosAno = cursosAno.reduce(function (a, c) { return a + (c.receita || 0); }, 0);
 
     $('#kpis-r').innerHTML =
       kpi('Receita recebida', moeda(totalAno), estadoR.ano + (totalAnt ? ' · ' + anoAnt + ': ' + moeda(totalAnt, 1) : ''),
           totalAnt ? chip((totalAno - totalAnt) / totalAnt, 'pct', 1) : '') +
-      kpi('A receber', moeda(t.a_receber, 1), 'inscrições emitidas, ainda no prazo') +
-      kpi('Em atraso', moeda(t.em_atraso, 1), 'vencidas e não pagas') +
-      kpi('Ticket por inscrito', moeda((REC.ticket || {}).por_inscrito), C.fmtInt((REC.volumes || {}).inscritos_pagantes || 0) + ' inscritos pagantes') +
-      kpi('Cursos com receita', C.fmtInt((REC.volumes || {}).cursos_com_receita || 0), C.fmtInt((REC.volumes || {}).inscricoes_pagas || 0) + ' inscrições pagas');
+      kpi('Ticket por inscrito', moeda(inscritosAno ? receitaCursosAno / inscritosAno : null), C.fmtInt(inscritosAno) + ' inscritos pagantes em ' + estadoR.ano) +
+      kpi('Cursos com receita', C.fmtInt(cursosAno.length), C.fmtInt(inscricoesAno) + (inscricoesAno === 1 ? ' inscrição paga' : ' inscrições pagas')) +
+      kpi('Receita por curso', moeda(cursosAno.length ? receitaCursosAno / cursosAno.length : null, 1), 'média entre os cursos pagos do ano');
 
     // só a seção escolhida fica visível
     $('#r-evolucao').hidden = estadoR.vista !== 'evolucao';
@@ -3856,24 +3937,26 @@ window.iniciarPainel = function () {
     if (semReceita > 0) $('#r-sub-serie').textContent += ' · ' + semReceita + (semReceita === 1 ? ' mês sem receita' : ' meses sem receita');
     var max = Math.max.apply(null, doAno.map(function (x) { return x.receita; }).concat([1]));
     var antPorMes = {}; serieAnt.forEach(function (x) { antPorMes[x.mes.slice(5, 7)] = x.receita; });
-    $('#g-receita').innerHTML = doAno.length ? doAno.map(function (x) {
+    var grafLinha = doAno.length ? '<div class="graf-linha">' + linhaReceita(doAno, serieAnt, estadoR.ano, anoAnt) +
+      '<p class="leg-linha"><span class="l-at"></span>' + estadoR.ano + ' acumulado' + (serieAnt.length ? '<span class="l-an"></span>' + anoAnt : '') + '</p></div>' : '';
+    $('#g-receita').innerHTML = grafLinha + (doAno.length ? doAno.map(function (x) {
       var b = antPorMes[x.mes.slice(5, 7)] || 0;
       return '<div class="hbar"><span class="nome">' + mesRotulo(x.mes) + '</span>' +
         '<span class="num">' + moeda(x.receita, 1) + ' ' + chip(b ? (x.receita - b) / b : null, 'pct', 0) + '</span>' +
         '<span class="trilha"><i style="width:' + (x.receita * 100 / max) + '%;background:var(--data)"></i></span>' +
         '<span class="det">' + C.fmtInt(x.inscritos || 0) + (x.inscritos === 1 ? ' inscrito' : ' inscritos') + ' em ' +
         C.fmtInt(x.grupos || 0) + (x.grupos === 1 ? ' inscrição' : ' inscrições') + '</span></div>';
-    }).join('') : '<p class="aviso-ia">Sem receita registrada em ' + estadoR.ano + '.</p>';
+    }).join('') : '<p class="aviso-ia">Sem receita registrada em ' + estadoR.ano + '.</p>');
 
     var MEIO = { billet: 'Boleto', creditCard: 'Cartão de crédito', debitCard: 'Cartão de débito', pix: 'Pix', free: 'Gratuito', 'não informado': 'Não informado' };
     var comp = (REC[estadoR.comp === 'formato' ? 'por_formato' : estadoR.comp === 'meio' ? 'por_meio' : 'por_area'] || [])
       .map(function (x) { return estadoR.comp === 'meio' ? { chave: MEIO[x.chave] || x.chave, receita: x.receita, grupos: x.grupos } : x; });
     var maxC = Math.max.apply(null, comp.map(function (x) { return x.receita; }).concat([1]));
-    $('#g-r-comp').innerHTML = comp.length ? comp.map(function (x) {
+    $('#g-r-comp').innerHTML = (comp.length ? roscaReceita(comp) : '') + (comp.length ? comp.map(function (x) {
       return '<div class="hbar"><span class="nome">' + esc(x.chave) + '</span><span class="num">' + moeda(x.receita, 1) + '</span>' +
         '<span class="trilha"><i style="width:' + (x.receita * 100 / maxC) + '%;background:var(--data)"></i></span>' +
         '<span class="det">' + C.fmtInt(x.grupos || 0) + (x.grupos === 1 ? ' inscrição' : ' inscrições') + '</span></div>';
-    }).join('') : '<p class="aviso-ia">Sem dados.</p>';
+    }).join('') : '<p class="aviso-ia">Sem dados.</p>');
 
     var cursos = (REC.cursos || []).filter(function (c) { return String(c.inicio).slice(0, 4) === estadoR.ano; });
     $('#t-r-cursos').innerHTML = '<thead><tr><th>Cursos com receita <span class="th-n">' + cursos.length + '</span></th>' +
