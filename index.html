@@ -1224,6 +1224,10 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
       <span class="rot-nav">Comparação</span>
     </button>
     <div class="fim">
+      <button class="navbtn" data-pg="receita" type="button" title="Receita">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20V9m5 11V5m5 15v-8m5 8V7"/><path d="M3 20h18"/></svg>
+        <span class="rot-nav">Receita</span>
+      </button>
       <button class="navbtn" data-pg="indicadores" type="button" title="Indicadores">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4.5h11.5l-2.2 4 2.2 4H5"/></svg>
         <span class="rot-nav">Indicadores</span>
@@ -1424,6 +1428,38 @@ tr.grupo:hover td.abrir svg, tr.sel td.abrir svg { stroke: var(--accent); transf
     </section>
 
     <!-- ===================== Página · Indicadores GIBS ===================== -->
+    <!-- ===================== Página · Receita ===================== -->
+    <section class="pagina pg-receita" id="pg-receita" data-pg="receita" aria-labelledby="titulo-pg" hidden>
+      <div class="filtros">
+        <div class="dd" id="dd-r-ano"></div>
+        <div class="chips-grupo" id="chips-r-base" role="group" aria-label="Base da série mensal">
+          <button type="button" class="chip-filtro" data-base="atividade" aria-pressed="true">Mês da atividade</button>
+          <button type="button" class="chip-filtro" data-base="inscricao" aria-pressed="false">Mês da inscrição</button>
+        </div>
+        <span class="nota" id="r-nota"></span>
+      </div>
+      <div class="painel cluster" id="kpis-r" aria-live="polite"></div>
+      <div class="area">
+        <div class="painel">
+          <header><h2 id="r-tit-serie">Receita mês a mês</h2><span class="nota" id="r-sub-serie"></span></header>
+          <div class="corpo"><div id="g-receita"></div></div>
+        </div>
+        <div class="coluna">
+          <div class="painel tabela-p compacta"><div class="corpo rolagem"><table class="tabela" id="t-r-cursos"></table></div></div>
+          <div class="painel">
+            <header><h2>Composição</h2>
+              <div class="chips-grupo" id="chips-r-comp" role="group" aria-label="Agrupar a receita por">
+                <button type="button" class="chip-filtro" data-comp="area" aria-pressed="true">Área</button>
+                <button type="button" class="chip-filtro" data-comp="formato" aria-pressed="false">Formato</button>
+                <button type="button" class="chip-filtro" data-comp="meio" aria-pressed="false">Pagamento</button>
+              </div>
+            </header>
+            <div class="corpo rolagem"><div class="hbars" id="g-r-comp"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="pagina pg-gibs" id="pg-indicadores" data-pg="indicadores" aria-labelledby="titulo-pg" hidden>
       <div class="filtros">
         <div class="dd" id="dd-g-ano"></div>
@@ -2646,6 +2682,7 @@ window.iniciarPainel = function () {
   var PAGINAS = {
     atividades: ['Acompanhamento das atividades', 'Inscrições, participação e satisfação por atividade'],
     divulgacoes: ['Divulgações', 'Ações do Trello e e-mails do sistema, atividade por atividade'],
+    receita: ['Receita', 'Pagamentos das inscrições: total, evolução mensal e composição'],
     comparacao: ['Comparação entre períodos', 'O que mudou de um período para o outro, e por quê'],
     qualidade: ['Pesquisas de qualidade', 'Desempenho, acervo de avaliações e comentários dos participantes'],
     publico: ['Público', 'Quem se inscreve e participa: departamentos, cargos, empresas e público em potencial'],
@@ -3747,7 +3784,88 @@ window.iniciarPainel = function () {
   /* =================================================================
      Navegação, filtros e eventos
      ================================================================= */
-  var renders = { atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, publico: renderPublico, indicadores: renderIndicadores, comparacao: renderComparacao };
+
+  /* ==============================
+     Página · Receita
+     ============================== */
+  var REC = window.PES_RECEITA || null;
+  var estadoR = { ano: null, base: 'atividade', comp: 'area' };
+  function moeda(v, curto) {
+    if (v == null) return '—';
+    if (curto && Math.abs(v) >= 1000000) return 'R$ ' + (v / 1000000).toFixed(1).replace('.', ',') + ' mi';
+    if (curto && Math.abs(v) >= 1000) return 'R$ ' + (v / 1000).toFixed(0) + ' mil';
+    return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function mesRotulo(m) {
+    var M = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+    return M[+m.slice(5, 7) - 1] + '/' + m.slice(2, 4);
+  }
+  function renderReceita() {
+    if (!REC) {
+      $('#kpis-r').innerHTML = kpi('Receita', '—', 'O arquivo receita.js ainda não foi publicado. Rode o workflow "Painel PES · 6 · Receita e indicadores".');
+      $('#g-receita').innerHTML = ''; $('#t-r-cursos').innerHTML = ''; $('#g-r-comp').innerHTML = '';
+      $('#r-nota').textContent = ''; return;
+    }
+    var anos = Object.keys(REC.por_ano || {}).sort().reverse();
+    if (!estadoR.ano) estadoR.ano = anos[0] || String(new Date().getFullYear());
+    var serie = (REC.mes_a_mes || {})[estadoR.base === 'inscricao' ? 'por_inscricao' : 'por_atividade'] || [];
+    var doAno = serie.filter(function (x) { return x.mes.slice(0, 4) === estadoR.ano; });
+    var totalAno = doAno.reduce(function (a, x) { return a + x.receita; }, 0);
+    var anoAnt = String(+estadoR.ano - 1), serieAnt = serie.filter(function (x) { return x.mes.slice(0, 4) === anoAnt; });
+    var totalAnt = serieAnt.reduce(function (a, x) { return a + x.receita; }, 0);
+    var t = REC.total || {};
+
+    $('#kpis-r').innerHTML =
+      kpi('Receita recebida', moeda(totalAno), estadoR.ano + (totalAnt ? ' · ' + anoAnt + ': ' + moeda(totalAnt, 1) : ''),
+          totalAnt ? chip((totalAno - totalAnt) / totalAnt, 'pct', 1) : '') +
+      kpi('A receber', moeda(t.a_receber, 1), 'inscrições emitidas, ainda no prazo') +
+      kpi('Em atraso', moeda(t.em_atraso, 1), 'vencidas e não pagas') +
+      kpi('Ticket por inscrito', moeda((REC.ticket || {}).por_inscrito), C.fmtInt((REC.volumes || {}).inscritos_pagantes || 0) + ' inscritos pagantes') +
+      kpi('Cursos com receita', C.fmtInt((REC.volumes || {}).cursos_com_receita || 0), C.fmtInt((REC.volumes || {}).inscricoes_pagas || 0) + ' inscrições pagas');
+
+    $('#r-tit-serie').textContent = 'Receita mês a mês · ' + estadoR.ano;
+    $('#r-sub-serie').textContent = estadoR.base === 'inscricao' ? 'pela data em que a inscrição foi feita' : 'pela data em que a atividade aconteceu';
+    $('#r-nota').textContent = REC.nota || '';
+
+    // completa os meses sem receita, para dar leitura de sazonalidade
+    var porMes = {}; doAno.forEach(function (x) { porMes[x.mes.slice(5, 7)] = x; });
+    var ultimo = estadoR.ano === String(new Date().getFullYear()) ? (new Date().getMonth() + 1) : 12;
+    doAno = [];
+    for (var mm = 1; mm <= ultimo; mm++) {
+      var ch = (mm < 10 ? '0' : '') + mm;
+      doAno.push(porMes[ch] || { mes: estadoR.ano + '-' + ch, receita: 0, grupos: 0, inscritos: 0 });
+    }
+    var max = Math.max.apply(null, doAno.map(function (x) { return x.receita; }).concat([1]));
+    var antPorMes = {}; serieAnt.forEach(function (x) { antPorMes[x.mes.slice(5, 7)] = x.receita; });
+    $('#g-receita').innerHTML = doAno.length ? '<div class="hbars">' + doAno.map(function (x) {
+      var b = antPorMes[x.mes.slice(5, 7)] || 0;
+      return '<div class="hbar"><span class="nome">' + mesRotulo(x.mes) + '</span><span class="num">' + moeda(x.receita, 1) +
+        ' ' + chip(b ? (x.receita - b) / b : null, 'pct', 0) + '</span>' +
+        '<span class="trilha"><i style="width:' + (x.receita * 100 / max) + '%;background:var(--data)"></i></span>' +
+        '<span class="det">' + C.fmtInt(x.inscritos || 0) + (x.inscritos === 1 ? ' inscrito' : ' inscritos') + ' em ' + C.fmtInt(x.grupos || 0) + (x.grupos === 1 ? ' inscrição' : ' inscrições') + '</span></div>';
+    }).join('') + '</div>' : '<p class="aviso-ia">Sem receita registrada em ' + estadoR.ano + '.</p>';
+
+    var MEIO = { billet: 'Boleto', creditCard: 'Cartão de crédito', debitCard: 'Cartão de débito', pix: 'Pix', free: 'Gratuito', 'não informado': 'Não informado' };
+    var comp = (REC[estadoR.comp === 'formato' ? 'por_formato' : estadoR.comp === 'meio' ? 'por_meio' : 'por_area'] || [])
+      .map(function (x) { return estadoR.comp === 'meio' ? { chave: MEIO[x.chave] || x.chave, receita: x.receita, grupos: x.grupos } : x; });
+    var maxC = Math.max.apply(null, comp.map(function (x) { return x.receita; }).concat([1]));
+    $('#g-r-comp').innerHTML = comp.length ? comp.map(function (x) {
+      return '<div class="hbar"><span class="nome">' + esc(x.chave) + '</span><span class="num">' + moeda(x.receita, 1) + '</span>' +
+        '<span class="trilha"><i style="width:' + (x.receita * 100 / maxC) + '%;background:var(--data)"></i></span>' +
+        '<span class="det">' + C.fmtInt(x.grupos || 0) + (x.grupos === 1 ? ' inscrição' : ' inscrições') + '</span></div>';
+    }).join('') : '<p class="aviso-ia">Sem dados.</p>';
+
+    var cursos = (REC.cursos || []).filter(function (c) { return String(c.inicio).slice(0, 4) === estadoR.ano; });
+    $('#t-r-cursos').innerHTML = '<thead><tr><th>Cursos com receita <span class="th-n">' + cursos.length + '</span></th>' +
+      '<th class="n">Receita</th><th class="n">Inscritos</th><th class="n">Ticket</th></tr></thead><tbody>' +
+      (cursos.length ? cursos.map(function (c) {
+        return '<tr><td class="titulo"><b>' + esc(c.titulo) + '</b><span class="sub">' + C.dataCurta(c.inicio) + ' · ' + esc(c.area) + ' · ' + esc(c.formato) + '</span></td>' +
+          '<td class="n">' + moeda(c.receita, 1) + '</td><td class="n">' + C.fmtInt(c.inscritos || 0) + '</td>' +
+          '<td class="n">' + moeda(c.inscritos ? c.receita / c.inscritos : null, 1) + '</td></tr>';
+      }).join('') : '<tr><td colspan="4" class="nota">Sem cursos com receita em ' + estadoR.ano + '.</td></tr>') + '</tbody>';
+  }
+
+  var renders = { receita: renderReceita, atividades: renderAtividades, divulgacoes: renderDivulgacoes, qualidade: renderQualidade, publico: renderPublico, indicadores: renderIndicadores, comparacao: renderComparacao };
   function irPara(pg, semHash) {
     if (pg === 'cursos') pg = 'atividades';
     if (!renders[pg]) pg = 'atividades';
@@ -3853,6 +3971,25 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
     if (gAnos.indexOf(estado.g.ano) < 0) estado.g.ano = gAnos[0] || ANO_ATUAL;
     dd.gAno = new Dropdown($('#dd-g-ano'), { rotulo: 'Ano', valor: estado.g.ano, padrao: ANO_ATUAL, opcoes: gAnos.map(function (a) { return { v: a, t: a }; }),
       onChange: function (v) { estado.g.ano = v; renderIndicadores(); } });
+
+    // ---- receita
+    if (REC) {
+      var rAnos = Object.keys(REC.por_ano || {}).sort().reverse();
+      if (!rAnos.length) rAnos = [ANO_ATUAL];
+      if (rAnos.indexOf(estadoR.ano) < 0) estadoR.ano = rAnos[0];
+      dd.rAno = new Dropdown($('#dd-r-ano'), { rotulo: 'Ano', valor: estadoR.ano, padrao: ANO_ATUAL, opcoes: rAnos.map(function (a) { return { v: a, t: a }; }),
+        onChange: function (v) { estadoR.ano = v; renderReceita(); } });
+      $$('#chips-r-base .chip-filtro').forEach(function (b) {
+        b.onclick = function () { estadoR.base = b.getAttribute('data-base');
+          $$('#chips-r-base .chip-filtro').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+          renderReceita(); };
+      });
+      $$('#chips-r-comp .chip-filtro').forEach(function (b) {
+        b.onclick = function () { estadoR.comp = b.getAttribute('data-comp');
+          $$('#chips-r-comp .chip-filtro').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+          renderReceita(); };
+      });
+    }
 
     // ---- público
     if (PUB) {
@@ -3968,6 +4105,7 @@ $$('#chips-grupo .chip-filtro').forEach(function (b) { b.onclick = function () {
   // um arquivo por workflow do n8n; o data_dash.js antigo continua aceito enquanto existir
   carregar('atividades.js'); carregar('divulgacoes.js'); carregar('publico.js'); carregar('comparacao.js');
   carregar('data_dash.js');
+  carregar('receita.js');
   carregar('indicadores.js');   // metas e valores informados dos indicadores GIBS
   carregar(QUALIDADE);
   setTimeout(seguir, 6000);
